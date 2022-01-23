@@ -1,11 +1,18 @@
+require('utils')
 local o = vim.o
 local wo = vim.wo
 local bo = vim.bo
-local map = vim.api.nvim_set_keymap
 
-function vnoremap (a, b)
-  map('v', a, b, { noremap = true })
-end
+-- map the leader key
+vim.api.nvim_set_keymap('n', '<Space>', '', {})
+vim.g.mapleader = ' '  -- 'vim.g' sets global variables
+
+vim.o.clipboard = "unnamedplus"
+
+-- TODO: paste without yanking
+-- vnoremap('ap' "'$hpgv\"'.v:register.'y`>'")
+-- xnoremap <expr> p 'pgv"'.v:register.'y`>'
+-- xnoremap <expr> P 'Pgv"'.v:register.'y`>'
 
 -- global options
 o.swapfile = true
@@ -16,17 +23,14 @@ o.hlsearch = true
 o.incsearch = true
 o.ignorecase = true
 o.scrolloff = 12
--- ... snip ... 
+-- ... snip ...
 
 -- window-local options
-wo.number = false
+wo.number = true
 wo.wrap = false
 
 -- buffer-local options
 bo.expandtab = true
 
--- map the leader key
-map('n', '<Space>', '', {})
-vim.g.mapleader = ' '  -- 'vim.g' sets global variables
 
 vnoremap('w', 'iw')
