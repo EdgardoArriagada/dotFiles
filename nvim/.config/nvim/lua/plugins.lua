@@ -29,13 +29,23 @@ packer.init {
   },
 }
 
+function get_setup(name)
+  return string.format('require("setup/%s")', name)
+end
+
 -- Install your plugins here
 return packer.startup(function(use)
   use 'wbthomason/packer.nvim' -- Have packer manage itself
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
+  use({
+      "nvim-telescope/telescope.nvim",
+      module = "telescope",
+      cmd = "Telescope",
+      requires = {
+        { "nvim-lua/popup.nvim" },
+        { "nvim-lua/plenary.nvim" },
+        { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+      },
+  })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
