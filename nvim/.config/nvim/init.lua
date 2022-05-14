@@ -1,6 +1,6 @@
 -- References to ./lua/
 -- Plugin management via Packer
-require("plugins")
+require("plugins-bootstrap")
 -- Vim mappings, see lua/config/which.lua for more mappings
 require("mappings")
 -- All non plugin related (vim) options
