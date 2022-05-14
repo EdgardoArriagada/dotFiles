@@ -22,6 +22,7 @@ o.hlsearch = true
 o.incsearch = true
 o.ignorecase = true
 o.scrolloff = 12
+vim.cmd([[colorscheme gruvbox]])
 -- ... snip ...
 
 -- window-local options
