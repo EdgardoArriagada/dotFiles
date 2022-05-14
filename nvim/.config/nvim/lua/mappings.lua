@@ -33,8 +33,6 @@ wo.wrap = false
 -- buffer-local options
 bo.expandtab = true
 
-vnoremap('w', 'iw')
-   
 local function map(mode, lhs, rhs, opts)
   local options = { noremap = true }
   if opts then
@@ -42,6 +40,8 @@ local function map(mode, lhs, rhs, opts)
   end
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
+
+map('v', 'w', 'iw')
 
 -- Nvim Tree
 map("n", "<leader>e", ":NvimTreeToggle<CR>", { silent = true })
