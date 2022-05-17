@@ -1,8 +1,3 @@
-
--- map the leader key
-vim.api.nvim_set_keymap('n', '<Space>', '', {})
-vim.g.mapleader = ' '
-
 local options = {
   backup = false,                          -- creates a backup file
   clipboard = "unnamedplus",               -- allows neovim to access the system clipboard

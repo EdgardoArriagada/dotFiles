@@ -8,6 +8,12 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+-- map the leader key
+map('n', '<Space>', '<Nop>')
+vim.g.mapleader = ' '
+vim.g.maplocalleade= ' '
+
+
 -- Shorcuts
 map('o', 'w', 'iw')
 map('o', 'W', 'iW')
