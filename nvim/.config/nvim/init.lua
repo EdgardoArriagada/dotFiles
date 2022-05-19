@@ -1,3 +1,4 @@
+require("utils")
 require("plugins-bootstrap")
 require("mappings")
 require("options")
