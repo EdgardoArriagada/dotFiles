@@ -1,11 +1,13 @@
-local colorscheme = 'gruvbox'
+----------
+local theme = 'gruvbox'
+----------
 
-local colorschemeCmd = 'colorscheme ' .. colorscheme
+local colorscheme = 'colorscheme ' .. theme
 
-local ok, _ = pcall(vim.cmd, colorschemeCmd)
+local ok, _ = pcall(vim.cmd, colorscheme)
 
 if not ok then
-  vim.notify(colorschemeCmd .. 'not found')
+  vim.notify(colorscheme .. ' not found!')
   vim.cmd [[colorscheme default]]
   return
 end
