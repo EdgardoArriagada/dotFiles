@@ -5,6 +5,7 @@ require("plugins-bootstrap")
 require("mappings")
 -- All non plugin related (vim) options
 require("options")
+require("colorscheme")
 -- Vim autocommands/autogroups
 require("autocmd")
 
