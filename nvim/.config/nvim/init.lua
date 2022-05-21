@@ -1,5 +1,6 @@
 require('utils')
 require('plugins-bootstrap')
+require('customPluggins')
 require('mappings')
 require('options')
 require('completions')
