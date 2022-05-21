@@ -20,11 +20,19 @@ function pluginsStartup(use)
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
 
+  -- Telescope
   use {
       "nvim-telescope/telescope.nvim",
       module = "telescope",
       cmd = "Telescope",
   }
+
+  -- Treesitteer
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+  }
+  use 'p00f/nvim-ts-rainbow'
 
   -- Looks
   use 'gruvbox-community/gruvbox'
