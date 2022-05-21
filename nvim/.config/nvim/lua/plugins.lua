@@ -35,5 +35,5 @@ function pluginsStartup(use)
   use 'p00f/nvim-ts-rainbow'
 
   -- Looks
-  use 'gruvbox-community/gruvbox'
+  use 'Mofiqul/vscode.nvim'
 end
