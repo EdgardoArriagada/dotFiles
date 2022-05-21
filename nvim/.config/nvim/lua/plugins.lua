@@ -6,7 +6,6 @@ function pluginsStartup(use)
   use 'nvim-lua/plenary.nvim'
 
   -- Completion plugins https://github.com/topics/nvim-cmp
-  use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-nvim-lua'
   use 'hrsh7th/cmp-buffer'
@@ -16,6 +15,10 @@ function pluginsStartup(use)
 
   -- Snippets
   use 'L3MON4D3/LuaSnip'
+
+  -- Lsp
+  use 'neovim/nvim-lspconfig'
+  use 'williamboman/nvim-lsp-installer'
 
   use {
       "nvim-telescope/telescope.nvim",
