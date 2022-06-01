@@ -13,6 +13,8 @@ map('n', '<Space>', '<Nop>')
 vim.g.mapleader = ' '
 vim.g.maplocalleade= ' '
 
+map('n', 'Q', ':lua require "customPluggins.powerSelection".main()<CR>', { silent = true })
+
 
 -- Shorcuts
 map('o', 'w', 'iw')
@@ -86,7 +88,6 @@ map('n', '<C-q>', ':q')
 map('n', '<C-s>', ':update<CR>', { silent = true })
 map('v', '<C-s>', '<esc>:update<CR>', { silent = true })
 map('i', '<C-s>', '<esc>:update<CR>', { silent = true })
-
 
 --Search and replace matches for highlighted text
 map('v', '<C-r>', '"hy:.,$s/<C-r>h//gc<left><left><left>')
