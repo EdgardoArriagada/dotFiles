@@ -46,16 +46,31 @@ function main()
   for left, right in tokenPairs(pairList) do
     if not hasPair(left, right) then goto continue end
 
-    table.insert(cachedPair, {left, right})
+    table.insert(cachedPair, left)
+    table.insert(cachedPair, right)
     execute('normal <Esc> vi'..left)
 
-    if didSelectInLine() then
-      return
-    end
+    if didSelectInLine() then return end
 
     setpos('.', savedPos)
 
     ::continue::
+  end
+
+  for left, right in tokenPairs(cachedPair) do
+    execute('normal <Esc>f'..right..'F'..left..'vi'..left)
+
+    if didSelectInLine() then return end
+
+    setpos('.', savedPos)
+  end
+
+  for left, right in tokenPairs(cachedPair) do
+    execute('normal <Esc>0f'..left..'vi'..left)
+
+    if didSelectInLine() then return end
+
+    setpos('.', savedPos)
   end
 end
 
