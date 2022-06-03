@@ -1,5 +1,6 @@
 require('utils')
 require('plugins-bootstrap')
+require('customPluggins.goLessDeeperIndent')
 require('mappings')
 require('options')
 require('completions')
