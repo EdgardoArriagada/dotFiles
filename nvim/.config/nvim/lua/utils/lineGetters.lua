@@ -1,14 +1,3 @@
-local keymap = vim.keymap
-local line = vim.fn.line
-local indent = vim.fn.indent
-
--- to debug
---keymap.set('n', "<bs>", function()
---  local lol = getSameIndentLine('j')
---end, { noremap = true, silent = true })
-
-local line = vim.fn.line
-
 local function getProps(direction)
   if direction == 'j' then
     return 1, line('$')

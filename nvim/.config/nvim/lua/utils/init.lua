@@ -1,3 +1,4 @@
+require("utils.vim-functions")
 require("utils.map")
 require("utils.execute")
 require("utils.requirers")

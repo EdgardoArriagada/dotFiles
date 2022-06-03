@@ -1,8 +1,3 @@
-local col = vim.fn.col
-local indent = vim.fn.indent
-local line = vim.fn.line
-local keymap = vim.keymap
-
 keymap.set({ 'o', 'n' }, '<bs>', function()
   goLessDeeperIndent('k')
 end, { noremap = true, silent = true })

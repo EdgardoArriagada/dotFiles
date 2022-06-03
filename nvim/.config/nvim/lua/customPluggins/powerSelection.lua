@@ -1,10 +1,3 @@
-local getCurrentLine = vim.api.nvim_get_current_line
-local getpos = vim.fn.getpos
-local setpos = vim.fn.setpos
-local col = vim.fn.col
-local line = vim.fn.line
-local keymap = vim.keymap
-
 keymap.set('n', 'Q', function()
   powerSelection()
 end, { noremap = true, silent = true })
