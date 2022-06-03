@@ -1,23 +1,10 @@
-keymap.set({ 'o', 'n' }, '<bs>', function()
+keymap.set({ 'o', 'n', 'v' }, '<bs>', function()
   goLessDeeperIndent('k')
 end, { noremap = true, silent = true })
 
-keymap.set('v', '<bs>', function()
-  goLessDeeperIndent_visual('k')
-end, { noremap = true, silent = true })
-
-keymap.set({ 'o', 'n' }, '<enter>', function()
+keymap.set({ 'o', 'n', 'v' }, '<enter>', function()
   goLessDeeperIndent('j')
 end, { noremap = true, silent = true })
-
-keymap.set('v', '<enter>', function()
-  goLessDeeperIndent_visual('j')
-end, { noremap = true, silent = true })
-
-function goLessDeeperIndent_visual(direction)
-  execute('normal gv')
-  goLessDeeperIndent(direction)
-end
 
 function goLessDeeperIndent(direction)
   -- Go to beggin of line and add to jump list
