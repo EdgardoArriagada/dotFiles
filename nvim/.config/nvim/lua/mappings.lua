@@ -5,9 +5,6 @@ map('n', '<Space>', '<Nop>')
 vim.g.mapleader = ' '
 vim.g.maplocalleade= ' '
 
-map('n', 'Q', ':lua require "customPluggins.powerSelection".main()<CR>', { silent = true })
-
-
 -- Shorcuts
 map('o', 'w', 'iw')
 map('o', 'W', 'iW')

@@ -3,6 +3,11 @@ local getpos = vim.fn.getpos
 local setpos = vim.fn.setpos
 local col = vim.fn.col
 local line = vim.fn.line
+local keymap = vim.keymap
+
+keymap.set('n', 'Q', function()
+  powerSelection()
+end, { noremap = true, silent = true })
 
 local function tokenPairs(t)
   local i = 0
@@ -36,7 +41,7 @@ local function hasPair(left, right)
   end
 end
 
-function main()
+function powerSelection()
   local savedPos = getpos('.')
   local cachedPair = {}
   for left, right in tokenPairs(pairList) do
@@ -69,7 +74,3 @@ function main()
     setpos('.', savedPos)
   end
 end
-
-return {
-  main = main,
-}
