@@ -1,5 +1,3 @@
-local line = vim.fn.line
-
 function strip(input)
    return (input:gsub("^%s*(.-)%s*$", "%1"))
 end
@@ -24,3 +22,11 @@ function jumpUntilNotEmptyLine(direction)
   end
 end
 
+function lookForIndentation(direction)
+  -- Go to beggin of line and add to jump list
+  execute('normal'..line('.')..'G^')
+
+  jumpUntilNotEmptyLine(direction)
+
+  execute('normal!'..getSameIndentLine(direction)..'G^')
+end
