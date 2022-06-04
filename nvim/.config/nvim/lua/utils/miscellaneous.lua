@@ -3,8 +3,6 @@ function strip(input)
 end
 
 function isEmptyString(input)
-  if #input == 0 then return true end
-
   return #strip(input) == 0
 end
 
