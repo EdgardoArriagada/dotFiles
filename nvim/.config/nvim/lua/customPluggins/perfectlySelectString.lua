@@ -40,7 +40,7 @@ function perfectlySelectString(quotes)
   end
 
   -- If did select between cursor
-  for i, quote in ipairs(quotes) do
+  for quote in arrayElement(quotes) do
     execute('normal vi'..quote)
 
     if didSelectBetween(savedColumn) then
@@ -50,7 +50,7 @@ function perfectlySelectString(quotes)
     restoreValues()
   end
 
-  for i, quote in ipairs(quotes) do
+  for quote in arrayElement(quotes) do
     -- If did select goind forward
     execute('normal vi'..quote)
 
@@ -61,7 +61,7 @@ function perfectlySelectString(quotes)
     restoreValues()
   end
 
-  for i, quote in ipairs(quotes) do
+  for quote in arrayElement(quotes) do
     -- If did select goind backwards
     execute('normal F'..quote..'vi'..quote)
 

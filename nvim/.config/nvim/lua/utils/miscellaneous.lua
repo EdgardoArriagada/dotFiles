@@ -30,3 +30,12 @@ function lookForIndentation(direction)
 
   execute('normal!'..getSameIndentLine(direction)..'G^')
 end
+
+function arrayElement(t)
+  local i = 0
+
+  return function()
+    i = i + 1
+    return t[i]
+  end
+end
