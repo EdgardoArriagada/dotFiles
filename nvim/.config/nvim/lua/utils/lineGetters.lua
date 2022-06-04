@@ -46,29 +46,29 @@ function getLastMatchingIndent(direction)
   return lineMarker
 end
 
--- func! GetStopLine(direction)
-  -- let [inc, endOfFile] = s:getProps(a:direction)
+function getStopLine(direction)
+  local inc, endOfFile = getProps(direction)
 
-  -- let lineMarker = line('.')
-  -- let s:isStartEmpty = IsEmptyLine(lineMarker)
-  -- let s:originalIndent = indent('.')
+  local lineMarker = line('.')
+  local isStartEmpty = isEmptyLine(lineMarker)
+  local originalIndent = indent('.')
 
-  -- func! s:didSwitch(line)
-    -- if s:isStartEmpty == 1
-      -- return !IsEmptyLine(a:line)
-    -- else
-      -- return IsEmptyLine(a:line)
-    -- endif
-  -- endfunc
+  local function didSwitch(line)
+     if isStartEmpty then
+       return not isEmptyLine(line)
+     else
+       return isEmptyLine(line)
+     end
+  end
 
-  -- while !s:didSwitch(lineMarker) && lineMarker != endOfFile
-    -- let lineMarker += inc
+  while not didSwitch(lineMarker) and lineMarker ~= endOfFile do
+     lineMarker = lineMarker + inc
 
-    -- if !IsEmptyLine(lineMarker) && indent(lineMarker) < s:originalIndent
-      -- let lineMarker -= inc
-      -- break
-    -- endif
-  -- endwhile
+     if not isEmptyLine(lineMarker) and indent(lineMarker) < originalIndent then
+       lineMarker = lineMarker - inc
+       break
+    end
+  end
 
-  -- return lineMarker
--- endfunc
+  return lineMarker
+end
