@@ -20,12 +20,6 @@ function goLessDeeperIndent(direction)
     return
   end
 
-  while col('.') > 1 do
-    local lastMatchinLine = getLastMatchingIndent(direction)
-    execute('normal'..lastMatchinLine..'G^')
-
-    if indent('.') < originalInent then
-      break
-    end
-  end
+  local lastMatchinLine = getLesserIndent(direction)
+  execute('normal'..lastMatchinLine..'G^')
 end

@@ -28,19 +28,22 @@ function getSameIndentLine(direction)
   end
 end
 
-function getLastMatchingIndent(direction)
+function getLesserIndent(direction)
   local inc, endOfFile = getProps(direction)
 
   local lineMarker = line('.')
   local originalIndent = indent('.')
 
+  local gotLesserIndent = false
+
   while lineMarker ~= endOfFile do
     lineMarker = lineMarker + inc
-    existsSameIndent = indent(lineMarker) == originalIndent
+    if isEmptyLine(lineMarker) then goto continue end
 
-    if not (existsSameIndent or isEmptyLine(lineMarker)) then
-      break
-    end
+    gotLesserIndent = indent(lineMarker) < originalIndent
+
+    if gotLesserIndent then break end
+    ::continue::
   end
 
   return lineMarker
