@@ -1,3 +1,5 @@
+if vim.g.vscode then return end
+
 ----------
 local theme = 'vscode'
 vim.g.vscode_style = "dark"
