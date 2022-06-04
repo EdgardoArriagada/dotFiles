@@ -38,12 +38,10 @@ function getLesserIndent(direction)
 
   while lineMarker ~= endOfFile do
     lineMarker = lineMarker + inc
-    if isEmptyLine(lineMarker) then goto continue end
 
     gotLesserIndent = indent(lineMarker) < originalIndent
 
-    if gotLesserIndent then break end
-    ::continue::
+    if gotLesserIndent and not isEmptyLine(lineMarker) then break end
   end
 
   return lineMarker
