@@ -1,9 +1,13 @@
 function pluginsStartup(use)
   use 'wbthomason/packer.nvim' -- Have packer manage itself
 
-  if vim.g.vscode then
-    use 'asvetliakov/vim-easymotion'
-  else
+  use {
+    'phaazon/hop.nvim',
+    branch = 'v1', -- optional but strongly recommended
+    config = get_setup('hop'),
+  }
+
+  if not vim.g.vscode then
     -- Common plugins
     use 'nvim-lua/popup.nvim'
     use 'nvim-lua/plenary.nvim'

@@ -1,3 +1,8 @@
+-- Helper for plugins "config" node
+function get_setup(name)
+  return string.format('require("setup/%s")', name)
+end
+
 require('plugins')
 
 local fn = vim.fn
@@ -29,11 +34,6 @@ packer.init {
   },
 }
 
-function get_setup(name)
-  return string.format('require("setup/%s")', name)
-end
-
--- Install your plugins here
 return packer.startup(function(use)
 
   pluginsStartup(use)
