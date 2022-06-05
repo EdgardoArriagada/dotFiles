@@ -12,12 +12,12 @@ function smartTab(direction)
   execute('normal ^')
 
   -- Add to jump list
-  execute('normal'..line('.')..'G')
+  execute('normal '..line('.')..'G')
 
-  execute('normal!'..getStopLine(direction)..'G^')
+  execute('normal '..getStopLine(direction)..'G^')
 
   if beforeLine == line('.') then
-    execute('normal'..direction..'^')
+    execute('normal '..direction..'^')
   end
 end
 

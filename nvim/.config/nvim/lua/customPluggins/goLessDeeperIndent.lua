@@ -8,7 +8,7 @@ end, { noremap = true, silent = true })
 
 function goLessDeeperIndent(direction)
   -- Go to beggin of line and add to jump list
-  execute('normal'..line('.')..'G^')
+  execute('normal '..line('.')..'G^')
 
   jumpUntilNotEmptyLine(direction)
 
@@ -16,10 +16,10 @@ function goLessDeeperIndent(direction)
 
   if originalInent == 0 then
     local lastLine = getSameIndentLine(direction)
-    execute('normal'..lastLine..'G^')
+    execute('normal '..lastLine..'G^')
     return
   end
 
   local lastMatchinLine = getLesserIndent(direction)
-  execute('normal'..lastMatchinLine..'G^')
+  execute('normal '..lastMatchinLine..'G^')
 end
