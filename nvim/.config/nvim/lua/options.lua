@@ -4,7 +4,8 @@ local globalOptions = {
   ignorecase = true,                       -- ignore case in search patterns
   mouse = "a",                             -- allow the mouse to be used in neovim
   timeoutlen = 200,                        -- time to wait for a mapped sequence to complete (in milliseconds)
-  number = false,
+  number = false,                          -- no numbers
+  laststatus = 0,                          -- no statusline
 }
 
 local neovimOptions = {
@@ -37,6 +38,7 @@ local neovimOptions = {
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
+  laststatus = 3,                          -- global statusline only
 }
 
 
