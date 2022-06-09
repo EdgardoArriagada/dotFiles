@@ -1,10 +1,10 @@
 keymap.set({ 'o', 'v' }, "'", function()
-  execute('normal <Esc>')
+  execute('normal<Esc>')
   perfectlySelectString({"'", '"'})
 end, { noremap = true, silent = true })
 
 keymap.set({ 'o', 'v' }, '"', function()
-  execute('normal <Esc>')
+  execute('normal<Esc>')
   perfectlySelectString({'"', "'"})
 end, { noremap = true, silent = true })
 
@@ -19,7 +19,7 @@ local function restorePos(position)
 end
 
 local function pressEscape()
-  execute('normal <Esc>')
+  execute('normal<Esc>')
 end
 
 local function didSelect()
@@ -41,7 +41,7 @@ function perfectlySelectString(quotes)
 
   -- If did select between cursor
   for quote in arrayElement(quotes) do
-    execute('normal vi'..quote)
+    execute('normal!vi'..quote)
 
     if didSelectBetween(savedColumn) then
       return
@@ -52,7 +52,7 @@ function perfectlySelectString(quotes)
 
   for quote in arrayElement(quotes) do
     -- If did select goind forward
-    execute('normal vi'..quote)
+    execute('normal!vi'..quote)
 
     if didSelect() or didMove() then
       return
@@ -63,7 +63,7 @@ function perfectlySelectString(quotes)
 
   for quote in arrayElement(quotes) do
     -- If did select goind backwards
-    execute('normal F'..quote..'vi'..quote)
+    execute('normal!F'..quote..'vi'..quote)
 
     if didSelect() or didMove() then
       return

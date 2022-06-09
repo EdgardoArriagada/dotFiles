@@ -42,7 +42,7 @@ function powerSelection()
 
     table.insert(cachedPair, left)
     table.insert(cachedPair, right)
-    execute('normal <Esc> vi'..left)
+    execute('normal<Esc>vi'..left)
 
     if didSelectInLine() then return end
 
@@ -52,7 +52,7 @@ function powerSelection()
   end
 
   for left, right in tokenPairs(cachedPair) do
-    execute('normal <Esc>f'..right..'F'..left..'vi'..left)
+    execute('normal<Esc>f'..right..'F'..left..'vi'..left)
 
     if didSelectInLine() then return end
 
@@ -60,7 +60,7 @@ function powerSelection()
   end
 
   for left, right in tokenPairs(cachedPair) do
-    execute('normal <Esc>0f'..left..'vi'..left)
+    execute('normal<Esc>0f'..left..'vi'..left)
 
     if didSelectInLine() then return end
 

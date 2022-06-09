@@ -1,5 +1,5 @@
 keymap.set('v', 'q', function()
-  execute('normal <Esc>')
+  execute('normal<Esc>')
   vaqueroSelect()
 end, { noremap = true, silent = true })
 
@@ -9,6 +9,6 @@ end, { noremap = true, silent = true })
 
 function vaqueroSelect()
   goLessDeeperIndent('k')
-  execute('normal V')
+  execute('normal!V')
   lookForIndentation('j')
 end

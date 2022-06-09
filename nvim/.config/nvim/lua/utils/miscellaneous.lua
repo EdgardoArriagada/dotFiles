@@ -16,17 +16,17 @@ end
 
 function jumpUntilNotEmptyLine(direction)
   while isEmptyLine('.') and isCursorWithinBuffer() do
-    execute('normal '..direction..'^')
+    execute('normal!'..direction..'^')
   end
 end
 
 function lookForIndentation(direction)
   -- Go to beggin of line and add to jump list
-  execute('normal '..line('.')..'G^')
+  execute('normal'..line('.')..'G^')
 
   jumpUntilNotEmptyLine(direction)
 
-  execute('normal '..getSameIndentLine(direction)..'G^')
+  execute('normal'..getSameIndentLine(direction)..'G^')
 end
 
 function arrayElement(t)
