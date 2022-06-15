@@ -1,9 +1,9 @@
-function strip(input)
-   return (input:gsub("^%s*(.-)%s*$", "%1"))
-end
-
 function isEmptyString(input)
-  return #strip(input) == 0
+  for c in input:gmatch"." do
+    if c ~= " " then return false end
+  end
+
+  return true
 end
 
 function isEmptyLine(line)
