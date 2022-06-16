@@ -4,7 +4,7 @@ function pluginsStartup(use)
   use {
     'phaazon/hop.nvim',
     branch = 'v1', -- optional but strongly recommended
-    config = get_setup('hop'),
+    config = require('setup/hop'),
   }
 
   if not vim.g.vscode then
@@ -32,6 +32,7 @@ function pluginsStartup(use)
         "nvim-telescope/telescope.nvim",
         module = "telescope",
         cmd = "Telescope",
+        config = require('setup/telescope'),
     }
 
     -- Treesitteer
