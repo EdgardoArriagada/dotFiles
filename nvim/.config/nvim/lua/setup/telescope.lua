@@ -52,7 +52,7 @@ end)
 
 keymap.set({ "v", "n" }, "<leader>cn", function()
   vim.lsp.buf.rename()
-end, { noremap = true, silent = true })
+end, { silent = true })
 
 keymap.set("n", "<leader>ci", function()
   vim.diagnostic.open_float()
