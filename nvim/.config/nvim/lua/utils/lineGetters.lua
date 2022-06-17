@@ -1,13 +1,5 @@
-local function getProps(direction)
-  if direction == 'j' then
-    return 1, line('$')
-  elseif direction == 'k' then
-    return -1, 1
-  end
-end
-
 function getSameIndentLine(direction)
-  local inc, endOfFile = getProps(direction)
+  local inc, endOfFile = getDirectionalProps(direction)
   local lineMarker = line('.')
   local existsSameIndent = false
   local originalIndent = indent('.')
@@ -28,11 +20,10 @@ function getSameIndentLine(direction)
   end
 end
 
-function getLesserIndent(direction)
-  local inc, endOfFile = getProps(direction)
+function getLesserIndent(direction, lineMarker)
+  local inc, endOfFile = getDirectionalProps(direction)
 
-  local lineMarker = line('.')
-  local originalIndent = indent('.')
+  local originalIndent = indent(lineMarker)
 
   local gotLesserIndent = false
 
@@ -48,7 +39,7 @@ function getLesserIndent(direction)
 end
 
 function getStopLine(direction)
-  local inc, endOfFile = getProps(direction)
+  local inc, endOfFile = getDirectionalProps(direction)
 
   local lineMarker = line('.')
   local isStartEmpty = isEmptyLine(lineMarker)

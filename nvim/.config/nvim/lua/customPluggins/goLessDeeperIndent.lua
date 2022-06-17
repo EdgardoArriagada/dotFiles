@@ -1,16 +1,14 @@
 keymap.set({ 'o', 'n', 'v' }, '<bs>', function()
   goLessDeeperIndent('k')
-end, { noremap = true, silent = true })
+end, { silent = true })
 
 keymap.set({ 'o', 'n', 'v' }, '<enter>', function()
   goLessDeeperIndent('j')
-end, { noremap = true, silent = true })
+end, { silent = true })
 
 function goLessDeeperIndent(direction)
   -- Go to beggin of line and add to jump list
   execute('normal'..line('.')..'G^')
-
-  jumpUntilNotEmptyLine(direction)
 
   local originalInent = indent('.')
 
@@ -20,6 +18,9 @@ function goLessDeeperIndent(direction)
     return
   end
 
-  local lastMatchinLine = getLesserIndent(direction)
+  local lineMarker = getFirstNoEmptyLine(direction, line('.'))
+
+  local lastMatchinLine = getLesserIndent(direction, lineMarker)
+
   execute('normal'..lastMatchinLine..'G^')
 end
