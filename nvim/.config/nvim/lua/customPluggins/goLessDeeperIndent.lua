@@ -8,17 +8,17 @@ end, { silent = true })
 
 function goLessDeeperIndent(direction)
   -- Go to beggin of line and add to jump list
-  execute('normal'..line('.')..'G^')
+  execute("normal^m'")
 
-  local originalInent = indent('.')
+  local lineMarker = getFirstNoEmptyLine(direction, line('.'))
+
+  local originalInent = indent(lineMarker)
 
   if originalInent == 0 then
     local lastLine = getSameIndentLine(direction)
     execute('normal'..lastLine..'G^')
     return
   end
-
-  local lineMarker = getFirstNoEmptyLine(direction, line('.'))
 
   local lastMatchinLine = getLesserIndent(direction, lineMarker)
 

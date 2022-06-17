@@ -29,6 +29,7 @@ function jumpUntilNotEmptyLine(direction)
 end
 
 function getFirstNoEmptyLine(direction, lineMarker)
+  local inc, endOfFile = getDirectionalProps(direction)
   while lineMarker ~= endOfFile do
     if not isEmptyLine(lineMarker) then
       return lineMarker
