@@ -44,9 +44,9 @@ function lookForIndentation(direction)
   -- Go to beggin of line and add to jump list
   execute('normal'..line('.')..'G^')
 
-  jumpUntilNotEmptyLine(direction)
+  local lineMarker = getFirstNoEmptyLine(direction, line('.'))
 
-  execute('normal'..getSameIndentLine(direction)..'G^')
+  execute('normal'..getSameIndentLine(direction, lineMarker)..'G^')
 end
 
 function arrayElement(t)

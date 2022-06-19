@@ -1,6 +1,5 @@
-function getSameIndentLine(direction)
+function getSameIndentLine(direction, lineMarker)
   local inc, endOfFile = getDirectionalProps(direction)
-  local lineMarker = line('.')
   local existsSameIndent = false
   local originalIndent = indent('.')
 
