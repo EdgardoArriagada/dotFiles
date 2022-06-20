@@ -43,6 +43,6 @@ function pluginsStartup(use)
     use 'p00f/nvim-ts-rainbow'
 
     -- Looks
-    use 'Mofiqul/vscode.nvim'
+    use "ellisonleao/gruvbox.nvim"
   end
 end
