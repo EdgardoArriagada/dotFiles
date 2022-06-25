@@ -1,4 +1,4 @@
-require('plugins')
+require('zsb.plugins')
 
 local fn = vim.fn
 

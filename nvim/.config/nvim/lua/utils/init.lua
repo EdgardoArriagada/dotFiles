@@ -1,5 +1,0 @@
-require("utils.vim-functions")
-require("utils.execute")
-require("utils.requirers")
-require("utils.lineGetters")
-require("utils.miscellaneous")
