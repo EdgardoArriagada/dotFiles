@@ -4,9 +4,7 @@ function pluginsStartup(use)
   use {
     'phaazon/hop.nvim',
     branch = 'v1', -- optional but strongly recommended
-    config = function()
-      require('zsb.setup.hop')
-    end,
+    config = function() require('zsb.setup.hop') end,
   }
 
   if not vim.g.vscode then
@@ -32,9 +30,7 @@ function pluginsStartup(use)
     -- Telescope
     use {
         "nvim-telescope/telescope.nvim",
-        config = function()
-          require('zsb.setup.telescope')
-        end,
+        config = function() require('zsb.setup.telescope') end,
     }
 
     -- Treesitteer
@@ -42,6 +38,7 @@ function pluginsStartup(use)
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
     }
+
     use 'p00f/nvim-ts-rainbow'
 
     -- Looks
