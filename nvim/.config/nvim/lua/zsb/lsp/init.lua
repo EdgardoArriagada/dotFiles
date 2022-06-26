@@ -1,7 +1,7 @@
-if not vim.g.vscode then return end
+local status_ok, _ = pcall(require, "lspconfig")
+if not status_ok then
+	return
+end
 
-whenOk(require, 'zsb.lspConfig', function()
-  require("zsb.lsp.configs")
-  require("zsb.lsp.handlers").setup()
-  require("zsb.lsp.null-ls")
-end)
+require("zsb.lsp.lsp-installer")
+require("zsb.lsp.handlers").setup()
