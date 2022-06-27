@@ -11,15 +11,20 @@ function pluginsStartup(use)
     -- Common plugins
     use 'nvim-lua/popup.nvim'
     use 'nvim-lua/plenary.nvim'
+    use 'kyazdani42/nvim-web-devicons'
+    use 'moll/vim-bbye'
 
     -- NvimTree
     use {
       'kyazdani42/nvim-tree.lua',
-      requires = {
-        'kyazdani42/nvim-web-devicons', -- optional, for file icons
-      },
       tag = 'nightly', -- optional, updated every week. (see issue #1193)
       config = function() require('zsb.setup.nvim-tree') end,
+    }
+
+    -- Bufferline
+    use {
+      'akinsho/bufferline.nvim',
+      config = function() require('zsb.setup.bufferline') end,
     }
 
     -- Whichkey
