@@ -12,6 +12,16 @@ function pluginsStartup(use)
     use 'nvim-lua/popup.nvim'
     use 'nvim-lua/plenary.nvim'
 
+    -- NvimTree
+    use {
+      'kyazdani42/nvim-tree.lua',
+      requires = {
+        'kyazdani42/nvim-web-devicons', -- optional, for file icons
+      },
+      tag = 'nightly', -- optional, updated every week. (see issue #1193)
+      config = function() require('zsb.setup.nvim-tree') end,
+    }
+
     -- Completion plugins https://github.com/topics/nvim-cmp
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-nvim-lua'
