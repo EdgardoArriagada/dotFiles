@@ -22,6 +22,15 @@ function pluginsStartup(use)
       config = function() require('zsb.setup.nvim-tree') end,
     }
 
+    -- Whichkey
+    use {
+      "max397574/which-key.nvim",
+      config = function()
+        require("zsb.setup.which-key")
+      end,
+      event = "BufWinEnter",
+    }
+
     -- Completion plugins https://github.com/topics/nvim-cmp
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-nvim-lua'
