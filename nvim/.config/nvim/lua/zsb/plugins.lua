@@ -50,11 +50,15 @@ function pluginsStartup(use)
     -- Lsp
     use 'neovim/nvim-lspconfig'
     use 'williamboman/nvim-lsp-installer'
+    use {
+      'jose-elias-alvarez/null-ls.nvim',
+      config = function() require('zsb.setup.null-ls') end,
+    }
 
     -- Telescope
     use {
-        "nvim-telescope/telescope.nvim",
-        config = function() require('zsb.setup.telescope') end,
+      "nvim-telescope/telescope.nvim",
+      config = function() require('zsb.setup.telescope') end,
     }
 
     -- Treesitteer
