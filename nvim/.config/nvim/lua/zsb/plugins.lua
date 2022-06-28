@@ -63,6 +63,12 @@ function pluginsStartup(use)
       run = ':TSUpdate',
     }
 
+    -- Git
+    use {
+      'lewis6991/gitsigns.nvim',
+      config = function() require('zsb.setup.gitsigns') end,
+    }
+
     use 'p00f/nvim-ts-rainbow'
 
     -- Looks
