@@ -14,6 +14,12 @@ function pluginsStartup(use)
     use 'kyazdani42/nvim-web-devicons'
     use 'moll/vim-bbye'
 
+    -- Comments
+    use {
+      'numToStr/Comment.nvim',
+      config = function() require('zsb.setup.comment') end,
+    }
+
     -- NvimTree
     use {
       'kyazdani42/nvim-tree.lua',
