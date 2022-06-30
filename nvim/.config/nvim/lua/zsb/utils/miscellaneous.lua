@@ -47,3 +47,12 @@ function arrayElement(t)
     return t[i]
   end
 end
+
+function arrayElementBackward(t)
+  local i = #t + 1
+
+  return function()
+    i = i - 1
+    return t[i]
+  end
+end

@@ -57,7 +57,7 @@ local function isFalseAlarmForBetween(currPos, holder, left, right, leftIndex)
 end
 
 local function getIndexesBetween(currPos, holder, left, right)
-  for leftIndex in arrayElement(holder[left]) do
+  for leftIndex in arrayElementBackward(holder[left]) do
     if leftIndex <= currPos then
       for rightIndex in arrayElement(holder[right]) do
         if rightIndex >= currPos
@@ -91,9 +91,10 @@ local function getIndexesBackward(currPos, holder, left, right)
 end
 
 local function selectMoving(leftIndex, rightIndex)
-  cursor(line('.'), leftIndex + 2)
+  local lineNumber = line('.')
+  cursor(lineNumber, leftIndex + 2)
   execute('normal<Esc>v')
-  cursor(line('.'), rightIndex)
+  cursor(lineNumber, rightIndex)
 end
 
 function powerSelection()
