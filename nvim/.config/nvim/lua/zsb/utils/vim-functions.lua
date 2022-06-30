@@ -6,6 +6,7 @@ getCurrentLine = vim.api.nvim_get_current_line
 
 getpos = vim.fn.getpos
 setpos = vim.fn.setpos
+cursor = vim.fn.cursor
 col = vim.fn.col
 
 
