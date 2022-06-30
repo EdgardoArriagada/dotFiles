@@ -2,14 +2,6 @@ keymap.set('n', 'Q', function()
   powerSelection()
 end, { noremap = true, silent = true })
 
-local function loadToken(holder, token, i)
-  if not holder[token] then
-    holder[token] = { i }
-  else
-    table.insert(holder[token], i)
-  end
-end
-
 local set = {}
 set["("] = true
 set[")"] = true
@@ -20,6 +12,21 @@ set["}"] = true
 set["<"] = true
 set[">"] = true
 
+local pairList = {
+  '(', ')',
+  '[', ']',
+  '{', '}',
+  '<', '>',
+}
+
+local function loadToken(holder, token, i)
+  if not holder[token] then
+    holder[token] = { i }
+  else
+    table.insert(holder[token], i)
+  end
+end
+
 local function loadHolder(holder)
   local currentLine = getCurrentLine()
   local i = 0
@@ -28,14 +35,6 @@ local function loadHolder(holder)
     i = i + 1
   end
 end
-
-
-local pairList = {
-  '(', ')',
-  '[', ']',
-  '{', '}',
-  '<', '>',
-}
 
 local function tokenPairs(t)
   local i = 0
@@ -59,11 +58,19 @@ local function hasPair(left, right, holder)
   return holder[left] and holder[right]
 end
 
+local function isFalseAlarmForBetween(currPos, holder, left, right, leftIndex)
+  for rightIndex in arrayElement(holder[right]) do
+    if rightIndex < currPos and leftIndex < rightIndex then return true end
+  end
+end
+
 local function isBetweenTokens(currPos, holder, left, right)
   for leftIndex in arrayElement(holder[left]) do
     if leftIndex <= currPos then
       for rightIndex in arrayElement(holder[right]) do
-        if rightIndex >= currPos then return true end
+        if rightIndex >= currPos
+          and not isFalseAlarmForBetween(currPos, holder, left, right, leftIndex)
+          then return true end
       end
     end
   end
