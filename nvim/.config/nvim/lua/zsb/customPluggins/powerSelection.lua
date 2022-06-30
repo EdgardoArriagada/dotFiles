@@ -2,15 +2,16 @@ keymap.set('n', 'Q', function()
   powerSelection()
 end, { noremap = true, silent = true })
 
-local set = {}
-set["("] = true
-set[")"] = true
-set["["] = true
-set["]"] = true
-set["{"] = true
-set["}"] = true
-set["<"] = true
-set[">"] = true
+local set = {
+  ["("] = true,
+  [")"] = true,
+  ["["] = true,
+  ["]"] = true,
+  ["{"] = true,
+  ["}"] = true,
+  ["<"] = true,
+  [">"] = true,
+}
 
 local pairList = {
   '(', ')',
