@@ -1,4 +1,4 @@
-keymap.set('n', 'Q', function()
+keymap.set('n', 'W', function()
   powerSelection()
 end, { noremap = true, silent = true })
 
