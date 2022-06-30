@@ -96,6 +96,11 @@ local function getIndexOfLeftTokenBackward(currPos, holder, left, right)
   end
 end
 
+local function selectMoving(indexLeft, left, right)
+  cursor(line('.'), indexLeft + 2)
+  execute('normal<Esc>vt'..right)
+end
+
 function powerSelection()
   local currPos = col('.')
   local holder = {}
@@ -119,8 +124,7 @@ function powerSelection()
   for left, right in tokenPairs(cachedPair) do
     local indexLeft = getIndexOfLeftTokenForward(currPos, holder, left, right)
     if (indexLeft) then
-      cursor(line('.'), indexLeft + 2)
-      execute('normal<Esc>vt'..right)
+      selectMoving(indexLeft, left, right)
       return
     end
   end
@@ -128,8 +132,7 @@ function powerSelection()
   for left, right in tokenPairs(cachedPair) do
     local indexLeft = getIndexOfLeftTokenBackward(currPos, holder, left, right)
     if (indexLeft) then
-      cursor(line('.'), indexLeft + 2)
-      execute('normal<Esc>vt'..right)
+      selectMoving(indexLeft, left, right)
       return
     end
   end
