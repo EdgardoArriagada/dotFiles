@@ -59,19 +59,19 @@ local function hasPair(left, right, holder)
   return holder[left] and holder[right]
 end
 
-local function isBetweenTokens(inPos, holder, left, right)
+local function isBetweenTokens(currPos, holder, left, right)
   for leftIndex in arrayElement(holder[left]) do
-    if leftIndex <= inPos then
+    if leftIndex <= currPos then
       for rightIndex in arrayElement(holder[right]) do
-        if rightIndex >= inPos then return true end
+        if rightIndex >= currPos then return true end
       end
     end
   end
 end
 
-local function getIndexOfAfterToken(inPos, holder, left, right)
+local function getIndexOfLeftTokenForward(currPos, holder, left, right)
   for leftIndex in arrayElement(holder[left]) do
-    if inPos < leftIndex  then
+    if currPos < leftIndex  then
       for rightIndex in arrayElement(holder[right]) do
         if leftIndex < rightIndex then return leftIndex end
       end
@@ -79,9 +79,9 @@ local function getIndexOfAfterToken(inPos, holder, left, right)
   end
 end
 
-local function getIndexOfBeforeToken(inPos, holder, left, right)
+local function getIndexOfLeftTokenBackward(currPos, holder, left, right)
   for leftIndex in arrayElement(holder[left]) do
-    if leftIndex < inPos then
+    if leftIndex < currPos then
       for rightIndex in arrayElement(holder[right]) do
         if leftIndex < rightIndex then return leftIndex end
       end
@@ -90,7 +90,7 @@ local function getIndexOfBeforeToken(inPos, holder, left, right)
 end
 
 function powerSelection()
-  local inPos = col('.')
+  local currPos = col('.')
   local holder = {}
   loadHolder(holder)
   local cachedPair = {}
@@ -101,7 +101,7 @@ function powerSelection()
     table.insert(cachedPair, left)
     table.insert(cachedPair, right)
 
-    if (isBetweenTokens(inPos, holder, left, right)) then
+    if (isBetweenTokens(currPos, holder, left, right)) then
       execute('normal<Esc>vi'..left)
       return
     end
@@ -110,7 +110,7 @@ function powerSelection()
   end
 
   for left, right in tokenPairs(cachedPair) do
-    local indexLeft = getIndexOfAfterToken(inPos, holder, left, right)
+    local indexLeft = getIndexOfLeftTokenForward(currPos, holder, left, right)
     if (indexLeft) then
       cursor(line('.'), indexLeft + 2)
       execute('normal<Esc>vt'..right)
@@ -119,7 +119,7 @@ function powerSelection()
   end
 
   for left, right in tokenPairs(cachedPair) do
-    local indexLeft = getIndexOfBeforeToken(inPos, holder, left, right)
+    local indexLeft = getIndexOfLeftTokenBackward(currPos, holder, left, right)
     if (indexLeft) then
       cursor(line('.'), indexLeft + 2)
       execute('normal<Esc>vt'..right)
