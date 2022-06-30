@@ -45,15 +45,6 @@ local function tokenPairs(t)
   end
 end
 
-local function arrayElement(t)
-  local i = 0
-
-  return function()
-    i = i + 1
-    return t[i]
-  end
-end
-
 local function hasPair(left, right, holder)
   return holder[left] and holder[right]
 end
