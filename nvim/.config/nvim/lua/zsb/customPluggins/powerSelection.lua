@@ -93,7 +93,7 @@ local function selectMoving(indexLeft, left, right)
 end
 
 function powerSelection()
-  local currPos = col('.')
+  local currPos = col('.') - 1
   local holder = {}
   loadHolder(holder)
   local cachedPair = {}
