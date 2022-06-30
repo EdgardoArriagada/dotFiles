@@ -56,41 +56,44 @@ local function isFalseAlarmForBetween(currPos, holder, left, right, leftIndex)
   end
 end
 
-local function isBetweenTokens(currPos, holder, left, right)
+local function getIndexesBetween(currPos, holder, left, right)
   for leftIndex in arrayElement(holder[left]) do
     if leftIndex <= currPos then
       for rightIndex in arrayElement(holder[right]) do
         if rightIndex >= currPos
           and not isFalseAlarmForBetween(currPos, holder, left, right, leftIndex)
-          then return true end
+          then return leftIndex, rightIndex end
       end
     end
   end
+  return false, false
 end
 
-local function getIndexOfLeftTokenForward(currPos, holder, left, right)
+local function getIndexesForward(currPos, holder, left, right)
   for leftIndex in arrayElement(holder[left]) do
     if currPos < leftIndex  then
       for rightIndex in arrayElement(holder[right]) do
-        if leftIndex < rightIndex then return leftIndex end
+        if leftIndex < rightIndex then return leftIndex, rightIndex end
       end
     end
   end
+  return false, false
 end
 
-local function getIndexOfLeftTokenBackward(currPos, holder, left, right)
+local function getIndexesBackward(currPos, holder, left, right)
   for leftIndex in arrayElement(holder[left]) do
     if leftIndex < currPos then
       for rightIndex in arrayElement(holder[right]) do
-        if leftIndex < rightIndex then return leftIndex end
+        if leftIndex < rightIndex then return leftIndex, rightIndex end
       end
     end
   end
 end
 
-local function selectMoving(indexLeft, left, right)
-  cursor(line('.'), indexLeft + 2)
-  execute('normal<Esc>vt'..right)
+local function selectMoving(leftIndex, rightIndex)
+  cursor(line('.'), leftIndex + 2)
+  execute('normal<Esc>v')
+  cursor(line('.'), rightIndex)
 end
 
 function powerSelection()
@@ -105,8 +108,9 @@ function powerSelection()
     table.insert(cachedPair, left)
     table.insert(cachedPair, right)
 
-    if (isBetweenTokens(currPos, holder, left, right)) then
-      execute('normal<Esc>vi'..left)
+    local leftIndex, rightIndex = getIndexesBetween(currPos, holder, left, right)
+    if (leftIndex ~= false) then
+      selectMoving(leftIndex, rightIndex)
       return
     end
 
@@ -114,17 +118,17 @@ function powerSelection()
   end
 
   for left, right in tokenPairs(cachedPair) do
-    local indexLeft = getIndexOfLeftTokenForward(currPos, holder, left, right)
-    if (indexLeft) then
-      selectMoving(indexLeft, left, right)
+    local leftIndex, rightIndex = getIndexesForward(currPos, holder, left, right)
+    if (leftIndex ~= false) then
+      selectMoving(leftIndex, rightIndex)
       return
     end
   end
 
   for left, right in tokenPairs(cachedPair) do
-    local indexLeft = getIndexOfLeftTokenBackward(currPos, holder, left, right)
-    if (indexLeft) then
-      selectMoving(indexLeft, left, right)
+    local leftIndex, rightIndex = getIndexesBackward(currPos, holder, left, right)
+    if (leftIndex ~= false) then
+      selectMoving(leftIndex, rightIndex)
       return
     end
   end
