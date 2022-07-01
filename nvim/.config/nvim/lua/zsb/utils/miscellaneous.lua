@@ -67,3 +67,16 @@ function toupleArrayElement(t)
     end
   end
 end
+
+function safePush(pile, element, i)
+  if not pile[element] then
+    pile[element] = { i }
+  else
+    table.insert(pile[element], i)
+  end
+end
+
+function safePop(pile, element)
+  if not pile[element] then return nil end
+  return table.remove(pile[element])
+end
