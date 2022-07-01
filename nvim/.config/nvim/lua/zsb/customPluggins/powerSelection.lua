@@ -3,7 +3,7 @@ keymap.set('n', 'W', function()
 end)
 
 keymap.set('v', 'W', function()
-  execute('normal<Esc>ll')
+  execute('normal<Esc><Right><Right>')
   powerSelection()
 end)
 

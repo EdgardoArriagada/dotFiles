@@ -68,6 +68,7 @@ keymap.set('i', '<Space>', '<Space><c-g>u')
 
 -- Quit
 keymap.set('n', '<C-q>', ':q')
+keymap.set('c', '<C-q>', '<C-u>q') -- redraw ':q'
 
 -- Save
 keymap.set('n', '<C-s>', ':update<CR>', { silent = true })
