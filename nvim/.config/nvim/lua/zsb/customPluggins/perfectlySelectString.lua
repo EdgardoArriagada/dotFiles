@@ -1,74 +1,120 @@
 keymap.set({ 'o', 'v' }, "'", function()
   execute('normal<Esc>')
-  perfectlySelectString({"'", '"'})
-end, { noremap = true, silent = true })
+  perfectlySelectString()
+end)
 
 keymap.set({ 'o', 'v' }, '"', function()
   execute('normal<Esc>')
-  perfectlySelectString({'"', "'"})
-end, { noremap = true, silent = true })
+  perfectlySelectString()
+end)
 
-local function didSelectBetween(middle)
-  local left = col('v')
-  local right = col('.')
-  return left ~= right and left -1 <= middle and middle <= right +1
-end
-
-local function restorePos(position)
-  setpos('.', position)
-end
-
-local function pressEscape()
+keymap.set({ 'o', 'v' }, '`', function()
   execute('normal<Esc>')
+  perfectlySelectString()
+end)
+
+local set = {
+  ["'"] = true,
+  ['"'] = true,
+  ['`'] = true,
+}
+
+local function safePush(pile, element, i)
+  if not pile[element] then
+    pile[element] = { i }
+  else
+    table.insert(pile[element], i)
+  end
 end
 
-local function didSelect()
-  return col('.') ~= col('v')
+local function safePop(pile, element)
+  if not pile[element] then return nil end
+  return table.remove(pile[element])
 end
 
-function perfectlySelectString(quotes)
-  local savedPos = getpos('.')
-  local savedColumn = savedPos[3]
+local function loadToken(holder, pileHolder, token, i)
+  local leftIndex = safePop(pileHolder, token)
 
-  local function restoreValues()
-    restorePos(savedPos)
-    pressEscape()
+  if leftIndex ~= nil then
+    safePush(holder, token, { leftIndex, i })
+    return
   end
 
-  local function didMove()
-    return col('.') ~= savedColumn
+  safePush(pileHolder, token, i)
+end
+
+local function loadHolder(holder)
+  local pileHolder = {}
+  local currentLine = getCurrentLine()
+  local i = 0
+  for c in currentLine:gmatch"." do
+    if set[c] then loadToken(holder, pileHolder, c, i) end
+    i = i + 1
   end
+end
 
-  -- If did select between cursor
-  for quote in arrayElement(quotes) do
-    execute('normal!vi'..quote)
+local function selectMoving(leftIndex, rightIndex)
+  local lineNumber = line('.')
+  cursor(lineNumber, leftIndex + 2)
+  execute('normal<Esc>v')
+  cursor(lineNumber, rightIndex)
+end
 
-    if didSelectBetween(savedColumn) then
-      return
+function perfectlySelectString()
+  local currPos = col('.') - 1
+  local holder = {}
+  loadHolder(holder)
+
+  local closest = false
+  for key in pairs(holder) do
+    for left, right in toupleArrayElement(holder[key]) do
+      if left <= currPos and currPos <= right then
+        if not closest then closest = { left, right } else
+          if closest[1] < left then
+            closest = { left, right }
+          end
+        end
+      end
     end
-
-    restoreValues()
   end
 
-  for quote in arrayElement(quotes) do
-    -- If did select goind forward
-    execute('normal!vi'..quote)
-
-    if didSelect() or didMove() then
-      return
-    end
-
-    restoreValues()
+  if closest then
+    selectMoving(closest[1], closest[2])
+    return
   end
 
-  for quote in arrayElement(quotes) do
-    -- If did select goind backwards
-    execute('normal!F'..quote..'vi'..quote)
-
-    if didSelect() or didMove() then
-      return
+  closest = false
+  for key in pairs(holder) do
+    for left, right in toupleArrayElement(holder[key]) do
+      if currPos < left and currPos < right then
+        if not closest then closest = { left, right } else
+          if left < closest[1] then
+            closest = { left, right }
+          end
+        end
+      end
     end
+  end
 
-    restoreValues()
+  if closest then
+    selectMoving(closest[1], closest[2])
+    return
+  end
+
+  closest = false
+  for key in pairs(holder) do
+    for left, right in toupleArrayElement(holder[key]) do
+      if left < currPos and right < currPos then
+        if not closest then closest = { left, right } else
+          if closest[2] < right then
+            closest = { left, right }
+          end
+        end
+      end
+    end
+  end
+
+  if closest then
+    selectMoving(closest[1], closest[2])
   end
 end
