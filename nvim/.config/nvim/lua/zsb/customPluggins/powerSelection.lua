@@ -45,7 +45,7 @@ local function safePop(pile, element)
   return table.remove(pile[element])
 end
 
-local function loadToken(holder, pileHolder, token, i)
+local function loadToken(pairsHolder, pileHolder, token, i)
   if leftSet[token] then
     safePush(pileHolder, token, i)
     return
@@ -55,16 +55,16 @@ local function loadToken(holder, pileHolder, token, i)
   local leftIndex = safePop(pileHolder, leftToken)
 
   if leftIndex ~= false then
-    safePush(holder, leftToken, { leftIndex, i }) -- where token = leftToken
+    safePush(pairsHolder, leftToken, { leftIndex, i }) -- where token = leftToken
   end
 end
 
-local function loadHolder(holder)
+local function loadHolder(pairsHolder)
   local pileHolder = {}
   local currentLine = getCurrentLine()
   local i = 0
   for c in currentLine:gmatch"." do
-    if set[c] then loadToken(holder, pileHolder, c, i) end
+    if set[c] then loadToken(pairsHolder, pileHolder, c, i) end
     i = i + 1
   end
 end
@@ -78,12 +78,12 @@ end
 
 function powerSelection()
   local currPos = col('.') - 1
-  local holder = {}
-  loadHolder(holder)
+  local pairsHolder = {}
+  loadHolder(pairsHolder)
 
   local closest = false
-  for key in pairs(holder) do
-    for left, right in toupleArrayElement(holder[key]) do
+  for key in pairs(pairsHolder) do
+    for left, right in toupleArrayElement(pairsHolder[key]) do
       if left <= currPos and currPos <= right then
         if not closest then closest = { left, right } else
           if closest[1] < left then
@@ -100,8 +100,8 @@ function powerSelection()
   end
 
   closest = false
-  for key in pairs(holder) do
-    for left, right in toupleArrayElement(holder[key]) do
+  for key in pairs(pairsHolder) do
+    for left, right in toupleArrayElement(pairsHolder[key]) do
       if currPos < left and currPos < right then
         if not closest then closest = { left, right } else
           if left < closest[1] then
@@ -118,8 +118,8 @@ function powerSelection()
   end
 
   closest = false
-  for key in pairs(holder) do
-    for left, right in toupleArrayElement(holder[key]) do
+  for key in pairs(pairsHolder) do
+    for left, right in toupleArrayElement(pairsHolder[key]) do
       if left < currPos and right < currPos then
         if not closest then closest = { left, right } else
           if closest[2] < right then
