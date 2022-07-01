@@ -37,6 +37,11 @@ local function safePush(pile, element, i)
   end
 end
 
+local function safePop(pile, element)
+  if not pile[element] then return false end
+  return table.remove(pile[element])
+end
+
 local function loadToken(holder, pileHolder, token, i)
   if leftSet[token] then
     safePush(pileHolder, token, i)
@@ -44,7 +49,7 @@ local function loadToken(holder, pileHolder, token, i)
   end
 
  local leftToken = rightToLeft[token]
-  local leftIndex = table.remove(pileHolder[leftToken])
+ local leftIndex = safePop(pileHolder, leftToken)
 
   if leftIndex ~= false then
     safePush(holder, leftToken, { leftIndex, i }) -- where token = leftToken
