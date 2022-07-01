@@ -1,6 +1,11 @@
 keymap.set('n', 'W', function()
   powerSelection()
-end, { noremap = true, silent = true })
+end)
+
+keymap.set('v', 'W', function()
+  execute('normal<Esc>ll')
+  powerSelection()
+end)
 
 local set = {
   ["("] = true,

@@ -12,7 +12,6 @@ keymap.set('o', '(', 'i(')
 keymap.set('o', ')', 'i)')
 --
 keymap.set('v', 'w', 'iw')
-keymap.set('v', 'W', 'iW')
 keymap.set('v', '{', 'i{')
 keymap.set('v', '}', 'i}')
 keymap.set('v', '(', 'i(')
