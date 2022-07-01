@@ -56,3 +56,14 @@ function arrayElementBackward(t)
     return t[i]
   end
 end
+
+function toupleArrayElement(t)
+  local i = 0
+
+  return function()
+    i = i + 1
+    if t[i] then
+      return t[i][1], t[i][2]
+    end
+  end
+end

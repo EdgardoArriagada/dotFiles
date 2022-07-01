@@ -48,8 +48,8 @@ local function loadToken(holder, pileHolder, token, i)
     return
   end
 
- local leftToken = rightToLeft[token]
- local leftIndex = safePop(pileHolder, leftToken)
+  local leftToken = rightToLeft[token]
+  local leftIndex = safePop(pileHolder, leftToken)
 
   if leftIndex ~= false then
     safePush(holder, leftToken, { leftIndex, i }) -- where token = leftToken
@@ -83,9 +83,7 @@ function powerSelection()
     if not holder[key] then goto continue end
     table.insert(cachedKeys, key)
 
-    for pairs in arrayElement(holder[key]) do
-      local left = pairs[1]
-      local right = pairs[2]
+    for left, right in toupleArrayElement(holder[key]) do
       if left <= currPos and currPos <= right then
         selectMoving(left, right)
         return
@@ -96,9 +94,7 @@ function powerSelection()
   end
 
   for key in arrayElement(cachedKeys) do
-    for pairs in arrayElement(holder[key]) do
-      local left = pairs[1]
-      local right = pairs[2]
+    for left, right in toupleArrayElement(holder[key]) do
       if currPos < left and currPos < right then
         selectMoving(left, right)
         return
@@ -107,9 +103,7 @@ function powerSelection()
   end
 
   for key in arrayElement(cachedKeys) do
-    for pairs in arrayElement(holder[key]) do
-      local left = pairs[1]
-      local right = pairs[2]
+    for left, right in toupleArrayElement(holder[key]) do
       if left < currPos and right < currPos then
         selectMoving(left, right)
         return
