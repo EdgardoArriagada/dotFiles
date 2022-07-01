@@ -32,8 +32,6 @@ local leftSet = {
   ["<"] = true,
 }
 
-local leftKeys = { "(", "[", "{", "<", }
-
 local function safePush(pile, element, i)
   if not pile[element] then
     pile[element] = { i }
@@ -82,13 +80,9 @@ function powerSelection()
   local currPos = col('.') - 1
   local holder = {}
   loadHolder(holder)
-  local cachedKeys = {}
 
   local closest = false
-  for key in arrayElement(leftKeys) do
-    if not holder[key] then goto continue end
-    table.insert(cachedKeys, key)
-
+  for key in pairs(holder) do
     for left, right in toupleArrayElement(holder[key]) do
       if left <= currPos and currPos <= right then
         if not closest then closest = { left, right } else
@@ -98,7 +92,6 @@ function powerSelection()
         end
       end
     end
-    ::continue::
   end
 
   if closest then
@@ -107,7 +100,7 @@ function powerSelection()
   end
 
   closest = false
-  for key in arrayElement(cachedKeys) do
+  for key in pairs(holder) do
     for left, right in toupleArrayElement(holder[key]) do
       if currPos < left and currPos < right then
         if not closest then closest = { left, right } else
@@ -125,7 +118,7 @@ function powerSelection()
   end
 
   closest = false
-  for key in arrayElement(cachedKeys) do
+  for key in pairs(holder) do
     for left, right in toupleArrayElement(holder[key]) do
       if left < currPos and right < currPos then
         if not closest then closest = { left, right } else
