@@ -13,80 +13,51 @@ local set = {
   [">"] = true,
 }
 
-local pairList = {
-  '(', ')',
-  '[', ']',
-  '{', '}',
-  '<', '>',
+local rightToLeft = {
+  [")"] = "(",
+  ["]"] = "[",
+  ["}"] = "{",
+  [">"] = "<",
 }
 
-local function loadToken(holder, token, i)
-  if not holder[token] then
-    holder[token] = { i }
+local leftSet = {
+  ["("] = true,
+  ["["] = true,
+  ["{"] = true,
+  ["<"] = true,
+}
+
+local leftKeys = { "(", "[", "{", "<", }
+
+local function safePush(pile, element, i)
+  if not pile[element] then
+    pile[element] = { i }
   else
-    table.insert(holder[token], i)
+    table.insert(pile[element], i)
+  end
+end
+
+local function loadToken(holder, pileHolder, token, i)
+  if leftSet[token] then
+    safePush(pileHolder, token, i)
+    return
+  end
+
+ local leftToken = rightToLeft[token]
+  local leftIndex = table.remove(pileHolder[leftToken])
+
+  if leftIndex ~= false then
+    safePush(holder, leftToken, { leftIndex, i }) -- where token = leftToken
   end
 end
 
 local function loadHolder(holder)
+  local pileHolder = {}
   local currentLine = getCurrentLine()
   local i = 0
   for c in currentLine:gmatch"." do
-    if set[c] then loadToken(holder, c, i) end
+    if set[c] then loadToken(holder, pileHolder, c, i) end
     i = i + 1
-  end
-end
-
-local function tokenPairs(t)
-  local i = 0
-
-  return function()
-    i = i + 2
-    return t[i - 1], t[i]
-  end
-end
-
-local function hasPair(left, right, holder)
-  return holder[left] and holder[right]
-end
-
-local function isFalseAlarmForBetween(currPos, holder, left, right, leftIndex)
-  for rightIndex in arrayElement(holder[right]) do
-    if rightIndex < currPos and leftIndex < rightIndex then return true end
-  end
-end
-
-local function getIndexesBetween(currPos, holder, left, right)
-  for leftIndex in arrayElementBackward(holder[left]) do
-    if leftIndex <= currPos then
-      for rightIndex in arrayElement(holder[right]) do
-        if rightIndex >= currPos
-          and not isFalseAlarmForBetween(currPos, holder, left, right, leftIndex)
-          then return leftIndex, rightIndex end
-      end
-    end
-  end
-  return false, false
-end
-
-local function getIndexesForward(currPos, holder, left, right)
-  for leftIndex in arrayElement(holder[left]) do
-    if currPos < leftIndex  then
-      for rightIndex in arrayElement(holder[right]) do
-        if leftIndex < rightIndex then return leftIndex, rightIndex end
-      end
-    end
-  end
-  return false, false
-end
-
-local function getIndexesBackward(currPos, holder, left, right)
-  for leftIndex in arrayElement(holder[left]) do
-    if leftIndex < currPos then
-      for rightIndex in arrayElement(holder[right]) do
-        if leftIndex < rightIndex then return leftIndex, rightIndex end
-      end
-    end
   end
 end
 
@@ -101,36 +72,43 @@ function powerSelection()
   local currPos = col('.') - 1
   local holder = {}
   loadHolder(holder)
-  local cachedPair = {}
+  local cachedKeys = {}
 
-  for left, right in tokenPairs(pairList) do
-    if not hasPair(left, right, holder) then goto continue end
+  for key in arrayElement(leftKeys) do
+    if not holder[key] then goto continue end
+    table.insert(cachedKeys, key)
 
-    table.insert(cachedPair, left)
-    table.insert(cachedPair, right)
-
-    local leftIndex, rightIndex = getIndexesBetween(currPos, holder, left, right)
-    if (leftIndex ~= false) then
-      selectMoving(leftIndex, rightIndex)
-      return
+    for pairs in arrayElement(holder[key]) do
+      local left = pairs[1]
+      local right = pairs[2]
+      if left <= currPos and currPos <= right then
+        selectMoving(left, right)
+        return
+      end
     end
 
     ::continue::
   end
 
-  for left, right in tokenPairs(cachedPair) do
-    local leftIndex, rightIndex = getIndexesForward(currPos, holder, left, right)
-    if (leftIndex ~= false) then
-      selectMoving(leftIndex, rightIndex)
-      return
+  for key in arrayElement(cachedKeys) do
+    for pairs in arrayElement(holder[key]) do
+      local left = pairs[1]
+      local right = pairs[2]
+      if currPos < left and currPos < right then
+        selectMoving(left, right)
+        return
+      end
     end
   end
 
-  for left, right in tokenPairs(cachedPair) do
-    local leftIndex, rightIndex = getIndexesBackward(currPos, holder, left, right)
-    if (leftIndex ~= false) then
-      selectMoving(leftIndex, rightIndex)
-      return
+  for key in arrayElement(cachedKeys) do
+    for pairs in arrayElement(holder[key]) do
+      local left = pairs[1]
+      local right = pairs[2]
+      if left < currPos and right < currPos then
+        selectMoving(left, right)
+        return
+      end
     end
   end
 end
