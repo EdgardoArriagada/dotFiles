@@ -79,35 +79,60 @@ function powerSelection()
   loadHolder(holder)
   local cachedKeys = {}
 
+  local closest = false
   for key in arrayElement(leftKeys) do
     if not holder[key] then goto continue end
     table.insert(cachedKeys, key)
 
     for left, right in toupleArrayElement(holder[key]) do
       if left <= currPos and currPos <= right then
-        selectMoving(left, right)
-        return
+        if not closest then closest = { left, right } else
+          if closest[1] < left then
+            closest = { left, right }
+          end
+        end
       end
     end
-
     ::continue::
   end
 
+  if closest then
+    selectMoving(closest[1], closest[2])
+    return
+  end
+
+  closest = false
   for key in arrayElement(cachedKeys) do
     for left, right in toupleArrayElement(holder[key]) do
       if currPos < left and currPos < right then
-        selectMoving(left, right)
-        return
+        if not closest then closest = { left, right } else
+          if left < closest[1] then
+            closest = { left, right }
+          end
+        end
       end
     end
   end
 
+  if closest then
+    selectMoving(closest[1], closest[2])
+    return
+  end
+
+  closest = false
   for key in arrayElement(cachedKeys) do
     for left, right in toupleArrayElement(holder[key]) do
       if left < currPos and right < currPos then
-        selectMoving(left, right)
-        return
+        if not closest then closest = { left, right } else
+          if closest[2] < right then
+            closest = { left, right }
+          end
+        end
       end
     end
+  end
+
+  if closest then
+    selectMoving(closest[1], closest[2])
   end
 end
