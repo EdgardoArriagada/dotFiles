@@ -13,6 +13,11 @@ keymap.set({ 'o', 'v' }, '`', function()
   perfectlySelectString()
 end)
 
+keymap.set({ 'o', 'v' }, 'L', function()
+  execute('normal<Esc><Right><Right>')
+  perfectlySelectString()
+end)
+
 local set = {
   ["'"] = true,
   ['"'] = true,
