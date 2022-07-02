@@ -1,10 +1,9 @@
 keymap.set('n', 'W', function()
-  powerSelection()
+  beginPowerSelection()
 end)
 
 keymap.set('v', 'W', function()
-  execute('normal<Esc><Right><Right>')
-  powerSelection()
+  cyclePowerSelection()
 end)
 
 local set = {
@@ -63,7 +62,7 @@ local function selectMoving(leftIndex, rightIndex)
   cursor(lineNumber, rightIndex)
 end
 
-function powerSelection()
+function beginPowerSelection()
   local currPos = col('.') - 1
   local pairsHolder = {}
   loadHolder(pairsHolder)
@@ -119,5 +118,22 @@ function powerSelection()
 
   if closest then
     selectMoving(closest[1], closest[2])
+  end
+end
+
+function cyclePowerSelection()
+  local currRight = col('.')
+  local currPos = currRight - 1
+
+  local currLeft -- ?
+
+  local pairsHolder = {}
+  loadHolder(pairsHolder)
+
+  -- find left index
+  for key in pairs(pairsHolder) do
+    for left, right in toupleArrayElement(pairsHolder[key]) do
+     if currRight == right then currLeft = left end
+    end
   end
 end
