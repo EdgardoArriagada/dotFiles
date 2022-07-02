@@ -1,10 +1,9 @@
 keymap.set('n', 'W', function()
-  powerSelection()
+  beginPowerSelection()
 end)
 
 keymap.set('v', 'W', function()
-  execute('normal<Esc><Right><Right>')
-  powerSelection()
+  cyclePowerSelection()
 end)
 
 local set = {
@@ -56,18 +55,26 @@ local function loadHolder(pairsHolder)
   end
 end
 
-local function selectMoving(leftIndex, rightIndex)
+local function selectMoving(touple)
   local lineNumber = line('.')
-  cursor(lineNumber, leftIndex + 2)
+  cursor(lineNumber, touple[1] + 2)
   execute('normal<Esc>v')
-  cursor(lineNumber, rightIndex)
+  cursor(lineNumber, touple[2])
 end
 
-function powerSelection()
+function beginPowerSelection(_pairsHolder)
   local currPos = col('.') - 1
-  local pairsHolder = {}
-  loadHolder(pairsHolder)
 
+  -- reuse pairsholder if given
+  local pairsHolder
+  if not _pairsHolder then
+    pairsHolder = {}
+    loadHolder(pairsHolder)
+  else
+    pairsHolder = _pairsHolder
+  end
+
+  -- try to select between
   local closest = false
   for key in pairs(pairsHolder) do
     for left, right in toupleArrayElement(pairsHolder[key]) do
@@ -82,10 +89,11 @@ function powerSelection()
   end
 
   if closest then
-    selectMoving(closest[1], closest[2])
+    selectMoving(closest)
     return
   end
 
+  -- try to select forward
   closest = false
   for key in pairs(pairsHolder) do
     for left, right in toupleArrayElement(pairsHolder[key]) do
@@ -100,10 +108,11 @@ function powerSelection()
   end
 
   if closest then
-    selectMoving(closest[1], closest[2])
+    selectMoving(closest)
     return
   end
 
+  -- try to select backwards
   closest = false
   for key in pairs(pairsHolder) do
     for left, right in toupleArrayElement(pairsHolder[key]) do
@@ -117,7 +126,45 @@ function powerSelection()
     end
   end
 
-  if closest then
-    selectMoving(closest[1], closest[2])
+  if closest then selectMoving(closest) end
+end
+
+local function findLeftIndex(currRight, pairsHolder)
+  for key in pairs(pairsHolder) do
+    for left, right in toupleArrayElement(pairsHolder[key]) do
+     if currRight == right then return left end
+    end
   end
+  return false
+end
+
+function cyclePowerSelection()
+  local currRight = col('.')
+
+  local pairsHolder = {}
+  loadHolder(pairsHolder)
+
+  local currLeft = findLeftIndex(currRight, pairsHolder)
+  if currLeft == false then return end
+
+  -- find next occurrence
+  local nextPair = { currLeft, currRight }
+  local minLeft = 1/0 -- inf
+  for key in pairs(pairsHolder) do
+    for left, right in toupleArrayElement(pairsHolder[key]) do
+      if nextPair[1] < left and left < minLeft then
+        minLeft = left
+        nextPair = { left, right }
+      end
+    end
+  end
+
+  if currLeft < nextPair[1] then
+    selectMoving(nextPair)
+    return
+  end
+
+  -- go to beggining and start again
+  execute('normal<Esc>^')
+  beginPowerSelection(pairsHolder)
 end
