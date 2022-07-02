@@ -88,7 +88,10 @@ function beginPowerSelection(_pairsHolder)
     end
   end
 
-  if closest then selectMoving(closest) return end
+  if closest then
+    selectMoving(closest)
+    return
+  end
 
   -- try to select forward
   closest = false
@@ -104,7 +107,10 @@ function beginPowerSelection(_pairsHolder)
     end
   end
 
-  if closest then selectMoving(closest) return end
+  if closest then
+    selectMoving(closest)
+    return
+  end
 
   -- try to select backwards
   closest = false
@@ -153,7 +159,10 @@ function cyclePowerSelection()
     end
   end
 
-  if currLeft < nextPair[1] then selectMoving(nextPair) return end
+  if currLeft < nextPair[1] then
+    selectMoving(nextPair)
+    return
+  end
 
   -- go to beggining and start again
   execute('normal<Esc>^')
