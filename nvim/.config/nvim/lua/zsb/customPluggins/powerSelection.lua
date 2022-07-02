@@ -55,11 +55,11 @@ local function loadHolder(pairsHolder)
   end
 end
 
-local function selectMoving(leftIndex, rightIndex)
+local function selectMoving(touple)
   local lineNumber = line('.')
-  cursor(lineNumber, leftIndex + 2)
+  cursor(lineNumber, touple[1] + 2)
   execute('normal<Esc>v')
-  cursor(lineNumber, rightIndex)
+  cursor(lineNumber, touple[2])
 end
 
 function beginPowerSelection(_pairsHolder)
@@ -88,10 +88,7 @@ function beginPowerSelection(_pairsHolder)
     end
   end
 
-  if closest then
-    selectMoving(closest[1], closest[2])
-    return
-  end
+  if closest then selectMoving(closest) return end
 
   -- try to select forward
   closest = false
@@ -107,10 +104,7 @@ function beginPowerSelection(_pairsHolder)
     end
   end
 
-  if closest then
-    selectMoving(closest[1], closest[2])
-    return
-  end
+  if closest then selectMoving(closest) return end
 
   -- try to select backwards
   closest = false
@@ -126,9 +120,7 @@ function beginPowerSelection(_pairsHolder)
     end
   end
 
-  if closest then
-    selectMoving(closest[1], closest[2])
-  end
+  if closest then selectMoving(closest) end
 end
 
 function cyclePowerSelection()
@@ -161,10 +153,7 @@ function cyclePowerSelection()
     end
   end
 
-  if currLeft < nextPair[1] then
-    selectMoving(nextPair[1], nextPair[2])
-    return
-  end
+  if currLeft < nextPair[1] then selectMoving(nextPair) return end
 
   -- go to beggining and start again
   execute('normal<Esc>^')
