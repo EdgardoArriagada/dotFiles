@@ -129,22 +129,23 @@ function beginPowerSelection(_pairsHolder)
   if closest then selectMoving(closest) end
 end
 
+local function findLeftIndex(currRight, key, pairsHolder)
+  for key in pairs(pairsHolder) do
+    for left, right in toupleArrayElement(pairsHolder[key]) do
+     if currRight == right then return left end
+    end
+  end
+  return false
+end
+
 function cyclePowerSelection()
   local currRight = col('.')
   local currPos = currRight - 1
 
-  local currLeft = false
-
   local pairsHolder = {}
   loadHolder(pairsHolder)
 
-  -- find left index
-  for key in pairs(pairsHolder) do
-    for left, right in toupleArrayElement(pairsHolder[key]) do
-     if currRight == right then currLeft = left end
-    end
-  end
-
+  local currLeft = findLeftIndex(currRight, key, pairsHolder)
   if currLeft == false then return end
 
   -- find next occurrence
