@@ -62,10 +62,16 @@ local function selectMoving(leftIndex, rightIndex)
   cursor(lineNumber, rightIndex)
 end
 
-function beginPowerSelection()
+function beginPowerSelection(_pairsHolder)
   local currPos = col('.') - 1
-  local pairsHolder = {}
-  loadHolder(pairsHolder)
+
+  local pairsHolder
+  if not _pairsHolder then
+    pairsHolder = {}
+    loadHolder(pairsHolder)
+  else
+    pairsHolder = _pairsHolder
+  end
 
   local closest = false
   for key in pairs(pairsHolder) do
@@ -125,7 +131,7 @@ function cyclePowerSelection()
   local currRight = col('.')
   local currPos = currRight - 1
 
-  local currLeft -- ?
+  local currLeft = false
 
   local pairsHolder = {}
   loadHolder(pairsHolder)
@@ -136,4 +142,25 @@ function cyclePowerSelection()
      if currRight == right then currLeft = left end
     end
   end
+
+  if currLeft == false then return end
+
+  local nextPair = { currLeft, currRight }
+  local minLeft = 1/0 -- inf
+  for key in pairs(pairsHolder) do
+    for left, right in toupleArrayElement(pairsHolder[key]) do
+      if nextPair[1] < left and left < minLeft then
+        minLeft = left
+        nextPair = { left, right }
+      end
+    end
+  end
+
+  if currLeft < nextPair[1] then
+    selectMoving(nextPair[1], nextPair[2])
+    return
+  end
+
+  execute('normal<Esc>^')
+  beginPowerSelection(pairsHolder)
 end
