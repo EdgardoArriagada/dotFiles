@@ -65,7 +65,7 @@ end
 function beginPowerSelection(_pairsHolder)
   local currPos = col('.') - 1
 
-  -- reuse given pairs holder
+  -- reuse pairsholder if given
   local pairsHolder
   if not _pairsHolder then
     pairsHolder = {}
