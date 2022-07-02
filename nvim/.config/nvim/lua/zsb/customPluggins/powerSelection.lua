@@ -65,6 +65,7 @@ end
 function beginPowerSelection(_pairsHolder)
   local currPos = col('.') - 1
 
+  -- reuse given pairs holder
   local pairsHolder
   if not _pairsHolder then
     pairsHolder = {}
@@ -73,6 +74,7 @@ function beginPowerSelection(_pairsHolder)
     pairsHolder = _pairsHolder
   end
 
+  -- try to select between
   local closest = false
   for key in pairs(pairsHolder) do
     for left, right in toupleArrayElement(pairsHolder[key]) do
@@ -91,6 +93,7 @@ function beginPowerSelection(_pairsHolder)
     return
   end
 
+  -- try to select forward
   closest = false
   for key in pairs(pairsHolder) do
     for left, right in toupleArrayElement(pairsHolder[key]) do
@@ -109,6 +112,7 @@ function beginPowerSelection(_pairsHolder)
     return
   end
 
+  -- try to select backwards
   closest = false
   for key in pairs(pairsHolder) do
     for left, right in toupleArrayElement(pairsHolder[key]) do
@@ -145,6 +149,7 @@ function cyclePowerSelection()
 
   if currLeft == false then return end
 
+  -- find next occurrence
   local nextPair = { currLeft, currRight }
   local minLeft = 1/0 -- inf
   for key in pairs(pairsHolder) do
@@ -161,6 +166,7 @@ function cyclePowerSelection()
     return
   end
 
+  -- go to beggining and start again
   execute('normal<Esc>^')
   beginPowerSelection(pairsHolder)
 end
