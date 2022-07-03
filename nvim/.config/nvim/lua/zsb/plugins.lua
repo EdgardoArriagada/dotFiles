@@ -19,6 +19,7 @@ function pluginsStartup(use)
       'numToStr/Comment.nvim',
       config = function() require('zsb.setup.comment') end,
     }
+    use 'JoosepAlviste/nvim-ts-context-commentstring'
 
     -- NvimTree
     use {
