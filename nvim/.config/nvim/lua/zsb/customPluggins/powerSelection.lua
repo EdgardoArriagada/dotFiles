@@ -6,38 +6,57 @@ keymap.set('v', 'W', function()
   cyclePowerSelection()
 end)
 
-local set = {
-  ["("] = true,
-  [")"] = true,
-  ["["] = true,
-  ["]"] = true,
-  ["{"] = true,
-  ["}"] = true,
-  ["<"] = true,
-  [">"] = true,
-}
-
-local rightToLeft = {
-  [")"] = "(",
-  ["]"] = "[",
-  ["}"] = "{",
-  [">"] = "<",
-}
-
-local leftSet = {
-  ["("] = true,
-  ["["] = true,
-  ["{"] = true,
-  ["<"] = true,
+local str = {
+  enclosing = {
+    set = {
+      ["("] = true,
+      [")"] = true,
+      ["["] = true,
+      ["]"] = true,
+      ["{"] = true,
+      ["}"] = true,
+      ["<"] = true,
+      [">"] = true,
+    },
+    rightToLeft = {
+      [")"] = "(",
+      ["]"] = "[",
+      ["}"] = "{",
+      [">"] = "<",
+    },
+    leftSet = {
+      ["("] = true,
+      ["["] = true,
+      ["{"] = true,
+      ["<"] = true,
+    },
+  },
+  quotes = {
+    set = {
+      ["'"] = true,
+      ['"'] = true,
+      ['`'] = true,
+    },
+    rightToLeft = {
+      ["'"] = "'",
+      ['"'] = '"',
+      ['`'] = '`',
+    },
+    leftSet = {
+      ["'"] = true,
+      ['"'] = true,
+      ['`'] = true,
+    },
+  },
 }
 
 local function loadToken(pairsHolder, pileHolder, token, i)
-  if leftSet[token] then
+  if str.enclosing.leftSet[token] then
     safePush(pileHolder, token, i)
     return
   end
 
-  local leftToken = rightToLeft[token]
+  local leftToken = str.enclosing.rightToLeft[token]
   local leftIndex = safePop(pileHolder, leftToken)
 
   if leftIndex ~= nil then
@@ -50,7 +69,7 @@ local function loadHolder(pairsHolder)
   local currentLine = getCurrentLine()
   local i = 0
   for c in currentLine:gmatch"." do
-    if set[c] then loadToken(pairsHolder, pileHolder, c, i) end
+    if str.enclosing.set[c] then loadToken(pairsHolder, pileHolder, c, i) end
     i = i + 1
   end
 end
