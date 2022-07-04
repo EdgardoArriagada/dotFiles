@@ -30,6 +30,19 @@ local str = {
       ["{"] = true,
       ["<"] = true,
     },
+    loadToken = function(pairsHolder, pileHolder, token, i)
+      if str.enclosing.leftSet[token] then
+        safePush(pileHolder, token, i)
+        return
+      end
+
+      local leftToken = str.enclosing.rightToLeft[token]
+      local leftIndex = safePop(pileHolder, leftToken)
+
+      if leftIndex ~= nil then
+        safePush(pairsHolder, leftToken, { leftIndex, i }) -- where token = leftToken
+      end
+    end
   },
   quotes = {
     set = {
@@ -47,29 +60,25 @@ local str = {
       ['"'] = true,
       ['`'] = true,
     },
+    loadToken = function (holder, pileHolder, token, i)
+      local leftIndex = safePop(pileHolder, token)
+
+      if leftIndex ~= nil then
+        safePush(holder, token, { leftIndex, i })
+        return
+      end
+
+      safePush(pileHolder, token, i)
+    end,
   },
 }
-
-local function loadToken(pairsHolder, pileHolder, token, i)
-  if str.enclosing.leftSet[token] then
-    safePush(pileHolder, token, i)
-    return
-  end
-
-  local leftToken = str.enclosing.rightToLeft[token]
-  local leftIndex = safePop(pileHolder, leftToken)
-
-  if leftIndex ~= nil then
-    safePush(pairsHolder, leftToken, { leftIndex, i }) -- where token = leftToken
-  end
-end
 
 local function loadHolder(pairsHolder)
   local pileHolder = {}
   local currentLine = getCurrentLine()
   local i = 0
   for c in currentLine:gmatch"." do
-    if str.enclosing.set[c] then loadToken(pairsHolder, pileHolder, c, i) end
+    if str.quotes.set[c] then str.quotes.loadToken(pairsHolder, pileHolder, c, i) end
     i = i + 1
   end
 end
