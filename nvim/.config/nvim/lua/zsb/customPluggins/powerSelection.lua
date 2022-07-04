@@ -1,12 +1,47 @@
+-- enclosing
 keymap.set('n', 'W', function()
-  beginPowerSelection()
+  beginPowerSelection('enclosing')
 end)
 
 keymap.set('v', 'W', function()
-  cyclePowerSelection()
+  cyclePowerSelection('enclosing')
 end)
 
-local str = {
+-- quotes
+keymap.set({ 'o', 'v' }, "'", function()
+  execute('normal<Esc>')
+  beginPowerSelection('quotes')
+end)
+
+keymap.set({ 'o', 'v' }, '"', function()
+  execute('normal<Esc>')
+  beginPowerSelection('quotes')
+end)
+
+keymap.set({ 'o', 'v' }, '`', function()
+  execute('normal<Esc>')
+  beginPowerSelection('quotes')
+end)
+
+keymap.set({ 'o', 'v' }, 'L', function()
+  cyclePowerSelection('quotes')
+end)
+
+local enclosingLeftSet = {
+  ["("] = true,
+  ["["] = true,
+  ["{"] = true,
+  ["<"] = true,
+}
+
+local rightToLeft = {
+  [")"] = "(",
+  ["]"] = "[",
+  ["}"] = "{",
+  [">"] = "<",
+}
+
+local structures = {
   enclosing = {
     set = {
       ["("] = true,
@@ -18,25 +53,13 @@ local str = {
       ["<"] = true,
       [">"] = true,
     },
-    rightToLeft = {
-      [")"] = "(",
-      ["]"] = "[",
-      ["}"] = "{",
-      [">"] = "<",
-    },
-    leftSet = {
-      ["("] = true,
-      ["["] = true,
-      ["{"] = true,
-      ["<"] = true,
-    },
     loadToken = function(pairsHolder, pileHolder, token, i)
-      if str.enclosing.leftSet[token] then
+      if enclosingLeftSet[token] then
         safePush(pileHolder, token, i)
         return
       end
 
-      local leftToken = str.enclosing.rightToLeft[token]
+      local leftToken = rightToLeft[token]
       local leftIndex = safePop(pileHolder, leftToken)
 
       if leftIndex ~= nil then
@@ -46,16 +69,6 @@ local str = {
   },
   quotes = {
     set = {
-      ["'"] = true,
-      ['"'] = true,
-      ['`'] = true,
-    },
-    rightToLeft = {
-      ["'"] = "'",
-      ['"'] = '"',
-      ['`'] = '`',
-    },
-    leftSet = {
       ["'"] = true,
       ['"'] = true,
       ['`'] = true,
@@ -73,12 +86,12 @@ local str = {
   },
 }
 
-local function loadHolder(pairsHolder)
+local function loadHolder(ctx, pairsHolder)
   local pileHolder = {}
   local currentLine = getCurrentLine()
   local i = 0
   for c in currentLine:gmatch"." do
-    if str.quotes.set[c] then str.quotes.loadToken(pairsHolder, pileHolder, c, i) end
+    if structures[ctx].set[c] then structures[ctx].loadToken(pairsHolder, pileHolder, c, i) end
     i = i + 1
   end
 end
@@ -90,14 +103,14 @@ local function selectMoving(touple)
   cursor(lineNumber, touple[2])
 end
 
-function beginPowerSelection(_pairsHolder)
+function beginPowerSelection(ctx, _pairsHolder)
   local currPos = col('.') - 1
 
   -- reuse pairsholder if given
   local pairsHolder
   if not _pairsHolder then
     pairsHolder = {}
-    loadHolder(pairsHolder)
+    loadHolder(ctx, pairsHolder)
   else
     pairsHolder = _pairsHolder
   end
@@ -166,11 +179,11 @@ local function findLeftIndex(currRight, pairsHolder)
   return false
 end
 
-function cyclePowerSelection()
+function cyclePowerSelection(ctx)
   local currRight = col('.')
 
   local pairsHolder = {}
-  loadHolder(pairsHolder)
+  loadHolder(ctx, pairsHolder)
 
   local currLeft = findLeftIndex(currRight, pairsHolder)
   if currLeft == false then return end
@@ -194,5 +207,5 @@ function cyclePowerSelection()
 
   -- go to beggining and start again
   execute('normal<Esc>^')
-  beginPowerSelection(pairsHolder)
+  beginPowerSelection(ctx, pairsHolder)
 end
