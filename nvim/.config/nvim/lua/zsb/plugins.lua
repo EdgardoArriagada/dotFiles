@@ -80,6 +80,7 @@ function pluginsStartup(use)
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
     }
+    use 'windwp/nvim-ts-autotag'
 
     -- Git
     use {
