@@ -81,10 +81,6 @@ local opts = {
 local mappings = {
   ["/"] = { "<cmd>lua require(\"Comment.api\").toggle_current_linewise()<CR>", "Comment" },
   ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
-  ["b"] = {
-    "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-    "Buffers",
-  },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
@@ -179,6 +175,15 @@ local mappings = {
     f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
     h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
+  },
+
+  b = {
+    name = "Buffer",
+    f = { "<cmd>lua vim.lsp.buf.formatting_sync()<cr>", "Format Code" },
+    t = {
+      "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+      "Buffers",
+    }
   },
 }
 
