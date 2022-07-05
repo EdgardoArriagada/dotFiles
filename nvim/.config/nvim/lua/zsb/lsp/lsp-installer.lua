@@ -3,6 +3,12 @@ if not status_ok then
 	return
 end
 
+local get = {
+  ['jsonls'] = function() return require("zsb.lsp.settings.jsonls") end,
+  ['sumneko_lua'] = function() return require("zsb.lsp.settings.sumneko_lua") end,
+  ['pyright'] = function() return require("zsb.lsp.settings.pyright") end,
+}
+
 -- Register a handler that will be called for all installed servers.
 -- Alternatively, you may also register handlers on specific server instances instead (see example below).
 lsp_installer.on_server_ready(function(server)
@@ -11,20 +17,15 @@ lsp_installer.on_server_ready(function(server)
 		capabilities = require("zsb.lsp.handlers").capabilities,
 	}
 
-	 if server.name == "jsonls" then
-	 	local jsonls_opts = require("zsb.lsp.settings.jsonls")
-	 	opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
-	 end
+  local config = get[server.name]
+  local customOpts
+  if config then
+    customOpts = config()
+  else
+    customOpts = {}
+  end
 
-	 if server.name == "sumneko_lua" then
-	 	local sumneko_opts = require("zsb.lsp.settings.sumneko_lua")
-	 	opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
-	 end
-
-	 if server.name == "pyright" then
-	 	local pyright_opts = require("zsb.lsp.settings.pyright")
-	 	opts = vim.tbl_deep_extend("force", pyright_opts, opts)
-	 end
+  opts = vim.tbl_deep_extend("force", customOpts, opts)
 
 	-- This setup() function is exactly the same as lspconfig's setup function.
 	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
