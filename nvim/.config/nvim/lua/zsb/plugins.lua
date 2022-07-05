@@ -1,6 +1,7 @@
 function pluginsStartup(use)
   use 'wbthomason/packer.nvim' -- Have packer manage itself
 
+  -- Hop
   use {
     'phaazon/hop.nvim',
     branch = 'v1', -- optional but strongly recommended
@@ -13,6 +14,12 @@ function pluginsStartup(use)
     use 'nvim-lua/plenary.nvim'
     use 'kyazdani42/nvim-web-devicons'
     use 'moll/vim-bbye'
+
+    -- Auto pairs
+    use {
+      'windwp/nvim-autopairs',
+      config = function() require('zsb.setup.nvim-autopairs') end,
+    }
 
     -- Comments
     use {
