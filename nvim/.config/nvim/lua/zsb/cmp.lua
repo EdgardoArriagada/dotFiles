@@ -1,5 +1,14 @@
-if vim.g.vscode then return end
+-- Skip copilot and cmp if in vscode
+if vim.g.vscode then
+  vim.g.copilot_filetypes = { ['*'] = false }
+  return
+end
 
+-- Copilot
+vim.g.copilot_no_tab_map = true
+vim.cmd [[imap <silent><script><expr> <C-a> copilot#Accept("\<CR>")]]
+
+-- Cmp
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
   return

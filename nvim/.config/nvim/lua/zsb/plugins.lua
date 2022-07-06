@@ -97,6 +97,9 @@ function pluginsStartup(use)
     config = function() require('zsb.setup.neoscroll') end,
   }
 
+  --Copilot
+  use 'github/copilot.vim'
+
   -- Looks
   use "ellisonleao/gruvbox.nvim"
 end
