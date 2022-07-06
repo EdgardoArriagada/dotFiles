@@ -8,95 +8,96 @@ function pluginsStartup(use)
     config = function() require('zsb.setup.hop') end,
   }
 
-  if not vim.g.vscode then
-    -- Common plugins
-    use 'nvim-lua/popup.nvim'
-    use 'nvim-lua/plenary.nvim'
-    use 'kyazdani42/nvim-web-devicons'
-    use 'moll/vim-bbye'
+  -- Comments
+  use {
+    'numToStr/Comment.nvim',
+    config = function() require('zsb.setup.comment') end,
+  }
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
 
-    -- Auto pairs
-    use {
-      'windwp/nvim-autopairs',
-      config = function() require('zsb.setup.nvim-autopairs') end,
-    }
+  -- NVIM ONLY PLUGGINS --
 
-    -- Comments
-    use {
-      'numToStr/Comment.nvim',
-      config = function() require('zsb.setup.comment') end,
-    }
-    use 'JoosepAlviste/nvim-ts-context-commentstring'
+  -- Common plugins
+  use 'nvim-lua/popup.nvim'
+  use 'nvim-lua/plenary.nvim'
+  use 'kyazdani42/nvim-web-devicons'
+  use 'moll/vim-bbye'
 
-    -- NvimTree
-    use {
-      'kyazdani42/nvim-tree.lua',
-      tag = 'nightly', -- optional, updated every week. (see issue #1193)
-      config = function() require('zsb.setup.nvim-tree') end,
-    }
+  -- Auto pairs
+  use {
+    'windwp/nvim-autopairs',
+    config = function() require('zsb.setup.nvim-autopairs') end,
+  }
 
-    -- Bufferline
-    use {
-      'akinsho/bufferline.nvim',
-      config = function() require('zsb.setup.bufferline') end,
-    }
 
-    -- Whichkey
-    use {
-      "max397574/which-key.nvim",
-      config = function()
-        require("zsb.setup.which-key")
-      end,
-      event = "BufWinEnter",
-    }
+  -- NvimTree
+  use {
+    'kyazdani42/nvim-tree.lua',
+    tag = 'nightly', -- optional, updated every week. (see issue #1193)
+    config = function() require('zsb.setup.nvim-tree') end,
+  }
 
-    -- Completion plugins https://github.com/topics/nvim-cmp
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-nvim-lua'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
-    use 'hrsh7th/nvim-cmp'
+  -- Bufferline
+  use {
+    'akinsho/bufferline.nvim',
+    config = function() require('zsb.setup.bufferline') end,
+  }
 
-    -- Snippets
-    use 'L3MON4D3/LuaSnip'
+  -- Whichkey
+  use {
+    "max397574/which-key.nvim",
+    config = function()
+      require("zsb.setup.which-key")
+    end,
+    event = "BufWinEnter",
+  }
 
-    -- Lsp
-    use 'neovim/nvim-lspconfig'
-    use 'williamboman/nvim-lsp-installer'
-    use {
-      'jose-elias-alvarez/null-ls.nvim',
-      config = function() require('zsb.setup.null-ls') end,
-    }
+  -- Completion plugins https://github.com/topics/nvim-cmp
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-nvim-lua'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/nvim-cmp'
 
-    -- Telescope
-    use {
-      "nvim-telescope/telescope.nvim",
-      config = function() require('zsb.setup.telescope') end,
-    }
+  -- Snippets
+  use 'L3MON4D3/LuaSnip'
 
-    -- Treesitteer
-    use {
-      'nvim-treesitter/nvim-treesitter',
-      run = ':TSUpdate',
-    }
-    use 'windwp/nvim-ts-autotag'
+  -- Lsp
+  use 'neovim/nvim-lspconfig'
+  use 'williamboman/nvim-lsp-installer'
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = function() require('zsb.setup.null-ls') end,
+  }
 
-    -- Git
-    use {
-      'lewis6991/gitsigns.nvim',
-      config = function() require('zsb.setup.gitsigns') end,
-    }
+  -- Telescope
+  use {
+    "nvim-telescope/telescope.nvim",
+    config = function() require('zsb.setup.telescope') end,
+  }
 
-    use 'p00f/nvim-ts-rainbow'
+  -- Treesitteer
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+  }
+  use 'windwp/nvim-ts-autotag'
 
-    -- Scroll
-    use {
-      'karb94/neoscroll.nvim',
-      config = function() require('neoscroll').setup() end,
-    }
+  -- Git
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function() require('zsb.setup.gitsigns') end,
+  }
 
-    -- Looks
-    use "ellisonleao/gruvbox.nvim"
-  end
+  use 'p00f/nvim-ts-rainbow'
+
+  -- Scroll
+  use {
+    'karb94/neoscroll.nvim',
+    config = function() require('zsb.setup.neoscroll') end,
+  }
+
+  -- Looks
+  use "ellisonleao/gruvbox.nvim"
 end

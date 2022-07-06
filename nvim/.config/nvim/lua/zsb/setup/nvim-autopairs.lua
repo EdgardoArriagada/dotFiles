@@ -1,3 +1,5 @@
+if vim.g.vscode then return end
+
 -- Setup nvim-cmp.
 whenOk(require, 'nvim-autopairs', function(npairs)
   npairs.setup {
