@@ -15,7 +15,7 @@ function pluginsStartup(use)
   }
   use 'JoosepAlviste/nvim-ts-context-commentstring'
 
-  -- NVIM ONLY PLUGGINS --
+  -- NVIM ONLY PLUGGINS -- (manually skip if in vscode in each config function/file)
 
   -- Common plugins
   use 'nvim-lua/popup.nvim'
@@ -28,7 +28,6 @@ function pluginsStartup(use)
     'windwp/nvim-autopairs',
     config = function() require('zsb.setup.nvim-autopairs') end,
   }
-
 
   -- NvimTree
   use {
