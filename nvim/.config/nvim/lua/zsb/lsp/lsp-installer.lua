@@ -3,7 +3,7 @@ if not status_ok then
 	return
 end
 
-local get = {
+local getConf = {
   ['jsonls'] = function() return require("zsb.lsp.settings.jsonls") end,
   ['sumneko_lua'] = function() return require("zsb.lsp.settings.sumneko_lua") end,
   ['pyright'] = function() return require("zsb.lsp.settings.pyright") end,
@@ -17,7 +17,7 @@ lsp_installer.on_server_ready(function(server)
 		capabilities = require("zsb.lsp.handlers").capabilities,
 	}
 
-  local config = get[server.name]
+  local config = getConf[server.name]
   local customOpts
   if config then
     customOpts = config()

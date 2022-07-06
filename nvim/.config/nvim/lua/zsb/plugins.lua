@@ -90,6 +90,12 @@ function pluginsStartup(use)
 
     use 'p00f/nvim-ts-rainbow'
 
+    -- Scroll
+    use {
+      'karb94/neoscroll.nvim',
+      config = function() require('neoscroll').setup() end,
+    }
+
     -- Looks
     use "ellisonleao/gruvbox.nvim"
   end
