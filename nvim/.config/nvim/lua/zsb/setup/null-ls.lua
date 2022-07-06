@@ -12,6 +12,7 @@ null_ls.setup {
   debug = false,
   sources = {
     formatting.prettierd,
+    diagnostics.eslint_d,
     formatting.black,
     -- formatting.yapf,
     formatting.stylua,
