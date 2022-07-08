@@ -91,12 +91,6 @@ function pluginsStartup(use)
 
   use 'p00f/nvim-ts-rainbow'
 
-  -- Scroll
-  use {
-    'karb94/neoscroll.nvim',
-    config = function() require('zsb.setup.neoscroll') end,
-  }
-
   --Copilot
   use 'github/copilot.vim'
 
