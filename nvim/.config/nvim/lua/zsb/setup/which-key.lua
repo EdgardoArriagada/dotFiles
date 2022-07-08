@@ -158,7 +158,9 @@ local mappings = {
 
   s = {
     name = "Search",
-    b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+    t = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
+    d = { "<cmd>Telescope lsp_references<cr>", "References" },
+--    b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
     h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
