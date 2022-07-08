@@ -97,12 +97,16 @@ keymap.set(
 )
 
 vim.api.nvim_create_user_command("Cppath", function()
-	local path = vim.fn.expand("%")
+  local repoName = escape_pattern(fromShell('get_repo_name'))
+  local path = vim.fn.expand("%")
 
-	-- Remove "./" if it has it
-	if path:sub(1, 2) == "./" then
-		path = path:sub(3)
-	end
+  local result = path:gsub('^.*'..repoName..'/', "")
 
-	vim.fn.setreg("+", path)
+  -- Remove "./" if it has it
+  if result:sub(1, 2) == "./" then
+      result = result:sub(3)
+  end
+
+  vim.fn.setreg("+", result)
+  print(result.." Copied!")
 end, {})

@@ -80,3 +80,14 @@ function safePop(pile, element)
   if not pile[element] then return nil end
   return table.remove(pile[element])
 end
+
+function fromShell(command)
+  local handle = io.popen(command)
+  local result = handle:read("*a")
+  handle:close()
+  return result
+end
+
+function escape_pattern(text)
+    return text:gsub("([^%w])", "%%%1")
+end
