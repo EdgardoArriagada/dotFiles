@@ -82,6 +82,9 @@ function pluginsStartup(use)
 		end,
 	})
 
+	--Harpoon
+	use("ThePrimeagen/harpoon")
+
 	-- Telescope
 	use({
 		"nvim-telescope/telescope.nvim",

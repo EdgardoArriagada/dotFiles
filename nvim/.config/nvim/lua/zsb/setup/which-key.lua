@@ -184,14 +184,31 @@ local mappings = {
   b = {
     name = "Buffer",
     f = { "<cmd>lua vim.lsp.buf.formatting_sync()<cr>", "Format Code" },
-    t = {
-      "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-      "Buffers",
-    },
     y = {
       "<cmd>Cppath<cr>",
       "Copy File Path",
-    }
+    },
+    a = {
+      "<cmd>lua require('harpoon.mark').add_file()<cr>",
+      "Harpoon add file",
+    },
+    t = {
+      "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>",
+      "Harpoon add file",
+
+    },
+    n = {
+      "<cmd>lua require('harpoon.ui').nav_next()<cr>",
+      "Harpoon add file",
+    },
+    p = {
+      "<cmd>lua require('harpoon.ui').nav_prev()<cr>",
+      "Harpoon add file",
+    },
+    z = {
+      "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+      "Buffers",
+    },
   },
 }
 
