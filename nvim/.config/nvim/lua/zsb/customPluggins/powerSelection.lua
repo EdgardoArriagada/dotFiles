@@ -89,7 +89,7 @@ local structures = {
 local function loadHolder(ctx, pairsHolder)
   local pileHolder = {}
   local currentLine = getCurrentLine()
-  local i = 0
+  local i = 1
   for c in currentLine:gmatch"." do
     if structures[ctx].set[c] then structures[ctx].loadToken(pairsHolder, pileHolder, c, i) end
     i = i + 1
@@ -98,13 +98,13 @@ end
 
 local function selectMoving(touple)
   local lineNumber = line('.')
-  cursor(lineNumber, touple[1] + 2)
+  cursor(lineNumber, touple[1] + 1)
   execute('normal<Esc>v')
-  cursor(lineNumber, touple[2])
+  cursor(lineNumber, touple[2] - 1)
 end
 
 function beginPowerSelection(ctx, _pairsHolder)
-  local currPos = col('.') - 1
+  local currPos = col('.')
 
   -- reuse pairsholder if given
   local pairsHolder
@@ -180,7 +180,7 @@ local function findLeftIndex(currRight, pairsHolder)
 end
 
 function cyclePowerSelection(ctx)
-  local currRight = col('.')
+  local currRight = col('.') + 1
 
   local pairsHolder = {}
   loadHolder(ctx, pairsHolder)
