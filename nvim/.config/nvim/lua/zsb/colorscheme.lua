@@ -2,8 +2,8 @@ if vim.g.vscode then return end
 
 -- Change here --
 ---------- -------- -------- --------
-local theme = 'gruvbox'
-vim.opt.background = 'dark' -- or "light" for light mode
+local theme = 'gruvbox-flat'
+vim.g.gruvbox_flat_style = "dark"
 ---------- -------- -------- --------
 
 local colorCmd = 'colorscheme ' .. theme
