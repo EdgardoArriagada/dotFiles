@@ -53,7 +53,5 @@ if not vim.g.vscode then
 	end
 end
 
-vim.o.guifont = "Hack Nerd Font:h21"
-
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
