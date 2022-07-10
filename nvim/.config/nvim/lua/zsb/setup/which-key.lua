@@ -194,6 +194,10 @@ local mappings = {
 			"<cmd>lua require('harpoon.mark').add_file()<cr>",
 			"Harpoon add file",
 		},
+		o = {
+			"<cmd>BufferLineCloseLeft<cr>|<cmd>BufferLineCloseRight<cr>",
+			"Buffer Only",
+		},
 		t = {
 			"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>",
 			"Harpoon add file",
