@@ -115,4 +115,12 @@ function pluginsStartup(use)
 
 	-- Looks
 	use("eddyekofo94/gruvbox-flat.nvim")
+
+	-- Vertical lines
+	use({
+		"lukas-reineke/indent-blankline.nvim",
+		config = function()
+			require("zsb.setup.indent-blankline")
+		end,
+	})
 end
