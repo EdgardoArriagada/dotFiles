@@ -27,6 +27,21 @@ keymap.set({ "o", "v" }, "L", function()
 	cyclePowerSelection("quotes")
 end)
 
+local function safePush(pile, element, i)
+	if pile[element] then
+		table.insert(pile[element], i)
+		return
+	end
+	pile[element] = { i }
+end
+
+local function safePop(pile, element)
+	if pile[element] then
+		return table.remove(pile[element])
+	end
+	return nil
+end
+
 local enclosingLeftSet = {
 	["("] = true,
 	["["] = true,
