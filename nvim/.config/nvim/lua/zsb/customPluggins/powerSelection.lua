@@ -63,7 +63,7 @@ local structures = {
 			local leftIndex = safePop(pileHolder, leftToken)
 
 			if leftIndex ~= nil then
-				safePush(pairsHolder, leftToken, { leftIndex, i }) -- where token = leftToken
+				table.insert(pairsHolder, { leftIndex, i }) -- where token = leftToken
 			end
 		end,
 	},
@@ -77,7 +77,7 @@ local structures = {
 			local leftIndex = safePop(pileHolder, token)
 
 			if leftIndex ~= nil then
-				safePush(holder, token, { leftIndex, i })
+				table.insert(holder, { leftIndex, i })
 				return
 			end
 
@@ -119,15 +119,13 @@ function beginPowerSelection(ctx, _pairsHolder)
 
 	-- try to select between
 	local closest = false
-	for key in pairs(pairsHolder) do
-		for left, right in toupleArrayElement(pairsHolder[key]) do
-			if left <= currPos and currPos <= right then
-				if not closest then
+	for left, right in toupleArrayElement(pairsHolder) do
+		if left <= currPos and currPos <= right then
+			if not closest then
+				closest = { left, right }
+			else
+				if closest[1] < left then
 					closest = { left, right }
-				else
-					if closest[1] < left then
-						closest = { left, right }
-					end
 				end
 			end
 		end
@@ -140,15 +138,13 @@ function beginPowerSelection(ctx, _pairsHolder)
 
 	-- try to select forward
 	closest = false
-	for key in pairs(pairsHolder) do
-		for left, right in toupleArrayElement(pairsHolder[key]) do
-			if currPos < left and currPos < right then
-				if not closest then
+	for left, right in toupleArrayElement(pairsHolder) do
+		if currPos < left and currPos < right then
+			if not closest then
+				closest = { left, right }
+			else
+				if left < closest[1] then
 					closest = { left, right }
-				else
-					if left < closest[1] then
-						closest = { left, right }
-					end
 				end
 			end
 		end
@@ -161,15 +157,13 @@ function beginPowerSelection(ctx, _pairsHolder)
 
 	-- try to select backwards
 	closest = false
-	for key in pairs(pairsHolder) do
-		for left, right in toupleArrayElement(pairsHolder[key]) do
-			if left < currPos and right < currPos then
-				if not closest then
+	for left, right in toupleArrayElement(pairsHolder) do
+		if left < currPos and right < currPos then
+			if not closest then
+				closest = { left, right }
+			else
+				if closest[2] < right then
 					closest = { left, right }
-				else
-					if closest[2] < right then
-						closest = { left, right }
-					end
 				end
 			end
 		end
@@ -181,11 +175,9 @@ function beginPowerSelection(ctx, _pairsHolder)
 end
 
 local function findLeftIndex(currRight, pairsHolder)
-	for key in pairs(pairsHolder) do
-		for left, right in toupleArrayElement(pairsHolder[key]) do
-			if currRight == right then
-				return left
-			end
+	for left, right in toupleArrayElement(pairsHolder) do
+		if currRight == right then
+			return left
 		end
 	end
 	return false
@@ -205,12 +197,10 @@ function cyclePowerSelection(ctx)
 	-- find next occurrence
 	local nextPair = {}
 	local minLeft = 1 / 0 -- inf
-	for key in pairs(pairsHolder) do
-		for left, right in toupleArrayElement(pairsHolder[key]) do
-			if minLeft > left and left > currLeft then
-				minLeft = left
-				nextPair = { left, right }
-			end
+	for left, right in toupleArrayElement(pairsHolder) do
+		if minLeft > left and left > currLeft then
+			minLeft = left
+			nextPair = { left, right }
 		end
 	end
 
@@ -226,3 +216,4 @@ end
 
 -- Test string
 -- () => ({foo} ({bar}))
+-- ${zsb:='zsb'} # "$foo" ` 'ba' `
