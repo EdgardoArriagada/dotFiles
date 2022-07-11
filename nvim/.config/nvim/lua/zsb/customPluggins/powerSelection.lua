@@ -203,7 +203,7 @@ function cyclePowerSelection(ctx)
 	end
 
 	-- find next occurrence
-	local nextPair = { currLeft, currRight }
+	local nextPair = {}
 	local minLeft = 1 / 0 -- inf
 	for key in pairs(pairsHolder) do
 		for left, right in toupleArrayElement(pairsHolder[key]) do
@@ -214,7 +214,7 @@ function cyclePowerSelection(ctx)
 		end
 	end
 
-	if currLeft < nextPair[1] then
+	if #nextPair ~= 0 then
 		selectMoving(nextPair)
 		return
 	end
