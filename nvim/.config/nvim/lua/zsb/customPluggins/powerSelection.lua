@@ -53,14 +53,14 @@ local structures = {
 			["<"] = true,
 			[">"] = true,
 		},
-		loadToken = function(pairsHolder, pileHolder, token, i)
+		loadToken = function(pairsHolder, pilesStorage, token, i)
 			if enclosingLeftSet[token] then
-				safePush(pileHolder, token, i)
+				safePush(pilesStorage, token, i)
 				return
 			end
 
 			local leftToken = rightToLeft[token]
-			local leftIndex = safePop(pileHolder, leftToken)
+			local leftIndex = safePop(pilesStorage, leftToken)
 
 			if leftIndex ~= nil then
 				table.insert(pairsHolder, { leftIndex, i }) -- where token = leftToken
@@ -73,26 +73,26 @@ local structures = {
 			['"'] = true,
 			["`"] = true,
 		},
-		loadToken = function(holder, pileHolder, token, i)
-			local leftIndex = safePop(pileHolder, token)
+		loadToken = function(pairsHolder, pilesStorage, token, i)
+			local leftIndex = safePop(pilesStorage, token)
 
 			if leftIndex ~= nil then
-				table.insert(holder, { leftIndex, i })
+				table.insert(pairsHolder, { leftIndex, i })
 				return
 			end
 
-			safePush(pileHolder, token, i)
+			safePush(pilesStorage, token, i)
 		end,
 	},
 }
 
 local function loadHolder(ctx, pairsHolder)
-	local pileHolder = {}
+	local pilesStorage = {} --  { [token] = { {left1, rigth1}, {left2, right2}, ... } }
 	local currentLine = getCurrentLine()
 	local i = 1
 	for c in currentLine:gmatch(".") do
 		if structures[ctx].set[c] then
-			structures[ctx].loadToken(pairsHolder, pileHolder, c, i)
+			structures[ctx].loadToken(pairsHolder, pilesStorage, c, i)
 		end
 		i = i + 1
 	end
@@ -109,12 +109,12 @@ function beginPowerSelection(ctx, _pairsHolder)
 	local currPos = col(".")
 
 	-- reuse pairsholder if given
-	local pairsHolder
-	if not _pairsHolder then
+	local pairsHolder -- { {left1, rigth1}, {left2, rigth2}, ... }
+	if _pairsHolder then
+		pairsHolder = _pairsHolder
+	else
 		pairsHolder = {}
 		loadHolder(ctx, pairsHolder)
-	else
-		pairsHolder = _pairsHolder
 	end
 
 	-- try to select between
@@ -186,7 +186,7 @@ end
 function cyclePowerSelection(ctx)
 	local currRight = col(".") + 1
 
-	local pairsHolder = {}
+	local pairsHolder = {} -- { {left1, rigth1}, {left2, rigth2}, ... }
 	loadHolder(ctx, pairsHolder)
 
 	local currLeft = findLeftIndex(currRight, pairsHolder)
