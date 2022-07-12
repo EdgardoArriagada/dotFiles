@@ -88,6 +88,7 @@ end
 local disabledForFormatting = {
 	["tsserver"] = true,
 	["sumneko_lua"] = true,
+	["jsonls"] = true,
 }
 
 M.on_attach = function(client, bufnr)
