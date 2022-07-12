@@ -13,16 +13,6 @@ keymap.set({ "o", "v" }, "'", function()
 	beginPowerSelection("quotes")
 end)
 
-keymap.set({ "o", "v" }, '"', function()
-	execute("normal<Esc>")
-	beginPowerSelection("quotes")
-end)
-
-keymap.set({ "o", "v" }, "`", function()
-	execute("normal<Esc>")
-	beginPowerSelection("quotes")
-end)
-
 keymap.set({ "o", "v" }, "L", function()
 	cyclePowerSelection("quotes")
 end)
