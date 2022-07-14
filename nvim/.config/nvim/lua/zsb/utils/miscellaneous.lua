@@ -70,9 +70,14 @@ end
 
 function fromShell(command)
   local handle = io.popen(command)
-  local result = handle:read("*a")
-  handle:close()
-  return result
+
+  if handle then
+    local result = handle:read("*a")
+    handle:close()
+    return result
+  end
+
+  return nil
 end
 
 function escape_pattern(text)
