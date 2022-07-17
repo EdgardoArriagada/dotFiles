@@ -71,7 +71,12 @@ function pluginsStartup(use)
 	use("saadparwaiz1/cmp_luasnip") -- snippet completions
 
 	-- Snippets
-	use("L3MON4D3/LuaSnip")
+	use({
+		"L3MON4D3/LuaSnip",
+		config = function()
+			require("zsb.setup.luaSnip")
+		end,
+	})
 
 	-- Lsp
 	use("neovim/nvim-lspconfig")
