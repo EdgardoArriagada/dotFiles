@@ -88,7 +88,7 @@ function pluginsStartup(use)
 		end,
 	})
 
-	--Harpoon
+	-- Harpoon
 	use("ThePrimeagen/harpoon")
 
 	-- Telescope
@@ -98,6 +98,9 @@ function pluginsStartup(use)
 			require("zsb.setup.telescope")
 		end,
 	})
+
+	-- Multiple Cursors
+	use("mg979/vim-visual-multi")
 
 	-- Treesitteer
 	use({
