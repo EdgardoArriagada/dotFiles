@@ -123,59 +123,53 @@ function beginPowerSelection(ctx, _pairsHolder)
 	end
 
 	-- try to select between
-	local closest = false
+	local closestPair = false
+	local minLeft = -1
 	for left, right in toupleArrayElement(pairsHolder) do
 		if left <= currPos and currPos <= right then
-			if not closest then
-				closest = { left, right }
-			else
-				if closest[1] < left then
-					closest = { left, right }
-				end
+			if minLeft < left then
+				minLeft = left
+				closestPair = { left, right }
 			end
 		end
 	end
 
-	if closest then
-		selectMoving(closest)
+	if closestPair then
+		selectMoving(closestPair)
 		return
 	end
 
 	-- try to select forward
-	closest = false
+	closestPair = false
+	minLeft = 1 / 0 -- inf
 	for left, right in toupleArrayElement(pairsHolder) do
 		if currPos < left and currPos < right then
-			if not closest then
-				closest = { left, right }
-			else
-				if left < closest[1] then
-					closest = { left, right }
-				end
+			if left < minLeft then
+				minLeft = left
+				closestPair = { left, right }
 			end
 		end
 	end
 
-	if closest then
-		selectMoving(closest)
+	if closestPair then
+		selectMoving(closestPair)
 		return
 	end
 
 	-- try to select backwards
-	closest = false
+	closestPair = false
+	local maxRight = -1
 	for left, right in toupleArrayElement(pairsHolder) do
 		if left < currPos and right < currPos then
-			if not closest then
-				closest = { left, right }
-			else
-				if closest[2] < right then
-					closest = { left, right }
-				end
+			if maxRight < right then
+				maxRight = right
+				closestPair = { left, right }
 			end
 		end
 	end
 
-	if closest then
-		selectMoving(closest)
+	if closestPair then
+		selectMoving(closestPair)
 	end
 end
 
@@ -200,7 +194,7 @@ function cyclePowerSelection(ctx)
 	end
 
 	-- find next occurrence
-	local nextPair = {}
+	local nextPair = false
 	local minLeft = 1 / 0 -- inf
 	for left, right in toupleArrayElement(pairsHolder) do
 		if minLeft > left and left > currLeft then
@@ -209,7 +203,7 @@ function cyclePowerSelection(ctx)
 		end
 	end
 
-	if #nextPair ~= 0 then
+	if nextPair then
 		selectMoving(nextPair)
 		return
 	end
@@ -221,4 +215,5 @@ end
 
 -- Test string
 -- () => ({foo} ({bar}))
--- ${zsb:='zsb'} # "$foo" ` 'ba' `
+-- ${zsb:='zsb'} # "$foo" ` 'ba' " ` "
+-- ${zsb:='zsb'} () {} < > [ ] ` ' " '
