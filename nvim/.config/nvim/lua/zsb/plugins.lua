@@ -132,4 +132,13 @@ function pluginsStartup(use)
 			require("zsb.setup.indent-blankline")
 		end,
 	})
+
+	-- Status line
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = { "kyazdani42/nvim-web-devicons", opt = true },
+		config = function()
+			require("zsb.setup.lualine")
+		end,
+	})
 end
