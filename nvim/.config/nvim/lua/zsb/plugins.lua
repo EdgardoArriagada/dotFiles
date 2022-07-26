@@ -141,4 +141,12 @@ function pluginsStartup(use)
 			require("zsb.setup.lualine")
 		end,
 	})
+
+	-- Folding
+	use({
+		"anuvyklack/pretty-fold.nvim",
+		config = function()
+      require("zsb.setup.pretty-fold")
+		end,
+	})
 end

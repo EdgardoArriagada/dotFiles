@@ -97,16 +97,22 @@ keymap.set(
 )
 
 vim.api.nvim_create_user_command("Cppath", function()
-  local repoName = escape_pattern(fromShell('get_repo_name'))
-  local path = vim.fn.expand("%")
+	local repoName = escape_pattern(fromShell("get_repo_name"))
+	local path = vim.fn.expand("%")
 
-  local result = path:gsub('^.*'..repoName..'/', "")
+	local result = path:gsub("^.*" .. repoName .. "/", "")
 
-  -- Remove "./" if it has it
-  if result:sub(1, 2) == "./" then
-      result = result:sub(3)
-  end
+	-- Remove "./" if it has it
+	if result:sub(1, 2) == "./" then
+		result = result:sub(3)
+	end
 
-  vim.fn.setreg("+", result)
-  print(result.." Copied!")
+	vim.fn.setreg("+", result)
+	print(result .. " Copied!")
+end, {})
+
+vim.api.nvim_create_user_command("Folds", function()
+	vim.opt.foldmethod = "syntax"
+	execute("normal!zA")
+  print('Folds set to "syntax"')
 end, {})
