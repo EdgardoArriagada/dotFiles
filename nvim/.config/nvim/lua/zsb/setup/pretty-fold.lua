@@ -7,11 +7,7 @@ local calculateSpaces = function(foldLevel)
 	if foldLevel <= 2 then
 		return foldLevel
 	end
-	local spaces = 2
-	for i = 3, foldLevel do
-		spaces = spaces + 2
-	end
-	return spaces
+	return (foldLevel * 2) - 2
 end
 
 whenOk(require, "pretty-fold", function(prettyFold)
