@@ -146,7 +146,22 @@ function pluginsStartup(use)
 	use({
 		"anuvyklack/pretty-fold.nvim",
 		config = function()
-      require("zsb.setup.pretty-fold")
+			require("zsb.setup.pretty-fold")
 		end,
+	})
+
+	-- Markdown
+	use({
+		"ekickx/clipboard-image.nvim",
+		ft = { "markdown" },
+	})
+
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = "cd app && npm install",
+		setup = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		ft = { "markdown" },
 	})
 end

@@ -215,6 +215,18 @@ local mappings = {
 			"Buffers",
 		},
 	},
+
+	m = {
+		name = "Markdown",
+		t = {
+			"<cmd>MarkdownPreviewToggle<cr>",
+			"Preview Toggle",
+		},
+		p = {
+			"<cmd>PasteImg<cr>",
+			"Paste Image",
+		},
+	},
 }
 
 local vopts = {
