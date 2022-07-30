@@ -4,7 +4,12 @@ end
 
 local group = vim.api.nvim_create_augroup("zsb", { clear = true })
 
-vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]])
+vim.api.nvim_create_autocmd("BufWritePre", {
+	callback = function()
+		vim.lsp.buf.formatting_sync()
+	end,
+	group = group,
+})
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "json",
@@ -15,5 +20,5 @@ vim.api.nvim_create_autocmd("FileType", {
 			print('Folds set to "syntax"')
 		end)
 	end,
-  group = group,
+	group = group,
 })
