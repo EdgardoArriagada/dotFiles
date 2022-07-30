@@ -110,9 +110,3 @@ vim.api.nvim_create_user_command("Cppath", function()
 	vim.fn.setreg("+", result)
 	print(result .. " Copied!")
 end, {})
-
-vim.api.nvim_create_user_command("Folds", function()
-	vim.opt.foldmethod = "syntax"
-	execute("normal!zA")
-  print('Folds set to "syntax"')
-end, {})
