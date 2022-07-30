@@ -14,8 +14,8 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "json",
 	callback = function()
-		vim.opt.foldmethod = "syntax"
 		vim.schedule(function()
+			vim.opt.foldmethod = "syntax"
 			execute("normal!zA")
 			print('Folds set to "syntax"')
 		end)
