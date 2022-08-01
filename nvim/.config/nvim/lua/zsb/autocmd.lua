@@ -17,7 +17,6 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.schedule(function()
 			vim.opt.foldmethod = "syntax"
 			execute("normal!zA")
-			print('Folds set to "syntax"')
 		end)
 	end,
 	group = group,

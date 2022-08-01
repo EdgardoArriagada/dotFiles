@@ -110,3 +110,9 @@ vim.api.nvim_create_user_command("Cppath", function()
 	vim.fn.setreg("+", result)
 	print(result .. " Copied!")
 end, {})
+
+vim.api.nvim_create_user_command("Json", function()
+	vim.bo.filetype = "json"
+	vim.opt.foldmethod = "syntax"
+	print('Folds set to "syntax"')
+end, {})
