@@ -10,26 +10,29 @@ local calculateSpaces = function(foldLevel)
 	return (foldLevel * 2) - 2
 end
 
-whenOk(require, "pretty-fold", function(prettyFold)
-	prettyFold.setup({
-		keep_indentation = false,
-		fill_char = "━",
-		sections = {
-			left = {
-				"⮀",
-				function()
-					return string.rep("·", calculateSpaces(vim.v.foldlevel) - 2)
-				end,
-				"content",
-				"┣",
+hpcall(require, "pretty-fold", {
+	onOk = function(prettyFold)
+		prettyFold.setup({
+			keep_indentation = false,
+			fill_char = "━",
+			sections = {
+				left = {
+					"⮀",
+					function()
+						return string.rep("·", calculateSpaces(vim.v.foldlevel) - 2)
+					end,
+					"content",
+					"┣",
+				},
+				right = {
+					"┫ ",
+					"number_of_folded_lines",
+					": ",
+					"percentage",
+					" ┣━━",
+				},
 			},
-			right = {
-				"┫ ",
-				"number_of_folded_lines",
-				": ",
-				"percentage",
-				" ┣━━",
-			},
-		},
-	})
-end)
+		})
+	end,
+	onErr = "failed to setup pretty-fold",
+})

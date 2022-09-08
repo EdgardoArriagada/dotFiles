@@ -118,7 +118,5 @@ vim.api.nvim_create_user_command("Json", function()
 end, {})
 
 vim.api.nvim_create_user_command("Pjson", function()
-	withFallback(execute, "%!jq .", function()
-		vim.notify('failed to execute ":%!jq .", make sure you have "jq" is installed')
-	end)
+	hpcall(execute, "%!jq .", { onErr = 'failed to execute ":%!jq .", make sure you have "jq" is installed' })
 end, {})
