@@ -8,10 +8,14 @@ local onActionType = {
 	["nil"] = function() end,
 }
 
-function hpcall(a, b, args)
+-- @param a, b = pcall(a, b)
+-- @param handlers: table with:
+-- onOk: function(result of pcall) | string | nothing
+-- onErr: function(result of pcall) | string | nothing
+function hpcall(a, b, handlers)
 	local ok, thing = pcall(a, b)
 
 	local action = ok and "onOk" or "onErr"
 
-	onActionType[type(args[action])](args[action], ok, thing)
+	onActionType[type(handlers[action])](handlers[action], ok, thing)
 end
