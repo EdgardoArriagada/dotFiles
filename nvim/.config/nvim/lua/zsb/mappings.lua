@@ -116,3 +116,9 @@ vim.api.nvim_create_user_command("Json", function()
 	vim.opt.foldmethod = "syntax"
 	print('Folds set to "syntax"')
 end, {})
+
+vim.api.nvim_create_user_command("Pjson", function()
+	withFallback(execute, "%!jq .", function()
+		vim.notify('failed to execute ":%!jq .", make sure you have "jq" is installed')
+	end)
+end, {})

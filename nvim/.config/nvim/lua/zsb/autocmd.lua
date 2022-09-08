@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt.foldmethod = "syntax"
 		vim.schedule(function()
 			withFallback(execute, "normal!zA", function()
-				vim.notify('failed to execute "normal!zA"')
+				vim.notify('failed to execute ":normal!zA"')
 			end)
 		end)
 	end,
