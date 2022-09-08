@@ -210,6 +210,10 @@ local mappings = {
 			"<cmd>lua require('harpoon.ui').nav_prev()<cr>",
 			"Harpoon add file",
 		},
+		m = {
+			"<C-w>100>",
+			"Maximize",
+		},
 		z = {
 			"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
 			"Buffers",
