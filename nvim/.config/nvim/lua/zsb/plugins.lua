@@ -99,6 +99,8 @@ function pluginsStartup(use)
 		end,
 	})
 
+	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+
 	-- Multiple Cursors
 	use("mg979/vim-visual-multi")
 
