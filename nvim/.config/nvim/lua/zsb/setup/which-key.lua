@@ -227,6 +227,21 @@ local mappings = {
 			"Paste Image",
 		},
 	},
+	r = {
+		name = "Refactor",
+		b = {
+			"<Cmd>lua require('refactoring').refactor('Extract Block')<CR>",
+			"Extract Block",
+		},
+		bf = {
+			"<Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>",
+			"Extract Block To File",
+		},
+		i = {
+			"<Cmd>lua require('refactoring').refactor('Inline Variable')<CR>",
+			"Inline Variable",
+		},
+	},
 }
 
 local vopts = {
@@ -240,6 +255,25 @@ local vopts = {
 
 local vmappings = {
 	["/"] = { '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', "Comment" },
+	r = {
+		name = "Refactor",
+		e = {
+			"<Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>",
+			"Extract Function",
+		},
+		f = {
+			"<Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>",
+			"Extract Function To File",
+		},
+		v = {
+			"<Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>",
+			"Extract Variable",
+		},
+		i = {
+			"<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>",
+			"Inline Variable",
+		},
+	},
 }
 
 which_key.setup(setup)
