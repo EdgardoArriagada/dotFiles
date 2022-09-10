@@ -9,6 +9,7 @@ local globalOptions = {
 }
 
 local neovimOptions = {
+	autoread = true, -- automatically reload a file if it changes from the outside
 	backup = false, -- creates a backup file
 	colorcolumn = "80,120", -- highlight given columns
 	cmdheight = 2, -- more space in the neovim command line for displaying messages

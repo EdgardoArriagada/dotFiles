@@ -21,3 +21,17 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 	group = group,
 })
+
+-- Triger `autoread` when files changes on disk
+vim.api.nvim_create_autocmd(
+	{ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" },
+	{ command = [[if mode() != 'c' | checktime | endif]], group = group }
+)
+
+-- Notification after file change
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+	callback = function()
+		Warn("File changed on disk. Buffer reloaded.")
+	end,
+	group = group,
+})
