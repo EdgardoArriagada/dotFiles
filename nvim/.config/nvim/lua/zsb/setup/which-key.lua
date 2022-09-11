@@ -97,6 +97,12 @@ local mappings = {
 	["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
 	["P"] = { "<cmd>Telescope projects<cr>", "Projects" },
 
+	n = {
+		name = "NvimTree",
+		t = { "<cmd>NvimTreeToggle<cr>", "Toggle" },
+		r = { "<cmd>NvimTreeRefresh<cr>", "Refresh" },
+	},
+
 	p = {
 		name = "Packer",
 		c = { "<cmd>PackerCompile<cr>", "Compile" },
