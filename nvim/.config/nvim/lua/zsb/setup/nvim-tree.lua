@@ -24,12 +24,12 @@ nvim_tree.setup({
 				default = "",
 				symlink = "",
 				git = {
-					unstaged = "",
-					staged = "",
+					unstaged = "פֿ",
+					staged = "",
 					unmerged = "",
 					renamed = "➜",
 					deleted = "",
-					untracked = "U",
+					untracked = "??",
 					ignored = "◌",
 				},
 				folder = {
