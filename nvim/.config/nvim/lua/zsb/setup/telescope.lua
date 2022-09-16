@@ -22,5 +22,7 @@ hpcall(require, "telescope", {
 })
 
 keymap.set("n", "<C-p>", function()
-	require("telescope.builtin").git_files()
+	require("telescope.builtin").git_files({
+		show_untracked = true,
+	})
 end)
