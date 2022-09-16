@@ -44,6 +44,7 @@ function pluginsStartup(use)
 		config = function()
 			require("react-extract").setup()
 		end,
+		ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 	})
 
 	-- Auto pairs
@@ -169,6 +170,7 @@ function pluginsStartup(use)
 		config = function()
 			require("zsb.setup.pretty-fold")
 		end,
+		ft = { "json" },
 	})
 
 	-- Markdown
