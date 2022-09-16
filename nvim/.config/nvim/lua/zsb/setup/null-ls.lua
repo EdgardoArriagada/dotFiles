@@ -10,8 +10,8 @@ hpcall(require, "null-ls", {
 		null_ls.setup({
 			debug = false,
 			sources = {
-				formatting.prettierd,
-				diagnostics.eslint_d,
+				formatting.prettier,
+				diagnostics.eslint,
 				formatting.black,
 				-- formatting.yapf,
 				formatting.stylua,
