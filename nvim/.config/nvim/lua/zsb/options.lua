@@ -48,11 +48,11 @@ for k, v in pairs(globalOptions) do
 	vim.opt[k] = v
 end
 
-if not vim.g.vscode then
-	for k, v in pairs(neovimOptions) do
-		vim.opt[k] = v
-	end
+--[[ if not vim.g.vscode then ]]
+for k, v in pairs(neovimOptions) do
+	vim.opt[k] = v
 end
+--[[ end ]]
 
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])

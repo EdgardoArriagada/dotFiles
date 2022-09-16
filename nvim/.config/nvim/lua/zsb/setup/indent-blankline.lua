@@ -1,6 +1,4 @@
-if vim.g.vscode then
-	return
-end
+--[[ if vim.g.vscode then return end ]]
 
 hpcall(require, "indent_blankline", {
 	onOk = function(indent_blankline)

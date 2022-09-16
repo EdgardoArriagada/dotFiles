@@ -1,6 +1,4 @@
-if vim.g.vscode then
-	return
-end
+--[[ if vim.g.vscode then return end ]]
 
 hpcall(require, "null-ls", {
 	onOk = function(null_ls)

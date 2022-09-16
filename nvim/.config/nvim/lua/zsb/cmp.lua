@@ -1,8 +1,8 @@
 -- Skip copilot and cmp if in vscode
-if vim.g.vscode then
-	vim.g.copilot_filetypes = { ["*"] = false }
-	return
-end
+--[[ if vim.g.vscode then ]]
+--[[ 	vim.g.copilot_filetypes = { ["*"] = false } ]]
+--[[ 	return ]]
+--[[ end ]]
 
 -- Copilot
 vim.g.copilot_no_tab_map = true
