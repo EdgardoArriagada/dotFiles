@@ -39,6 +39,13 @@ function pluginsStartup(use)
 		end,
 	})
 
+	use({
+		"napmn/react-extract.nvim",
+		config = function()
+			require("react-extract").setup()
+		end,
+	})
+
 	-- Auto pairs
 	use({
 		"windwp/nvim-autopairs",

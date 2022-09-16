@@ -279,6 +279,17 @@ local vmappings = {
 			"<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>",
 			"Inline Variable",
 		},
+		r = {
+			name = "React",
+			e = {
+				"<Cmd>lua require('react-extract').extract_to_current_file()<CR>",
+				"Extract Component",
+			},
+			f = {
+				"<Cmd>lua require('react-extract').extract_to_new_file()<CR>",
+				"Extract Component to New File",
+			},
+		},
 	},
 }
 
