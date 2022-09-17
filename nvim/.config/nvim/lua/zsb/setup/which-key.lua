@@ -88,7 +88,7 @@ local mappings = {
 	["q"] = { "<cmd>q!<CR>", "Quit" },
 	["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
 	["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-	["t"] = { "<cmd>TransparentToggle<cr>", "Transparent Toggle" },
+	["t"] = { "<cmd>TransparentToggle<cr>", "Transparency" },
 	["f"] = {
 		"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
 		"Find files",
