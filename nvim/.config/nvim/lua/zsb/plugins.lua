@@ -158,6 +158,14 @@ function pluginsStartup(use)
 	-- Looks
 	use("eddyekofo94/gruvbox-flat.nvim")
 
+	-- Transparency
+	use({
+		"xiyaowong/nvim-transparent",
+		config = function()
+			require("zsb.setup.nvim-transparent")
+		end,
+	})
+
 	-- Vertical lines
 	use({
 		"lukas-reineke/indent-blankline.nvim",
