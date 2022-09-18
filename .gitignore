@@ -1,3 +1,6 @@
+# neovim
 nvim/.config/nvim/plugin
+
+# hammerspoon
 hammerspoon/.hammerspoon/hs
 hammerspoon/.hammerspoon/Spoons
