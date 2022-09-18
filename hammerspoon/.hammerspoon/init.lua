@@ -4,7 +4,7 @@ local spaces = require("hs.spaces")
 hs.hotkey.bind("§", "§", function()
 	local APP_NAME = "Alacritty"
 
-	local function watchApp(APP_NAME, mainScreen, spaceId)
+	local function watchApp(mainScreen, spaceId)
 		local appWatcher = nil
 		appWatcher = hs.application.watcher.new(function(name, event, app)
 			if event == hs.application.watcher.launched and name == APP_NAME then
@@ -46,7 +46,7 @@ hs.hotkey.bind("§", "§", function()
 
 		setWinFrame(mainScreen, win)
 
-		spaces.gotoSpace(spaceId)
+		spaces.spaceDisplay(spaceId)
 
 		if fullScreen then
 			hs.eventtap.keyStroke("cmd", "return", 0, alacritty)
@@ -66,7 +66,7 @@ hs.hotkey.bind("§", "§", function()
 	local mainScreen = hs.screen.mainScreen()
 
 	if alacritty == nil and hs.application.launchOrFocus(APP_NAME) then
-		watchApp(APP_NAME, mainScreen, spaceId)
+		watchApp(mainScreen, spaceId)
 	end
 
 	if alacritty ~= nil then
