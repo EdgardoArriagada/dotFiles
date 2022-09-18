@@ -10,7 +10,7 @@ hs.hotkey.bind("§", "§", function()
 		appWatcher = hs.application.watcher.new(function(name, event, app)
 			if event == hs.application.watcher.launched and name == APP_NAME then
 				app:hide()
-				moveWindow(app) -- Where app = alacritty
+				visualizeApp(app) -- Where app = alacritty
 				appWatcher:stop()
 			end
 		end)
