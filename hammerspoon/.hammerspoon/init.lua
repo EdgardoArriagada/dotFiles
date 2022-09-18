@@ -69,9 +69,11 @@ hs.hotkey.bind("§", "§", function()
 
 	if alacritty == nil and hs.application.launchOrFocus(APP_NAME) then
 		OnAppLaunch(APP_NAME, VisualizeApp)
+		return
 	end
 
 	if alacritty ~= nil then
 		VisualizeApp(alacritty)
+		return
 	end
 end)
