@@ -14,13 +14,13 @@ local function copyMainScreenFullFrame(win)
 end
 
 local function getMainWindow(app)
-	local win = nil
+	local result = nil
 
-	while win == nil do
-		win = app:mainWindow()
+	while result == nil do
+		result = app:mainWindow()
 	end
 
-	return win
+	return result
 end
 
 function M.onAppLaunch(appName, callback)
