@@ -1,4 +1,5 @@
-local m = require("utils")
+local M = require("utils")
+local visualizeApp, onAppLaunch = M.visualizeApp, M.onAppLaunch
 
 -- Switch alacritty
 hs.hotkey.bind("§", "§", function()
@@ -12,12 +13,12 @@ hs.hotkey.bind("§", "§", function()
 	end
 
 	if alacritty == nil and hs.application.launchOrFocus(APP_NAME) then
-		m.onAppLaunch(APP_NAME, m.visualizeApp)
+		onAppLaunch(APP_NAME, visualizeApp)
 		return
 	end
 
 	if alacritty ~= nil then
-		m.visualizeApp(alacritty)
+		visualizeApp(alacritty)
 		return
 	end
 end)
