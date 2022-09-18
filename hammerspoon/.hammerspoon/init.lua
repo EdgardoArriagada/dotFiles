@@ -1,5 +1,5 @@
-local M = require("utils")
-local visualizeApp, onAppLaunch = M.visualizeApp, M.onAppLaunch
+local utils = require("utils")
+local visualizeApp, onAppLaunch = utils.visualizeApp, utils.onAppLaunch
 
 local ALACRITTY = "Alacritty"
 
