@@ -2,7 +2,7 @@ local spaces = require("hs.spaces")
 
 M = {}
 
-local function setWinFrame(win)
+local function copyMainScreenFullFrame(win)
 	local scrFrame = hs.screen.mainScreen():fullFrame()
 	local winFrame = win:frame()
 
@@ -47,7 +47,7 @@ function M.visualizeApp(app)
 		hs.eventtap.keyStroke("cmd", "return", 0, app)
 	end
 
-	setWinFrame(win)
+	copyMainScreenFullFrame(win)
 
 	spaces.moveWindowToSpace(win, currSpaceId)
 	spaces.spaceDisplay(currSpaceId)
