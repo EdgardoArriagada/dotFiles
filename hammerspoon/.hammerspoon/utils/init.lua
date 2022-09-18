@@ -2,6 +2,27 @@ local spaces = require("hs.spaces")
 
 M = {}
 
+local function setWinFrame(win)
+	local scrFrame = hs.screen.mainScreen():fullFrame()
+	local winFrame = win:frame()
+
+	winFrame.w = scrFrame.w
+	winFrame.y = scrFrame.y
+	winFrame.x = scrFrame.x
+
+	win:setFrame(winFrame, 0)
+end
+
+local function getMainWindow(app)
+	local win = nil
+
+	while win == nil do
+		win = app:mainWindow()
+	end
+
+	return win
+end
+
 function M.onAppLaunch(appName, callback)
 	local appWatcher = nil
 
@@ -16,30 +37,9 @@ function M.onAppLaunch(appName, callback)
 	appWatcher:start()
 end
 
-function M.setWinFrame(win)
-	local scrFrame = hs.screen.mainScreen():fullFrame()
-	local winFrame = win:frame()
-
-	winFrame.w = scrFrame.w
-	winFrame.y = scrFrame.y
-	winFrame.x = scrFrame.x
-
-	win:setFrame(winFrame, 0)
-end
-
-function M.getMainWindow(app)
-	local win = nil
-
-	while win == nil do
-		win = app:mainWindow()
-	end
-
-	return win
-end
-
 function M.visualizeApp(app)
 	local currSpaceId = spaces.activeSpaceOnScreen()
-	local win = M.getMainWindow(app)
+	local win = getMainWindow(app)
 
 	local fullScreen = not win:isStandard()
 
@@ -47,7 +47,7 @@ function M.visualizeApp(app)
 		hs.eventtap.keyStroke("cmd", "return", 0, app)
 	end
 
-	M.setWinFrame(win)
+	setWinFrame(win)
 
 	spaces.moveWindowToSpace(win, currSpaceId)
 	spaces.spaceDisplay(currSpaceId)
