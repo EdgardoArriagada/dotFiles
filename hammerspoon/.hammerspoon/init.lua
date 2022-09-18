@@ -4,13 +4,13 @@ local spaces = require("hs.spaces")
 hs.hotkey.bind("§", "§", function()
 	local APP_NAME = "Alacritty"
 
-	local function watchForAlacrittyLaunch(spaceId)
+	local function watchForAlacrittyLaunch()
 		local appWatcher = nil
 
 		appWatcher = hs.application.watcher.new(function(name, event, app)
 			if event == hs.application.watcher.launched and name == APP_NAME then
 				app:hide()
-				moveWindow(app)
+				moveWindow(app) -- Where app = alacritty
 				appWatcher:stop()
 			end
 		end)
@@ -38,23 +38,23 @@ hs.hotkey.bind("§", "§", function()
 		return win
 	end
 
-	local function moveWindow(alacritty)
-		local spaceId = spaces.activeSpaceOnScreen()
-		local win = getMainWindow(alacritty)
+	local function visualizeApp(app)
+		local currSpaceId = spaces.activeSpaceOnScreen()
+		local win = getMainWindow(app)
 
 		local fullScreen = not win:isStandard()
 
 		if fullScreen then
-			hs.eventtap.keyStroke("cmd", "return", 0, alacritty)
+			hs.eventtap.keyStroke("cmd", "return", 0, app)
 		end
 
 		setWinFrame(win)
 
-		spaces.moveWindowToSpace(win, spaceId)
-		spaces.spaceDisplay(spaceId)
+		spaces.moveWindowToSpace(win, currSpaceId)
+		spaces.spaceDisplay(currSpaceId)
 
 		if fullScreen then
-			hs.eventtap.keyStroke("cmd", "return", 0, alacritty)
+			hs.eventtap.keyStroke("cmd", "return", 0, app)
 		end
 
 		win:focus()
@@ -72,6 +72,6 @@ hs.hotkey.bind("§", "§", function()
 	end
 
 	if alacritty ~= nil then
-		moveWindow(alacritty)
+		visualizeApp(alacritty)
 	end
 end)
