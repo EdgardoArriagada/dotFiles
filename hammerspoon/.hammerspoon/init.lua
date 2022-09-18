@@ -4,15 +4,17 @@ local spaces = require("hs.spaces")
 hs.hotkey.bind("§", "§", function()
 	local APP_NAME = "Alacritty"
 
-	local function watchApp(mainScreen, spaceId)
+	local function watchForAlacrittyLaunch(mainScreen, spaceId)
 		local appWatcher = nil
+
 		appWatcher = hs.application.watcher.new(function(name, event, app)
 			if event == hs.application.watcher.launched and name == APP_NAME then
 				app:hide()
-				moveWindow(app, spaceId, mainScreen)
+				moveWindow(app, mainScreen)
 				appWatcher:stop()
 			end
 		end)
+
 		appWatcher:start()
 	end
 
@@ -35,7 +37,8 @@ hs.hotkey.bind("§", "§", function()
 		return win
 	end
 
-	local function moveWindow(alacritty, spaceId, mainScreen)
+	local function moveWindow(alacritty, mainScreen)
+		local spaceId = spaces.activeSpaceOnScreen()
 		local win = getMainWindow(alacritty)
 
 		local fullScreen = not win:isStandard()
@@ -63,14 +66,13 @@ hs.hotkey.bind("§", "§", function()
 		return
 	end
 
-	local spaceId = spaces.activeSpaceOnScreen()
 	local mainScreen = hs.screen.mainScreen()
 
 	if alacritty == nil and hs.application.launchOrFocus(APP_NAME) then
-		watchApp(mainScreen, spaceId)
+		watchForAlacrittyLaunch(mainScreen)
 	end
 
 	if alacritty ~= nil then
-		moveWindow(alacritty, spaceId, mainScreen)
+		moveWindow(alacritty, mainScreen)
 	end
 end)
