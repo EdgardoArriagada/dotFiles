@@ -46,6 +46,7 @@ hs.hotkey.bind("§", "§", function()
 
 		setWinFrame(mainScreen, win)
 
+		spaces.moveWindowToSpace(win, spaceId)
 		spaces.spaceDisplay(spaceId)
 
 		if fullScreen then
