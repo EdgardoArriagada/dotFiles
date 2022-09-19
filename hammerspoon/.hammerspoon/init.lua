@@ -12,13 +12,13 @@ hs.hotkey.bind("§", "§", function()
 		return
 	end
 
-	if alacritty == nil and hs.application.launchOrFocus(ALACRITTY) then
-		onAppLaunch(ALACRITTY, visualizeApp)
+	if alacritty ~= nil then
+		visualizeApp(alacritty)
 		return
 	end
 
-	if alacritty ~= nil then
-		visualizeApp(alacritty)
+	if alacritty == nil and hs.application.launchOrFocus(ALACRITTY) then
+		onAppLaunch(ALACRITTY, visualizeApp)
 		return
 	end
 end)
