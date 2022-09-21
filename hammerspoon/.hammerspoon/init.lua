@@ -7,7 +7,7 @@ local ALACRITTY = "Alacritty"
 hs.hotkey.bind("§", "§", function()
 	local alacritty = hs.application.get(ALACRITTY)
 
-	if alacritty ~= nil and alacritty:isFrontmost() then
+	if alacritty ~= nil and not alacritty:isHidden() then
 		alacritty:hide()
 		return
 	end
