@@ -11,7 +11,7 @@ hpcall(require, "null-ls", {
 			debug = false,
 			sources = {
 				formatting.prettierd,
-				diagnostics.eslint,
+				diagnostics.eslint_d,
 				formatting.black,
 				-- formatting.yapf,
 				formatting.stylua,
