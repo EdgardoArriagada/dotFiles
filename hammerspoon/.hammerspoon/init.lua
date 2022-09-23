@@ -4,7 +4,7 @@ local visualizeApp, onAppLaunch = utils.visualizeApp, utils.onAppLaunch
 local ALACRITTY = "Alacritty"
 
 -- Switch alacritty
-hs.hotkey.bind("§", "§", function()
+hs.hotkey.bind({}, "§", function()
 	local alacritty = hs.application.get(ALACRITTY)
 
 	if alacritty ~= nil and not alacritty:isHidden() then
