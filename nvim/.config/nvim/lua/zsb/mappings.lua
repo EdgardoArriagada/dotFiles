@@ -6,16 +6,9 @@ vim.g.maplocalleader = " "
 -- Shorcuts
 keymap.set("o", "w", "iw")
 keymap.set("o", "W", "iW")
-keymap.set("o", "{", "i{")
-keymap.set("o", "}", "i}")
-keymap.set("o", "(", "i(")
-keymap.set("o", ")", "i)")
 --
+-- keymap.set("v", "W", "iw") -- disabled because it is used in a plugin
 keymap.set("v", "w", "iw")
-keymap.set("v", "{", "i{")
-keymap.set("v", "}", "i}")
-keymap.set("v", "(", "i(")
-keymap.set("v", ")", "i)")
 keymap.set("v", "R", "loh")
 --
 
