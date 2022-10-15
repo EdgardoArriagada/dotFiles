@@ -109,7 +109,7 @@ nvim_tree.setup({
 			resize_window = true,
 			quit_on_open = false,
 			window_picker = {
-				enable = true,
+				enable = false,
 			},
 		},
 	},
