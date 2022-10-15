@@ -28,7 +28,6 @@ function M.onAppLaunch(appName, callback)
 
 	appWatcher = hs.application.watcher.new(function(name, event, app)
 		if name == appName and event == hs.application.watcher.launched then
-			app:hide()
 			callback(app)
 			appWatcher:stop()
 		end
