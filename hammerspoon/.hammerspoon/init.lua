@@ -22,12 +22,3 @@ hs.hotkey.bind({}, "§", function()
 		return
 	end
 end)
-
--- Hide alacritty if not in focus
-hs.window.filter.default:subscribe(hs.window.filter.windowFocused, function(window, appName)
-	local alacritty = hs.application.get(ALACRITTY)
-
-	if alacritty ~= nil then
-		alacritty:hide()
-	end
-end)
