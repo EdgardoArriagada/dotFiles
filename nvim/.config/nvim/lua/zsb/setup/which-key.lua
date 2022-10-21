@@ -212,11 +212,11 @@ local mappings = {
 
 	m = {
 		name = "Markdown",
-		t = {
+		p = {
 			"<cmd>MarkdownPreviewToggle<cr>",
 			"Preview Toggle",
 		},
-		p = {
+		i = {
 			"<cmd>PasteImg<cr>",
 			"Paste Image",
 		},
