@@ -86,8 +86,22 @@ function escape_pattern(text)
 	return text:gsub("([^%w])", "%%%1")
 end
 
-function escapeForRegex(text)
-	return text:gsub("/", "\\/")
+function escapeForRegex(x)
+	return (
+		x
+			:gsub("%^", "\\^")
+			:gsub("%$", "\\$")
+			--[[ :gsub("%(", "\\(") ]]
+			--[[ :gsub("%)", "\\)") ]]
+			:gsub("%.", "\\.")
+			:gsub("%[", "\\[")
+			:gsub("%]", "\\]")
+			:gsub("%*", "\\*")
+			:gsub("%+", "\\+")
+			:gsub("%-", "\\-")
+			:gsub("%?", "\\?")
+			:gsub("%/", "\\/")
+	)
 end
 
 function getVisualSelectionInLine()
