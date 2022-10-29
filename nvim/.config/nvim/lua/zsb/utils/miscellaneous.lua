@@ -86,6 +86,10 @@ function escape_pattern(text)
 	return text:gsub("([^%w])", "%%%1")
 end
 
+function escapeForRegex(text)
+	return text:gsub("/", "\\/")
+end
+
 function getVisualSelectionInLine()
 	local currentLine = getCurrentLine()
 	local startVisualPos = vim.fn.getpos("v")[3]

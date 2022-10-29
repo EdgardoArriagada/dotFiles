@@ -69,8 +69,6 @@ keymap.set("n", "<C-s>", ":update<CR>", { silent = true })
 keymap.set("v", "<C-s>", "<esc>:update<CR>", { silent = true })
 keymap.set("i", "<C-s>", "<esc>:update<CR>", { silent = true })
 
---Search and replace matches for highlighted text
-keymap.set("v", "<C-r>", '"hy:.,$s/<C-r>h//gc<left><left><left>')
 -- Move highlighted text down 'Shift j'
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 -- Move highlighted text up 'Shift k'
@@ -114,3 +112,12 @@ end, {})
 vim.api.nvim_create_user_command("Pjson", function()
 	hpcall(execute, "%!jq .", { onErr = 'failed to execute ":%!jq .", make sure you have "jq" is installed' })
 end, {})
+
+--Search and replace matches for highlighted text
+keymap.set("v", "<C-r>", function()
+	--[[ '"hy:.,$s/<C-r>h//gc<left><left><left>') ]]
+	local vSelection = getVisualSelectionInLine()
+	execute("normal<Esc>")
+	local replaceString = vim.fn.input("Replace: ")
+	execute(".,$s/" .. escapeForRegex(vSelection) .. "/" .. escapeForRegex(replaceString) .. "/gc")
+end)
