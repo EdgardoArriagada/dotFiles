@@ -81,5 +81,12 @@ function fromShell(command)
 end
 
 function escape_pattern(text)
-    return text:gsub("([^%w])", "%%%1")
+	return text:gsub("([^%w])", "%%%1")
+end
+
+function getVisualSelectionInLine()
+	local currentLine = getCurrentLine()
+	local startVisualPos = vim.fn.getpos("v")[3]
+	local currPos = col(".")
+	return string.sub(currentLine, startVisualPos, currPos)
 end
