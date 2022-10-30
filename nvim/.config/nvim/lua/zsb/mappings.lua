@@ -116,9 +116,9 @@ end, {})
 --Search and replace matches for highlighted text
 keymap.set("v", "<C-r>", function()
 	--[[ '"hy:.,$s/<C-r>h//gc<left><left><left>') ]]
+	local replaceString = vim.fn.input("Replace: ")
 	local vSelection = getVisualSelectionInLine()
 	execute("normal<Esc>")
-	local replaceString = vim.fn.input("Replace: ")
 	execute(".,$s/" .. escapeForRegex(vSelection) .. "/" .. escapeForRegex(replaceString) .. "/gc")
 	execute("nohlsearch")
 end)
