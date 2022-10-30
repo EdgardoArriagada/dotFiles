@@ -88,6 +88,8 @@ keymap.set(
 	{ expr = true, desc = "if j > 5 then add to jumplist" }
 )
 
+vim.api.nvim_create_user_command("V", ":set nornu", {})
+
 vim.api.nvim_create_user_command("Cppath", function()
 	local repoName = escape_pattern(fromShell("get_repo_name"))
 	local path = vim.fn.expand("%")
