@@ -142,7 +142,7 @@ local mappings = {
 			"<cmd>Telescope lsp_workspace_diagnostics<cr>",
 			"Workspace Diagnostics",
 		},
-		f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+		f = { "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", "Format" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
 		I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
 		j = {
@@ -179,7 +179,6 @@ local mappings = {
 
 	b = {
 		name = "Buffer",
-		f = { "<cmd>lua vim.lsp.buf.formatting_sync()<cr>", "Format Code" },
 		y = {
 			"<cmd>Cppath<cr>",
 			"Copy File Path",
