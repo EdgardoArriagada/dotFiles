@@ -88,11 +88,9 @@ end
 
 function escapeForRegex(x)
 	return (
-		x
-			:gsub("%^", "\\^")
+		x:gsub("%^", "\\^")
 			:gsub("%$", "\\$")
-			--[[ :gsub("%(", "\\(") ]]
-			--[[ :gsub("%)", "\\)") ]]
+			:gsub("%~", "\\~")
 			:gsub("%.", "\\.")
 			:gsub("%[", "\\[")
 			:gsub("%]", "\\]")
