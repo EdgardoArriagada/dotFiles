@@ -10,12 +10,17 @@ hpcall(require, "null-ls", {
 		null_ls.setup({
 			debug = false,
 			sources = {
+				-- javascript
 				formatting.prettierd,
 				diagnostics.eslint_d,
+				-- rust
+				formatting.rustfmt,
+				-- [diagnostics: rust-analyzer LSP]
+				-- python
 				formatting.black,
-				-- formatting.yapf,
-				formatting.stylua,
 				diagnostics.flake8,
+				-- lua
+				formatting.stylua,
 			},
 		})
 	end,
