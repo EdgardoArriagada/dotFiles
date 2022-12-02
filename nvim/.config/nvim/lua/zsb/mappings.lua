@@ -92,14 +92,9 @@ vim.api.nvim_create_user_command("V", ":set nornu", {})
 
 vim.api.nvim_create_user_command("Cppath", function()
 	local repoName = escape_pattern(fromShell("get_repo_name"))
-	local path = vim.fn.expand("%")
+	local path = vim.fn.expand("%:p")
 
-	local result = path:gsub("^.*" .. repoName .. "/", "")
-
-	-- Remove "./" if it has it
-	if result:sub(1, 2) == "./" then
-		result = result:sub(3)
-	end
+	local result = path:gsub("^.*" .. repoName .. "/", ""):gsub("^%./", "")
 
 	vim.fn.setreg("+", result)
 	print(result .. " Copied!")
