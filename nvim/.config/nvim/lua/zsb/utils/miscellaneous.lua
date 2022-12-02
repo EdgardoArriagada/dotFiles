@@ -114,7 +114,7 @@ function getTestFileJs()
 	local fileName = vim.fn.expand("%:t")
 	local extension = vim.fn.expand("%:e")
 
-	local testFileName = fileName:gsub("." .. extension, ".spec." .. extension)
+	local testFileName = fileName:gsub("%." .. extension .. "$", "%.spec%." .. extension)
 
 	return fileDir .. "/__tests__/" .. testFileName
 end
@@ -124,8 +124,8 @@ function getProductionCodeFileJS()
 	local fileName = vim.fn.expand("%:t")
 	local extension = vim.fn.expand("%:e")
 
-	local productionCodeFileName = fileName:gsub(".spec." .. extension, "." .. extension)
+	local productionCodeFileName = fileName:gsub("%.spec%." .. extension .. "$", "%." .. extension)
 	local productionCodeFileDir = testFileDir:gsub("__tests__", "")
 
-	return productionCodeFileDir .. "/" .. productionCodeFileName
+	return productionCodeFileDir .. productionCodeFileName
 end
