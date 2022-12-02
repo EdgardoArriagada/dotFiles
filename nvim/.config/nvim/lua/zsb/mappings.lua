@@ -105,6 +105,16 @@ vim.api.nvim_create_user_command("Cppath", function()
 	print(result .. " Copied!")
 end, {})
 
+vim.api.nvim_create_user_command("Tjsfile", function()
+	local fileName = vim.fn.expand("%:t")
+	local extension = vim.fn.expand("%:e")
+	if string.match(fileName, ".spec." .. extension) then
+		execute("e " .. getProductionCodeFileJS())
+	else
+		execute("e " .. getTestFileJs())
+	end
+end, {})
+
 vim.api.nvim_create_user_command("Json", function()
 	vim.bo.filetype = "json"
 	vim.opt.foldmethod = "syntax"

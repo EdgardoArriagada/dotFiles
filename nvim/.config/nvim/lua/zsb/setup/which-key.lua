@@ -163,6 +163,11 @@ local mappings = {
 		},
 	},
 
+	v = {
+		name = "Vim",
+		t = { "<cmd>Tjsfile<cr>", "Toggle js file" },
+	},
+
 	s = {
 		name = "Search",
 		t = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
