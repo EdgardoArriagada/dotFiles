@@ -9,7 +9,7 @@ end)
 
 -- quotes
 keymap.set({ "o", "v" }, "'", function()
-	execute("normal<Esc>")
+	Execute("normal<Esc>")
 	BeginPowerSelection("quotes")
 end)
 
@@ -106,7 +106,7 @@ end
 local function selectMoving(touple)
 	local lineNumber = line(".")
 	cursor(lineNumber, touple[1] + 1)
-	execute("normal<Esc>v")
+	Execute("normal<Esc>v")
 	cursor(lineNumber, touple[2] - 1)
 end
 
@@ -209,7 +209,7 @@ function CyclePowerSelection(ctx)
 	end
 
 	-- go to beggining and start again
-	execute("normal<Esc>^")
+	Execute("normal<Esc>^")
 	BeginPowerSelection(ctx, pairsHolder)
 end
 

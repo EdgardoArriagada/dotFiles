@@ -34,11 +34,11 @@ end
 
 function lookForIndentation(direction)
 	-- Go to beggin of line and add to jump list
-	execute("normal" .. line(".") .. "G^")
+	Execute("normal" .. line(".") .. "G^")
 
 	local lineMarker = getFirstNoEmptyLine(direction, line("."))
 
-	execute("normal" .. getSameIndentLine(direction, lineMarker) .. "G^")
+	Execute("normal" .. getSameIndentLine(direction, lineMarker) .. "G^")
 end
 
 function arrayElement(t)

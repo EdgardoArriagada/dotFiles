@@ -107,7 +107,7 @@ vim.api.nvim_create_user_command("Json", function()
 end, {})
 
 vim.api.nvim_create_user_command("Pjson", function()
-	hpcall(execute, "%!jq .", { onErr = 'failed to execute ":%!jq .", make sure you have "jq" is installed' })
+	hpcall(Execute, "%!jq .", { onErr = 'failed to execute ":%!jq .", make sure you have "jq" is installed' })
 end, {})
 
 -- Toggle quickfix window
@@ -126,7 +126,7 @@ keymap.set("v", "<C-r>", function()
 	--[[ '"hy:.,$s/<C-r>h//gc<left><left><left>') ]]
 	local replaceString = vim.fn.input("Replace: ")
 	local vSelection = getVisualSelectionInLine()
-	execute("normal<Esc>")
-	execute(".,$s/" .. escapeForRegex(vSelection) .. "/" .. escapeForRegex(replaceString) .. "/gc")
-	execute("nohlsearch")
+	Execute("normal<Esc>")
+	Execute(".,$s/" .. escapeForRegex(vSelection) .. "/" .. escapeForRegex(replaceString) .. "/gc")
+	Execute("nohlsearch")
 end)
