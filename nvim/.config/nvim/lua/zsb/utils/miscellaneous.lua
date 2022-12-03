@@ -108,24 +108,3 @@ function getVisualSelectionInLine()
 	local currPos = col(".")
 	return string.sub(currentLine, startVisualPos, currPos)
 end
-
-function getTestFileJs()
-	local fileDir = vim.fn.expand("%:h")
-	local fileName = vim.fn.expand("%:t")
-	local extension = vim.fn.expand("%:e")
-
-	local testFileName = fileName:gsub("%." .. extension .. "$", "%.spec%." .. extension)
-
-	return fileDir .. "/__tests__/" .. testFileName
-end
-
-function getProductionCodeFileJS()
-	local testFileDir = vim.fn.expand("%:h")
-	local fileName = vim.fn.expand("%:t")
-	local extension = vim.fn.expand("%:e")
-
-	local productionCodeFileName = fileName:gsub("%.spec%." .. extension .. "$", "%." .. extension)
-	local productionCodeFileDir = testFileDir:gsub("__tests__", "")
-
-	return productionCodeFileDir .. productionCodeFileName
-end
