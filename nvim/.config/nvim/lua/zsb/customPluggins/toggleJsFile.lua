@@ -1,8 +1,13 @@
-local function isTestFileJs(fileName, extension)
+local function isTestFileJs()
+	local fileName = vim.fn.expand("%:t")
+	local extension = vim.fn.expand("%:e")
+
 	return string.match(fileName, "%.spec%." .. extension .. "$")
 end
 
-local function getTestFileJs(fileName, extension)
+local function getTestFileJs()
+	local fileName = vim.fn.expand("%:t")
+	local extension = vim.fn.expand("%:e")
 	local fileDir = vim.fn.expand("%:h")
 
 	local testFileName = fileName:gsub("%." .. extension .. "$", "%.spec%." .. extension)
@@ -10,7 +15,9 @@ local function getTestFileJs(fileName, extension)
 	return fileDir .. "/__tests__/" .. testFileName
 end
 
-local function getProductionCodeFileJS(fileName, extension)
+local function getProductionCodeFileJS()
+	local fileName = vim.fn.expand("%:t")
+	local extension = vim.fn.expand("%:e")
 	local testFileDir = vim.fn.expand("%:h")
 
 	local productionCodeFileName = fileName:gsub("%.spec%." .. extension .. "$", "%." .. extension)
@@ -20,12 +27,9 @@ local function getProductionCodeFileJS(fileName, extension)
 end
 
 function toggleJsFile()
-	local fileName = vim.fn.expand("%:t")
-	local extension = vim.fn.expand("%:e")
-
-	if isTestFileJs(fileName, extension) then
-		vim.cmd("e " .. getProductionCodeFileJS(fileName, extension))
+	if isTestFileJs() then
+		vim.cmd("e " .. getProductionCodeFileJS())
 	else
-		vim.cmd("e " .. getTestFileJs(fileName, extension))
+		vim.cmd("e " .. getTestFileJs())
 	end
 end
