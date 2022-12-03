@@ -1,12 +1,12 @@
 keymap.set({ 'o', 'n', 'v' }, '<bs>', function()
-  goLessDeeperIndent('k')
+  GoLessDeeperIndent('k')
 end, { silent = true })
 
 keymap.set({ 'o', 'n', 'v' }, '<enter>', function()
-  goLessDeeperIndent('j')
+  GoLessDeeperIndent('j')
 end, { silent = true })
 
-function goLessDeeperIndent(direction)
+function GoLessDeeperIndent(direction)
   -- Go to beggin of line and add to jump list
   execute("normal^m'")
 

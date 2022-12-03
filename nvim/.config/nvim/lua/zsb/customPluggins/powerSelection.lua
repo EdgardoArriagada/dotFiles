@@ -1,20 +1,20 @@
 -- enclosing
 keymap.set("n", "W", function()
-	beginPowerSelection("enclosing")
+	BeginPowerSelection("enclosing")
 end)
 
 keymap.set("v", "W", function()
-	cyclePowerSelection("enclosing")
+	CyclePowerSelection("enclosing")
 end)
 
 -- quotes
 keymap.set({ "o", "v" }, "'", function()
 	execute("normal<Esc>")
-	beginPowerSelection("quotes")
+	BeginPowerSelection("quotes")
 end)
 
 keymap.set({ "o", "v" }, "L", function()
-	cyclePowerSelection("quotes")
+	CyclePowerSelection("quotes")
 end)
 
 local function safePush(pile, element, i)
@@ -110,7 +110,7 @@ local function selectMoving(touple)
 	cursor(lineNumber, touple[2] - 1)
 end
 
-function beginPowerSelection(ctx, _pairsHolder)
+function BeginPowerSelection(ctx, _pairsHolder)
 	local currPos = col(".")
 
 	-- reuse pairsholder if given
@@ -182,7 +182,7 @@ local function findLeftIndex(currRight, pairsHolder)
 	return false
 end
 
-function cyclePowerSelection(ctx)
+function CyclePowerSelection(ctx)
 	local currRight = col(".") + 1
 
 	local pairsHolder = {} -- { {left1, rigth1}, {left2, rigth2}, ... }
@@ -210,7 +210,7 @@ function cyclePowerSelection(ctx)
 
 	-- go to beggining and start again
 	execute("normal<Esc>^")
-	beginPowerSelection(ctx, pairsHolder)
+	BeginPowerSelection(ctx, pairsHolder)
 end
 
 -- Test string

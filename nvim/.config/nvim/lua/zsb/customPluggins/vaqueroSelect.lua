@@ -1,14 +1,14 @@
 keymap.set('v', 'q', function()
   execute('normal<Esc>')
-  vaqueroSelect()
+  VaqueroSelect()
 end, { noremap = true, silent = true })
 
 keymap.set('o', 'q', function()
-  vaqueroSelect()
+  VaqueroSelect()
 end, { noremap = true, silent = true })
 
-function vaqueroSelect()
-  goLessDeeperIndent('k')
+function VaqueroSelect()
+  GoLessDeeperIndent('k')
   execute('normal!V')
   lookForIndentation('j')
 end

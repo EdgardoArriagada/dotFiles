@@ -1,13 +1,13 @@
 keymap.set('v', '<tab>', function()
-  smartTab('j')
+  SmartTab('j')
 end, { noremap = true, silent = true })
 
 keymap.set('v', '<s-tab>', function()
-  smartTab('k')
+  SmartTab('k')
 end, { noremap = true, silent = true })
 
 -- Direction is either 'j' or 'k'
-function smartTab(direction)
+function SmartTab(direction)
   local beforeLine = line('.')
   execute('normal^')
 
