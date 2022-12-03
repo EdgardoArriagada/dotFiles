@@ -26,7 +26,7 @@ local function getProductionCodeFileJS()
 	return productionCodeFileDir .. productionCodeFileName
 end
 
-function toggleJsFile()
+function ToggleJsFile()
 	if isTestFileJs() then
 		vim.cmd("e " .. getProductionCodeFileJS())
 	else

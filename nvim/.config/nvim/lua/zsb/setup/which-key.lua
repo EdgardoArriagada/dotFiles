@@ -165,7 +165,7 @@ local mappings = {
 
 	v = {
 		name = "Vim",
-		t = { "<cmd>lua toggleJsFile()<cr>", "Toggle js file" },
+		t = { "<cmd>lua ToggleJsFile()<cr>", "Toggle js file" },
 	},
 
 	s = {
