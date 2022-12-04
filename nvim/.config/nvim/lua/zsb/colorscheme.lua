@@ -4,6 +4,10 @@
 ---------- -------- -------- --------
 local theme = "gruvbox-flat"
 vim.g.gruvbox_flat_style = "dark"
+vim.g.gruvbox_theme = {
+	Identifier = { fg = "blue" },
+	Function = { fg = "yellow" },
+}
 ---------- -------- -------- --------
 
 local colorCmd = "colorscheme " .. theme
