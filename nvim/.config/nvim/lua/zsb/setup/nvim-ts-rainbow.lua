@@ -12,8 +12,8 @@ hpcall(require, "nvim-treesitter.configs", {
 					purple,
 					yellow,
 					orange,
-					green,
 					blue,
+					green,
 				},
 			},
 		})
