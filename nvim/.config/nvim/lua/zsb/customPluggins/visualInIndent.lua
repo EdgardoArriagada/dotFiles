@@ -7,10 +7,9 @@ function VisualInIndent()
 	Execute("normal<Esc>^m'")
 
 	local lineMarker = getFirstNoEmptyLine("k", line("."))
-
 	local lastSameIndentUp = getLesserIndent("k", lineMarker) + 1
 
-	Execute("normal" .. lastSameIndentUp .. "G^V")
+	Execute("normal" .. lastSameIndentUp .. "GV")
 
 	local lastSameIndentDown = getLesserIndent("j", lineMarker) - 1
 
