@@ -13,7 +13,10 @@ function Logger()
 	local extension = vim.fn.expand("%:e")
 	local fun = extensionToFunction[extension]
 
-	if fun ~= nil then
-		fun()
+	if fun == nil then
+		print("No logger function for '" .. extension .. "' extension")
+		return
 	end
+
+	fun()
 end
