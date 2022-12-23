@@ -1,10 +1,9 @@
+The following folder/file is for temp things that you shoudl not commit
 
-TODO: embeed to vscode with 
+`nvim/.config/nvim/lua/zsb/temp.lua`
+or
+`nvim/.config/nvim/lua/zsb/temp/init.lua`
 
-```lua
-if vim.g.vscode then
-  vim.notify('vschancho')
-else
-  vim.notify('vimchancho')
-end
-```
+I.E: https://github.com/community/community/discussions/13310
+
+make sure you create it before launching nvim for the first time
