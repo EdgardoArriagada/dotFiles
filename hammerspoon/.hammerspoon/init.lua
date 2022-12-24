@@ -6,11 +6,9 @@ local ALACRITTY = "Alacritty"
 hs.hotkey.bind({}, "§", function()
 	local alacritty = hs.application.get(ALACRITTY)
 
-	if alacritty ~= nil then
-		return toggleApp(alacritty)
-	end
-
 	if alacritty == nil then
 		return launchApp(ALACRITTY)
 	end
+
+	toggleApp(alacritty)
 end)
