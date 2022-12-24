@@ -58,4 +58,12 @@ function M.visualizeApp(app)
 	win:focus()
 end
 
+function M.toggleApp(app)
+	if app:isFrontmost() then
+		return app:hide()
+	else
+		return M.visualizeApp(app)
+	end
+end
+
 return M

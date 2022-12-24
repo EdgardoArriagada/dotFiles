@@ -1,5 +1,7 @@
 local utils = require("utils")
-local visualizeApp, onAppLaunch = utils.visualizeApp, utils.onAppLaunch
+local visualizeApp = utils.visualizeApp
+local onAppLaunch = utils.onAppLaunch
+local toggleApp = utils.toggleApp
 
 local ALACRITTY = "Alacritty"
 
@@ -8,11 +10,7 @@ hs.hotkey.bind({}, "§", function()
 	local alacritty = hs.application.get(ALACRITTY)
 
 	if alacritty ~= nil then
-		if alacritty:isFrontmost() then
-			return alacritty:hide()
-		end
-
-		return visualizeApp(alacritty)
+		toggleApp(alacritty)
 	end
 
 	if alacritty == nil and hs.application.launchOrFocus(ALACRITTY) then
