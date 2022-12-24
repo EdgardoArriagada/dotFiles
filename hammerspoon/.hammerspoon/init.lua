@@ -7,18 +7,15 @@ local ALACRITTY = "Alacritty"
 hs.hotkey.bind({}, "§", function()
 	local alacritty = hs.application.get(ALACRITTY)
 
-	if alacritty ~= nil and alacritty:isFrontmost() then
-		alacritty:hide()
-		return
-	end
-
 	if alacritty ~= nil then
-		visualizeApp(alacritty)
-		return
+		if alacritty:isFrontmost() then
+			return alacritty:hide()
+		end
+
+		return visualizeApp(alacritty)
 	end
 
 	if alacritty == nil and hs.application.launchOrFocus(ALACRITTY) then
-		onAppLaunch(ALACRITTY, visualizeApp)
-		return
+		return onAppLaunch(ALACRITTY, visualizeApp)
 	end
 end)
