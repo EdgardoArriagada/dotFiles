@@ -60,9 +60,9 @@ end
 
 function M.toggleApp(app)
 	if app:isFrontmost() then
-		return app:hide()
+		app:hide()
 	else
-		return M.visualizeApp(app)
+		M.visualizeApp(app)
 	end
 end
 

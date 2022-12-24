@@ -10,7 +10,7 @@ hs.hotkey.bind({}, "§", function()
 	local alacritty = hs.application.get(ALACRITTY)
 
 	if alacritty ~= nil then
-		toggleApp(alacritty)
+		return toggleApp(alacritty)
 	end
 
 	if alacritty == nil and hs.application.launchOrFocus(ALACRITTY) then
