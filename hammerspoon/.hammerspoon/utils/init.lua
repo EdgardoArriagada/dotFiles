@@ -23,7 +23,7 @@ local function getMainWindow(app)
 	return result
 end
 
-function M.onAppLaunch(appName, callback)
+local function onAppLaunch(appName, callback)
 	local appWatcher = nil
 
 	appWatcher = hs.application.watcher.new(function(name, event, app)
@@ -36,7 +36,7 @@ function M.onAppLaunch(appName, callback)
 	appWatcher:start()
 end
 
-function M.visualizeApp(app)
+local function visualizeApp(app)
 	local currSpaceId = spaces.activeSpaceOnScreen()
 	local win = getMainWindow(app)
 
@@ -62,7 +62,13 @@ function M.toggleApp(app)
 	if app:isFrontmost() then
 		app:hide()
 	else
-		M.visualizeApp(app)
+		visualizeApp(app)
+	end
+end
+
+function M.launchApp(appName)
+	if hs.application.launchOrFocus(appName) then
+		return onAppLaunch(appName, visualizeApp)
 	end
 end
 
