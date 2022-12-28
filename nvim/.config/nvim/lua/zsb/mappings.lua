@@ -114,8 +114,7 @@ end, {})
 vim.api.nvim_create_user_command("T", function()
 	for _, win in pairs(vim.fn.getwininfo()) do
 		if win.quickfix == 1 then
-			vim.cmd("cclose")
-			return
+			return vim.cmd("cclose")
 		end
 	end
 	vim.cmd("copen")
@@ -124,8 +123,8 @@ end, {})
 --Search and replace matches for highlighted text
 keymap.set("v", "<C-r>", function()
 	--[[ '"hy:.,$s/<C-r>h//gc<left><left><left>') ]]
-	local replaceString = vim.fn.input("Replace: ")
 	local vSelection = getVisualSelectionInLine()
+	local replaceString = vim.fn.input("Replace: ", vSelection)
 	Execute("normal<Esc>")
 	Execute(".,$s/" .. escapeForRegex(vSelection) .. "/" .. escapeForRegex(replaceString) .. "/gc")
 	Execute("nohlsearch")
