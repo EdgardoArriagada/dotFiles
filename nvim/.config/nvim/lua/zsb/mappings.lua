@@ -120,12 +120,21 @@ vim.api.nvim_create_user_command("T", function()
 	vim.cmd("copen")
 end, {})
 
---Search and replace matches for highlighted text
+-- Search and replace matches for highlighted text
+-- pcalls prevent C-c from crashing
 keymap.set("v", "<C-r>", function()
 	local vSelection = getVisualSelectionInLine()
-	local replaceString = vim.fn.input("Replace: ", vSelection)
+	local okGetReplaceString, replaceString = pcall(vim.fn.input, "Replace: ", vSelection)
+
 	Execute("normal<Esc>")
+
+	if not okGetReplaceString then
+		return
+	end
 	-- :h range to see more config options
-	Execute(".,$s/" .. escapeForRegex(vSelection) .. "/" .. escapeForRegex(replaceString) .. "/gc")
+	local searchAndReplace = ".,$s/" .. escapeForRegex(vSelection) .. "/" .. escapeForRegex(replaceString) .. "/gc"
+
+	pcall(Execute, searchAndReplace)
+
 	Execute("nohlsearch")
 end)
