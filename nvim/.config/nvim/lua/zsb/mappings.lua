@@ -60,6 +60,24 @@ keymap.set("i", "<", "<<c-g>u")
 keymap.set("i", ">", "><c-g>u")
 keymap.set("i", "<Space>", "<Space><c-g>u")
 
+-- set command line in tcsh-style
+keymap.set("c", "<C-a>", "<Home>")
+keymap.set("c", "<C-e>", "<End>")
+keymap.set("c", "<C-b>", "<Left>")
+keymap.set("c", "<C-f>", "<Right>")
+keymap.set("c", "<C-d>", "<Del>")
+keymap.set("c", "<C-h>", "<BS>")
+keymap.set("c", "<C-k>", "<C-u>")
+keymap.set("c", "<C-w>", "<C-u>")
+keymap.set("c", "<C-y>", "<C-r>+")
+keymap.set("c", "<C-p>", "<Up>")
+keymap.set("c", "<C-n>", "<Down>")
+keymap.set("c", "<C-t>", "<C-r><C-w>")
+keymap.set("c", "<C-j>", "<CR>")
+keymap.set("c", "<C-m>", "<CR>")
+keymap.set("c", "<C-c>", "<Esc>")
+keymap.set("c", "<C-v>", "<C-r>+")
+
 -- Quit
 keymap.set("n", "<C-q>", ":q")
 keymap.set("c", "<C-q>", "<C-u>q") -- redraw ':q'
