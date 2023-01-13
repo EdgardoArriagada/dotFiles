@@ -1,14 +1,17 @@
 local utils = require("utils")
-local toggleApp, launchApp = utils.toggleApp, utils.launchApp
-local ALACRITTY = "Alacritty"
 
--- Switch alacritty
-hs.hotkey.bind({}, "§", function()
-	local alacritty = hs.application.get(ALACRITTY)
-
-	if alacritty == nil then
-		return launchApp(ALACRITTY)
+local function focusApp(appName)
+	return function()
+		utils.focusApp(appName)
 	end
+end
 
-	toggleApp(alacritty)
-end)
+local function toggleApp(appName)
+	return function()
+		utils.toggleApp(appName)
+	end
+end
+
+hs.hotkey.bind({}, "§", toggleApp("Alacritty"))
+hs.hotkey.bind({ "command" }, "1", focusApp("Slack"))
+hs.hotkey.bind({ "command" }, "2", focusApp("Google Chrome"))

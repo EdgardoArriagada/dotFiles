@@ -58,7 +58,7 @@ local function visualizeApp(app)
 	win:focus()
 end
 
-function M.toggleApp(app)
+local function toggleApp(app)
 	if app:isFrontmost() then
 		app:hide()
 	else
@@ -66,10 +66,29 @@ function M.toggleApp(app)
 	end
 end
 
-function M.launchApp(appName)
+local function launchApp(appName)
 	if hs.application.launchOrFocus(appName) then
 		return onAppLaunch(appName, visualizeApp)
 	end
+end
+
+local function handleApp(appName, callback)
+	local app = hs.application.get(appName)
+
+	if app == nil then
+		hs.alert.show("Launching " .. appName .. "...")
+		return launchApp(appName)
+	end
+
+	callback(app)
+end
+
+M.focusApp = function(appName)
+	handleApp(appName, visualizeApp)
+end
+
+M.toggleApp = function(appName)
+	handleApp(appName, toggleApp)
 end
 
 return M
