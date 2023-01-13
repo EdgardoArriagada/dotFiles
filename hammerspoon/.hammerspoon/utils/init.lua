@@ -83,6 +83,17 @@ local function handleApp(appName, callback)
 	callback(app)
 end
 
+M.weakFocus = function(appName)
+	local app = hs.application.get(appName)
+
+	if app == nil then
+		hs.alert.show(appName .. " has not been launched yet")
+		return
+	end
+
+	visualizeApp(app)
+end
+
 M.focusApp = function(appName)
 	handleApp(appName, visualizeApp)
 end
