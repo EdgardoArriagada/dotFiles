@@ -62,20 +62,20 @@ local function launchApp(appName)
 	end
 end
 
-local function isAppInGoodState(app)
-	if app == nil then
-		return false
+local function getApp(appName)
+	local app = hs.application.get(appName)
+
+	if app == nil or app:mainWindow() == nil then
+		return nil
 	end
 
-	local win = app:mainWindow()
-
-	return win ~= nil
+	return app
 end
 
 local function handleApp(appName, callback)
-	local app = hs.application.get(appName)
+	local app = getApp(appName)
 
-	if not isAppInGoodState(app) then
+	if app == nil then
 		hs.alert.show("Launching " .. appName .. "...")
 		return launchApp(appName)
 	end
@@ -84,11 +84,10 @@ local function handleApp(appName, callback)
 end
 
 M.weakFocus = function(appName)
-	local app = hs.application.get(appName)
+	local app = getApp(appName)
 
-	if not isAppInGoodState(app) then
-		hs.alert.show(appName .. " has not been launched yet")
-		return
+	if app == nil then
+		return hs.alert.show(appName .. " has not been launched yet")
 	end
 
 	visualizeApp(app)
