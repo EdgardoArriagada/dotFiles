@@ -22,7 +22,7 @@ local cmd2 = { "command", "ctrl" }
 
 -- for more apps, see /Applications
 hs.hotkey.bind({}, "§", toggleApp("Alacritty"))
-hs.hotkey.bind(cmd2, "1", focusApp("Slack"))
+hs.hotkey.bind(cmd2, "1", weakFocus("Slack"))
 hs.hotkey.bind(cmd2, "2", focusApp("Google Chrome"))
 hs.hotkey.bind(cmd2, "3", weakFocus("IntelliJ IDEA"))
 hs.hotkey.bind(cmd2, "9", focusApp("Spotify"))
