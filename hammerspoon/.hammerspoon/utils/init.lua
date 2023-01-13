@@ -13,16 +13,6 @@ local function copyMainScreenFullFrame(win)
 	win:setFrame(winFrame, 0)
 end
 
-local function getMainWindow(app)
-	local result = nil
-
-	while result == nil do
-		result = app:mainWindow()
-	end
-
-	return result
-end
-
 local function onAppLaunch(appName, callback)
 	local appWatcher = nil
 
@@ -38,7 +28,7 @@ end
 
 local function visualizeApp(app)
 	local currSpaceId = spaces.activeSpaceOnScreen()
-	local win = getMainWindow(app)
+	local win = app:mainWindow()
 
 	local fullScreen = not win:isStandard()
 
@@ -72,10 +62,20 @@ local function launchApp(appName)
 	end
 end
 
+local function isAppInGoodState(app)
+	if app == nil then
+		return false
+	end
+
+	local win = app:mainWindow()
+
+	return win ~= nil
+end
+
 local function handleApp(appName, callback)
 	local app = hs.application.get(appName)
 
-	if app == nil then
+	if not isAppInGoodState(app) then
 		hs.alert.show("Launching " .. appName .. "...")
 		return launchApp(appName)
 	end
@@ -86,7 +86,7 @@ end
 M.weakFocus = function(appName)
 	local app = hs.application.get(appName)
 
-	if app == nil then
+	if not isAppInGoodState(app) then
 		hs.alert.show(appName .. " has not been launched yet")
 		return
 	end
