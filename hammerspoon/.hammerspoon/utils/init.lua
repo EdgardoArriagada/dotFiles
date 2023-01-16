@@ -58,33 +58,39 @@ local function launchApp(appName)
 	end
 end
 
-local function handleApp(appName, callback)
+local function handleApp(appName, handleOk, hanleNotOk)
 	local app = hs.application.get(appName)
 
 	if app == nil then
+		hanleNotOk(appName)
+	else
+		handleOk(app)
+	end
+end
+
+local function launchNilApp(appName)
+	return function()
 		hs.alert.show("Launching " .. appName .. "...")
 		return launchApp(appName)
 	end
+end
 
-	callback(app)
+local function alertNotLaunchedApp(appName)
+	return function()
+		return hs.alert.show(appName .. " not launched")
+	end
 end
 
 M.weakFocus = function(appName)
-	local app = hs.application.get(appName)
-
-	if app == nil then
-		return hs.alert.show(appName .. " has not been launched yet")
-	end
-
-	visualizeAppInFullScreenFrame(app)
+	handleApp(appName, visualizeAppInFullScreenFrame, alertNotLaunchedApp(appName))
 end
 
 M.focusApp = function(appName)
-	handleApp(appName, visualizeAppInFullScreenFrame)
+	handleApp(appName, visualizeAppInFullScreenFrame, launchNilApp(appName))
 end
 
 M.toggleApp = function(appName)
-	handleApp(appName, toggleApp)
+	handleApp(appName, toggleApp, launchNilApp(appName))
 end
 
 return M
