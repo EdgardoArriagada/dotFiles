@@ -4,13 +4,7 @@ M = {}
 
 local function copyMainScreenFullFrame(win)
 	local scrFrame = hs.screen.mainScreen():fullFrame()
-	local winFrame = win:frame()
-
-	winFrame.w = scrFrame.w
-	winFrame.y = scrFrame.y
-	winFrame.x = scrFrame.x
-
-	win:setFrame(winFrame, 0)
+	win:setFrame(scrFrame, 0)
 end
 
 local function onAppLaunch(appName, callback)
@@ -36,7 +30,6 @@ end
 
 local function visualizeApp(app)
 	local currSpaceId = spaces.activeSpaceOnScreen()
-
 	local win = getAppMainWindow(app)
 
 	copyMainScreenFullFrame(win)
