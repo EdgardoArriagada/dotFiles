@@ -39,20 +39,10 @@ local function visualizeApp(app)
 
 	local win = getAppMainWindow(app)
 
-	local fullScreen = not win:isStandard()
-
-	if fullScreen then
-		hs.eventtap.keyStroke("cmd", "return", 0, app)
-	end
-
 	copyMainScreenFullFrame(win)
 
 	spaces.moveWindowToSpace(win, currSpaceId)
 	spaces.spaceDisplay(currSpaceId)
-
-	if fullScreen then
-		hs.eventtap.keyStroke("cmd", "return", 0, app)
-	end
 
 	win:focus()
 end
