@@ -69,10 +69,8 @@ local function handleApp(appName, handleOk, hanleNotOk)
 end
 
 local function launchNilApp(appName)
-	return function()
-		hs.alert.show("Launching " .. appName .. "...")
-		return launchApp(appName)
-	end
+	hs.alert.show("Launching " .. appName .. "...")
+	return launchApp(appName)
 end
 
 local function alertNotLaunchedApp(appName)
@@ -82,15 +80,15 @@ local function alertNotLaunchedApp(appName)
 end
 
 M.weakFocus = function(appName)
-	handleApp(appName, visualizeAppInFullScreenFrame, alertNotLaunchedApp(appName))
+	handleApp(appName, visualizeAppInFullScreenFrame, alertNotLaunchedApp)
 end
 
 M.focusApp = function(appName)
-	handleApp(appName, visualizeAppInFullScreenFrame, launchNilApp(appName))
+	handleApp(appName, visualizeAppInFullScreenFrame, launchNilApp)
 end
 
 M.toggleApp = function(appName)
-	handleApp(appName, toggleApp, launchNilApp(appName))
+	handleApp(appName, toggleApp, launchNilApp)
 end
 
 return M
