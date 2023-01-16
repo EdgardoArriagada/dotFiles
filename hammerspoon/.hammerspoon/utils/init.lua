@@ -28,7 +28,7 @@ local function getAppMainWindow(app)
 	return app:mainWindow()
 end
 
-local function visualizeApp(app)
+local function visualizeAppInFullScreenFrame(app)
 	local currSpaceId = spaces.activeSpaceOnScreen()
 	local win = getAppMainWindow(app)
 
@@ -37,11 +37,9 @@ local function visualizeApp(app)
 	spaces.moveWindowToSpace(win, currSpaceId)
 	spaces.spaceDisplay(currSpaceId)
 
-	-- SIDE EFFECTS
 	if win:isFullScreen() then
 		win:toggleFullScreen()
 	end
-	-- END SIDE EFFECTS
 
 	win:focus()
 end
@@ -50,13 +48,13 @@ local function toggleApp(app)
 	if app:isFrontmost() then
 		app:hide()
 	else
-		visualizeApp(app)
+		visualizeAppInFullScreenFrame(app)
 	end
 end
 
 local function launchApp(appName)
 	if hs.application.launchOrFocus(appName) then
-		return onAppLaunch(appName, visualizeApp)
+		return onAppLaunch(appName, visualizeAppInFullScreenFrame)
 	end
 end
 
@@ -78,11 +76,11 @@ M.weakFocus = function(appName)
 		return hs.alert.show(appName .. " has not been launched yet")
 	end
 
-	visualizeApp(app)
+	visualizeAppInFullScreenFrame(app)
 end
 
 M.focusApp = function(appName)
-	handleApp(appName, visualizeApp)
+	handleApp(appName, visualizeAppInFullScreenFrame)
 end
 
 M.toggleApp = function(appName)
