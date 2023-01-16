@@ -37,6 +37,12 @@ local function visualizeApp(app)
 	spaces.moveWindowToSpace(win, currSpaceId)
 	spaces.spaceDisplay(currSpaceId)
 
+	-- SIDE EFFECTS
+	if win:isFullScreen() then
+		win:toggleFullScreen()
+	end
+	-- END SIDE EFFECTS
+
 	win:focus()
 end
 
