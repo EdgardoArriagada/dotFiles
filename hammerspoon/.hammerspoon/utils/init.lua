@@ -74,9 +74,7 @@ local function launchNilApp(appName)
 end
 
 local function alertNotLaunchedApp(appName)
-	return function()
-		return hs.alert.show(appName .. " not launched")
-	end
+	return hs.alert.show(appName .. " not launched")
 end
 
 M.weakFocus = function(appName)
