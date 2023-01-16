@@ -65,8 +65,12 @@ end
 local function getApp(appName)
 	local app = hs.application.get(appName)
 
-	if app == nil or app:mainWindow() == nil then
+	if app == nil then
 		return nil
+	end
+
+	if app:mainWindow() == nil then
+		hs.application.open(appName)
 	end
 
 	return app
