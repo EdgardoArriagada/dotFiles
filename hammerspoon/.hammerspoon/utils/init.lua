@@ -2,8 +2,8 @@ local spaces = require("hs.spaces")
 
 M = {}
 
-local function copyMainScreenFullFrame(win)
-	local scrFrame = hs.screen.mainScreen():fullFrame()
+local function copyMainScreenFrame(win)
+	local scrFrame = hs.screen.mainScreen():frame()
 	win:setFrame(scrFrame, 0)
 end
 
@@ -28,11 +28,11 @@ local function getAppMainWindow(app)
 	return app:mainWindow()
 end
 
-local function visualizeAppInFullScreenFrame(app)
+local function visualizeAppInScreenFrame(app)
 	local currSpaceId = spaces.activeSpaceOnScreen()
 	local win = getAppMainWindow(app)
 
-	copyMainScreenFullFrame(win)
+	copyMainScreenFrame(win)
 
 	spaces.moveWindowToSpace(win, currSpaceId)
 	spaces.spaceDisplay(currSpaceId)
@@ -48,13 +48,13 @@ local function toggleApp(app)
 	if app:isFrontmost() then
 		app:hide()
 	else
-		visualizeAppInFullScreenFrame(app)
+		visualizeAppInScreenFrame(app)
 	end
 end
 
 local function launchApp(appName)
 	if hs.application.launchOrFocus(appName) then
-		return onAppLaunch(appName, visualizeAppInFullScreenFrame)
+		return onAppLaunch(appName, visualizeAppInScreenFrame)
 	end
 end
 
@@ -78,11 +78,11 @@ local function alertNotLaunchedApp(appName)
 end
 
 M.weakFocus = function(appName)
-	handleApp(appName, visualizeAppInFullScreenFrame, alertNotLaunchedApp)
+	handleApp(appName, visualizeAppInScreenFrame, alertNotLaunchedApp)
 end
 
 M.focusApp = function(appName)
-	handleApp(appName, visualizeAppInFullScreenFrame, launchNilApp)
+	handleApp(appName, visualizeAppInScreenFrame, launchNilApp)
 end
 
 M.toggleApp = function(appName)
