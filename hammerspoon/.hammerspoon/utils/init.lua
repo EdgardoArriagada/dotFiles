@@ -26,9 +26,18 @@ local function onAppLaunch(appName, callback)
 	appWatcher:start()
 end
 
+local function getAppMainWindow(app)
+	if app:mainWindow() == nil then
+		hs.application.open(app:name())
+	end
+
+	return app:mainWindow()
+end
+
 local function visualizeApp(app)
 	local currSpaceId = spaces.activeSpaceOnScreen()
-	local win = app:mainWindow()
+
+	local win = getAppMainWindow(app)
 
 	local fullScreen = not win:isStandard()
 
@@ -62,22 +71,8 @@ local function launchApp(appName)
 	end
 end
 
-local function getApp(appName)
-	local app = hs.application.get(appName)
-
-	if app == nil then
-		return nil
-	end
-
-	if app:mainWindow() == nil then
-		hs.application.open(appName)
-	end
-
-	return app
-end
-
 local function handleApp(appName, callback)
-	local app = getApp(appName)
+	local app = hs.application.get(appName)
 
 	if app == nil then
 		hs.alert.show("Launching " .. appName .. "...")
@@ -88,7 +83,7 @@ local function handleApp(appName, callback)
 end
 
 M.weakFocus = function(appName)
-	local app = getApp(appName)
+	local app = hs.application.get(appName)
 
 	if app == nil then
 		return hs.alert.show(appName .. " has not been launched yet")
