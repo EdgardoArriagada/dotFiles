@@ -9,9 +9,6 @@ function pluginsStartup(use)
 	use("kyazdani42/nvim-web-devicons")
 	use("moll/vim-bbye")
 
-	-- Multiple Cursors
-	use("mg979/vim-visual-multi")
-
 	-- Git
 	use({
 		"lewis6991/gitsigns.nvim",
