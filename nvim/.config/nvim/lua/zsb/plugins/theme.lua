@@ -1,4 +1,6 @@
---[[ if vim.g.vscode then return end ]]
+return {
+'eddyekofo94/gruvbox-flat.nvim',
+config= function()
 
 -- Change here --
 ---------- -------- -------- --------
@@ -18,3 +20,6 @@ hpcall(vim.cmd, colorCmd, {
 		vim.cmd([[colorscheme default]])
 	end,
 })
+end
+}
+

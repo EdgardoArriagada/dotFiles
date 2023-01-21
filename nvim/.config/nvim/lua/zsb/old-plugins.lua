@@ -1,7 +1,7 @@
 function pluginsStartup(use)
 	use("wbthomason/packer.nvim") -- Have packer manage itself
 
-	-- Hop
+	-- Hop (done)
 	use({
 		"phaazon/hop.nvim",
 		branch = "v1", -- optional but strongly recommended
@@ -122,7 +122,7 @@ function pluginsStartup(use)
 	-- Harpoon
 	use("ThePrimeagen/harpoon")
 
-	-- Telescope
+	-- Telescope (Done)
 	use({
 		"nvim-telescope/telescope.nvim",
 		config = function()
