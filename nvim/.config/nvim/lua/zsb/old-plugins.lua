@@ -1,14 +1,6 @@
 function pluginsStartup(use)
 	use("wbthomason/packer.nvim") -- Have packer manage itself
 
-	-- NVIM ONLY PLUGGINS -- (manually skip if in vscode in each config function/file)
-
-	-- Common plugins
-	use("nvim-lua/popup.nvim")
-	use("nvim-lua/plenary.nvim")
-	use("kyazdani42/nvim-web-devicons")
-	use("moll/vim-bbye")
-
 	-- Folding
 	use({
 		"anuvyklack/pretty-fold.nvim",
