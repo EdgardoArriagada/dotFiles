@@ -1,14 +1,6 @@
 function pluginsStartup(use)
 	use("wbthomason/packer.nvim") -- Have packer manage itself
 
-	-- Folding
-	use({
-		"anuvyklack/pretty-fold.nvim",
-		config = function()
-			require("zsb.setup.pretty-fold")
-		end,
-		ft = { "json" },
-	})
 
 	-- Markdown
 	use({
