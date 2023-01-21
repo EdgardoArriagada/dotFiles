@@ -9,13 +9,6 @@ function pluginsStartup(use)
 	use("kyazdani42/nvim-web-devicons")
 	use("moll/vim-bbye")
 
-	use({
-		"p00f/nvim-ts-rainbow",
-		config = function()
-			require("zsb.setup.nvim-ts-rainbow")
-		end,
-	})
-
 	--Copilot
 	use("github/copilot.vim")
 
