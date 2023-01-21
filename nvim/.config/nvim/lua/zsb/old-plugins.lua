@@ -9,14 +9,6 @@ function pluginsStartup(use)
 	use("kyazdani42/nvim-web-devicons")
 	use("moll/vim-bbye")
 
-	-- Git
-	use({
-		"lewis6991/gitsigns.nvim",
-		config = function()
-			require("zsb.setup.gitsigns")
-		end,
-	})
-
 	use({
 		"p00f/nvim-ts-rainbow",
 		config = function()
