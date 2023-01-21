@@ -100,13 +100,6 @@ function pluginsStartup(use)
 	-- Multiple Cursors
 	use("mg979/vim-visual-multi")
 
-	-- Treesitteer
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
-	})
-	use("windwp/nvim-ts-autotag")
-
 	-- Git
 	use({
 		"lewis6991/gitsigns.nvim",
