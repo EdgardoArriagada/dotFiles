@@ -9,14 +9,6 @@ function pluginsStartup(use)
 	use("kyazdani42/nvim-web-devicons")
 	use("moll/vim-bbye")
 
-	-- Transparency
-	use({
-		"xiyaowong/nvim-transparent",
-		config = function()
-			require("zsb.setup.nvim-transparent")
-		end,
-	})
-
 	-- Vertical lines
 	use({
 		"lukas-reineke/indent-blankline.nvim",
