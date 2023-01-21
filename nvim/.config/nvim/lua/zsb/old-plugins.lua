@@ -9,14 +9,6 @@ function pluginsStartup(use)
 	use("kyazdani42/nvim-web-devicons")
 	use("moll/vim-bbye")
 
-	-- Vertical lines
-	use({
-		"lukas-reineke/indent-blankline.nvim",
-		config = function()
-			require("zsb.setup.indent-blankline")
-		end,
-	})
-
 	-- Status line
 	use({
 		"nvim-lualine/lualine.nvim",
