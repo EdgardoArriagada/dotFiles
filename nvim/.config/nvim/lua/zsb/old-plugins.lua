@@ -9,9 +9,6 @@ function pluginsStartup(use)
 	use("kyazdani42/nvim-web-devicons")
 	use("moll/vim-bbye")
 
-	-- Harpoon
-	use("ThePrimeagen/harpoon")
-
 	-- Multiple Cursors
 	use("mg979/vim-visual-multi")
 
