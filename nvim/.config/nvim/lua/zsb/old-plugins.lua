@@ -9,27 +9,6 @@ function pluginsStartup(use)
 	use("kyazdani42/nvim-web-devicons")
 	use("moll/vim-bbye")
 
-
-	-- Refactoring
-	use({
-		"ThePrimeagen/refactoring.nvim",
-		requires = {
-			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-treesitter/nvim-treesitter" },
-		},
-		config = function()
-			require("zsb.setup.refactoring")
-		end,
-	})
-
-	use({
-		"napmn/react-extract.nvim",
-		config = function()
-			require("react-extract").setup()
-		end,
-		ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-	})
-
 	-- Auto pairs
 	use({
 		"windwp/nvim-autopairs",
