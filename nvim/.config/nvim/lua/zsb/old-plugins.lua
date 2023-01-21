@@ -9,14 +9,6 @@ function pluginsStartup(use)
 	use("kyazdani42/nvim-web-devicons")
 	use("moll/vim-bbye")
 
-	-- Auto pairs
-	use({
-		"windwp/nvim-autopairs",
-		config = function()
-			require("zsb.setup.nvim-autopairs")
-		end,
-	})
-
 	-- Bufferline
 	use({
 		"akinsho/bufferline.nvim",
@@ -25,14 +17,11 @@ function pluginsStartup(use)
 		end,
 	})
 
-
 	-- Harpoon
 	use("ThePrimeagen/harpoon")
 
-
 	-- Multiple Cursors
 	use("mg979/vim-visual-multi")
-
 
 	-- Git
 	use({
@@ -51,7 +40,6 @@ function pluginsStartup(use)
 
 	--Copilot
 	use("github/copilot.vim")
-
 
 	-- Transparency
 	use({
