@@ -1,24 +1,6 @@
 function pluginsStartup(use)
 	use("wbthomason/packer.nvim") -- Have packer manage itself
 
-	-- Hop (done)
-	use({
-		"phaazon/hop.nvim",
-		branch = "v1", -- optional but strongly recommended
-		config = function()
-			require("zsb.setup.hop")
-		end,
-	})
-
-	-- Comments
-	use({
-		"numToStr/Comment.nvim",
-		config = function()
-			require("zsb.setup.comment")
-		end,
-	})
-	use("JoosepAlviste/nvim-ts-context-commentstring")
-
 	-- NVIM ONLY PLUGGINS -- (manually skip if in vscode in each config function/file)
 
 	-- Common plugins
@@ -27,16 +9,6 @@ function pluginsStartup(use)
 	use("kyazdani42/nvim-web-devicons")
 	use("moll/vim-bbye")
 
-	-- Context
-	use({
-		"nvim-treesitter/nvim-treesitter-context",
-		requires = {
-			{ "nvim-treesitter/nvim-treesitter" },
-		},
-		config = function()
-			require("treesitter-context").setup()
-		end,
-	})
 
 	-- Refactoring
 	use({
@@ -122,13 +94,6 @@ function pluginsStartup(use)
 	-- Harpoon
 	use("ThePrimeagen/harpoon")
 
-	-- Telescope (Done)
-	use({
-		"nvim-telescope/telescope.nvim",
-		config = function()
-			require("zsb.setup.telescope")
-		end,
-	})
 
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
@@ -160,8 +125,6 @@ function pluginsStartup(use)
 	--Copilot
 	use("github/copilot.vim")
 
-	-- Looks
-	use("eddyekofo94/gruvbox-flat.nvim")
 
 	-- Transparency
 	use({
