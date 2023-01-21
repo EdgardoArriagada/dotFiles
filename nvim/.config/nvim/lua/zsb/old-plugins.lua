@@ -9,14 +9,6 @@ function pluginsStartup(use)
 	use("kyazdani42/nvim-web-devicons")
 	use("moll/vim-bbye")
 
-	-- Bufferline
-	use({
-		"akinsho/bufferline.nvim",
-		config = function()
-			require("zsb.setup.bufferline")
-		end,
-	})
-
 	-- Harpoon
 	use("ThePrimeagen/harpoon")
 
