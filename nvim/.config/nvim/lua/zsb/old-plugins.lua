@@ -9,9 +9,6 @@ function pluginsStartup(use)
 	use("kyazdani42/nvim-web-devicons")
 	use("moll/vim-bbye")
 
-	--Copilot
-	use("github/copilot.vim")
-
 	-- Transparency
 	use({
 		"xiyaowong/nvim-transparent",

@@ -9,6 +9,7 @@ return {
 	{ "saadparwaiz1/cmp_luasnip" }, -- snippet completions
 	-- end completion
 	{ "mg979/vim-visual-multi" },
+	{ "github/copilot.vim" },
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 	{ "windwp/nvim-ts-autotag", dependencies = { "nvim-treesitter/nvim-treesitter" } },
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
