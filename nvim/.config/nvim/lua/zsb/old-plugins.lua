@@ -47,16 +47,6 @@ function pluginsStartup(use)
 	})
 
 
-	-- Lsp
-	use("neovim/nvim-lspconfig")
-	use("williamboman/nvim-lsp-installer")
-	use({
-		"jose-elias-alvarez/null-ls.nvim",
-		config = function()
-			require("zsb.setup.null-ls")
-		end,
-	})
-
 	-- Harpoon
 	use("ThePrimeagen/harpoon")
 
