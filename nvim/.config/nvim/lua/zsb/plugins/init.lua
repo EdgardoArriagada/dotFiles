@@ -14,4 +14,5 @@ return {
 	{ "windwp/nvim-ts-autotag", dependencies = { "nvim-treesitter/nvim-treesitter" } },
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	{ "moll/vim-bbye" },
+	{ "ekickx/clipboard-image.nvim", ft = { "markdown" } },
 }
