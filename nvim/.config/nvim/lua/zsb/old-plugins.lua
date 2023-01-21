@@ -38,30 +38,12 @@ function pluginsStartup(use)
 		end,
 	})
 
-	-- NvimTree
-	use({
-		"kyazdani42/nvim-tree.lua",
-		tag = "nightly", -- optional, updated every week. (see issue #1193)
-		config = function()
-			require("zsb.setup.nvim-tree")
-		end,
-	})
-
 	-- Bufferline
 	use({
 		"akinsho/bufferline.nvim",
 		config = function()
 			require("zsb.setup.bufferline")
 		end,
-	})
-
-	-- Whichkey
-	use({
-		"max397574/which-key.nvim",
-		config = function()
-			require("zsb.setup.which-key")
-		end,
-		event = "BufWinEnter",
 	})
 
 	-- Completion plugins https://github.com/topics/nvim-cmp
@@ -95,10 +77,9 @@ function pluginsStartup(use)
 	use("ThePrimeagen/harpoon")
 
 
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-
 	-- Multiple Cursors
 	use("mg979/vim-visual-multi")
+
 
 	-- Git
 	use({
