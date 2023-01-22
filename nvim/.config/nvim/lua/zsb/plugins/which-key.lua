@@ -104,15 +104,6 @@ return {
 				r = { "<cmd>NvimTreeRefresh<cr>", "Refresh" },
 			},
 
-			p = {
-				name = "Packer",
-				c = { "<cmd>PackerCompile<cr>", "Compile" },
-				i = { "<cmd>PackerInstall<cr>", "Install" },
-				s = { "<cmd>PackerSync<cr>", "Sync" },
-				S = { "<cmd>PackerStatus<cr>", "Status" },
-				u = { "<cmd>PackerUpdate<cr>", "Update" },
-			},
-
 			g = {
 				name = "Git",
 				j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
