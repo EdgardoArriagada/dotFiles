@@ -176,9 +176,12 @@ return {
 				C = { "<cmd>Telescope commands<cr>", "Commands" },
 			},
 
+			-- https://github.com/folke/lazy.nvim#-usage
 			p = {
 				name = "Plugins",
 				l = { "<cmd>Lazy<cr>", "Plugins list" },
+				s = { "<cmd>Lazy sync<cr>", "Plugins sync" },
+				h = { "<cmd>Lazy health<cr>", "Plugins health" },
 			},
 
 			b = {
