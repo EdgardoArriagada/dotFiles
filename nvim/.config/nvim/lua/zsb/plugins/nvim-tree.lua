@@ -2,6 +2,7 @@ return {
 	"kyazdani42/nvim-tree.lua",
 	dependencies = { "kyazdani42/nvim-web-devicons" },
 	tag = "nightly", -- optional, updated every week. (see issue #1193)
+	cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeClose", "NvimTreeRefresh", "NvimTreeFindFile" },
 	config = function()
 		local status_ok, nvim_tree = pcall(require, "nvim-tree")
 		if not status_ok then
