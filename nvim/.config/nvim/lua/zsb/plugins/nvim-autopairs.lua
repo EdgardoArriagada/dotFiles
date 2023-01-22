@@ -1,5 +1,6 @@
 return {
 	"windwp/nvim-autopairs",
+	event = "InsertEnter",
 	config = function()
 		hpcall(require, "nvim-autopairs", {
 			onOk = function(npairs)
