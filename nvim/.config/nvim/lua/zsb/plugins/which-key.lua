@@ -1,5 +1,6 @@
 return {
 	"max397574/which-key.nvim",
+	keys = { "<leader>", { "<leader>", mode = "v" } },
 	config = function()
 		local status_ok, which_key = pcall(require, "which-key")
 		if not status_ok then
@@ -173,6 +174,11 @@ return {
 				R = { "<cmd>Telescope registers<cr>", "Registers" },
 				k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
 				C = { "<cmd>Telescope commands<cr>", "Commands" },
+			},
+
+			p = {
+				name = "Plugins",
+				l = { "<cmd>Lazy<cr>", "Plugins list" },
 			},
 
 			b = {
