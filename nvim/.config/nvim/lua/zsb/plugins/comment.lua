@@ -1,6 +1,7 @@
 return {
 	"numToStr/Comment.nvim",
 	dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
+	keys = { { "gc", mode = "v" } },
 	opts = {
 		pre_hook = function(ctx)
 			local U = require("Comment.utils")
