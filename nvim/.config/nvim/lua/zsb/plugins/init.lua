@@ -12,7 +12,7 @@ return {
 	{ "github/copilot.vim" },
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 	{ "windwp/nvim-ts-autotag", dependencies = { "nvim-treesitter/nvim-treesitter" } },
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", keys = "<C-p>" },
 	{ "moll/vim-bbye" },
 	{ "ekickx/clipboard-image.nvim", ft = { "markdown" } },
 }
