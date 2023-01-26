@@ -1,7 +1,7 @@
 return {
 	"numToStr/Comment.nvim",
 	dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
-	keys = { { "gc", mode = "v" } },
+	keys = { "gc", { "gc", mode = "v" } },
 	opts = {
 		pre_hook = function(ctx)
 			local U = require("Comment.utils")
@@ -18,5 +18,8 @@ return {
 				location = location,
 			})
 		end,
+		toggler = {
+			line = "gc",
+		},
 	},
 }
