@@ -1,6 +1,11 @@
-At the root of this project, perform a stow in the program you want installed
-ie:
+## dependencies:
+
+stow
+
+## install
+
+at the root of this repo, run:
 
 ```bash
-stow nvim
+source start.sh
 ```
