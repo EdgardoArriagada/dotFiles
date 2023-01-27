@@ -1,7 +1,7 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-fzf-native.nvim" },
-	keys = { "<C-p>" },
+	keys = { "<leader>", "<C-p>" },
 	config = function()
 		hpcall(require, "telescope", {
 			onOk = function(telescope)
