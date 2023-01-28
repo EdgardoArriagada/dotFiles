@@ -13,7 +13,10 @@ export isMacOs=`[[ "$(uname -s)" = "Darwin" ]] && printf 1`
     hammerspoon
   )
 
-  local linuxPrograms=(bspwm)
+  local linuxPrograms=(
+    bspwm
+    dunst
+  )
   ######## END CONFIGURATION ######
 
 
