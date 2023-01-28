@@ -3,6 +3,7 @@ export isMacOs=`[[ "$(uname -s)" = "Darwin" ]] && printf 1`
 () (
   ###### BEGIN CONFIGURATION ######
   local commonPrograms=(
+    git
     nvim
     tmux
     alacritty
