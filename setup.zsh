@@ -1,7 +1,6 @@
-() (
-  local onSetup="_dotfiles_setup_"
-  local isMacOs=`[[ "$(uname -s)" = "Darwin" ]] && printf 1`
+export isMacOs=`[[ "$(uname -s)" = "Darwin" ]] && printf 1`
 
+() (
   ###### BEGIN CONFIGURATION ######
   local commonPrograms=(
     nvim
@@ -14,14 +13,6 @@
   )
 
   local linuxPrograms=(bspwm)
-
-  ${onSetup}.tmux() {
-    if (( isMacOs ))
-      then sed -i '.bak' '1s/^/[[ -z "$TMUX" ]] \&\& tmux new -A -s main\'$'\n/g' ~/.zshrc
-      else sed -i '1i[[ -z "$TMUX" ]] \&\& tmux new -A -s main' ~/.zshrc
-    fi
-  }
-
   ######## END CONFIGURATION ######
 
 
@@ -40,11 +31,11 @@
       stow ${program}
     fi
 
-    local onSetupFunc="${onSetup}.${program}"
+    local setupPath=setups/${program}.setup.zsh
 
-    if type ${onSetupFunc} > /dev/null; then
+    if [[ -f ${setupPath} ]]; then
       print "Setup ${program}..."
-      ${onSetupFunc}
+      source ${setupPath}
     fi
   done
 )
