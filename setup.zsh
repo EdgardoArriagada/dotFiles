@@ -19,6 +19,7 @@ export isMacOs=`[[ "$(uname -s)" = "Darwin" ]] && printf 1`
     bspwm
     dunst
     gnome
+    picom
   )
   ######## END CONFIGURATION ######
 
