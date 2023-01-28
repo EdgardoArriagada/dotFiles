@@ -33,15 +33,18 @@
     else allPrograms+=("${linuxPrograms[@]}")
   fi
 
-  ## Link programs to dot files
-  stow "${allPrograms[@]}"
-
-  ## Run setup functions
+  ## Run link programs and run setup functions
   for program in "${allPrograms[@]}"; do
+    if [[ -d ${program} ]]; then
+      print "Linking ${program}..."
+      stow ${program}
+    fi
+
     local onSetupFunc="${onSetup}.${program}"
 
-    if type ${onSetupFunc} > /dev/null
-      then ${onSetupFunc}
+    if type ${onSetupFunc} > /dev/null; then
+      print "Setup ${program}..."
+      ${onSetupFunc}
     fi
   done
 )
