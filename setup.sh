@@ -1,5 +1,5 @@
 () (
-  local this="_dotfiles_setup_"
+  local onSetup="_dotfiles_setup_"
   local isMacOs=`[[ "$(uname -s)" = "Darwin" ]] && printf 1`
 
   ###### BEGIN CONFIGURATION ######
@@ -14,7 +14,7 @@
 
   local linuxPrograms=()
 
-  ${this}.tmux() {
+  ${onSetup}.tmux() {
     if (( isMacOs ))
       then sed -i '.bak' '1s/^/[[ -z "$TMUX" ]] \&\& tmux new -A -s main\'$'\n/g' ~/.zshrc
       else sed -i '1i[[ -z "$TMUX" ]] \&\& tmux new -A -s main' ~/.zshrc
@@ -37,8 +37,10 @@
 
   ## Run setup functions
   for program in "${allPrograms[@]}"; do
-    if type ${this}.${program} > /dev/null
-      then ${this}.${program}
+    local onSetupFunc="${onSetup}.${program}"
+
+    if type ${onSetupFunc} > /dev/null
+      then ${onSetupFunc}
     fi
   done
 )
