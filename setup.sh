@@ -13,7 +13,7 @@
     hammerspoon
   )
 
-  local linuxPrograms=()
+  local linuxPrograms=(bspwm)
 
   ${onSetup}.tmux() {
     if (( isMacOs ))
