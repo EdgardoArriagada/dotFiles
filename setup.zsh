@@ -17,6 +17,7 @@ export isMacOs=`[[ "$(uname -s)" = "Darwin" ]] && printf 1`
   local linuxPrograms=(
     bspwm
     dunst
+    gnome
   )
   ######## END CONFIGURATION ######
 
