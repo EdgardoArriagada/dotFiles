@@ -26,12 +26,12 @@ export isMacOs=`[[ "$(uname -s)" = "Darwin" ]] && printf 1`
 
   ## Run link programs and run setup functions
   for program in "${allPrograms[@]}"; do
-    if [[ -d ${program} ]]; then
+    if [[ -d ${program}/home ]]; then
       print "Linking ${program}..."
-      stow ${program}
+      stow -d ${program} -t .. home
     fi
 
-    local setupPath=setups/${program}.setup.zsh
+    local setupPath=${program}/${program}.setup.zsh
 
     if [[ -f ${setupPath} ]]; then
       print "Setup ${program}..."
