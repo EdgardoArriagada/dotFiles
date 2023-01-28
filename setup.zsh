@@ -8,6 +8,7 @@ export isMacOs=`[[ "$(uname -s)" = "Darwin" ]] && printf 1`
     nvim
     tmux
     alacritty
+    ideaVim
   )
 
   local macOsPrograms=(
