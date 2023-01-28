@@ -6,6 +6,7 @@
   local commonPrograms=(
     nvim
     tmux
+    alacritty
   )
 
   local macOsPrograms=(
