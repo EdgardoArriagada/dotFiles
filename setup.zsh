@@ -21,6 +21,7 @@ export isMacOs=`[[ "$(uname -s)" = "Darwin" ]] && printf 1`
     gnome
     picom
     pinentry
+    polybar
   )
   ######## END CONFIGURATION ######
 
