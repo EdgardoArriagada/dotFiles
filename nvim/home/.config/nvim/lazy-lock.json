@@ -25,7 +25,7 @@
   "nvim-lspconfig": { "branch": "master", "commit": "1e988250a0f52a68ddb72905d623405d634e9c5d" },
   "nvim-transparent": { "branch": "main", "commit": "6816751e3d595b3209aa475a83b6fbaa3a5ccc98" },
   "nvim-tree.lua": { "branch": "master", "commit": "16a0e3ce1d9d2e982c788b3cee66fcffe5c10c43" },
-  "nvim-treesitter": { "branch": "master", "commit": "cf21f81274966b41b51b4022283d1e09c79aec49" },
+  "nvim-treesitter": { "branch": "master", "commit": "adeb6e02d3bd682f7bea99a988b0deadd407e888" },
   "nvim-treesitter-context": { "branch": "master", "commit": "cacee4828152dd3a83736169ae61bbcd29a3d213" },
   "nvim-ts-autotag": { "branch": "main", "commit": "fdefe46c6807441460f11f11a167a2baf8e4534b" },
   "nvim-ts-context-commentstring": { "branch": "main", "commit": "a0f89563ba36b3bacd62cf967b46beb4c2c29e52" },
@@ -36,7 +36,7 @@
   "react-extract.nvim": { "branch": "main", "commit": "d8b182407ef03481f1d3e33e7de735415ef8bfa7" },
   "refactoring.nvim": { "branch": "master", "commit": "57c32c6b7a211e5a3a5e4ddc4ad2033daff5cf9a" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "fab3e2212e206f4f8b3bbaa656e129443c9b802e" },
-  "telescope.nvim": { "branch": "master", "commit": "dce1156ca103b8222e4abbfc63f9c6887abf5ec6" },
+  "telescope.nvim": { "branch": "master", "commit": "d5f6c0911d6066397f1757c6b55a8bd6851bd6dc" },
   "vim-bbye": { "branch": "master", "commit": "25ef93ac5a87526111f43e5110675032dbcacf56" },
   "vim-visual-multi": { "branch": "master", "commit": "724bd53adfbaf32e129b001658b45d4c5c29ca1a" },
   "which-key.nvim": { "branch": "main", "commit": "07e522edc45962319b1758966c157e729f3b02ab" }
