@@ -28,18 +28,18 @@ local function getAppMainWindow(app)
 	return app:mainWindow()
 end
 
-local function displayWindowInCurrentSpace(win)
-	local currSpaceId = spaces.activeSpaceOnScreen()
+local function displayWindowInMainScreen(win)
+	local mainScreenId = hs.screen.mainScreen():id()
 
-	spaces.moveWindowToSpace(win, currSpaceId)
-	spaces.spaceDisplay(currSpaceId)
+	spaces.moveWindowToSpace(win, mainScreenId)
+	spaces.spaceDisplay(mainScreenId)
 end
 
 local function visualizeAppInScreenFrame(app)
 	local win = getAppMainWindow(app)
 
 	resizeWindowToScreenFrame(win)
-	displayWindowInCurrentSpace(win)
+	displayWindowInMainScreen(win)
 
 	if win:isFullScreen() then
 		win:toggleFullScreen()
