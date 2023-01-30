@@ -13,6 +13,7 @@ export isMacOs=`[[ "$(uname -s)" = "Darwin" ]] && printf 1`
 
   local macOsPrograms=(
     hammerspoon
+    skhd
   )
 
   local linuxPrograms=(
@@ -24,6 +25,7 @@ export isMacOs=`[[ "$(uname -s)" = "Darwin" ]] && printf 1`
     polybar
     redshift
     rofi
+    sxhkd
   )
   ######## END CONFIGURATION ######
 
