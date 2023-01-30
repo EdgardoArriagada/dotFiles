@@ -27,6 +27,7 @@ export isMacOs=`[[ "$(uname -s)" = "Darwin" ]] && printf 1`
     redshift
     rofi
     sxhkd
+    xprofile
   )
   ######## END CONFIGURATION ######
 
