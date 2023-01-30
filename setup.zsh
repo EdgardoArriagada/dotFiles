@@ -10,6 +10,7 @@ export isMacOs=`[[ "$(uname -s)" = "Darwin" ]] && printf 1`
     alacritty
     ideaVim
     tig
+    zsh
   )
 
   local macOsPrograms=(
