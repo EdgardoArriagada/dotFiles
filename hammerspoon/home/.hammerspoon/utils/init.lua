@@ -93,4 +93,15 @@ M.toggleApp = function(appName)
 	handleApp(appName, toggleApp, launchNilApp)
 end
 
+-- Works a little buggy
+M.hideAllApps = function()
+	local apps = hs.application.runningApplications()
+
+	for _, app in pairs(apps) do
+		if not app:isHidden() then
+			app:hide()
+		end
+	end
+end
+
 return M
