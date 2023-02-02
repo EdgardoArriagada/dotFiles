@@ -25,6 +25,7 @@ local cmd2 = { "command", "ctrl" }
 hs.hotkey.bind({}, "§", toggleApp("Alacritty"))
 hs.hotkey.bind(cmd2, "1", weakFocus("Slack"))
 hs.hotkey.bind(cmd2, "2", focusApp("Google Chrome"))
-hs.hotkey.bind(cmd2, "3", weakFocus("IntelliJ IDEA"))
+hs.hotkey.bind(cmd2, "3", weakFocus("Insomnia"))
+hs.hotkey.bind(cmd2, "4", weakFocus("IntelliJ IDEA"))
 hs.hotkey.bind(cmd2, "9", focusApp("Spotify"))
 hs.hotkey.bind(cmd2, "h", hideAllApps)
