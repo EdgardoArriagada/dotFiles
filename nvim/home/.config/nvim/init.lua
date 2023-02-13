@@ -6,7 +6,6 @@ require("zsb.customPluggins")
 require("zsb.options")
 require("zsb.cmp")
 require("zsb.autocmd")
-require("zsb.lsp")
 require("zsb.treesitter")
 --[[ require('zsb.vscode-config') ]]
 require("zsb.neovide-config")
