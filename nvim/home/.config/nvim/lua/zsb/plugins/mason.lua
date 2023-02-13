@@ -28,7 +28,7 @@ return {
 
 		local lspconfig = require("lspconfig")
 
-		local defaultServers = {
+		local defaultConfigServers = {
 			"pyright",
 			"cssls",
 			"emmet_ls",
@@ -38,7 +38,7 @@ return {
 			"gopls",
 		}
 
-		for _, server in pairs(defaultServers) do
+		for _, server in pairs(defaultConfigServers) do
 			lspconfig[server].setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
