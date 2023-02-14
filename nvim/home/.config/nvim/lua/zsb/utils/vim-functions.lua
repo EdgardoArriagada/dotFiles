@@ -12,3 +12,15 @@ getpos = vim.fn.getpos
 setpos = vim.fn.setpos
 cursor = vim.fn.cursor
 col = vim.fn.col
+
+-- merge given tables
+function Expand(...)
+	local args = { ... }
+	local result = args[1]
+
+	for i = 2, #args do
+		result = vim.tbl_deep_extend("force", result, args[i])
+	end
+
+	return result
+end
