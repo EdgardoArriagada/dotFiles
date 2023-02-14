@@ -13,7 +13,7 @@ setpos = vim.fn.setpos
 cursor = vim.fn.cursor
 col = vim.fn.col
 
--- merge given tables
+-- merge given tables without mutating them
 function Expand(...)
 	local args = { ... }
 	local result = args[1]
