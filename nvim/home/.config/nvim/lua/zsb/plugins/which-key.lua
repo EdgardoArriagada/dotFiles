@@ -98,13 +98,11 @@ return {
 			},
 			["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
 			["P"] = { "<cmd>Telescope projects<cr>", "Projects" },
-
 			n = {
 				name = "NvimTree",
 				t = { "<cmd>NvimTreeToggle<cr>", "Toggle" },
 				r = { "<cmd>NvimTreeRefresh<cr>", "Refresh" },
 			},
-
 			g = {
 				name = "Git",
 				n = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
@@ -124,7 +122,6 @@ return {
 					"Diff",
 				},
 			},
-
 			l = {
 				name = "LSP",
 				a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
@@ -139,11 +136,11 @@ return {
 				f = { "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", "Format" },
 				i = { "<cmd>LspInfo<cr>", "Info" },
 				I = { "<cmd>Mason<cr>", "Info" },
-				j = {
+				n = {
 					"<cmd>lua vim.diagnostic.goto_next()<CR>",
 					"Next Diagnostic",
 				},
-				k = {
+				p = {
 					"<cmd>lua vim.diagnostic.goto_prev()<cr>",
 					"Prev Diagnostic",
 				},
@@ -156,12 +153,10 @@ return {
 					"Workspace Symbols",
 				},
 			},
-
 			v = {
 				name = "Vim",
 				t = { "<cmd>lua ToggleJsFile()<cr>", "Toggle js file" },
 			},
-
 			s = {
 				name = "Search",
 				t = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
@@ -175,7 +170,6 @@ return {
 				k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
 				C = { "<cmd>Telescope commands<cr>", "Commands" },
 			},
-
 			-- https://github.com/folke/lazy.nvim#-usage
 			p = {
 				name = "Plugins",
@@ -183,7 +177,6 @@ return {
 				s = { "<cmd>Lazy sync<cr>", "Plugins sync" },
 				h = { "<cmd>Lazy health<cr>", "Plugins health" },
 			},
-
 			b = {
 				name = "Buffer",
 				y = {
@@ -215,7 +208,6 @@ return {
 					"Buffers",
 				},
 			},
-
 			m = {
 				name = "Markdown",
 				p = {
