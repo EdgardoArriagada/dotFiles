@@ -1,3 +1,7 @@
+if not table.unpack then
+	table.unpack = unpack
+end
+
 function Warn(msg)
 	vim.api.nvim_echo({ { msg, "WarningMsg" } }, true, {})
 end
@@ -16,11 +20,6 @@ col = vim.fn.col
 -- merge given tables without mutating them
 function Expand(...)
 	local args = { ... }
-	local result = args[1]
 
-	for i = 2, #args do
-		result = vim.tbl_deep_extend("force", result, args[i])
-	end
-
-	return result
+	return vim.tbl_deep_extend("force", table.unpack(args))
 end
