@@ -30,7 +30,7 @@ return {
 
 		local lspconfig = require("lspconfig")
 
-		lspconfig["lua_ls"].setup(Expand(defaultSetUp, {
+		lspconfig["lua_ls"].setup(Extend(defaultSetUp, {
 			settings = {
 				Lua = {
 					diagnostics = {

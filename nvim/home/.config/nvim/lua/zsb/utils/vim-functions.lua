@@ -18,6 +18,6 @@ cursor = vim.fn.cursor
 col = vim.fn.col
 
 -- merge given tables without mutating them
-function Expand(...)
+function Extend(...)
 	return vim.tbl_deep_extend("force", ...)
 end
