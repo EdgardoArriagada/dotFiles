@@ -47,6 +47,7 @@ return {
 			"tsserver",
 			"bashls",
 			"gopls",
+			"rust_analyzer",
 		}
 
 		for _, server in pairs(defaultConfigServers) do
