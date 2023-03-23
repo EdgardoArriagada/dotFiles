@@ -4,8 +4,8 @@ local globalOptions = {
 	ignorecase = true, -- ignore case in search patterns
 	mouse = "",
 	timeoutlen = 200, -- time to wait for a mapped sequence to complete (in milliseconds)
-	number = false, -- no numbers
-	laststatus = 0, -- no statusline
+	--[[ number = false, -- no numbers ]]
+	--[[ laststatus = 0, -- no statusline ]]
 }
 
 local neovimOptions = {
@@ -53,6 +53,5 @@ for k, v in pairs(neovimOptions) do
 	vim.opt[k] = v
 end
 --[[ end ]]
-
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
