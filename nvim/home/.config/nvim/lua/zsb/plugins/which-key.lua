@@ -111,6 +111,7 @@ return {
 				v = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
 				r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
 				R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
+				P = { "<cmd>lua ViewPrOfLine()<cr>", "View pr of line" },
 				a = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Add Hunk" },
 				u = {
 					"<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
