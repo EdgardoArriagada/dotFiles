@@ -75,7 +75,8 @@ keymap.set("c", "<C-n>", "<Down>")
 keymap.set("c", "<C-t>", "<C-r><C-w>")
 keymap.set("c", "<C-j>", "<CR>")
 keymap.set("c", "<C-m>", "<CR>")
-keymap.set("c", "<C-c>", "<Esc>")
+-- it is pressing <enter> instead of <esc> for some reason
+--[[ keymap.set("c", "<C-c>", "<Esc>") ]]
 keymap.set("c", "<C-v>", "<C-r>+")
 
 -- Quit
