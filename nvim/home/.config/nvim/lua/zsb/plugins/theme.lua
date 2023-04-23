@@ -5,7 +5,10 @@ return {
 		---------- -------- -------- --------
 		local theme = "gruvbox-flat"
 		vim.g.gruvbox_flat_style = "dark"
+
+		-- more keys at https://github.com/eddyekofo94/gruvbox-flat.nvim/blob/master/lua/gruvbox/theme.lua
 		vim.g.gruvbox_theme = {
+			NormalFloat = { bg = "#303030" },
 			Identifier = { fg = "blue" },
 			Function = { fg = "yellow" },
 		}
