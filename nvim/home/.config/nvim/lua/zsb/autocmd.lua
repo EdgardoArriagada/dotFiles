@@ -1,10 +1,9 @@
 --[[ if vim.g.vscode then return end ]]
-
 local group = vim.api.nvim_create_augroup("zsb", { clear = true })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function()
-		vim.lsp.buf.format({ async = false })
+		vim.lsp.buf.format({ async = true })
 	end,
 	group = group,
 })
