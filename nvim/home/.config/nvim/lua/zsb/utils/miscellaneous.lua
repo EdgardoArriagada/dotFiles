@@ -7,13 +7,7 @@ function getDirectionalProps(direction)
 end
 
 function isEmptyString(input)
-	for c in input:gmatch(".") do
-		if c ~= " " then
-			return false
-		end
-	end
-
-	return true
+	return input:match("^%s*$") ~= nil
 end
 
 function isEmptyLine(line)
