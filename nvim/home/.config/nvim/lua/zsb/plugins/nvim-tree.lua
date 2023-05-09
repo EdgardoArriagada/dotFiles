@@ -26,8 +26,8 @@ return {
 						default = "",
 						symlink = "",
 						git = {
-							unstaged = "פֿ",
-							staged = "",
+							unstaged = "●",
+							staged = "●",
 							unmerged = "",
 							renamed = "➜",
 							deleted = "",
