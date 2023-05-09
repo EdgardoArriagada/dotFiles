@@ -1,3 +1,39 @@
+local function makeMultiMapHelper(mode, action, opts)
+	return function(keys)
+		for _, key in ipairs(keys) do
+			vim.keymap.set(mode, key, action, opts)
+		end
+	end
+end
+
+local function mappings(api, opts)
+	local closeNodeWith = makeMultiMapHelper("n", api.node.navigate.parent_close, opts("Close Directory"))
+	local editNodeWith = makeMultiMapHelper("n", api.node.open.edit, opts("Open Directory"))
+
+	closeNodeWith({ "<BS>", "h" })
+
+	editNodeWith({ "l", "<CR>", "o" })
+
+	vim.keymap.set("n", "s", api.node.open.vertical, opts("Open file"))
+	vim.keymap.set("n", "i", api.node.open.horizontal, opts("Open file horizontally"))
+	vim.keymap.set("n", "y", api.fs.copy.node, opts("Copy"))
+	vim.keymap.set("n", "x", api.fs.cut, opts("Cut"))
+	vim.keymap.set("n", "p", api.fs.paste, opts("Paste"))
+end
+
+local function on_attach(bufnr)
+	local ok, api = pcall(require, "nvim-tree.api")
+	if not ok then
+		return
+	end
+
+	local function opts(desc)
+		return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+	end
+
+	mappings(api, opts)
+end
+
 return {
 	"kyazdani42/nvim-tree.lua",
 	dependencies = { "kyazdani42/nvim-web-devicons" },
@@ -18,6 +54,7 @@ return {
 
 		-- https://www.nerdfonts.com/cheat-sheet
 		nvim_tree.setup({
+			on_attach = on_attach,
 			renderer = {
 				root_folder_modifier = ":t",
 				highlight_git = true,
@@ -31,7 +68,7 @@ return {
 							unmerged = "",
 							renamed = "➜",
 							deleted = "",
-							untracked = "??",
+							untracked = "⁇",
 							ignored = "◌",
 						},
 						folder = {
@@ -81,20 +118,6 @@ return {
 				width = 30,
 				hide_root_folder = false,
 				side = "left",
-				mappings = {
-					custom_only = false,
-					-- for full list of actions:
-					-- https://github.com/kyazdani42/nvim-tree.lua/blob/master/lua/nvim-tree/actions/dispatch.lua
-					list = {
-						{ key = { "l", "<CR>", "o" }, cb = tree_cb("edit") },
-						{ key = "h", cb = tree_cb("close_node") },
-						{ key = "s", cb = tree_cb("vsplit") },
-						{ key = "i", cb = tree_cb("split") },
-						{ key = "y", cb = tree_cb("copy") },
-						{ key = "x", cb = tree_cb("cut") },
-						{ key = "p", cb = tree_cb("paste") },
-					},
-				},
 				number = false,
 				relativenumber = false,
 			},
