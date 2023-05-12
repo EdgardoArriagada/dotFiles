@@ -3,7 +3,6 @@
 --[[ 	vim.g.copilot_filetypes = { ["*"] = false } ]]
 --[[ 	return ]]
 --[[ end ]]
-
 -- Copilot
 vim.g.copilot_no_tab_map = true
 vim.cmd([[imap <silent><script><expr> <C-l> copilot#Accept("\<CR>")]])
@@ -31,12 +30,12 @@ end
 
 -- https://www.nerdfonts.com/cheat-sheet
 local kind_icons = {
-	Text = "",
-	Method = "",
-	Function = "",
+	Text = "󰊄",
+	Method = "",
+	Function = "󰡱",
 	Constructor = "",
 	Field = "",
-	Variable = "",
+	Variable = "󰫧",
 	Class = "",
 	Interface = "",
 	Module = "",
@@ -50,12 +49,12 @@ local kind_icons = {
 	File = "",
 	Reference = "",
 	Folder = "",
-	EnumMember = "",
+	EnumMember = "󱃼",
 	Constant = "",
 	Struct = "",
 	Event = "",
 	Operator = "",
-	TypeParameter = "ﯤ",
+	TypeParameter = "",
 }
 
 cmp.setup({
