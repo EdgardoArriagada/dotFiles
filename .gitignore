@@ -1,6 +1,5 @@
 # neovim
-nvim/.config/nvim/plugin
-nvim/.config/nvim/lua/zsb/temp.lua
+nvim/home/.config/nvim/lua/zsb/temp.lua
 
 # hammerspoon
 hammerspoon/.hammerspoon/hs
