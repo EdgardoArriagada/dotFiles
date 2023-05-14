@@ -45,6 +45,7 @@ return {
 			"cssls",
 			"emmet_ls",
 			"tsserver",
+			"tailwindcss",
 			"bashls",
 			"gopls",
 			"rust_analyzer",
