@@ -20,6 +20,8 @@ return {
 			TelescopePromptTitle = borderTheme,
 			TelescopeResultsBorder = borderTheme,
 			TelescopeResultsTitle = borderTheme,
+			TelescopePromptNormal = { fg = "fg", bg = "bg" },
+			TelescopePromptPrefix = { fg = "tree_normal", bg = "bg" },
 		}
 
 		---------- -------- -------- --------
