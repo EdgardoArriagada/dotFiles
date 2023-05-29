@@ -8,7 +8,7 @@ return {
 
 		-- more color strings at https://github.com/eddyekofo94/gruvbox-flat.nvim/blob/master/lua/gruvbox/colors.lua
 		-- more keys to override at https://github.com/eddyekofo94/gruvbox-flat.nvim/blob/master/lua/gruvbox/theme.lua
-		local borderTheme = { fg = "purple", bg = "bg" }
+		local borderTheme = { fg = "tree_normal", bg = "bg" }
 		vim.g.gruvbox_theme = {
 			NormalFloat = { bg = "#303030" },
 			Identifier = { fg = "blue" },
