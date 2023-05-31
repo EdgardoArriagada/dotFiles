@@ -11,7 +11,7 @@ end
 
 return {
 	"eddyekofo94/gruvbox-flat.nvim",
-	config = function(conf)
+	config = function()
 		local theme = "gruvbox-flat"
 		vim.g.gruvbox_flat_style = "dark"
 
