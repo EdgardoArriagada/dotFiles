@@ -1,8 +1,17 @@
+local function setTheme(theme)
+	local colorCmd = "colorscheme " .. theme
+
+	hpcall(vim.cmd, colorCmd, {
+		onErr = function()
+			vim.notify("error loading " .. colorCmd)
+			vim.cmd([[colorscheme default]])
+		end,
+	})
+end
+
 return {
 	"eddyekofo94/gruvbox-flat.nvim",
 	config = function(conf)
-		-- Change here --
-		---------- -------- -------- --------
 		local theme = "gruvbox-flat"
 		vim.g.gruvbox_flat_style = "dark"
 
@@ -24,15 +33,6 @@ return {
 			TelescopePromptPrefix = { fg = "tree_normal", bg = "bg" },
 		}
 
-		---------- -------- -------- --------
-
-		local colorCmd = "colorscheme " .. theme
-
-		hpcall(vim.cmd, colorCmd, {
-			onErr = function()
-				vim.notify(colorCmd .. " not found!")
-				vim.cmd([[colorscheme default]])
-			end,
-		})
+		setTheme(theme)
 	end,
 }
