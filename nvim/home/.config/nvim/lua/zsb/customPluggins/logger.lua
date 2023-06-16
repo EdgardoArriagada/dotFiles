@@ -14,6 +14,8 @@ local function bashLogger()
 	Execute('normal<Esc>"xyiwoprint "le <Esc>"xpa: ${<Esc>"xpa}"; <Esc><left><left><left>b')
 end
 
+local noExtensionLogger = bashLogger
+
 local extensionToFunction = {
 	["js"] = jsLogger,
 	["ts"] = jsLogger,
@@ -22,7 +24,7 @@ local extensionToFunction = {
 	["lua"] = luaLogger,
 	["rs"] = rustLogger,
 	["zsh"] = bashLogger,
-	[""] = bashLogger, -- default
+	[""] = noExtensionLogger,
 }
 
 function Logger()
