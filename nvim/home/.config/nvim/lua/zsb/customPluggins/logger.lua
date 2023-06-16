@@ -10,7 +10,7 @@ local function rustLogger()
 	Execute('normal<Esc>"xyiwoprintln!("le <Esc>"xpa {}", <Esc>"xpa);<Esc><left><left><left>')
 end
 
-local function zshLogger()
+local function bashLogger()
 	Execute('normal<Esc>"xyiwoprint "le <Esc>"xpa: ${<Esc>"xpa}"; <Esc><left><left><left>b')
 end
 
@@ -21,7 +21,8 @@ local extensionToFunction = {
 	["tsx"] = jsLogger,
 	["lua"] = luaLogger,
 	["rs"] = rustLogger,
-	["zsh"] = zshLogger,
+	["zsh"] = bashLogger,
+	[""] = bashLogger, -- default
 }
 
 function Logger()
