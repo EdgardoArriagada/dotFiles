@@ -37,10 +37,6 @@ keymap.set("x", "P", "'Pgv\"'.v:register.'y`>'", { expr = true })
 keymap.set("v", "gt", ":s/\\s\\+/ /g<CR>")
 
 keymap.set("n", "<C-w>m", "<C-w>100>")
-keymap.set("n", "<C-h>", "<C-w>h")
-keymap.set("n", "<C-j>", "<C-w>j")
-keymap.set("n", "<C-k>", "<C-w>k")
-keymap.set("n", "<C-l>", "<C-w>l")
 
 keymap.set("n", "n", "nzzzv")
 keymap.set("n", "N", "Nzzzv")

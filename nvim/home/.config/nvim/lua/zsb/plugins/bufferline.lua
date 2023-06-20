@@ -10,7 +10,7 @@ return {
 		})
 
 		keymap.set("n", "Q", ":Bdelete<Cr>")
-		keymap.set("n", "<S-l>", ":BufferLineCycleNext<Cr>")
-		keymap.set("n", "<S-h>", ":BufferLineCyclePrev<Cr>")
+		keymap.set("n", "<C-l>", ":BufferLineCycleNext<Cr>")
+		keymap.set("n", "<C-h>", ":BufferLineCyclePrev<Cr>")
 	end,
 }
