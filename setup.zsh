@@ -1,61 +1,31 @@
+#!/usr/bin/env zsh
+set -o errexit
+set -o pipefail
+set -o nounset
+
+source ./config.zsh
+
 export isMacOs=`[[ "$(uname -s)" = "Darwin" ]] && printf 1`
 
-() (
-  ###### BEGIN CONFIGURATION ######
-  local commonPrograms=(
-    fd
-    git
-    nvim
-    tmux
-    alacritty
-    ideaVim
-    tig
-    zsh
-    vscode
-  )
+# Populate program list
+local allPrograms=("${commonPrograms[@]}")
 
-  local macOsPrograms=(
-    hammerspoon
-    skhd
-  )
+if (( isMacOs ))
+  then allPrograms+=("${macOsPrograms[@]}")
+  else allPrograms+=("${linuxPrograms[@]}")
+fi
 
-  local linuxPrograms=(
-    bspwm
-    dunst
-    gnome
-    picom
-    pinentry
-    polybar
-    redshift
-    rofi
-    sxhkd
-    xprofile
-  )
-  ######## END CONFIGURATION ######
-
-
-  ## Populate program list
-  local allPrograms=("${commonPrograms[@]}")
-
-  if (( isMacOs ))
-    then allPrograms+=("${macOsPrograms[@]}")
-    else allPrograms+=("${linuxPrograms[@]}")
+# Run link programs and run setup functions
+for program in "${allPrograms[@]}"; do
+  if [[ -d ${program}/home ]]; then
+    print "Linking ${program}..."
+    stow -d ${program} -t .. home
   fi
 
-  ## Run link programs and run setup functions
-  for program in "${allPrograms[@]}"; do
-    if [[ -d ${program}/home ]]; then
-      print "Linking ${program}..."
-      stow -d ${program} -t .. home
-    fi
+  local setupPath=${program}/${program}.setup.zsh
 
-    local setupPath=${program}/${program}.setup.zsh
-
-    if [[ -f ${setupPath} ]]; then
-      print "Setup ${program}..."
-      source ${setupPath}
-    fi
-  done
-)
-
-
+  if [[ -f ${setupPath} ]]; then
+    print "Setup ${program}..."
+    source ${setupPath}
+  fi
+done
