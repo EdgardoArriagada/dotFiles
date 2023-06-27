@@ -44,7 +44,7 @@ return {
 			"pyright",
 			"cssls",
 			"emmet_ls",
-			--[[ "tsserver", ]]
+			"tsserver",
 			"tailwindcss",
 			"bashls",
 			"gopls",
