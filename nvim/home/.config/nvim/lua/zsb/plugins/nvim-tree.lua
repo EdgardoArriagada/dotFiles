@@ -1,14 +1,7 @@
-local function makeMultiMapHelper(mode, action, opts)
-	return function(keys)
-		for _, key in ipairs(keys) do
-			vim.keymap.set(mode, key, action, opts)
-		end
-	end
-end
 
 local function mappings(api, opts)
-	local closeNodeWith = makeMultiMapHelper("n", api.node.navigate.parent_close, opts("Close Directory"))
-	local editNodeWith = makeMultiMapHelper("n", api.node.open.edit, opts("Open Directory"))
+	local closeNodeWith = MakeMultiMapHelper("n", api.node.navigate.parent_close, opts("Close Directory"))
+	local editNodeWith = MakeMultiMapHelper("n", api.node.open.edit, opts("Open Directory"))
 
 	closeNodeWith({ "<BS>", "h" })
 
