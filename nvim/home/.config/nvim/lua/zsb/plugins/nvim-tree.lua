@@ -1,7 +1,7 @@
 
 local function mappings(api, opts)
-	local closeNodeWith = MakeMultiMapHelper("n", api.node.navigate.parent_close, opts("Close Directory"))
-	local editNodeWith = MakeMultiMapHelper("n", api.node.open.edit, opts("Open Directory"))
+	local closeNodeWith = MakeMultimap("n", api.node.navigate.parent_close, opts("Close Directory"))
+	local editNodeWith = MakeMultimap("n", api.node.open.edit, opts("Open Directory"))
 
 	closeNodeWith({ "<BS>", "h" })
 

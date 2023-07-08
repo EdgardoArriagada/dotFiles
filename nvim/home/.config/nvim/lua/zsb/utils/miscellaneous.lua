@@ -103,7 +103,7 @@ function getVisualSelectionInLine()
 	return string.sub(currentLine, startVisualPos, currPos)
 end
 
-function MakeMultiMapHelper(mode, action, opts)
+function MakeMultimap(mode, action, opts)
 	return function(keys)
 		for _, key in ipairs(keys) do
 			vim.keymap.set(mode, key, action, opts)
