@@ -13,7 +13,8 @@ return {
 					debug = false,
 					sources = {
 						-- javascript
-						formatting.prettierd,
+						--[[ formatting.prettierd, -- https://github.com/fsouza/prettierd#installation-guide ]]
+						formatting.prettier,
 						diagnostics.eslint_d,
 						-- rust
 						formatting.rustfmt,
