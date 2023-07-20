@@ -93,11 +93,13 @@ local structures = {
 local function loadHolder(selectionType, pairsHolder)
 	local pilesStorage = {} --  { [token] = { {left1, rigth1}, {left2, right2}, ... } }
 	local currentStructure = structures[selectionType]
+	local tokens = currentStructure.tokens
+	local loadToken = currentStructure.loadToken
 
 	local i = 1
 	for token in getCurrentLine():gmatch(".") do
-		if currentStructure.tokens[token] then
-			currentStructure.loadToken(pairsHolder, pilesStorage, token, i)
+		if tokens[token] then
+			loadToken(pairsHolder, pilesStorage, token, i)
 		end
 		i = i + 1
 	end
@@ -105,6 +107,8 @@ local function loadHolder(selectionType, pairsHolder)
 	-- unload
 	pilesStorage = nil
 	currentStructure = nil
+	tokens = nil
+	loadToken = nil
 end
 
 local function selectMoving(touple)
