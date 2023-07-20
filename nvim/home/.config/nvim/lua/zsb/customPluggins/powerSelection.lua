@@ -32,14 +32,14 @@ local function safePop(pile, element)
 	return nil
 end
 
-local enclosingLeftSet = {
+local enclosingLeftTokens = {
 	["("] = true,
 	["["] = true,
 	["{"] = true,
 	["<"] = true,
 }
 
-local rightToLeft = {
+local rightToLeftDictionary = {
 	[")"] = "(",
 	["]"] = "[",
 	["}"] = "{",
@@ -48,7 +48,7 @@ local rightToLeft = {
 
 local structures = {
 	enclosing = {
-		set = {
+		tokens = {
 			["("] = true,
 			[")"] = true,
 			["["] = true,
@@ -59,12 +59,12 @@ local structures = {
 			[">"] = true,
 		},
 		loadToken = function(pairsHolder, pilesStorage, token, i)
-			if enclosingLeftSet[token] then
+			if enclosingLeftTokens[token] then
 				safePush(pilesStorage, token, i)
 				return
 			end
 
-			local leftToken = rightToLeft[token]
+			local leftToken = rightToLeftDictionary[token]
 			local leftIndex = safePop(pilesStorage, leftToken)
 
 			if leftIndex ~= nil then
@@ -73,7 +73,7 @@ local structures = {
 		end,
 	},
 	quotes = {
-		set = {
+		tokens = {
 			["'"] = true,
 			['"'] = true,
 			["`"] = true,
@@ -91,13 +91,13 @@ local structures = {
 	},
 }
 
-local function loadHolder(ctx, pairsHolder)
+local function loadHolder(selectionType, pairsHolder)
 	local pilesStorage = {} --  { [token] = { {left1, rigth1}, {left2, right2}, ... } }
 	local currentLine = getCurrentLine()
 	local i = 1
-	for c in currentLine:gmatch(".") do
-		if structures[ctx].set[c] then
-			structures[ctx].loadToken(pairsHolder, pilesStorage, c, i)
+	for token in currentLine:gmatch(".") do
+		if structures[selectionType].tokens[token] then
+			structures[selectionType].loadToken(pairsHolder, pilesStorage, token, i)
 		end
 		i = i + 1
 	end
@@ -110,7 +110,7 @@ local function selectMoving(touple)
 	cursor(lineNumber, touple[2] - 1)
 end
 
-function BeginPowerSelection(ctx, _pairsHolder)
+function BeginPowerSelection(selectionType, _pairsHolder)
 	local currPos = col(".")
 
 	-- reuse pairsholder if given
@@ -119,7 +119,7 @@ function BeginPowerSelection(ctx, _pairsHolder)
 		pairsHolder = _pairsHolder
 	else
 		pairsHolder = {}
-		loadHolder(ctx, pairsHolder)
+		loadHolder(selectionType, pairsHolder)
 	end
 
 	-- try to select between
@@ -182,11 +182,11 @@ local function findLeftIndex(currRight, pairsHolder)
 	return false
 end
 
-function CyclePowerSelection(ctx)
+function CyclePowerSelection(selectionType)
 	local currRight = col(".") + 1
 
 	local pairsHolder = {} -- { {left1, rigth1}, {left2, rigth2}, ... }
-	loadHolder(ctx, pairsHolder)
+	loadHolder(selectionType, pairsHolder)
 
 	local currLeft = findLeftIndex(currRight, pairsHolder)
 	if currLeft == false then
@@ -210,7 +210,7 @@ function CyclePowerSelection(ctx)
 
 	-- go to beggining and start again
 	Execute("normal<Esc>^")
-	BeginPowerSelection(ctx, pairsHolder)
+	BeginPowerSelection(selectionType, pairsHolder)
 end
 
 -- Test string
