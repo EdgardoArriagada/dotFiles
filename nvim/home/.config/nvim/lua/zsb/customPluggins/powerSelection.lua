@@ -64,8 +64,7 @@ local structures = {
 				return
 			end
 
-			local leftToken = rightToLeftDictionary[token]
-			local leftIndex = safePop(pilesStorage, leftToken)
+			local leftIndex = safePop(pilesStorage, rightToLeftDictionary[token])
 
 			if leftIndex ~= nil then
 				table.insert(pairsHolder, { leftIndex, i }) -- where token = leftToken
@@ -93,14 +92,19 @@ local structures = {
 
 local function loadHolder(selectionType, pairsHolder)
 	local pilesStorage = {} --  { [token] = { {left1, rigth1}, {left2, right2}, ... } }
-	local currentLine = getCurrentLine()
+	local currentStructure = structures[selectionType]
+
 	local i = 1
-	for token in currentLine:gmatch(".") do
-		if structures[selectionType].tokens[token] then
-			structures[selectionType].loadToken(pairsHolder, pilesStorage, token, i)
+	for token in getCurrentLine():gmatch(".") do
+		if currentStructure.tokens[token] then
+			currentStructure.loadToken(pairsHolder, pilesStorage, token, i)
 		end
 		i = i + 1
 	end
+
+	-- unload
+	pilesStorage = nil
+	currentStructure = nil
 end
 
 local function selectMoving(touple)
@@ -124,6 +128,13 @@ function BeginPowerSelection(selectionType, _pairsHolder)
 
 	-- try to select between
 	local closestPair = false
+
+	local function unload()
+		pairsHolder = nil
+		_pairsHolder = nil
+		closestPair = nil
+	end
+
 	local minLeft = -1
 	for left, right in toupleArrayElement(pairsHolder) do
 		if left <= currPos and currPos <= right then
@@ -136,6 +147,7 @@ function BeginPowerSelection(selectionType, _pairsHolder)
 
 	if closestPair then
 		selectMoving(closestPair)
+		unload()
 		return
 	end
 
@@ -153,6 +165,7 @@ function BeginPowerSelection(selectionType, _pairsHolder)
 
 	if closestPair then
 		selectMoving(closestPair)
+		unload()
 		return
 	end
 
@@ -170,6 +183,7 @@ function BeginPowerSelection(selectionType, _pairsHolder)
 
 	if closestPair then
 		selectMoving(closestPair)
+		unload()
 	end
 end
 
@@ -205,6 +219,10 @@ function CyclePowerSelection(selectionType)
 
 	if nextPair then
 		selectMoving(nextPair)
+
+		-- unload
+		pairsHolder = nil
+		nextPair = nil
 		return
 	end
 
