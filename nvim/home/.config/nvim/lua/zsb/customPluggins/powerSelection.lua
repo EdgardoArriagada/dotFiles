@@ -187,8 +187,9 @@ function BeginPowerSelection(selectionType, _pairsHolder)
 
 	if closestPair then
 		selectMoving(closestPair)
-		unload()
 	end
+
+	unload()
 end
 
 local function findLeftIndex(currRight, pairsHolder)
