@@ -261,7 +261,6 @@ keymap.set({ "o", "v" }, "'", function()
 	if hasPowerSelection(QUOTES) then
 		CyclePowerSelection(QUOTES)
 	else
-		Execute("normal<Esc>")
 		BeginPowerSelection(QUOTES)
 	end
 end)
