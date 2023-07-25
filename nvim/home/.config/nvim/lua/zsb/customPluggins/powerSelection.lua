@@ -49,7 +49,7 @@ local enclosingStruct = {
 
 		local leftIndex = safePop(pilesStorage, rightToLeftDictionary[token])
 
-		if leftIndex ~= nil then
+		if leftIndex then
 			table.insert(pairsHolder, { leftIndex, i }) -- where token = leftToken
 		end
 	end,
@@ -64,7 +64,7 @@ local quotesStruct = {
 	loadToken = function(pairsHolder, pilesStorage, token, i)
 		local leftIndex = safePop(pilesStorage, token)
 
-		if leftIndex ~= nil then
+		if leftIndex then
 			table.insert(pairsHolder, { leftIndex, i })
 			return
 		end
