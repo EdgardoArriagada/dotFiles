@@ -8,9 +8,9 @@ end
 local function safePush(pile, element, i)
 	if pile[element] then
 		table.insert(pile[element], i)
-		return
+	else
+		pile[element] = { i }
 	end
-	pile[element] = { i }
 end
 
 local function safePop(pile, element)
@@ -54,7 +54,7 @@ local enclosingStruct = {
 		local leftIndex = safePop(pilesStorage, rightToLeftDictionary[token])
 
 		if leftIndex then
-			table.insert(pairsHolder, { leftIndex, i }) -- where token = leftToken
+			table.insert(pairsHolder, { leftIndex, i })
 		end
 	end,
 }
@@ -105,7 +105,8 @@ local function hasPowerSelection(selectionType)
 	end
 end
 
-local function loadHolder(selectionType, pairsHolder)
+local function createPairsHolder(selectionType)
+	local result = {}
 	local pilesStorage = {} --  { [token] = { {left1, rigth1}, {left2, right2}, ... } }
 	local currentStructure = structures[selectionType]
 	local tokens = currentStructure.tokens
@@ -114,7 +115,7 @@ local function loadHolder(selectionType, pairsHolder)
 	local i = 1
 	for token in getCurrentLine():gmatch(".") do
 		if tokens[token] then
-			loadToken(pairsHolder, pilesStorage, token, i)
+			loadToken(result, pilesStorage, token, i)
 		end
 		i = i + 1
 	end
@@ -124,6 +125,8 @@ local function loadHolder(selectionType, pairsHolder)
 	currentStructure = nil
 	tokens = nil
 	loadToken = nil
+
+	return result
 end
 
 local function selectMoving(touple)
@@ -133,24 +136,17 @@ local function selectMoving(touple)
 	cursor(lineNumber, touple[2] - 1)
 end
 
-function BeginPowerSelection(selectionType, _pairsHolder)
+function BeginPowerSelection(selectionType, recycledPairsHolder)
 	local currPos = col(".")
 
-	-- reuse pairsholder if given
-	local pairsHolder -- { {left1, rigth1}, {left2, rigth2}, ... }
-	if _pairsHolder then
-		pairsHolder = _pairsHolder
-	else
-		pairsHolder = {}
-		loadHolder(selectionType, pairsHolder)
-	end
+	local pairsHolder = recycledPairsHolder or createPairsHolder(selectionType)
 
 	-- try to select between
 	local closestPair = nil
 
 	local function unload()
 		pairsHolder = nil
-		_pairsHolder = nil
+		recycledPairsHolder = nil
 		closestPair = nil
 	end
 
@@ -218,8 +214,7 @@ end
 function CyclePowerSelection(selectionType)
 	local currRight = col(".") + 1
 
-	local pairsHolder = {} -- { {left1, rigth1}, {left2, rigth2}, ... }
-	loadHolder(selectionType, pairsHolder)
+	local pairsHolder = createPairsHolder(selectionType)
 
 	local currLeft = findLeftIndex(currRight, pairsHolder) or getStartOfVisualSelection()
 
