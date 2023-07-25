@@ -239,7 +239,7 @@ function CyclePowerSelection(selectionType)
 	end
 
 	-- go to beggining and start again
-	Execute("normal<Esc>^")
+	Execute("normal^")
 	BeginPowerSelection(selectionType, pairsHolder)
 end
 
