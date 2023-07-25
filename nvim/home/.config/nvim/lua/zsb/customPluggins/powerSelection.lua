@@ -1,6 +1,10 @@
 local ENCLOSING = 1
 local QUOTES = 2
 
+local getStartOfVisualSelection = function()
+	return vim.fn.getpos("v")[3]
+end
+
 local function safePush(pile, element, i)
 	if pile[element] then
 		table.insert(pile[element], i)
@@ -79,7 +83,7 @@ structures[QUOTES] = quotesStruct
 
 local function hasPowerSelection(selectionType)
 	local currentLine = getCurrentLine()
-	local startVisualPos = vim.fn.getpos("v")[3]
+	local startVisualPos = getStartOfVisualSelection()
 	local endVisualPos = col(".")
 
 	local leftToken = currentLine:sub(startVisualPos - 1, startVisualPos - 1)
@@ -216,10 +220,7 @@ function CyclePowerSelection(selectionType)
 	local pairsHolder = {} -- { {left1, rigth1}, {left2, rigth2}, ... }
 	loadHolder(selectionType, pairsHolder)
 
-	local currLeft = findLeftIndex(currRight, pairsHolder)
-	if not currLeft then
-		return
-	end
+	local currLeft = findLeftIndex(currRight, pairsHolder) or getStartOfVisualSelection()
 
 	-- find next occurrence
 	local nextPair = nil
@@ -266,5 +267,5 @@ end)
 
 -- Test string
 -- () => ({foo} ({bar}))
--- ${zsb:='zsb'} # "$foo" ` 'ba' " ` "
+-- ${zsb:='zsb'} # "$foo" ` 'ba' 'bi' " ` " '''
 -- ${zsb:='zsb'} () {} < > [ ] ` ' " '
