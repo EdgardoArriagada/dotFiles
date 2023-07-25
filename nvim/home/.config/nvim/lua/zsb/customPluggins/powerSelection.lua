@@ -82,16 +82,17 @@ local function hasPowerSelection(selectionType)
 	local startVisualPos = vim.fn.getpos("v")[3]
 	local endVisualPos = col(".")
 
-	local tokens = structures[selectionType].tokens
 	local leftToken = currentLine:sub(startVisualPos - 1, startVisualPos - 1)
 	local rightToken = currentLine:sub(endVisualPos + 1, endVisualPos + 1)
 
+	local hasLeftToken = structures[selectionType].tokens[leftToken]
+
 	if selectionType == QUOTES then
-		return tokens[leftToken] and leftToken == rightToken
+		return hasLeftToken and leftToken == rightToken
 	end
 
 	if selectionType == ENCLOSING then
-		return tokens[leftToken] and rightToLeftDictionary[rightToken] == leftToken
+		return hasLeftToken and rightToLeftDictionary[rightToken] == leftToken
 	end
 end
 
