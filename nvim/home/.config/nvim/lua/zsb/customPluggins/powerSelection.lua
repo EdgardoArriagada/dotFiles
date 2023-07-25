@@ -1,21 +1,5 @@
--- enclosing
-keymap.set("n", "W", function()
-	BeginPowerSelection("enclosing")
-end)
-
-keymap.set("v", "W", function()
-	CyclePowerSelection("enclosing")
-end)
-
--- quotes
-keymap.set({ "o", "v" }, "'", function()
-	Execute("normal<Esc>")
-	BeginPowerSelection("quotes")
-end)
-
-keymap.set({ "o", "v" }, "L", function()
-	CyclePowerSelection("quotes")
-end)
+local ENCLOSING = 1
+local QUOTES = 2
 
 local function safePush(pile, element, i)
 	if pile[element] then
@@ -46,49 +30,70 @@ local rightToLeftDictionary = {
 	[">"] = "<",
 }
 
-local structures = {
-	enclosing = {
-		tokens = {
-			["("] = true,
-			[")"] = true,
-			["["] = true,
-			["]"] = true,
-			["{"] = true,
-			["}"] = true,
-			["<"] = true,
-			[">"] = true,
-		},
-		loadToken = function(pairsHolder, pilesStorage, token, i)
-			if enclosingLeftTokens[token] then
-				safePush(pilesStorage, token, i)
-				return
-			end
-
-			local leftIndex = safePop(pilesStorage, rightToLeftDictionary[token])
-
-			if leftIndex ~= nil then
-				table.insert(pairsHolder, { leftIndex, i }) -- where token = leftToken
-			end
-		end,
+local enclosingStruct = {
+	tokens = {
+		["("] = true,
+		[")"] = true,
+		["["] = true,
+		["]"] = true,
+		["{"] = true,
+		["}"] = true,
+		["<"] = true,
+		[">"] = true,
 	},
-	quotes = {
-		tokens = {
-			["'"] = true,
-			['"'] = true,
-			["`"] = true,
-		},
-		loadToken = function(pairsHolder, pilesStorage, token, i)
-			local leftIndex = safePop(pilesStorage, token)
-
-			if leftIndex ~= nil then
-				table.insert(pairsHolder, { leftIndex, i })
-				return
-			end
-
+	loadToken = function(pairsHolder, pilesStorage, token, i)
+		if enclosingLeftTokens[token] then
 			safePush(pilesStorage, token, i)
-		end,
-	},
+			return
+		end
+
+		local leftIndex = safePop(pilesStorage, rightToLeftDictionary[token])
+
+		if leftIndex ~= nil then
+			table.insert(pairsHolder, { leftIndex, i }) -- where token = leftToken
+		end
+	end,
 }
+
+local quotesStruct = {
+	tokens = {
+		["'"] = true,
+		['"'] = true,
+		["`"] = true,
+	},
+	loadToken = function(pairsHolder, pilesStorage, token, i)
+		local leftIndex = safePop(pilesStorage, token)
+
+		if leftIndex ~= nil then
+			table.insert(pairsHolder, { leftIndex, i })
+			return
+		end
+
+		safePush(pilesStorage, token, i)
+	end,
+}
+
+local structures = {}
+structures[ENCLOSING] = enclosingStruct
+structures[QUOTES] = quotesStruct
+
+local function hasPowerSelection(selectionType)
+	local currentLine = getCurrentLine()
+	local startVisualPos = vim.fn.getpos("v")[3]
+	local endVisualPos = col(".")
+
+	local tokens = structures[selectionType].tokens
+	local leftToken = currentLine:sub(startVisualPos - 1, startVisualPos - 1)
+	local rightToken = currentLine:sub(endVisualPos + 1, endVisualPos + 1)
+
+	if selectionType == QUOTES then
+		return tokens[leftToken] and leftToken == rightToken
+	end
+
+	if selectionType == ENCLOSING then
+		return tokens[leftToken] and rightToLeftDictionary[rightToken] == leftToken
+	end
+end
 
 local function loadHolder(selectionType, pairsHolder)
 	local pilesStorage = {} --  { [token] = { {left1, rigth1}, {left2, right2}, ... } }
@@ -235,6 +240,25 @@ function CyclePowerSelection(selectionType)
 	Execute("normal<Esc>^")
 	BeginPowerSelection(selectionType, pairsHolder)
 end
+
+-- enclosing
+keymap.set("n", "W", function()
+	BeginPowerSelection(ENCLOSING)
+end)
+
+keymap.set("v", "W", function()
+	CyclePowerSelection(ENCLOSING)
+end)
+
+-- quotes
+keymap.set({ "o", "v" }, "'", function()
+	if hasPowerSelection(QUOTES) then
+		CyclePowerSelection(QUOTES)
+	else
+		Execute("normal<Esc>")
+		BeginPowerSelection(QUOTES)
+	end
+end)
 
 -- Test string
 -- () => ({foo} ({bar}))
