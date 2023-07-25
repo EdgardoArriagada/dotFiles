@@ -137,7 +137,7 @@ function BeginPowerSelection(selectionType, _pairsHolder)
 	end
 
 	-- try to select between
-	local closestPair = false
+	local closestPair = nil
 
 	local function unload()
 		pairsHolder = nil
@@ -162,7 +162,7 @@ function BeginPowerSelection(selectionType, _pairsHolder)
 	end
 
 	-- try to select forward
-	closestPair = false
+	closestPair = nil
 	minLeft = 1 / 0 -- inf
 	for left, right in toupleArrayElement(pairsHolder) do
 		if currPos < left and currPos < right then
@@ -180,7 +180,7 @@ function BeginPowerSelection(selectionType, _pairsHolder)
 	end
 
 	-- try to select backwards
-	closestPair = false
+	closestPair = nil
 	local maxRight = -1
 	for left, right in toupleArrayElement(pairsHolder) do
 		if left < currPos and right < currPos then
@@ -204,7 +204,6 @@ local function findLeftIndex(currRight, pairsHolder)
 			return left
 		end
 	end
-	return false
 end
 
 function CyclePowerSelection(selectionType)
@@ -214,12 +213,12 @@ function CyclePowerSelection(selectionType)
 	loadHolder(selectionType, pairsHolder)
 
 	local currLeft = findLeftIndex(currRight, pairsHolder)
-	if currLeft == false then
+	if not currLeft then
 		return
 	end
 
 	-- find next occurrence
-	local nextPair = false
+	local nextPair = nil
 	local minLeft = 1 / 0 -- inf
 	for left, right in toupleArrayElement(pairsHolder) do
 		if minLeft > left and left > currLeft then
