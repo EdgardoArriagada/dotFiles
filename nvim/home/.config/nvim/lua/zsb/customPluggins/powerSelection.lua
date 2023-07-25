@@ -106,8 +106,9 @@ local function hasPowerSelection(selectionType)
 end
 
 local function createPairsHolder(selectionType)
-	local result = {}
+	local result = {} -- { {left1, rigth1}, {left2, rigth2}, ... }
 	local pilesStorage = {} --  { [token] = { {left1, rigth1}, {left2, right2}, ... } }
+
 	local currentStructure = structures[selectionType]
 	local tokens = currentStructure.tokens
 	local loadToken = currentStructure.loadToken
@@ -141,7 +142,6 @@ function BeginPowerSelection(selectionType, recycledPairsHolder)
 
 	local pairsHolder = recycledPairsHolder or createPairsHolder(selectionType)
 
-	-- try to select between
 	local closestPair = nil
 
 	local function unload()
@@ -150,6 +150,7 @@ function BeginPowerSelection(selectionType, recycledPairsHolder)
 		closestPair = nil
 	end
 
+	-- try to select between
 	local minLeft = -1
 	for left, right in toupleArrayElement(pairsHolder) do
 		if left <= currPos and currPos <= right then
