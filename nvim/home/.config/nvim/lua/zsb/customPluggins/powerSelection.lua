@@ -84,7 +84,6 @@ structures[QUOTES] = quotesStruct
 local function hasPowerSelection(selectionType)
 	local currentLine = getCurrentLine()
 	local startVisualPos = getStartOfVisualSelection()
-	local endVisualPos = col(".")
 
 	local leftToken = currentLine:sub(startVisualPos - 1, startVisualPos - 1)
 
@@ -92,6 +91,8 @@ local function hasPowerSelection(selectionType)
 	if not structures[selectionType].tokens[leftToken] then
 		return false
 	end
+
+	local endVisualPos = col(".")
 
 	local rightToken = currentLine:sub(endVisualPos + 1, endVisualPos + 1)
 
