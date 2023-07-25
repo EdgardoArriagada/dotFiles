@@ -87,7 +87,7 @@ local function hasPowerSelection(selectionType)
 
 	local leftToken = currentLine:sub(startVisualPos - 1, startVisualPos - 1)
 
-	-- does not has left token
+	-- if does not has left token
 	if not structures[selectionType].tokens[leftToken] then
 		return false
 	end
