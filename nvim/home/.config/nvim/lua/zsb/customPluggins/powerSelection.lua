@@ -83,16 +83,20 @@ local function hasPowerSelection(selectionType)
 	local endVisualPos = col(".")
 
 	local leftToken = currentLine:sub(startVisualPos - 1, startVisualPos - 1)
+
+	-- does not has left token
+	if not structures[selectionType].tokens[leftToken] then
+		return false
+	end
+
 	local rightToken = currentLine:sub(endVisualPos + 1, endVisualPos + 1)
 
-	local hasLeftToken = structures[selectionType].tokens[leftToken]
-
 	if selectionType == QUOTES then
-		return hasLeftToken and leftToken == rightToken
+		return leftToken == rightToken
 	end
 
 	if selectionType == ENCLOSING then
-		return hasLeftToken and rightToLeftDictionary[rightToken] == leftToken
+		return rightToLeftDictionary[rightToken] == leftToken
 	end
 end
 
