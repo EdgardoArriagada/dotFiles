@@ -137,8 +137,8 @@ local function selectMoving(touple)
 	cursor(lineNumber, touple[2] - 1)
 end
 
-function BeginPowerSelection(selectionType, recycledPairsHolder)
-	local currPos = col(".")
+function BeginPowerSelection(selectionType, recycledPairsHolder, givenPos)
+	local currPos = givenPos or col(".")
 
 	local pairsHolder = recycledPairsHolder or createPairsHolder(selectionType)
 
@@ -238,9 +238,7 @@ function CyclePowerSelection(selectionType)
 		return
 	end
 
-	-- go to beggining and start again
-	cursor(line("."), 1)
-	BeginPowerSelection(selectionType, pairsHolder)
+	BeginPowerSelection(selectionType, pairsHolder, 0)
 end
 
 -- enclosing
