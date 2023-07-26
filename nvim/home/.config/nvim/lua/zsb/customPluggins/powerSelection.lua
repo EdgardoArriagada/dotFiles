@@ -239,7 +239,7 @@ function CyclePowerSelection(selectionType)
 	end
 
 	-- go to beggining and start again
-	Execute("normal^")
+	cursor(line("."), 1)
 	BeginPowerSelection(selectionType, pairsHolder)
 end
 
