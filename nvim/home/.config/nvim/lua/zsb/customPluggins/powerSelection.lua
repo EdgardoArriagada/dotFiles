@@ -1,6 +1,8 @@
 local ENCLOSING = 1
 local QUOTES = 2
 
+local MIN_NEOVIM_COL = 1
+
 local getStartOfVisualSelection = function()
 	return vim.fn.getpos("v")[3]
 end
@@ -238,7 +240,7 @@ function CyclePowerSelection(selectionType)
 		return
 	end
 
-	BeginPowerSelection(selectionType, pairsHolder, 0)
+	BeginPowerSelection(selectionType, pairsHolder, MIN_NEOVIM_COL)
 end
 
 -- enclosing
