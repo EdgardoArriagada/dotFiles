@@ -139,9 +139,8 @@ local function selectMoving(touple)
 	cursor(lineNumber, touple[2] - 1)
 end
 
-function BeginPowerSelection(selectionType, recycledPairsHolder, givenPos)
-	local currPos = givenPos or col(".")
-
+function BeginPowerSelection(selectionType, recycledPairsHolder, givenCol)
+	local currCol = givenCol or col(".")
 	local pairsHolder = recycledPairsHolder or createPairsHolder(selectionType)
 
 	local closestPair = nil
@@ -155,7 +154,7 @@ function BeginPowerSelection(selectionType, recycledPairsHolder, givenPos)
 	-- try to select between
 	local minLeft = -1
 	for left, right in toupleArrayElement(pairsHolder) do
-		if left <= currPos and currPos <= right then
+		if left <= currCol and currCol <= right then
 			if minLeft < left then
 				minLeft = left
 				closestPair = { left, right }
@@ -173,7 +172,7 @@ function BeginPowerSelection(selectionType, recycledPairsHolder, givenPos)
 	closestPair = nil
 	minLeft = 1 / 0 -- inf
 	for left, right in toupleArrayElement(pairsHolder) do
-		if currPos < left and currPos < right then
+		if currCol < left and currCol < right then
 			if left < minLeft then
 				minLeft = left
 				closestPair = { left, right }
@@ -191,7 +190,7 @@ function BeginPowerSelection(selectionType, recycledPairsHolder, givenPos)
 	closestPair = nil
 	local maxRight = -1
 	for left, right in toupleArrayElement(pairsHolder) do
-		if left < currPos and right < currPos then
+		if left < currCol and right < currCol then
 			if maxRight < right then
 				maxRight = right
 				closestPair = { left, right }
@@ -215,17 +214,17 @@ local function findLeftIndex(currRight, pairsHolder)
 end
 
 function CyclePowerSelection(selectionType)
-	local currRight = col(".") + 1
+	local currRightCol = col(".") + 1
 
 	local pairsHolder = createPairsHolder(selectionType)
 
-	local currLeft = findLeftIndex(currRight, pairsHolder) or getStartOfVisualSelection()
+	local currLeftCol = findLeftIndex(currRightCol, pairsHolder) or getStartOfVisualSelection()
 
 	-- find next occurrence
 	local nextPair = nil
 	local minLeft = 1 / 0 -- inf
 	for left, right in toupleArrayElement(pairsHolder) do
-		if minLeft > left and left > currLeft then
+		if minLeft > left and left > currLeftCol then
 			minLeft = left
 			nextPair = { left, right }
 		end
