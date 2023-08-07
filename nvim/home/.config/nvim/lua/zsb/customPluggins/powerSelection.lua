@@ -79,30 +79,31 @@ local quotesStruct = {
 	end,
 }
 
-local structures = {}
-structures[ENCLOSING] = enclosingStruct
-structures[QUOTES] = quotesStruct
-
 local function hasPowerSelection(selectionType)
 	local currentLine = getCurrentLine()
 	local startVisualPos = getStartOfVisualSelection()
 
 	local leftToken = currentLine:sub(startVisualPos - 1, startVisualPos - 1)
+	local isQuoteSelection = selectionType == QUOTES
 
 	-- if does not has left token
-	if not structures[selectionType].tokens[leftToken] then
-		return false
+	if isQuoteSelection then
+		if not quotesStruct.tokens[leftToken] then
+			return false
+		end
+	else
+		if not enclosingStruct.tokens[leftToken] then
+			return false
+		end
 	end
 
 	local endVisualPos = col(".")
 
 	local rightToken = currentLine:sub(endVisualPos + 1, endVisualPos + 1)
 
-	if selectionType == QUOTES then
+	if isQuoteSelection then
 		return leftToken == rightToken
-	end
-
-	if selectionType == ENCLOSING then
+	else -- encosing
 		return rightToLeftDictionary[rightToken] == leftToken
 	end
 end
@@ -111,7 +112,8 @@ local function createPairsHolder(selectionType)
 	local result = {} -- { {left1, rigth1}, {left2, rigth2}, ... }
 	local pilesStorage = {} --  { [token] = { {left1, rigth1}, {left2, right2}, ... } }
 
-	local currentStructure = structures[selectionType]
+	local currentStructure = selectionType == ENCLOSING and enclosingStruct or quotesStruct
+
 	local tokens = currentStructure.tokens
 	local loadToken = currentStructure.loadToken
 
