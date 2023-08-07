@@ -21,7 +21,8 @@ end
 
 local cmd2 = { "command", "ctrl" }
 
--- for more apps, see /Applications
+-- for more apps, run
+-- $ ls /Applications
 hs.hotkey.bind({}, "§", toggleApp("Alacritty"))
 hs.hotkey.bind(cmd2, "1", weakFocus("Slack"))
 hs.hotkey.bind(cmd2, "2", focusApp("Google Chrome"))
