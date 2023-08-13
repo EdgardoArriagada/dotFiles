@@ -135,6 +135,24 @@ vim.api.nvim_create_user_command("T", function()
 	vim.cmd("copen")
 end, {})
 
+-- Reload local plugin
+vim.api.nvim_create_user_command("Reload", function(opts)
+	local plugin = opts.args
+
+	if not plugin then
+		print("No plugin specified")
+		return
+	end
+
+	print("Reloading " .. plugin)
+
+	if package.loaded[plugin] then
+		package.loaded[plugin] = nil
+	end
+
+	P(require(plugin))
+end, { nargs = 1 })
+
 -- Search and replace matches for highlighted text
 -- pcalls prevent C-c from crashing
 keymap.set("v", "<C-r>", function()

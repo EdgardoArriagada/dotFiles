@@ -110,3 +110,8 @@ function MakeMultimap(mode, action, opts)
 		end
 	end
 end
+
+-- usefull alias to print anythin even tables
+function P(input)
+	print(vim.inspect(input))
+end
