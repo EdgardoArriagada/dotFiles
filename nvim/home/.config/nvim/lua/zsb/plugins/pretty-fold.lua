@@ -14,7 +14,7 @@ return {
 			return (foldLevel * 2) - 2
 		end
 
-		hpcall(require, "pretty-fold", {
+		Hpcall(require, "pretty-fold", {
 			onOk = function(prettyFold)
 				prettyFold.setup({
 					keep_indentation = false,

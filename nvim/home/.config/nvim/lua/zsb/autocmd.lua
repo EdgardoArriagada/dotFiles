@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
 		vim.opt.foldmethod = "syntax"
 		vim.schedule(function()
-			hpcall(Execute, "normal!zA", { onErr = 'failed to execute ":normal!zA"' })
+			Hpcall(Execute, "normal!zA", { onErr = 'failed to execute ":normal!zA"' })
 		end)
 	end,
 	group = group,

@@ -2,7 +2,7 @@ return {
 	"jose-elias-alvarez/null-ls.nvim",
 	dependencies = { "neovim/nvim-lspconfig", "williamboman/mason.nvim", "jay-babu/mason-null-ls.nvim" },
 	config = function()
-		hpcall(require, "null-ls", {
+		Hpcall(require, "null-ls", {
 			onOk = function(null_ls)
 				-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 				local formatting = null_ls.builtins.formatting

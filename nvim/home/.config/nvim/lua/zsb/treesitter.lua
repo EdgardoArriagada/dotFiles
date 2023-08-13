@@ -1,6 +1,6 @@
 --[[ if vim.g.vscode then return end ]]
 
-hpcall(require, "nvim-treesitter.configs", {
+Hpcall(require, "nvim-treesitter.configs", {
 	onOk = function(configs)
 		configs.setup({
 			ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages

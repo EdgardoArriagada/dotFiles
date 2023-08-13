@@ -122,7 +122,7 @@ vim.api.nvim_create_user_command("Json", function()
 end, {})
 
 vim.api.nvim_create_user_command("Pjson", function()
-	hpcall(Execute, "%!jq .", { onErr = 'failed to execute ":%!jq .", make sure you have "jq" is installed' })
+	Hpcall(Execute, "%!jq .", { onErr = 'failed to execute ":%!jq .", make sure you have "jq" is installed' })
 end, {})
 
 -- Toggle quickfix window

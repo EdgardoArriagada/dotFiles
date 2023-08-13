@@ -1,7 +1,7 @@
 return {
 	"EdgardoArriagada/vaquero-shoot.nvim",
 	config = function()
-		hpcall(require, "vaquero-shoot", {
+		Hpcall(require, "vaquero-shoot", {
 			onOk = function(vqs)
 				-- enclosing
 				keymap.set("n", "W", function()

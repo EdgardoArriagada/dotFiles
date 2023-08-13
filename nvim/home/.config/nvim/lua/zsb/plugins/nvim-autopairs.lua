@@ -2,7 +2,7 @@ return {
 	"windwp/nvim-autopairs",
 	event = "InsertEnter",
 	config = function()
-		hpcall(require, "nvim-autopairs", {
+		Hpcall(require, "nvim-autopairs", {
 			onOk = function(npairs)
 				npairs.setup({
 					check_ts = true,
@@ -28,9 +28,9 @@ return {
 			onErr = "failed to setup nvim-autopairs",
 		})
 
-		hpcall(require, "nvim-autopairs.completion.cmp", {
+		Hpcall(require, "nvim-autopairs.completion.cmp", {
 			onOk = function(cmp_autopairs)
-				hpcall(require, "cmp", {
+				Hpcall(require, "cmp", {
 					onOk = function(cmp)
 						cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 					end,

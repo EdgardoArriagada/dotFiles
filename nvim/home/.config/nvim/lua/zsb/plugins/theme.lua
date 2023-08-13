@@ -1,7 +1,7 @@
 local function setTheme(theme)
 	local colorCmd = "colorscheme " .. theme
 
-	hpcall(vim.cmd, colorCmd, {
+	Hpcall(vim.cmd, colorCmd, {
 		onErr = function()
 			vim.notify("error loading " .. colorCmd)
 			vim.cmd([[colorscheme default]])

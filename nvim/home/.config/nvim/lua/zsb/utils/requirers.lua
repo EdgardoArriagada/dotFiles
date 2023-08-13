@@ -2,7 +2,7 @@
 -- @param handlers: table with:
 -- onOk: function(result of pcall) | string | nothing
 -- onErr: function(result of pcall) | string | nothing
-function hpcall(a, b, handlers)
+function Hpcall(a, b, handlers)
 	local ok, thing = pcall(a, b)
 
 	local action = ok and "onOk" or "onErr"

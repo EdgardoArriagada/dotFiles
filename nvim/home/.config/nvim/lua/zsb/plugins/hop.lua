@@ -3,7 +3,7 @@ return {
 	branch = "v1", -- optional but strongly recommended
 	keys = "s",
 	config = function()
-		hpcall(require, "hop", {
+		Hpcall(require, "hop", {
 			onOk = function(hop)
 				hop.setup({ keys = "etovxqpdygfblzhckisuran" })
 			end,
