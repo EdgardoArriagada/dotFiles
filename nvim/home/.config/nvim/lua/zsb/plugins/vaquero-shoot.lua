@@ -1,7 +1,5 @@
 return {
 	"EdgardoArriagada/vaquero-shoot.nvim",
-	dir = "~/projects/per/vaquero-shoot.nvim",
-
 	config = function()
 		hpcall(require, "vaquero-shoot", {
 			onOk = function(vqs)
