@@ -5,9 +5,7 @@
 function Hpcall(a, b, handlers)
 	local ok, thing = pcall(a, b)
 
-	local action = ok and "onOk" or "onErr"
-
-	local currAction = handlers[action]
+	local currAction = handlers[ok and "onOk" or "onErr"]
 	local actionType = type(currAction)
 
 	if actionType == "function" then
