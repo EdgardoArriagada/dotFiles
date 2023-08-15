@@ -9,7 +9,7 @@ function Hpcall(a, b, handlers)
 	local handlerType = type(currHandler)
 
 	if handlerType == "function" then
-		currHandler(thing, ok)
+		currHandler(thing)
 	elseif handlerType == "string" then
 		vim.notify(currHandler)
 	end
