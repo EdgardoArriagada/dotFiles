@@ -5,12 +5,12 @@
 function Hpcall(a, b, handlers)
 	local ok, thing = pcall(a, b)
 
-	local currAction = handlers[ok and "onOk" or "onErr"]
-	local actionType = type(currAction)
+	local currHandler = handlers[ok and "onOk" or "onErr"]
+	local handlerType = type(currHandler)
 
-	if actionType == "function" then
-		currAction(thing, ok)
-	elseif actionType == "string" then
-		vim.notify(currAction)
+	if handlerType == "function" then
+		currHandler(thing, ok)
+	elseif handlerType == "string" then
+		vim.notify(currHandler)
 	end
 end
