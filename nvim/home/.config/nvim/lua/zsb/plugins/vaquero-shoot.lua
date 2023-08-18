@@ -14,11 +14,7 @@ return {
 
 				-- quotes
 				keymap.set({ "o", "v" }, "'", function()
-					if vqs.hasQuotesSelection() then
-						vqs.cycleQuotesSelection()
-					else
-						vqs.beginQuotesSelection()
-					end
+					vqs.quotesSelection()
 				end)
 			end,
 			onErr = "Failed to load vaquero-shoot.nvim",

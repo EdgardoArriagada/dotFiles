@@ -38,7 +38,7 @@
   "refactoring.nvim": { "branch": "master", "commit": "5359e74291164fcaeaaecdea9ba753ad54eb53d0" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "9bc8237565ded606e6c366a71c64c0af25cd7a50" },
   "telescope.nvim": { "branch": "master", "commit": "2d92125620417fbea82ec30303823e3cd69e90e8" },
-  "vaquero-shoot.nvim": { "branch": "main", "commit": "e754870b998171e00f1177f7570f5f71434f6bc5" },
+  "vaquero-shoot.nvim": { "branch": "main", "commit": "0c3d68eb51b7d3c2b497065922e4d5133e40053c" },
   "vim-bbye": { "branch": "master", "commit": "25ef93ac5a87526111f43e5110675032dbcacf56" },
   "vim-dadbod": { "branch": "master", "commit": "7d80bbd11c407a09e0f7b869c38f3dec3902805f" },
   "vim-dadbod-completion": { "branch": "master", "commit": "fc7321a17f4c55db11fae89a884ddf4724020bae" },
