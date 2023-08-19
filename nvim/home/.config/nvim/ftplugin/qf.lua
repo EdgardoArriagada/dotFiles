@@ -22,6 +22,15 @@ local function cycleAndFocusBack(direction)
 	end
 end
 
+local function qfClose()
+	vim.cmd("cclose")
+end
+
+local function qfEnter()
+	vim.cmd("cc")
+	vim.cmd("cclose")
+end
+
 local opts = { buffer = true }
 
 keymap.set("n", "<tab>", cycleAndFocusBack(NEXT), opts)
@@ -30,7 +39,5 @@ keymap.set("n", "j", cycleAndFocusBack(NEXT), opts)
 keymap.set("n", "<s-tab>", cycleAndFocusBack(PREV), opts)
 keymap.set("n", "k", cycleAndFocusBack(PREV), opts)
 
-keymap.set("n", "<cr>", function()
-	vim.cmd("cc")
-	vim.cmd("cclose")
-end, opts)
+keymap.set("n", "<Cr>", qfEnter, opts)
+keymap.set("n", "<C-c>", qfClose, opts)
