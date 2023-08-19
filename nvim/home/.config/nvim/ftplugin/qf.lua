@@ -3,9 +3,8 @@ local PREV = -1
 
 local function cycleQflist(direction)
 	local qflen = #vim.fn.getqflist()
-	local currIdx = vim.fn.line(".")
 
-	local nextIdx = currIdx + direction
+	local nextIdx = vim.fn.line(".") + direction
 
 	if nextIdx < 1 then
 		return vim.cmd("clast")
