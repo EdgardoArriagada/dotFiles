@@ -5,12 +5,12 @@ local function cycleQflist(direction)
 	local qflen = #vim.fn.getqflist()
 	local currIdx = vim.fn.line(".")
 
-	local nextIdx = direction == NEXT and currIdx + 1 or currIdx - 1
+	local nextIdx = currIdx + direction
 
 	if nextIdx < 1 then
-		nextIdx = qflen
+		return vim.cmd("clast")
 	elseif nextIdx > qflen then
-		nextIdx = 1
+		return vim.cmd("cfirst")
 	end
 
 	vim.cmd("cc " .. nextIdx)
