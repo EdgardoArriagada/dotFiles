@@ -3,9 +3,9 @@ local PREV = -1
 
 local function cycleQflist(direction)
 	local qflen = #vim.fn.getqflist()
-	local currIndex = vim.fn.line(".")
+	local currIdx = vim.fn.line(".")
 
-	local nextIdx = direction == NEXT and currIndex + 1 or currIndex - 1
+	local nextIdx = direction == NEXT and currIdx + 1 or currIdx - 1
 
 	if nextIdx < 1 then
 		nextIdx = qflen
