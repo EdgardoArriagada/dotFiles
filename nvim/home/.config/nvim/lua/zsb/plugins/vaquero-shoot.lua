@@ -4,16 +4,16 @@ return {
 		Hpcall(require, "vaquero-shoot", {
 			onOk = function(vqs)
 				-- enclosing
-				keymap.set("n", "W", function()
+				kset("n", "W", function()
 					vqs.beginEnclosingSelection()
 				end)
 
-				keymap.set("v", "W", function()
+				kset("v", "W", function()
 					vqs.cycleEnclosingSelection()
 				end)
 
 				-- quotes
-				keymap.set({ "o", "v" }, "'", function()
+				kset({ "o", "v" }, "'", function()
 					vqs.quotesSelection()
 				end)
 			end,

@@ -1,4 +1,4 @@
-keymap.set("v", "ii", function()
+kset("v", "ii", function()
 	VisualInIndent()
 end, { noremap = true, silent = true })
 

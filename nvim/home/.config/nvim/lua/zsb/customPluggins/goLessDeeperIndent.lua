@@ -1,8 +1,8 @@
-keymap.set({ "o", "n", "v" }, "<bs>", function()
+kset({ "o", "n", "v" }, "<bs>", function()
 	GoLessDeeperIndent("k")
 end, { silent = true })
 
-keymap.set({ "o", "n", "v" }, "<enter>", function()
+kset({ "o", "n", "v" }, "<enter>", function()
 	GoLessDeeperIndent("j")
 end, { silent = true })
 

@@ -4,99 +4,99 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Shorcuts
-keymap.set("o", "w", "iw")
-keymap.set("o", "W", "iW")
+kset("o", "w", "iw")
+kset("o", "W", "iW")
 --
--- keymap.set("v", "W", "iw") -- disabled because it is used in a plugin
-keymap.set("v", "w", "iw")
-keymap.set("v", "R", "loh")
+-- kset("v", "W", "iw") -- disabled because it is used in a plugin
+kset("v", "w", "iw")
+kset("v", "R", "loh")
 --
 
-keymap.set("n", "S", "v$<left><left>")
-keymap.set("n", "+", "A <esc>p")
+kset("n", "S", "v$<left><left>")
+kset("n", "+", "A <esc>p")
 -- Swapping: delete some text, then visual select other text, execute the maped
 -- key and the swap is made
-keymap.set("v", "+", "<Esc>`.``gvP``P")
+kset("v", "+", "<Esc>`.``gvP``P")
 --Duplicate selection
-keymap.set("v", "Z", '"xy\'>"xpO<esc>')
+kset("v", "Z", '"xy\'>"xpO<esc>')
 
 -- You can trigger 'vap' 'vay' 'vad'
-keymap.set("v", "aa", "$<left>")
-keymap.set("v", "ay", "$<left>y")
-keymap.set("v", "ad", "$<left>d")
-keymap.set("v", "as", "$<left>s")
-keymap.set("v", "ac", "$<left>c")
+kset("v", "aa", "$<left>")
+kset("v", "ay", "$<left>y")
+kset("v", "ad", "$<left>d")
+kset("v", "as", "$<left>s")
+kset("v", "ac", "$<left>c")
 -- (special case: avoid yanking)
-keymap.set("v", "ap", "'$hpgv\"'.v:register.'y`>'", { expr = true })
+kset("v", "ap", "'$hpgv\"'.v:register.'y`>'", { expr = true })
 
 -- Paste many times over selected text without yanking it
-keymap.set("x", "p", "'pgv\"'.v:register.'y`>'", { expr = true })
-keymap.set("x", "P", "'Pgv\"'.v:register.'y`>'", { expr = true })
+kset("x", "p", "'pgv\"'.v:register.'y`>'", { expr = true })
+kset("x", "P", "'Pgv\"'.v:register.'y`>'", { expr = true })
 
 -- Go and trim visual selection
-keymap.set("v", "gt", ":s/\\s\\+/ /g<CR>")
+kset("v", "gt", ":s/\\s\\+/ /g<CR>")
 
-keymap.set("n", "<C-w>m", "<C-w>100>")
+kset("n", "<C-w>m", "<C-w>100>")
 
-keymap.set("n", "n", "nzzzv")
-keymap.set("n", "N", "Nzzzv")
-keymap.set("n", "J", "mzJ`z")
+kset("n", "n", "nzzzv")
+kset("n", "N", "Nzzzv")
+kset("n", "J", "mzJ`z")
 
 -- Undo checkpoints
-keymap.set("i", ",", ",<c-g>u")
-keymap.set("i", ".", ".<c-g>u")
-keymap.set("i", "!", "!<c-g>u")
-keymap.set("i", "[", "[<c-g>u")
-keymap.set("i", "]", "]<c-g>u")
-keymap.set("i", "{", "{<c-g>u")
-keymap.set("i", "}", "}<c-g>u")
-keymap.set("i", '"', '"<c-g>u')
-keymap.set("i", "'", "'<c-g>u")
-keymap.set("i", "<", "<<c-g>u")
-keymap.set("i", ">", "><c-g>u")
-keymap.set("i", "<Space>", "<Space><c-g>u")
+kset("i", ",", ",<c-g>u")
+kset("i", ".", ".<c-g>u")
+kset("i", "!", "!<c-g>u")
+kset("i", "[", "[<c-g>u")
+kset("i", "]", "]<c-g>u")
+kset("i", "{", "{<c-g>u")
+kset("i", "}", "}<c-g>u")
+kset("i", '"', '"<c-g>u')
+kset("i", "'", "'<c-g>u")
+kset("i", "<", "<<c-g>u")
+kset("i", ">", "><c-g>u")
+kset("i", "<Space>", "<Space><c-g>u")
 
 -- set command line in tcsh-style
-keymap.set("c", "<C-a>", "<Home>")
-keymap.set("c", "<C-e>", "<End>")
-keymap.set("c", "<C-b>", "<Left>")
-keymap.set("c", "<C-f>", "<Right>")
-keymap.set("c", "<C-d>", "<Del>")
-keymap.set("c", "<C-h>", "<BS>")
-keymap.set("c", "<C-k>", "<C-u>")
-keymap.set("c", "<C-w>", "<C-u>")
-keymap.set("c", "<C-y>", "<C-r>+")
-keymap.set("c", "<C-p>", "<Up>")
-keymap.set("c", "<C-n>", "<Down>")
-keymap.set("c", "<C-t>", "<C-r><C-w>")
-keymap.set("c", "<C-j>", "<CR>")
-keymap.set("c", "<C-m>", "<CR>")
+kset("c", "<C-a>", "<Home>")
+kset("c", "<C-e>", "<End>")
+kset("c", "<C-b>", "<Left>")
+kset("c", "<C-f>", "<Right>")
+kset("c", "<C-d>", "<Del>")
+kset("c", "<C-h>", "<BS>")
+kset("c", "<C-k>", "<C-u>")
+kset("c", "<C-w>", "<C-u>")
+kset("c", "<C-y>", "<C-r>+")
+kset("c", "<C-p>", "<Up>")
+kset("c", "<C-n>", "<Down>")
+kset("c", "<C-t>", "<C-r><C-w>")
+kset("c", "<C-j>", "<CR>")
+kset("c", "<C-m>", "<CR>")
 -- it is pressing <enter> instead of <esc> for some reason
---[[ keymap.set("c", "<C-c>", "<Esc>") ]]
-keymap.set("c", "<C-v>", "<C-r>+")
+--[[ kset("c", "<C-c>", "<Esc>") ]]
+kset("c", "<C-v>", "<C-r>+")
 
 -- Quit
-keymap.set("n", "<C-q>", ":q")
-keymap.set("c", "<C-q>", "<C-u>q") -- redraw ':q'
+kset("n", "<C-q>", ":q")
+kset("c", "<C-q>", "<C-u>q") -- redraw ':q'
 
 -- Save
-keymap.set("n", "<C-s>", ":update<CR>", { silent = true })
-keymap.set("v", "<C-s>", "<esc>:update<CR>", { silent = true })
-keymap.set("i", "<C-s>", "<esc>:update<CR>", { silent = true })
+kset("n", "<C-s>", ":update<CR>", { silent = true })
+kset("v", "<C-s>", "<esc>:update<CR>", { silent = true })
+kset("i", "<C-s>", "<esc>:update<CR>", { silent = true })
 
 -- Move highlighted text down 'Shift j'
-keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+kset("v", "J", ":m '>+1<CR>gv=gv")
 -- Move highlighted text up 'Shift k'
-keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+kset("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Add moves of more than 5 to the jump list
-keymap.set(
+kset(
 	"n",
 	"k",
 	[[(v:count > 5 ? "m'" . v:count : "") . 'k']],
 	{ expr = true, desc = "if k > 5 then add to jumplist" }
 )
-keymap.set(
+kset(
 	"n",
 	"j",
 	[[(v:count > 5 ? "m'" . v:count : "") . 'j']],
@@ -155,7 +155,7 @@ end, { nargs = 1 })
 
 -- Search and replace matches for highlighted text
 -- pcalls prevent C-c from crashing
-keymap.set("v", "<C-r>", function()
+kset("v", "<C-r>", function()
 	local vSelection = getVisualSelectionInLine()
 	local okGetReplaceString, replaceString = pcall(vim.fn.input, "Replace: ", vSelection)
 

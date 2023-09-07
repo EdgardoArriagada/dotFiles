@@ -9,7 +9,7 @@ end
 indent = vim.fn.indent
 line = vim.fn.line
 
-keymap = vim.keymap
+kset = vim.keymap.set
 getCurrentLine = vim.api.nvim_get_current_line
 
 getpos = vim.fn.getpos

@@ -33,9 +33,9 @@ end
 
 local opts = { buffer = true }
 
-keymap.set("n", "<tab>", cycleAndFocusBack(NEXT), opts)
+kset("n", "<tab>", cycleAndFocusBack(NEXT), opts)
 
-keymap.set("n", "<s-tab>", cycleAndFocusBack(PREV), opts)
+kset("n", "<s-tab>", cycleAndFocusBack(PREV), opts)
 
-keymap.set("n", "<Cr>", qfEnter, opts)
-keymap.set("n", "<C-c>", qfClose, opts)
+kset("n", "<Cr>", qfEnter, opts)
+kset("n", "<C-c>", qfClose, opts)

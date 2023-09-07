@@ -9,8 +9,8 @@ return {
 			onErr = "failed to setup bufferline",
 		})
 
-		keymap.set("n", "Q", ":Bdelete<Cr>")
-		keymap.set("n", "<C-l>", ":BufferLineCycleNext<Cr>")
-		keymap.set("n", "<C-h>", ":BufferLineCyclePrev<Cr>")
+		kset("n", "Q", ":Bdelete<Cr>")
+		kset("n", "<C-l>", ":BufferLineCycleNext<Cr>")
+		kset("n", "<C-h>", ":BufferLineCyclePrev<Cr>")
 	end,
 }

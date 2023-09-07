@@ -1,9 +1,9 @@
-keymap.set("v", "q", function()
+kset("v", "q", function()
 	Execute("normal<Esc>")
 	VaqueroSelect()
 end, { noremap = true, silent = true })
 
-keymap.set("o", "q", function()
+kset("o", "q", function()
 	VaqueroSelect()
 end, { noremap = true, silent = true })
 

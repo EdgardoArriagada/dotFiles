@@ -10,7 +10,7 @@ return {
 			onErr = "Failed to setup hop",
 		})
 
-		keymap.set("n", "s", function()
+		kset("n", "s", function()
 			require("hop").hint_char2()
 		end, { noremap = false, silent = true })
 	end,

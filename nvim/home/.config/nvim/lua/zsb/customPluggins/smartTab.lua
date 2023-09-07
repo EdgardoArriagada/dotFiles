@@ -1,8 +1,8 @@
-keymap.set('v', '<tab>', function()
+kset('v', '<tab>', function()
   SmartTab('j')
 end, { noremap = true, silent = true })
 
-keymap.set('v', '<s-tab>', function()
+kset('v', '<s-tab>', function()
   SmartTab('k')
 end, { noremap = true, silent = true })
 

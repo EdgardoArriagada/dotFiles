@@ -22,7 +22,7 @@ return {
 			onErr = "Failed to load telescope.nvim",
 		})
 
-		keymap.set("n", "<C-p>", function()
+		kset("n", "<C-p>", function()
 			require("telescope.builtin").git_files({
 				show_untracked = true,
 			})

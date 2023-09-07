@@ -7,11 +7,11 @@ local function mappings(api, opts)
 
 	editNodeWith({ "l", "<CR>", "o" })
 
-	vim.keymap.set("n", "s", api.node.open.vertical, opts("Open file"))
-	vim.keymap.set("n", "i", api.node.open.horizontal, opts("Open file horizontally"))
-	vim.keymap.set("n", "y", api.fs.copy.node, opts("Copy"))
-	vim.keymap.set("n", "x", api.fs.cut, opts("Cut"))
-	vim.keymap.set("n", "p", api.fs.paste, opts("Paste"))
+	kset("n", "s", api.node.open.vertical, opts("Open file"))
+	kset("n", "i", api.node.open.horizontal, opts("Open file horizontally"))
+	kset("n", "y", api.fs.copy.node, opts("Copy"))
+	kset("n", "x", api.fs.cut, opts("Cut"))
+	kset("n", "p", api.fs.paste, opts("Paste"))
 end
 
 local function on_attach(bufnr)
