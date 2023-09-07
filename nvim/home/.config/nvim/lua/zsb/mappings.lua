@@ -103,9 +103,9 @@ kset(
 	{ expr = true, desc = "if j > 5 then add to jumplist" }
 )
 
-vim.api.nvim_create_user_command("V", ":set nornu", {})
+createUserCmd("V", ":set nornu", {})
 
-vim.api.nvim_create_user_command("Cppath", function()
+createUserCmd("Cppath", function()
 	local repoName = escape_pattern(fromShell("get_repo_name"))
 	local path = vim.fn.expand("%:p")
 
@@ -115,18 +115,18 @@ vim.api.nvim_create_user_command("Cppath", function()
 	print(result .. " Copied!")
 end, {})
 
-vim.api.nvim_create_user_command("Json", function()
+createUserCmd("Json", function()
 	vim.bo.filetype = "json"
 	vim.opt.foldmethod = "syntax"
 	print('Folds set to "syntax"')
 end, {})
 
-vim.api.nvim_create_user_command("Pjson", function()
+createUserCmd("Pjson", function()
 	Hpcall(Execute, "%!jq .", { onErr = 'failed to execute ":%!jq .", make sure you have "jq" is installed' })
 end, {})
 
 -- Toggle quickfix window
-vim.api.nvim_create_user_command("T", function()
+createUserCmd("T", function()
 	for _, win in pairs(vim.fn.getwininfo()) do
 		if win.quickfix == 1 then
 			return vim.cmd("cclose")
@@ -136,7 +136,7 @@ vim.api.nvim_create_user_command("T", function()
 end, {})
 
 -- Reload local plugin
-vim.api.nvim_create_user_command("Reload", function(opts)
+createUserCmd("Reload", function(opts)
 	local plugin = opts.args
 
 	if not plugin then

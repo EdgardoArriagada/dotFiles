@@ -10,6 +10,7 @@ indent = vim.fn.indent
 line = vim.fn.line
 
 kset = vim.keymap.set
+createUserCmd = vim.api.nvim_create_user_command
 getCurrentLine = vim.api.nvim_get_current_line
 
 getpos = vim.fn.getpos
