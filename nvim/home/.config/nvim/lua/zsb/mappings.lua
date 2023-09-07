@@ -103,9 +103,9 @@ kset(
 	{ expr = true, desc = "if j > 5 then add to jumplist" }
 )
 
-createUserCmd("V", ":set nornu", {})
+createCmd("V", ":set nornu", {})
 
-createUserCmd("Cppath", function()
+createCmd("Cppath", function()
 	local repoName = escape_pattern(fromShell("get_repo_name"))
 	local path = vim.fn.expand("%:p")
 
@@ -115,18 +115,18 @@ createUserCmd("Cppath", function()
 	print(result .. " Copied!")
 end, {})
 
-createUserCmd("Json", function()
+createCmd("Json", function()
 	vim.bo.filetype = "json"
 	vim.opt.foldmethod = "syntax"
 	print('Folds set to "syntax"')
 end, {})
 
-createUserCmd("Pjson", function()
+createCmd("Pjson", function()
 	Hpcall(Execute, "%!jq .", { onErr = 'failed to execute ":%!jq .", make sure you have "jq" is installed' })
 end, {})
 
 -- Toggle quickfix window
-createUserCmd("T", function()
+createCmd("T", function()
 	for _, win in pairs(vim.fn.getwininfo()) do
 		if win.quickfix == 1 then
 			return vim.cmd("cclose")
@@ -136,7 +136,7 @@ createUserCmd("T", function()
 end, {})
 
 -- Reload local plugin
-createUserCmd("Reload", function(opts)
+createCmd("Reload", function(opts)
 	local plugin = opts.args
 
 	if not plugin then
