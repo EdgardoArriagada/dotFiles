@@ -34,7 +34,6 @@ end
 local opts = { buffer = true }
 
 kset("n", "<tab>", cycleAndFocusBack(NEXT), opts)
-
 kset("n", "<s-tab>", cycleAndFocusBack(PREV), opts)
 
 kset("n", "<Cr>", qfEnter, opts)

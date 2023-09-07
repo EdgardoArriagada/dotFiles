@@ -34,7 +34,7 @@ return {
 			settings = {
 				Lua = {
 					diagnostics = {
-						globals = { "vim", "hs", "table" },
+						globals = { "vim", "hs", "table", "kset", "createCmd" },
 					},
 				},
 			},
