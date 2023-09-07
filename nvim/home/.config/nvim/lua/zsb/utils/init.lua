@@ -1,4 +1,4 @@
-require("zsb.utils.vim-functions")
+require("zsb.utils.vim-aliases")
 require("zsb.utils.execute")
 require("zsb.utils.hpcall")
 require("zsb.utils.lineGetters")
