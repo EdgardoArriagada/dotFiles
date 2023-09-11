@@ -90,18 +90,8 @@ kset("v", "J", ":m '>+1<CR>gv=gv")
 kset("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Add moves of more than 5 to the jump list
-kset(
-	"n",
-	"k",
-	[[(v:count > 5 ? "m'" . v:count : "") . 'k']],
-	{ expr = true, desc = "if k > 5 then add to jumplist" }
-)
-kset(
-	"n",
-	"j",
-	[[(v:count > 5 ? "m'" . v:count : "") . 'j']],
-	{ expr = true, desc = "if j > 5 then add to jumplist" }
-)
+kset("n", "k", [[(v:count > 5 ? "m'" . v:count : "") . 'k']], { expr = true, desc = "if k > 5 then add to jumplist" })
+kset("n", "j", [[(v:count > 5 ? "m'" . v:count : "") . 'j']], { expr = true, desc = "if j > 5 then add to jumplist" })
 
 createCmd("V", ":set nornu", {})
 
@@ -159,7 +149,7 @@ kset("v", "<C-r>", function()
 	local vSelection = getVisualSelectionInLine()
 	local okGetReplaceString, replaceString = pcall(vim.fn.input, "Replace: ", vSelection)
 
-	Execute("normal<Esc>")
+	vim.cmd("normal<Esc>")
 
 	if not okGetReplaceString then
 		return
@@ -167,7 +157,7 @@ kset("v", "<C-r>", function()
 	-- :h range to see more config options
 	local searchAndReplace = ".,$s/" .. escapeForRegex(vSelection) .. "/" .. escapeForRegex(replaceString) .. "/gc"
 
-	pcall(Execute, searchAndReplace)
+	pcall(vim.cmd, searchAndReplace)
 
-	Execute("nohlsearch")
+	vim.cmd("nohlsearch")
 end)
