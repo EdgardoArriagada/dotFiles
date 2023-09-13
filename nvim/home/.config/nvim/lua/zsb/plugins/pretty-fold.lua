@@ -21,7 +21,7 @@ return {
 					fill_char = "━",
 					sections = {
 						left = {
-							"⮀",
+							"",
 							function()
 								return string.rep("·", calculateSpaces(vim.v.foldlevel) - 2)
 							end,
