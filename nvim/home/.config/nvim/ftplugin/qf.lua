@@ -8,7 +8,9 @@ local function cycleQflist(direction)
 
 	if nextIdx < 1 then
 		return vim.cmd("clast")
-	elseif nextIdx > qflen then
+	end
+
+	if nextIdx > qflen then
 		return vim.cmd("cfirst")
 	end
 
