@@ -125,6 +125,10 @@ createCmd("T", function()
 	vim.cmd("copen")
 end, {})
 
+createCmd("OpenBufferInNewTmuxWindow", function()
+	vim.fn.system("tmux new-window nvim " .. vim.fn.expand("%:p"))
+end, {})
+
 -- Reload local plugin
 createCmd("Reload", function(opts)
 	local plugin = opts.args

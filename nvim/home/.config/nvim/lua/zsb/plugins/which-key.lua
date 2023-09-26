@@ -195,17 +195,21 @@ return {
 					"<cmd>BufferLineCloseLeft<cr>|<cmd>BufferLineCloseRight<cr>",
 					"Buffer Only",
 				},
+				["!"] = {
+					"<cmd>OpenBufferInNewTmuxWindow<cr>",
+					"Buffer Only",
+				},
 				t = {
 					"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>",
 					"Harpoon add file",
 				},
 				n = {
 					"<cmd>lua require('harpoon.ui').nav_next()<cr>",
-					"Harpoon add file",
+					"Harpoon Next",
 				},
 				p = {
 					"<cmd>lua require('harpoon.ui').nav_prev()<cr>",
-					"Harpoon add file",
+					"Harpoon Prev",
 				},
 				z = {
 					"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
