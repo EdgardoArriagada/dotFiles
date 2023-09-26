@@ -110,6 +110,7 @@ return {
 				l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
 				v = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
 				r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
+				s = { "<cmd>Gvdiffsplit!<cr>", "Fugitive Split" },
 				R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
 				P = { "<cmd>lua ViewPrOfLine()<cr>", "View pr of line" },
 				a = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Add Hunk" },
