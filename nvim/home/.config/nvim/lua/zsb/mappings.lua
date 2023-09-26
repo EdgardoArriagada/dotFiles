@@ -129,6 +129,12 @@ createCmd("OpenBufferInNewTmuxWindow", function()
 	vim.fn.system("tmux new-window nvim " .. vim.fn.expand("%:p"))
 end, {})
 
+createCmd("FullGitSplit", function()
+	vim.cmd("Gvdiffsplit!")
+	vim.cmd("OpenBufferInNewTmuxWindow")
+	vim.cmd("q!")
+end, {})
+
 -- Reload local plugin
 createCmd("Reload", function(opts)
 	local plugin = opts.args
