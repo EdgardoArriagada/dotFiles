@@ -198,7 +198,11 @@ return {
 				},
 				["!"] = {
 					"<cmd>OpenBufferInNewTmuxWindow<cr>",
-					"Buffer Only",
+					"Move buffer to new tmux window",
+				},
+				c = {
+					"<cmd>OpenBufferInNewTmuxWindow NoClose<cr>",
+					"Copy buffer to new tmux window",
 				},
 				t = {
 					"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>",

@@ -125,14 +125,16 @@ createCmd("T", function()
 	vim.cmd("copen")
 end, {})
 
-createCmd("OpenBufferInNewTmuxWindow", function()
+createCmd("OpenBufferInNewTmuxWindow", function(opts)
 	vim.fn.system("tmux new-window nvim " .. vim.fn.expand("%:p"))
-end, {})
+	if opts.args ~= "NoClose" then
+		vim.cmd("q!")
+	end
+end, { nargs = "?" })
 
 createCmd("FullGitSplit", function()
 	vim.cmd("Gvdiffsplit!")
 	vim.cmd("OpenBufferInNewTmuxWindow")
-	vim.cmd("q!")
 end, {})
 
 -- Reload local plugin
