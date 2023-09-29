@@ -197,11 +197,11 @@ return {
 					"Buffer Only",
 				},
 				["!"] = {
-					"<cmd>OpenBufferInNewTmuxWindow<cr>",
+					"<cmd>lua OpenBufferInNewTmuxWindow()<cr>",
 					"Move buffer to new tmux window",
 				},
 				c = {
-					"<cmd>OpenBufferInNewTmuxWindow NoClose<cr>",
+					"<cmd>lua OpenBufferInNewTmuxWindow('NoClose')<cr>",
 					"Copy buffer to new tmux window",
 				},
 				t = {
