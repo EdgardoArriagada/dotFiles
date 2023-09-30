@@ -9,3 +9,14 @@ function FullGitSplit()
 	vim.cmd("Gvdiffsplit!")
 	OpenBufferInNewTmuxWindow()
 end
+
+function Cppath ()
+	local repoName = escape_pattern(fromShell("get_repo_name"))
+	local path = vim.fn.expand("%:p")
+
+	local result = path:gsub("^.*" .. repoName .. "/", ""):gsub("^%./", "")
+
+	vim.fn.setreg("+", result)
+	print(result .. " Copied!")
+end
+

@@ -95,15 +95,6 @@ kset("n", "j", [[(v:count > 5 ? "m'" . v:count : "") . 'j']], { expr = true, des
 
 createCmd("V", ":set nornu", {})
 
-createCmd("Cppath", function()
-	local repoName = escape_pattern(fromShell("get_repo_name"))
-	local path = vim.fn.expand("%:p")
-
-	local result = path:gsub("^.*" .. repoName .. "/", ""):gsub("^%./", "")
-
-	vim.fn.setreg("+", result)
-	print(result .. " Copied!")
-end, {})
 
 createCmd("Json", function()
 	vim.bo.filetype = "json"

@@ -185,7 +185,7 @@ return {
 			b = {
 				name = "Buffer",
 				y = {
-					"<cmd>Cppath<cr>",
+					"<cmd>lua Cppath()<cr>",
 					"Copy File Path",
 				},
 				a = {
