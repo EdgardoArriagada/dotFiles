@@ -125,11 +125,6 @@ createCmd("T", function()
 	vim.cmd("copen")
 end, {})
 
-createCmd("FullGitSplit", function()
-	vim.cmd("Gvdiffsplit!")
-	vim.cmd("OpenBufferInNewTmuxWindow")
-end, {})
-
 -- Reload local plugin
 createCmd("Reload", function(opts)
 	local plugin = opts.args

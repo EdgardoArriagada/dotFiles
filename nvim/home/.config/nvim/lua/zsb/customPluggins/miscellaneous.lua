@@ -4,3 +4,8 @@ function OpenBufferInNewTmuxWindow(opts)
 		vim.cmd("q!")
 	end
 end
+
+function FullGitSplit()
+	vim.cmd("Gvdiffsplit!")
+	OpenBufferInNewTmuxWindow()
+end
