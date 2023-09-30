@@ -10,7 +10,7 @@ function FullGitSplit()
 	OpenBufferInNewTmuxWindow()
 end
 
-function Cppath ()
+function Cppath()
 	local repoName = escape_pattern(fromShell("get_repo_name"))
 	local path = vim.fn.expand("%:p")
 
@@ -19,4 +19,3 @@ function Cppath ()
 	vim.fn.setreg("+", result)
 	print(result .. " Copied!")
 end
-
