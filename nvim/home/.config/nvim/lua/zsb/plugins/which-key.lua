@@ -86,6 +86,7 @@ return {
 			["/"] = { '<cmd>lua require("Comment.api").toggle_current_linewise()<CR>', "Comment" },
 			["a"] = { "<cmd>Alpha<cr>", "Alpha" },
 			["x"] = { "<cmd>lua Logger()<cr>", "JS Log" },
+			["X"] = { "<cmd>lua LoggerSP()<cr>", "JS Log SP" },
 			["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 			["w"] = { "<cmd>w!<CR>", "Save" },
 			["q"] = { "<cmd>q!<CR>", "Quit" },

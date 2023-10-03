@@ -1,3 +1,9 @@
+local el = '<Esc>"xpa'
+
+local function jsLoggerSP()
+	Execute("normal<Esc>\"xyiwoconsole.log('le " .. el .. "', JSON.stringify(" .. el .. ", null, 2))<Esc><left><left>")
+end
+
 local function jsLogger()
 	Execute('normal<Esc>"xyiwoconsole.log(\'le <Esc>"xpa\', <Esc>"xpa)<Esc><left><left>')
 end
@@ -27,9 +33,17 @@ local extensionToFunction = {
 	[""] = noExtensionLogger,
 }
 
-function Logger()
+local extensionToFunctionSP = {
+	["js"] = jsLoggerSP,
+	["ts"] = jsLoggerSP,
+	["jsx"] = jsLoggerSP,
+	["tsx"] = jsLoggerSP,
+	[""] = noExtensionLogger,
+}
+
+local function executeLogger(dictionary)
 	local extension = vim.fn.expand("%:e")
-	local fun = extensionToFunction[extension]
+	local fun = dictionary[extension]
 
 	if fun == nil then
 		print("No logger function for '" .. extension .. "' extension")
@@ -37,4 +51,12 @@ function Logger()
 	end
 
 	fun()
+end
+
+function Logger()
+	executeLogger(extensionToFunction)
+end
+
+function LoggerSP()
+	executeLogger(extensionToFunctionSP)
 end
