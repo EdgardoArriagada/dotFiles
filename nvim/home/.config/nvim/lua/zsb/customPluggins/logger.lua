@@ -1,23 +1,28 @@
 local el = '<Esc>"xpa'
 
+local function doLog(msg, _after)
+	local after = _after or ""
+	Execute('normal<Esc>"xyiwo' .. msg .. "<Esc><left><left>" .. after)
+end
+
 local function jsLoggerSP()
-	Execute("normal<Esc>\"xyiwoconsole.log('le " .. el .. "', JSON.stringify(" .. el .. ", null, 2))<Esc><left><left>")
+	doLog("console.log('le " .. el .. "', JSON.stringify(" .. el .. ", null, 2));")
 end
 
 local function jsLogger()
-	Execute('normal<Esc>"xyiwoconsole.log(\'le <Esc>"xpa\', <Esc>"xpa)<Esc><left><left>')
+	doLog("console.log('le " .. el .. "', " .. el .. ");")
 end
 
 local function luaLogger()
-	Execute('normal<Esc>"xyiwoprint(\'le <Esc>"xpa\', <Esc>"xpa)<Esc><left><left>')
+	doLog("print('le " .. el .. "', " .. el .. ");")
 end
 
 local function rustLogger()
-	Execute('normal<Esc>"xyiwoprintln!("le <Esc>"xpa {}", <Esc>"xpa);<Esc><left><left><left>')
+	doLog('println!("le ' .. el .. '", ' .. el .. ");")
 end
 
 local function bashLogger()
-	Execute('normal<Esc>"xyiwoprint "le <Esc>"xpa: ${<Esc>"xpa}"; <Esc><left><left><left>b')
+	doLog('echo "le ' .. el .. ": ${" .. el .. '}";', "b")
 end
 
 local noExtensionLogger = bashLogger
