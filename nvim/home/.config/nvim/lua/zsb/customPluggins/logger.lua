@@ -1,4 +1,4 @@
-local el = '<Esc>"xpa'
+local X = '<Esc>"xpa' -- X is the variable to log
 
 local function doLog(msg, _after)
 	local after = _after or ""
@@ -6,23 +6,23 @@ local function doLog(msg, _after)
 end
 
 local function jsLoggerSP()
-	doLog("console.log('le " .. el .. "', JSON.stringify(" .. el .. ", null, 2));")
+	doLog("console.log('le " .. X .. "', JSON.stringify(" .. X .. ", null, 2));")
 end
 
 local function jsLogger()
-	doLog("console.log('le " .. el .. "', " .. el .. ");")
+	doLog("console.log('le " .. X .. "', " .. X .. ");")
 end
 
 local function luaLogger()
-	doLog("print('le " .. el .. "', " .. el .. ");")
+	doLog("print('le " .. X .. "', " .. X .. ");")
 end
 
 local function rustLogger()
-	doLog('println!("le ' .. el .. '", ' .. el .. ");")
+	doLog('println!("le ' .. X .. '", ' .. X .. ");")
 end
 
 local function bashLogger()
-	doLog('echo "le ' .. el .. ": ${" .. el .. '}";', "b")
+	doLog('echo "le ' .. X .. ": ${" .. X .. '}";', "b")
 end
 
 local noExtensionLogger = bashLogger
