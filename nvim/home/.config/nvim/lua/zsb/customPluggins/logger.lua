@@ -46,12 +46,12 @@ local extensionToFunctionSP = {
 	[""] = noExtensionLogger,
 }
 
-local function executeLogger(dictionary)
+local function executeLogger(dictionary, onErrMsg)
 	local extension = vim.fn.expand("%:e")
 	local fun = dictionary[extension]
 
 	if fun == nil then
-		print("No logger function for '" .. extension .. "' extension")
+		print(onErrMsg .. " for '" .. extension .. "' extension")
 		return
 	end
 
@@ -59,9 +59,9 @@ local function executeLogger(dictionary)
 end
 
 function Logger()
-	executeLogger(extensionToFunction)
+	executeLogger(extensionToFunction, "No logger function")
 end
 
 function LoggerSP()
-	executeLogger(extensionToFunctionSP)
+	executeLogger(extensionToFunctionSP, "No SP logger function")
 end
