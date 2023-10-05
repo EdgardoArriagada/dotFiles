@@ -18,7 +18,7 @@ local function luaLogger()
 end
 
 local function rustLogger()
-	doLog('println!("le ' .. X .. '", ' .. X .. ");")
+	doLog('println!("le ' .. X .. ': {}", ' .. X .. ");")
 end
 
 local function bashLogger()
