@@ -76,8 +76,8 @@ kset("c", "<C-m>", "<CR>")
 kset("c", "<C-v>", "<C-r>+")
 
 -- Quit
-kset("n", "<C-q>", ":q")
-kset("c", "<C-q>", "<C-u>q") -- redraw ':q'
+kset("n", "<C-q>", ":qa!")
+kset("c", "<C-q>", "<C-u>qa!") -- redraw ':qa!'
 
 -- Save
 kset("n", "<C-s>", ":update<CR>", { silent = true })
