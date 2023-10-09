@@ -5,12 +5,12 @@ local function doLog(msg, _after)
 	Execute('normal<Esc>"xyiwo' .. msg .. "<Esc><left><left>" .. after)
 end
 
-local function jsLoggerSP()
-	doLog("console.log('le " .. X .. "', JSON.stringify(" .. X .. ", null, 2));")
-end
-
 local function jsLogger()
 	doLog("console.log('le " .. X .. "', " .. X .. ");")
+end
+
+local function jsLoggerSP()
+	doLog("console.log('le " .. X .. "', JSON.stringify(" .. X .. ", null, 2));")
 end
 
 local function luaLogger()
@@ -19,6 +19,10 @@ end
 
 local function rustLogger()
 	doLog('println!("le ' .. X .. ': {}", ' .. X .. ");")
+end
+
+local function rustLoggerSp()
+	doLog('println!("le ' .. X .. ': {:?}", ' .. X .. ");")
 end
 
 local function bashLogger()
@@ -43,6 +47,7 @@ local extensionToFunctionSP = {
 	["ts"] = jsLoggerSP,
 	["jsx"] = jsLoggerSP,
 	["tsx"] = jsLoggerSP,
+	["rs"] = rustLoggerSp,
 	[""] = noExtensionLogger,
 }
 
