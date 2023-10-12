@@ -18,6 +18,8 @@ return {
 						},
 					},
 				})
+
+				telescope.load_extension("fzf")
 			end,
 			onErr = "Failed to load telescope.nvim",
 		})
