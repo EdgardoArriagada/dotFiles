@@ -1,3 +1,12 @@
+local function organize_imports()
+	local params = {
+		command = "_typescript.organizeImports",
+		arguments = { vim.api.nvim_buf_get_name(0) },
+		title = "",
+	}
+	vim.lsp.buf.execute_command(params)
+end
+
 return {
 	"williamboman/mason.nvim",
 	dependencies = {
@@ -25,7 +34,7 @@ return {
 
 		local defaultSetUp = {
 			on_attach = on_attach,
-			capabilities = capabilities,
+			capabilities,
 		}
 
 		local lspconfig = require("lspconfig")
@@ -40,11 +49,19 @@ return {
 			},
 		}))
 
+		lspconfig["tsserver"].setup(Extend(defaultSetUp, {
+			commands = {
+				OrganizeImports = {
+					organize_imports,
+					description = "Organize Imports",
+				},
+			},
+		}))
+
 		local defaultConfigServers = {
 			"pyright",
 			"cssls",
 			"emmet_ls",
-			"tsserver",
 			"tailwindcss",
 			"bashls",
 			"gopls",
