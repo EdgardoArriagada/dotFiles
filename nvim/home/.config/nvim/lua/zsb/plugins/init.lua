@@ -8,7 +8,6 @@ return {
 	{ "hrsh7th/nvim-cmp" },
 	{ "saadparwaiz1/cmp_luasnip" }, -- snippet completions
 	-- end completion
-	{ "mg979/vim-visual-multi", keys = "<C-n>" },
 	{ "github/copilot.vim" },
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 	{ "windwp/nvim-ts-autotag", dependencies = { "nvim-treesitter/nvim-treesitter" } },
