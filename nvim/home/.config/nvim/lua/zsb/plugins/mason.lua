@@ -33,7 +33,7 @@ return {
 		local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 		local defaultSetUp = {
-			on_attach = on_attach,
+			on_attach,
 			capabilities,
 		}
 
