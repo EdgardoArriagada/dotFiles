@@ -72,7 +72,7 @@ snippet uses useState
 snippet usee useEffect
 	useEffect(() => {
 		${1}
-	}${3})
+	}, [${3}])
 
 snippet userd useReducer
 	const [${1:state}, ${2:dispatch}] = useReducer(${3:reducer})
