@@ -15,6 +15,13 @@ snippet log Console Log
 snippet logd Console Log Debug
 	console.log('le ${1}', {${2}})
 
+snippet logmw Log Middleware
+	const logger = (msg) => (req, res, next) => {
+		console.log('le', msg, ${1});
+
+		return next();
+	};
+
 # testing
 snippet it It Should...
 	it('should $1', () => {
