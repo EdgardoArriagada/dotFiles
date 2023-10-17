@@ -4,3 +4,6 @@ nvim/home/.config/nvim/lua/zsb/temp.lua
 # hammerspoon
 hammerspoon/.hammerspoon/hs
 hammerspoon/.hammerspoon/Spoons
+
+# btop
+btop/home/.config/btop/btop.log
