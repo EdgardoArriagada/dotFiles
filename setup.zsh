@@ -1,7 +1,10 @@
 #!/usr/bin/env zsh
 set -o errexit
 set -o pipefail
-set -o nounset
+
+zparseopts -D -E -F -- \
+  s=skipSetup \
+  || return 1
 
 source ./config.zsh
 
@@ -20,6 +23,10 @@ for program in "${allPrograms[@]}"; do
   if [[ -d ${program}/home ]]; then
     print "Linking ${program}..."
     stow -d ${program} -t .. home
+  fi
+
+  if [[ -n "$skipSetup" ]]; then
+    continue
   fi
 
   local setupPath=${program}/${program}.setup.zsh
