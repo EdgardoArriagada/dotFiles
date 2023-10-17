@@ -8,6 +8,7 @@ declare commonPrograms=(
   tig
   zsh
   vscode
+  btop
 )
 
 declare macOsPrograms=(
