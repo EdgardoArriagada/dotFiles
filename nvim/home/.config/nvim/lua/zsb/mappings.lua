@@ -16,7 +16,7 @@ kset("n", "S", "v$<left><left>")
 kset("n", "+", "A <esc>p")
 -- Swapping: delete some text, then visual select other text, execute the maped
 -- key and the swap is made
-kset("v", "+", "<Esc>`.``gvP``P")
+kset("v", "+", '<Esc>`.``gv"xygvP``"xP')
 --Duplicate selection
 kset("v", "Z", '"xy\'>"xpO<esc>')
 
