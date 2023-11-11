@@ -94,6 +94,7 @@ function escapeForRegex(x)
 			:gsub("%-", "\\-")
 			:gsub("%/", "\\/")
 			:gsub("%&", "\\&")
+			:gsub("%\\", "\\\\")
 	)
 end
 
