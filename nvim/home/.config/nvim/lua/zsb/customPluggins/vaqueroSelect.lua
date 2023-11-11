@@ -10,5 +10,5 @@ end, { noremap = true, silent = true })
 function VaqueroSelect()
 	GoLessDeeperIndent("k")
 	Execute("normal!V")
-	lookForIndentation("j")
+	LookForIndentation("j")
 end

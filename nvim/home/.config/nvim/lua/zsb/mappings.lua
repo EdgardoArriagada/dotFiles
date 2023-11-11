@@ -136,7 +136,7 @@ end, { nargs = 1 })
 -- Search and replace matches for highlighted text
 -- pcalls prevent C-c from crashing
 kset("v", "<C-r>", function()
-	local vSelection = getVisualSelectionInLine()
+	local vSelection = GetVisualSelectionInLine()
 	local okGetReplaceString, replaceString = pcall(vim.fn.input, "Replace: ", vSelection)
 
 	Execute("normal<Esc>")
@@ -145,7 +145,7 @@ kset("v", "<C-r>", function()
 		return
 	end
 	-- `:h range` or `:h substitute` to see more config options
-	local searchAndReplace = ".,$s/" .. escapeForRegex(vSelection) .. "/" .. escapeForRegex(replaceString) .. "/gcI"
+	local searchAndReplace = ".,$s/" .. EscapeForRegex(vSelection) .. "/" .. EscapeForRegex(replaceString) .. "/gcI"
 
 	pcall(Execute, searchAndReplace)
 

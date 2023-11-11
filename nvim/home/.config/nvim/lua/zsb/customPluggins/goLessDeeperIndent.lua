@@ -15,7 +15,7 @@ function GoLessDeeperIndent(direction)
   -- Go to beggin of line and add to jump list
   Execute("normal^m'")
 
-  local lineMarker = getFirstNoEmptyLine(direction, line("."))
+  local lineMarker = GetFirstNoEmptyLine(direction, line("."))
 
   local originalInent = indent(lineMarker)
 

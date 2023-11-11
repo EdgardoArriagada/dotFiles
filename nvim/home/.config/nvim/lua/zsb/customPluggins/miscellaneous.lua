@@ -11,7 +11,7 @@ function FullGitSplit()
 end
 
 function Cppath()
-	local repoName = escape_pattern(fromShell("get_repo_name"))
+	local repoName = EscapePattern(FromShell("get_repo_name"))
 	local path = vim.fn.expand("%:p")
 
 	local result = path:gsub("^.*" .. repoName .. "/", ""):gsub("^%./", "")

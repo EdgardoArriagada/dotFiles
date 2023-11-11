@@ -1,5 +1,5 @@
 function getSameIndentLine(direction, lineMarker)
-  local inc, endOfFile = getDirectionalProps(direction)
+  local inc, endOfFile = GetDirectionalProps(direction)
   local existsSameIndent = false
   local originalIndent = indent('.')
 
@@ -7,7 +7,7 @@ function getSameIndentLine(direction, lineMarker)
     lineMarker = lineMarker + inc
     existsSameIndent = indent(lineMarker) == originalIndent
 
-    if existsSameIndent and isEmptyLine(lineMarker) then
+    if existsSameIndent and IsEmptyLine(lineMarker) then
       existsSameIndent = false
     end
   end
@@ -20,7 +20,7 @@ function getSameIndentLine(direction, lineMarker)
 end
 
 function getLesserIndent(direction, lineMarker)
-  local inc, endOfFile = getDirectionalProps(direction)
+  local inc, endOfFile = GetDirectionalProps(direction)
 
   local originalIndent = indent(lineMarker)
 
@@ -31,31 +31,31 @@ function getLesserIndent(direction, lineMarker)
 
     gotLesserIndent = indent(lineMarker) < originalIndent
 
-    if gotLesserIndent and not isEmptyLine(lineMarker) then break end
+    if gotLesserIndent and not IsEmptyLine(lineMarker) then break end
   end
 
   return lineMarker
 end
 
 function getStopLine(direction)
-  local inc, endOfFile = getDirectionalProps(direction)
+  local inc, endOfFile = GetDirectionalProps(direction)
 
   local lineMarker = line('.')
-  local isStartEmpty = isEmptyLine(lineMarker)
+  local isStartEmpty = IsEmptyLine(lineMarker)
   local originalIndent = indent('.')
 
   local function didSwitch(line)
      if isStartEmpty then
-       return not isEmptyLine(line)
+       return not IsEmptyLine(line)
      else
-       return isEmptyLine(line)
+       return IsEmptyLine(line)
      end
   end
 
   while not didSwitch(lineMarker) and lineMarker ~= endOfFile do
      lineMarker = lineMarker + inc
 
-     if not isEmptyLine(lineMarker) and indent(lineMarker) < originalIndent then
+     if not IsEmptyLine(lineMarker) and indent(lineMarker) < originalIndent then
        lineMarker = lineMarker - inc
        break
     end

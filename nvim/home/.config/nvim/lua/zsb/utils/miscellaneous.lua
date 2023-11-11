@@ -1,4 +1,4 @@
-function getDirectionalProps(direction)
+function GetDirectionalProps(direction)
 	if direction == "j" then
 		return 1, line("$")
 	elseif direction == "k" then
@@ -6,18 +6,18 @@ function getDirectionalProps(direction)
 	end
 end
 
-function isEmptyString(input)
+function IsEmptyString(input)
 	return input:match("^%s*$") ~= nil
 end
 
-function isEmptyLine(line)
-	return isEmptyString(vim.fn.getline(line))
+function IsEmptyLine(line)
+	return IsEmptyString(vim.fn.getline(line))
 end
 
-function getFirstNoEmptyLine(direction, lineMarker)
-	local inc, endOfFile = getDirectionalProps(direction)
+function GetFirstNoEmptyLine(direction, lineMarker)
+	local inc, endOfFile = GetDirectionalProps(direction)
 	while lineMarker ~= endOfFile do
-		if not isEmptyLine(lineMarker) then
+		if not IsEmptyLine(lineMarker) then
 			return lineMarker
 		end
 
@@ -26,16 +26,16 @@ function getFirstNoEmptyLine(direction, lineMarker)
 	return lineMarker
 end
 
-function lookForIndentation(direction)
+function LookForIndentation(direction)
 	-- Go to beggin of line and add to jump list
 	Execute("normal" .. line(".") .. "G^")
 
-	local lineMarker = getFirstNoEmptyLine(direction, line("."))
+	local lineMarker = GetFirstNoEmptyLine(direction, line("."))
 
 	Execute("normal" .. getSameIndentLine(direction, lineMarker) .. "G^")
 end
 
-function arrayElement(t)
+function ArrayElement(t)
 	local i = 0
 
 	return function()
@@ -44,7 +44,7 @@ function arrayElement(t)
 	end
 end
 
-function arrayElementBackward(t)
+function ArrayElementBackward(t)
 	local i = #t + 1
 
 	return function()
@@ -53,7 +53,7 @@ function arrayElementBackward(t)
 	end
 end
 
-function toupleArrayElement(t)
+function ToupleArrayElement(t)
 	local i = 0
 
 	return function()
@@ -64,7 +64,7 @@ function toupleArrayElement(t)
 	end
 end
 
-function fromShell(command)
+function FromShell(command)
 	local handle = io.popen(command)
 
 	if handle then
@@ -76,11 +76,11 @@ function fromShell(command)
 	return nil
 end
 
-function escape_pattern(text)
+function EscapePattern(text)
 	return text:gsub("([^%w])", "%%%1")
 end
 
-function escapeForRegex(x)
+function EscapeForRegex(x)
 	return (
 		x
 			:gsub("%^", "\\^")
@@ -98,7 +98,7 @@ function escapeForRegex(x)
 	)
 end
 
-function getVisualSelectionInLine()
+function GetVisualSelectionInLine()
 	local currentLine = getCurrentLine()
 	local startVisualPos = vim.fn.getpos("v")[3]
 	local currPos = col(".")
