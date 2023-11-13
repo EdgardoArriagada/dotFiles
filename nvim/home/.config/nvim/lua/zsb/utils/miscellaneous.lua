@@ -83,6 +83,7 @@ end
 function EscapeForRegex(x)
 	return (
 		x
+			:gsub("%\\", "\\\\")
 			:gsub("%^", "\\^")
 			:gsub("%$", "\\$")
 			:gsub("%~", "\\~")
@@ -94,7 +95,6 @@ function EscapeForRegex(x)
 			:gsub("%-", "\\-")
 			:gsub("%/", "\\/")
 			:gsub("%&", "\\&")
-			:gsub("%\\", "\\\\")
 	)
 end
 
