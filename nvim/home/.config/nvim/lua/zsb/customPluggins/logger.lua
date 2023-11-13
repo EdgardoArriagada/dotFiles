@@ -10,7 +10,13 @@ local function jsLogger()
 end
 
 local function jsLoggerSP()
-	doLog("console.log('le " .. X .. "', JSON.stringify(" .. X .. ", null, 2));")
+	doLog(
+		"console.log('le "
+			.. X
+			.. "', JSON.stringify("
+			.. X
+			.. ", (k, v) => (typeof v === 'function' ? 'fn(...)' : v), 2));"
+	)
 end
 
 local function luaLogger()
