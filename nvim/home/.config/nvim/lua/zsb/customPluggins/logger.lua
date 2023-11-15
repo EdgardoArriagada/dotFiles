@@ -15,7 +15,17 @@ local function jsLoggerSP()
 			.. X
 			.. "', JSON.stringify("
 			.. X
-			.. ", (k, v) => (typeof v === 'function' ? 'fn(...)' : v), 2));"
+			.. ", (_, v) => (typeof v === 'function' ? 'fn(...)' : v), 2));"
+	)
+end
+
+local function tsLoggerSP()
+	doLog(
+		"console.log('le "
+			.. X
+			.. "', JSON.stringify("
+			.. X
+			.. ", (_, v: string) => (typeof v === 'function' ? 'fn(...)' : v), 2));"
 	)
 end
 
@@ -50,9 +60,9 @@ local extensionToFunction = {
 
 local extensionToFunctionSP = {
 	["js"] = jsLoggerSP,
-	["ts"] = jsLoggerSP,
+	["ts"] = tsLoggerSP,
 	["jsx"] = jsLoggerSP,
-	["tsx"] = jsLoggerSP,
+	["tsx"] = tsLoggerSP,
 	["rs"] = rustLoggerSp,
 	[""] = noExtensionLogger,
 }
