@@ -1,7 +1,9 @@
--- @param a, b = pcall(a, b)
--- @param handlers: table with:
--- onOk: function(result of pcall) | string | nothing
--- onErr: function(result of pcall) | string | nothing
+-- https://luals.github.io/wiki/annotations/
+
+--- @param a function First param of pcall
+--- @param b string Second param of pcall
+--- @alias handler string | function
+--- @param handlers { onOk?: handler, onErr?: handler } What to do onOk or onErr
 function Hpcall(a, b, handlers)
 	local ok, thing = pcall(a, b)
 
