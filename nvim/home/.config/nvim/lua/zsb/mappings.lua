@@ -95,6 +95,11 @@ kset("n", "j", [[(v:count > 5 ? "m'" . v:count : "") . 'j']], { expr = true, des
 
 createCmd("V", ":set nornu", {})
 
+createCmd("W", function()
+	vim.cmd("w!")
+	vim.cmd("e!")
+end, {})
+
 createCmd("Json", function()
 	vim.bo.filetype = "json"
 	vim.opt.foldmethod = "syntax"
