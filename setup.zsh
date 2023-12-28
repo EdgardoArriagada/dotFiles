@@ -20,19 +20,19 @@ fi
 
 # Run link programs and run setup functions
 for program in "${allPrograms[@]}"; do
-  if [[ -d ${program}/home ]]; then
+  if [[ -d $program/home ]]; then
     print "Linking ${program}..."
-    stow -d ${program} -t .. home
+    stow -d $program -t .. home
   fi
 
   if [[ -n "$skipSetup" ]]; then
     continue
   fi
 
-  local setupPath=${program}/${program}.setup.zsh
+  local setupPath=$program/${program}.setup.zsh
 
-  if [[ -f ${setupPath} ]]; then
+  if [[ -f $setupPath ]]; then
     print "Setup ${program}..."
-    source ${setupPath}
+    source $setupPath
   fi
 done
