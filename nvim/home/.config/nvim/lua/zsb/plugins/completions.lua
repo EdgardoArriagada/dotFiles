@@ -5,7 +5,7 @@ return {
 			"saadparwaiz1/cmp_luasnip", -- for snippets completion
 		},
 		config = function()
-			require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/snippets" })
+			require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/lua/zsb/snippets" })
 		end,
 	},
 	{ "hrsh7th/cmp-nvim-lsp" },
