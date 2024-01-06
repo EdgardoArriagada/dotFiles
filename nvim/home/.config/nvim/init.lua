@@ -4,7 +4,6 @@ require("zsb.mappings")
 require("zsb.plugins-bootstrap")
 require("zsb.customPluggins")
 require("zsb.options")
-require("zsb.cmp")
 require("zsb.autocmd")
 --[[ require('zsb.vscode-config') ]]
 require("zsb.neovide-config")
