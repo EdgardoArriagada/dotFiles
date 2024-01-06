@@ -21,9 +21,9 @@ autocmd("FileType", {
 	pattern = "json",
 	callback = function()
 		vim.opt.foldmethod = "syntax"
-		vim.schedule(function()
-			Hpcall(Execute, "normal!zA", { onErr = 'failed to execute ":normal!zA"' })
-		end)
+		--[[ vim.schedule(function() ]]
+		--[[ 	Hpcall(Execute, "normal!zA", { onErr = 'failed to execute ":normal!zA"' }) ]]
+		--[[ end) ]]
 	end,
 	group = group,
 })
