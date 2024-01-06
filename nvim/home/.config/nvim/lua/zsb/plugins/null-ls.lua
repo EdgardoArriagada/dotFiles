@@ -1,6 +1,5 @@
 return {
 	"nvimtools/none-ls.nvim",
-	dependencies = { "jay-babu/mason-null-ls.nvim" },
 	config = function()
 		Hpcall(require, "null-ls", {
 			onOk = function(null_ls)
