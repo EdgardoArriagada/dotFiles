@@ -1,3 +1,42 @@
+local configServers = {
+	pyright = {},
+	cssls = {},
+	emmet_ls = {},
+	tailwindcss = {},
+	bashls = {},
+	gopls = {},
+	rust_analyzer = {},
+	lua_ls = {
+		settings = {
+			Lua = {
+				diagnostics = {
+					globals = { "vim", "hs", "table", "kset", "createCmd" },
+				},
+			},
+		},
+	},
+	tsserver = {
+		commands = {
+			OrganizeImports = {
+				function()
+					vim.lsp.buf.execute_command({
+						command = "_typescript.organizeImports",
+						arguments = { vim.api.nvim_buf_get_name(0) },
+						title = "",
+					})
+				end,
+				description = "Organize Imports",
+			},
+		},
+	},
+}
+
+local serverNames = {}
+
+for server, _ in pairs(configServers) do
+	table.insert(serverNames, server)
+end
+
 return {
 	{
 		"williamboman/mason.nvim",
@@ -9,17 +48,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"lua_ls",
-					"tsserver",
-					"pyright",
-					"cssls",
-					"emmet_ls",
-					"tailwindcss",
-					"bashls",
-					"gopls",
-					"rust_analyzer",
-				},
+				ensure_installed = serverNames,
 			})
 		end,
 	},
@@ -28,15 +57,6 @@ return {
 		config = function()
 			local capabilities =
 				require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-			local function organize_imports()
-				local params = {
-					command = "_typescript.organizeImports",
-					arguments = { vim.api.nvim_buf_get_name(0) },
-					title = "",
-				}
-				vim.lsp.buf.execute_command(params)
-			end
 
 			local on_attach = function(_, bufnr)
 				local opts = { noremap = true, silent = true }
@@ -61,37 +81,8 @@ return {
 
 			local lspconfig = require("lspconfig")
 
-			lspconfig["lua_ls"].setup(Extend(defaultSetUp, {
-				settings = {
-					Lua = {
-						diagnostics = {
-							globals = { "vim", "hs", "table", "kset", "createCmd" },
-						},
-					},
-				},
-			}))
-
-			lspconfig["tsserver"].setup(Extend(defaultSetUp, {
-				commands = {
-					OrganizeImports = {
-						organize_imports,
-						description = "Organize Imports",
-					},
-				},
-			}))
-
-			local defaultConfigServers = {
-				"pyright",
-				"cssls",
-				"emmet_ls",
-				"tailwindcss",
-				"bashls",
-				"gopls",
-				"rust_analyzer",
-			}
-
-			for _, server in pairs(defaultConfigServers) do
-				lspconfig[server].setup(defaultSetUp)
+			for serverName, config in pairs(configServers) do
+				lspconfig[serverName].setup(Extend(defaultSetUp, config))
 			end
 		end,
 	},
