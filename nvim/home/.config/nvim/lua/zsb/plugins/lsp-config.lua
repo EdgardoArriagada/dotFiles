@@ -1,7 +1,7 @@
 local configServers = {
 	pyright = {},
 	cssls = {},
-	emmet_ls = {},
+	--[[ emmet_ls = {}, ]]
 	tailwindcss = {},
 	bashls = {},
 	gopls = {},
