@@ -2,26 +2,19 @@ return {
 	"nvim-telescope/telescope.nvim",
 	dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-fzf-native.nvim" },
 	keys = { "<leader>", "<C-p>" },
-	config = function()
-		Hpcall(require, "telescope", {
-			onOk = function(telescope)
-				telescope.setup({
-					defaults = {
-						path_display = { "truncate" },
-					},
-					extensions = {
-						fzf = {
-							fuzzy = true,
-							override_generic_sorter = true,
-							override_file_sorter = true,
-							case_mode = "smart_case",
-						},
-					},
-				})
-
-				telescope.load_extension("fzf")
-			end,
-			onErr = "Failed to load telescope.nvim",
+	config = Config("telescope", function(telescope)
+		telescope.setup({
+			defaults = {
+				path_display = { "truncate" },
+			},
+			extensions = {
+				fzf = {
+					fuzzy = true,
+					override_generic_sorter = true,
+					override_file_sorter = true,
+					case_mode = "smart_case",
+				},
+			},
 		})
 
 		kset("n", "<C-p>", function()
@@ -29,5 +22,7 @@ return {
 				show_untracked = true,
 			})
 		end)
-	end,
+
+		telescope.load_extension("fzf")
+	end),
 }

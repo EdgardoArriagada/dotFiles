@@ -2,16 +2,11 @@ return {
 	"phaazon/hop.nvim",
 	branch = "v1", -- optional but strongly recommended
 	keys = "s",
-	config = function()
-		Hpcall(require, "hop", {
-			onOk = function(hop)
-				hop.setup({ keys = "etovxqpdygfblzhckisuran" })
-			end,
-			onErr = "Failed to setup hop",
-		})
+	config = Config("hop", function(hop)
+		hop.setup({ keys = "etovxqpdygfblzhckisuran" })
 
 		kset("n", "s", function()
 			require("hop").hint_char2()
 		end, { noremap = false, silent = true })
-	end,
+	end),
 }
