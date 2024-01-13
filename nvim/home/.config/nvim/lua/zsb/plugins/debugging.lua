@@ -4,6 +4,7 @@ return {
     "rcarriga/nvim-dap-ui",
     "leoluz/nvim-dap-go",
   },
+	keys = { "<leader>db" },
   config = Config("dap", function(dap)
     local dapui = require("dapui")
 
