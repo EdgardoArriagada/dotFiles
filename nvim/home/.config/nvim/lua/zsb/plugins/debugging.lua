@@ -1,15 +1,37 @@
 return {
   "mfussenegger/nvim-dap",
+  dependencies = {
+    "rcarriga/nvim-dap-ui",
+    "leoluz/nvim-dap-go",
+  },
   config = Config("dap", function(dap)
-    kset("n", "<F5>", dap.continue)
-    kset("n", "<F10>", dap.step_over)
-    kset("n", "<F11>", dap.step_into)
-    kset("n", "<F12>", dap.step_out)
-    kset("n", "<Leader>b", dap.toggle_breakpoint)
-    kset("n", "<Leader>B", dap.set_breakpoint)
-    kset("n", "<Leader>lp", function()
-      dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-    end)
+    local dapui = require("dapui")
+
+    require("dap-go").setup()
+    dapui.setup()
+
+    dap.listeners.before.attach.dapui_config = function()
+      dapui.open()
+    end
+    dap.listeners.before.launch.dapui_config = function()
+      dapui.open()
+    end
+    dap.listeners.before.event_terminated.dapui_config = function()
+      dapui.close()
+    end
+    dap.listeners.before.event_exited.dapui_config = function()
+      dapui.close()
+    end
+
+    kset("n", "<Leader>dc", dap.continue)
+    kset("n", "<Leader>do", dap.step_over)
+    kset("n", "<Leader>di", dap.step_into)
+    kset("n", "<Leader>dx", dap.step_out)
+    kset("n", "<Leader>db", dap.toggle_breakpoint)
+    --[[ kset("n", "<Leader>dx", dap.set_breakpoint) ]]
+    --[[ kset("n", "<Leader>dm", function() ]]
+    --[[   dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: ")) ]]
+    --[[ end) ]]
     kset("n", "<Leader>dr", dap.repl.open)
     kset("n", "<Leader>dl", dap.run_last)
     kset({ "n", "v" }, "<Leader>dh", function()
