@@ -17,14 +17,16 @@ function Hpcall(a, b, handlers)
 	end
 end
 
---- @param b string What to require
+--- @param plugin string What to require
 --- @param fn function What to do onOk
-function Config(b, fn)
-	local handlers = {
-		onOk = fn,
-		onErr = "Error loading " .. b
-	}
+function Config(plugin, fn)
 	return function()
-	  Hpcall(require, b, handlers)
+		local ok, content = pcall(require, plugin)
+
+		if not ok then
+			return	vim.notify("Error: could not load '" .. plugin .. "'")
+		end
+
+		fn(content)
 	end
 end
