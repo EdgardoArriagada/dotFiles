@@ -16,3 +16,15 @@ function Hpcall(a, b, handlers)
 		vim.notify(currHandler)
 	end
 end
+
+--- @param b string What to require
+--- @param fn function What to do onOk
+function Config(b, fn)
+	local handlers = {
+		onOk = fn,
+		onErr = "Error loading " .. b
+	}
+	return function()
+	  Hpcall(require, b, handlers)
+	end
+end
