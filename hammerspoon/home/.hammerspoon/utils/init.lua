@@ -18,11 +18,14 @@ local function onAppLaunch(appName, callback)
 end
 
 local function getAppMainWindow(app)
-	if app:mainWindow() == nil then
+	local mw = app:mainWindow()
+
+	if mw == nil then
 		hs.application.open(app:name())
+		return app:mainWindow()
 	end
 
-	return app:mainWindow()
+	return mw
 end
 
 local function visualizeAppInScreenFrame(app)
