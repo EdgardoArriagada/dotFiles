@@ -36,7 +36,6 @@ return {
 		nvim_tree.setup({
 			on_attach = on_attach,
 			renderer = {
-				root_folder_modifier = ":t",
 				highlight_git = true,
 				icons = {
 					glyphs = {
@@ -60,17 +59,17 @@ return {
 						},
 					},
 					show = {
-						git = true,
-						folder = true,
 						file = true,
+						folder = true,
 						folder_arrow = true,
+						git = true,
 					},
 				},
 			},
 			disable_netrw = true,
 			hijack_netrw = true,
 			hijack_cursor = false,
-			update_cwd = true,
+			sync_root_with_cwd = true,
 			hijack_directories = {
 				enable = true,
 				auto_open = true,
@@ -86,17 +85,14 @@ return {
 			},
 			update_focused_file = {
 				enable = true,
-				update_cwd = true,
-				ignore_list = {},
+				update_root = true,
 			},
 			git = {
 				enable = true,
-				ignore = true,
 				timeout = 500,
 			},
 			view = {
 				width = {}, -- a table makes it adaptive
-				hide_root_folder = false,
 				side = "left",
 				number = false,
 				relativenumber = false,
