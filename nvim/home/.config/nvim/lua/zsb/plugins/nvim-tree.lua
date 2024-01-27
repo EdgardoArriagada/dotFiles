@@ -1,4 +1,3 @@
-
 local function mappings(api, opts)
 	local closeNodeWith = MakeMultimap("n", api.node.navigate.parent_close, opts("Close Directory"))
 	local editNodeWith = MakeMultimap("n", api.node.open.edit, opts("Open Directory"))
@@ -32,12 +31,7 @@ return {
 	dependencies = { "kyazdani42/nvim-web-devicons" },
 	tag = "nightly", -- optional, updated every week. (see issue #1193)
 	cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeClose", "NvimTreeRefresh", "NvimTreeFindFile" },
-	config = function()
-		local status_ok, nvim_tree = pcall(require, "nvim-tree")
-		if not status_ok then
-			return
-		end
-
+	config = Config("nvim-tree", function(nvim_tree)
 		local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
 		if not config_status_ok then
 			return
@@ -124,5 +118,5 @@ return {
 				},
 			},
 		})
-	end,
+	end),
 }
