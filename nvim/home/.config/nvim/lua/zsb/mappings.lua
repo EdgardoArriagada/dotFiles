@@ -34,7 +34,7 @@ kset("x", "p", "'pgv\"'.v:register.'y`>'", { expr = true })
 kset("x", "P", "'Pgv\"'.v:register.'y`>'", { expr = true })
 
 -- Go and trim visual selection
-kset("v", "gt", ":s/\\s\\+/ /g<CR>")
+kset("v", "gt", ":s/\\s\\+/ /g<CR> <BAR> :nohlsearch<CR>")
 
 kset("n", "<C-w>m", "<C-w>100>")
 
