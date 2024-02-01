@@ -1,6 +1,5 @@
 M = {}
 
-
 local function onAppLaunch(appName, callback)
 	local appWatcher = nil
 
@@ -110,8 +109,8 @@ end
 M.hideAllApps = function()
 	local apps = hs.application.runningApplications()
 
-	for _, app in pairs(apps) do
-		if not app:isHidden() then
+	for _ = 1, 2 do
+		for _, app in pairs(apps) do
 			app:hide()
 		end
 	end
