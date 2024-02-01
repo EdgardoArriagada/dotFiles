@@ -13,16 +13,6 @@ local function onAppLaunch(appName, callback)
 	appWatcher:start()
 end
 
-local function getAppMainWindow(app)
-	local mw = app:mainWindow()
-
-	if mw == nil then
-		hs.application.open(app:name())
-		return app:mainWindow()
-	end
-
-	return mw
-end
 
 local function removeFullScreen(win)
 	if win:isFullScreen() then
@@ -34,10 +24,25 @@ local function resizeWindowToScreenFrame(win)
 	win:setFrame(hs.screen.mainScreen():frame(), 0)
 end
 
+local function getAppMainWindow(app)
+	local mw = app:mainWindow()
+
+	if mw == nil then
+		hs.application.open(app:name())
+		return app:mainWindow()
+	end
+
+	return mw
+end
+
 local function visualizeAppInScreenFrame(app)
 	app:activate(true)
 
 	local win = getAppMainWindow(app)
+
+	if win == nil then
+		return
+	end
 
 	resizeWindowToScreenFrame(win)
 	removeFullScreen(win)
