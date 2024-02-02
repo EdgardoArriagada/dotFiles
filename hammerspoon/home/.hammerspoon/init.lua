@@ -1,23 +1,8 @@
 local utils = require("utils")
 local hideAllApps = utils.hideAllApps
-
-local function focusApp(appName)
-	return function()
-		utils.focusApp(appName)
-	end
-end
-
-local function toggleApp(appName)
-	return function()
-		utils.toggleApp(appName)
-	end
-end
-
-local function weakFocus(appName)
-	return function()
-		utils.weakFocus(appName)
-	end
-end
+local focusApp = utils.focusApp
+local toggleApp = utils.toggleApp
+local weakFocus = utils.weakFocus
 
 local cmd2 = { "command", "ctrl" }
 

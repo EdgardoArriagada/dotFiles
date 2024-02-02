@@ -13,7 +13,6 @@ local function onAppLaunch(appName, callback)
 	appWatcher:start()
 end
 
-
 local function removeFullScreen(win)
 	if win:isFullScreen() then
 		win:toggleFullScreen()
@@ -99,15 +98,21 @@ local toggleAppHandlers = {
 -- TO EXPORT
 
 M.weakFocus = function(appName)
-	handleApp(appName, weakFocusHandlers)
+	return function()
+		handleApp(appName, weakFocusHandlers)
+	end
 end
 
 M.focusApp = function(appName)
-	handleApp(appName, focusAppHandlers)
+	return function()
+		handleApp(appName, focusAppHandlers)
+	end
 end
 
 M.toggleApp = function(appName)
-	handleApp(appName, toggleAppHandlers)
+	return function()
+		handleApp(appName, toggleAppHandlers)
+	end
 end
 
 -- Works a little buggy
