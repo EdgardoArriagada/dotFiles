@@ -1,6 +1,6 @@
 return {
   "EdgardoArriagada/vaquero-shoot.nvim",
-  keys = { "W", { "'", mode = "v" } },
+  keys = { "W", { "W", mode = "v" }, { "'", mode = "v" } },
   config = Config("vaquero-shoot", function(vqs)
     -- enclosing
     kset("n", "W", function()
