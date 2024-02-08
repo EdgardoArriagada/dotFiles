@@ -161,12 +161,10 @@ kset("v", "<C-r>", function()
   local searchAndReplaceNext = currLine + 1 .. ",$s/" .. search .. "/" .. replace .. "/gcI"
 
   local ok, _ = pcall(Execute, searchAndReplaceInline)
-  if not ok then
-    Execute("nohlsearch")
-    return
-  end
 
-  pcall(Execute, searchAndReplaceNext)
+  if ok then
+    pcall(Execute, searchAndReplaceNext)
+  end
 
   Execute("nohlsearch")
 end)
