@@ -152,7 +152,10 @@ kset("v", "<C-r>", function()
 	-- `:h range` or `:h substitute` to see more config options
 	local searchAndReplace = ".,$s/" .. EscapeForRegex(vSelection) .. "/" .. EscapeForRegex(replaceString) .. "/gcI"
 
-	pcall(Execute, searchAndReplace)
+  local search = EscapeForRegex(vSelection)
+  local replace = EscapeForRegex(replaceString)
+  -- `:h range` or `:h substitute` to see more config options
+  local searchAndReplace = ".,$s/" .. search .. "/" .. replace .. "/gcI"
 
 	Execute("nohlsearch")
 end)
