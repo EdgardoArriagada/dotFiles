@@ -1,5 +1,6 @@
 return {
   "EdgardoArriagada/vaquero-shoot.nvim",
+  --[[ dir = "~/projects/per/vaquero-shoot.nvim ]]
   keys = { "W", { "W", mode = "v" }, { "'", mode = "v" } },
   config = Config("vaquero-shoot", function(vqs)
     -- enclosing
