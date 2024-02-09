@@ -33,6 +33,10 @@ local function luaLogger()
 	doLog("print('le " .. X .. "', " .. X .. ");")
 end
 
+local function luaLoggerSP()
+	doLog("print('le " .. X .. ":', vim.inspect(" .. X .. "));")
+end
+
 local function rustLogger()
 	doLog('println!("le ' .. X .. ': {}", ' .. X .. ");")
 end
@@ -63,6 +67,7 @@ local extensionToFunctionSP = {
 	["ts"] = tsLoggerSP,
 	["jsx"] = jsLoggerSP,
 	["tsx"] = tsLoggerSP,
+	["lua"] = luaLoggerSP,
 	["rs"] = rustLoggerSp,
 	[""] = noExtensionLogger,
 }
