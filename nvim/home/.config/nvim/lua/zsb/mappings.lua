@@ -141,30 +141,41 @@ end, { nargs = 1 })
 -- Search and replace matches for highlighted text
 -- pcalls prevent C-c from crashing
 kset("v", "<C-r>", function()
-  local vSelection = GetVisualSelectionInLine()
-  local okGetReplaceString, replaceString = pcall(vim.fn.input, "Replace: ", vSelection)
+	local vSelection = GetVisualSelectionInLine()
+	local okGetReplaceString, replaceString = pcall(vim.fn.input, "Replace: ", vSelection)
 
-  local startVisualPos = vim.fn.getpos("v")[3]
-  local currLine = vim.fn.line(".")
+	local startVisualPos = vim.fn.getpos("v")[3]
+	local currLine = vim.fn.line(".")
+	local seq_cur = vim.fn.undotree().seq_cur
 
-  Execute("normal<Esc>")
+	Execute("normal<Esc>")
 
-  if not okGetReplaceString then
-    return
-  end
+	if not okGetReplaceString then
+		return
+	end
 
-  local search = EscapeForRegex(vSelection)
-  local replace = EscapeForRegex(replaceString)
+	local search = EscapeForRegex(vSelection)
+	local replace = EscapeForRegex(replaceString)
 
-  -- `:h range` or `:h substitute` to see more config options
-  local searchAndReplaceInline = "s/\\%>" .. startVisualPos - 1 .. "c" .. search .. "/" .. replace .. "/gcI"
-  local searchAndReplaceNext = currLine + 1 .. ",$s/" .. search .. "/" .. replace .. "/gcI"
+	-- `:h range` or `:h substitute` to see more config options
+	local searchAndReplaceInline = "s/\\%>" .. startVisualPos - 1 .. "c" .. search .. "/" .. replace .. "/gcI"
+	local searchAndReplaceNext = currLine + 1 .. ",$s/" .. search .. "/" .. replace .. "/gcI"
 
-  local ok, _ = pcall(Execute, searchAndReplaceInline)
+	local ok, _ = pcall(Execute, searchAndReplaceInline)
 
-  if ok then
-    pcall(Execute, searchAndReplaceNext)
-  end
+	if not ok then
+		vim.cmd("undo " .. seq_cur)
+		Execute("nohlsearch")
+		return
+	end
 
-  Execute("nohlsearch")
+	local ok2, _ = pcall(Execute, searchAndReplaceNext)
+
+	if not ok2 then
+		vim.cmd("undo " .. seq_cur)
+		Execute("nohlsearch")
+		return
+	end
+
+	Execute("nohlsearch")
 end)
