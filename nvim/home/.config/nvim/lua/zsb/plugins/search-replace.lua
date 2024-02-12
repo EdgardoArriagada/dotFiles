@@ -4,7 +4,7 @@ return {
   keys = { { "<c-r>", mode = "v" } },
   config = Config("search-replace", function(sr)
     kset("v", "<c-r>", function()
-      sr.searchAndReplace("<c-r>")
+      sr.searchAndReplace()
     end)
   end),
 }
