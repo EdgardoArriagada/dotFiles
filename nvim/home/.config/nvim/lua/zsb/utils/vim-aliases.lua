@@ -11,12 +11,6 @@ line = vim.fn.line
 
 kset = vim.keymap.set
 createCmd = vim.api.nvim_create_user_command
-getCurrentLine = vim.api.nvim_get_current_line
-
-getpos = vim.fn.getpos
-setpos = vim.fn.setpos
-cursor = vim.fn.cursor
-col = vim.fn.col
 
 -- merge given tables without mutating them
 function Extend(...)
