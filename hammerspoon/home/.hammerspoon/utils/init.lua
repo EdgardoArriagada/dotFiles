@@ -61,7 +61,7 @@ local function launchApp(appName)
 	end
 end
 
-local function launchNilApp(appName)
+local function launchAppAndAlertLaunch(appName)
 	hs.alert.show("Launching " .. appName .. "...")
 	return launchApp(appName)
 end
@@ -87,12 +87,12 @@ local weakFocusHandlers = {
 
 local focusAppHandlers = {
 	onOk = visualizeAppInScreenFrame,
-	onNotLaunched = launchNilApp,
+	onNotLaunched = launchAppAndAlertLaunch,
 }
 
 local toggleAppHandlers = {
 	onOk = toggleApp,
-	onNotLaunched = launchNilApp,
+	onNotLaunched = launchAppAndAlertLaunch,
 }
 
 -- TO EXPORT
