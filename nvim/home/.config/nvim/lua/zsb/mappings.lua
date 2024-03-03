@@ -96,44 +96,44 @@ kset("n", "j", [[(v:count > 5 ? "m'" . v:count : "") . 'j']], { expr = true, des
 createCmd("V", ":set nornu", {})
 
 createCmd("W", function()
-  vim.cmd("w!")
-  vim.cmd("e!")
+	vim.cmd("w!")
+	vim.cmd("e!")
 end, {})
 
 createCmd("Json", function()
-  vim.bo.filetype = "json"
-  vim.opt.foldmethod = "syntax"
-  print('Folds set to "syntax"')
+	vim.bo.filetype = "json"
+	vim.opt.foldmethod = "syntax"
+	print('Folds set to "syntax"')
 end, {})
 
 createCmd("Pjson", function()
-  Hpcall(Execute, "%!jq .", { onErr = 'failed to execute ":%!jq .", make sure you have "jq" is installed' })
+	Hpcall(Execute, "%!jq .", { onErr = 'failed to execute ":%!jq .", make sure you have "jq" is installed' })
 end, {})
 
 -- Toggle quickfix window
 createCmd("T", function()
-  for _, win in pairs(vim.fn.getwininfo()) do
-    if win.quickfix == 1 then
-      return vim.cmd("cclose")
-    end
-  end
-  vim.cmd("copen")
+	for _, win in pairs(vim.fn.getwininfo()) do
+		if win.quickfix == 1 then
+			return vim.cmd("cclose")
+		end
+	end
+	vim.cmd("copen")
 end, {})
 
 -- Reload local plugin
 createCmd("Reload", function(opts)
-  local plugin = opts.args
+	local plugin = opts.args
 
-  if not plugin then
-    print("No plugin specified")
-    return
-  end
+	if not plugin then
+		print("No plugin specified")
+		return
+	end
 
-  print("Reloading " .. plugin)
+	print("Reloading " .. plugin)
 
-  if package.loaded[plugin] then
-    package.loaded[plugin] = nil
-  end
+	if package.loaded[plugin] then
+		package.loaded[plugin] = nil
+	end
 
-  P(require(plugin))
+	P(require(plugin))
 end, { nargs = 1 })
