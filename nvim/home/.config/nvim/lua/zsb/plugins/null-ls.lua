@@ -1,17 +1,15 @@
 return {
 	"nvimtools/none-ls.nvim",
 	config = Config("null-ls", function(null_ls)
-		-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
+		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 		local f = null_ls.builtins.formatting
-		-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 		local d = null_ls.builtins.diagnostics
 
 		null_ls.setup({
 			debug = false,
 			sources = {
 				-- javascript
-				--[[ f.prettierd, -- https://github.com/fsouza/prettierd#installation-guide ]]
-				f.prettier,
+				f.prettierd,
 				d.eslint_d,
 				-- rust
 				f.rustfmt,
