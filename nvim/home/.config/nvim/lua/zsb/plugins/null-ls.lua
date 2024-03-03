@@ -25,19 +25,25 @@ return {
 					return
 				end
 
-				vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-				vim.api.nvim_create_autocmd("BufWritePre", {
+				local common = {
 					group = augroup,
 					buffer = bufnr,
-					callback = function()
-						vim.lsp.buf.format({
-							bufnr = bufnr,
-							filter = function(c)
-								return c.name == "null-ls"
-							end,
-						})
-					end,
-				})
+				}
+
+				vim.api.nvim_clear_autocmds(common)
+				vim.api.nvim_create_autocmd(
+					"BufWritePre",
+					Extend(common, {
+						callback = function()
+							vim.lsp.buf.format({
+								bufnr = bufnr,
+								filter = function(c)
+									return c.name == "null-ls"
+								end,
+							})
+						end,
+					})
+				)
 			end,
 		})
 	end),
