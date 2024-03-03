@@ -2,18 +2,6 @@
 local autocmd = vim.api.nvim_create_autocmd
 local group = vim.api.nvim_create_augroup("Zsb", { clear = true })
 
-autocmd("BufWritePre", {
-	callback = function()
-		vim.lsp.buf.format({
-			async = true,
-			filter = function(client)
-				return client.name == "null-ls"
-			end,
-		})
-	end,
-	group = group,
-})
-
 -- Use internal formatting for bindings like gq.
 autocmd("LspAttach", {
 	callback = function(args)
