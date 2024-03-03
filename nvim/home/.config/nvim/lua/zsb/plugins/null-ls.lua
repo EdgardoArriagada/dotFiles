@@ -20,6 +20,7 @@ return {
 				f.stylua,
 			},
 			on_attach = function(client, bufnr)
+				-- https://github.com/nvimtools/none-ls.nvim/wiki/Formatting-on-save
 				if not client.supports_method("textDocument/formatting") then
 					return
 				end
@@ -30,6 +31,7 @@ return {
 					buffer = bufnr,
 					callback = function()
 						vim.lsp.buf.format({
+							bufnr = bufnr,
 							filter = function(c)
 								return c.name == "null-ls"
 							end,
