@@ -4,7 +4,12 @@ local group = vim.api.nvim_create_augroup("Zsb", { clear = true })
 
 autocmd("BufWritePre", {
 	callback = function()
-		vim.lsp.buf.format({ async = true })
+		vim.lsp.buf.format({
+			async = true,
+			filter = function(client)
+				return client.name == "null-ls"
+			end,
+		})
 	end,
 	group = group,
 })
