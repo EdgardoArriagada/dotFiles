@@ -28,7 +28,7 @@ end
 
 return {
 	"kyazdani42/nvim-tree.lua",
-	dependencies = { "kyazdani42/nvim-web-devicons" },
+	dependencies = { "nvim-tree/nvim-web-devicons" },
 	tag = "nightly", -- optional, updated every week. (see issue #1193)
 	cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeClose", "NvimTreeRefresh", "NvimTreeFindFile" },
 	config = Config("nvim-tree", function(nvim_tree)
