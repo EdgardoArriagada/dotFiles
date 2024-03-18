@@ -15,7 +15,7 @@ local function jsLoggerSP()
 			.. X
 			.. "', JSON.stringify("
 			.. X
-			.. ", (_, v) => (typeof v === 'function' ? 'fn(...)' : v), 2));"
+			.. ", (_, v) => (typeof v === 'function' ? `fn ${v.name}(...)` : v), 2));"
 	)
 end
 
@@ -25,7 +25,7 @@ local function tsLoggerSP()
 			.. X
 			.. "', JSON.stringify("
 			.. X
-			.. ", (_, v: string) => (typeof v === 'function' ? 'fn(...)' : v), 2));"
+			.. ", (_, v: string) => (typeof v === 'function' ? `fn ${v.name}(...)` : v), 2));"
 	)
 end
 
