@@ -1,4 +1,5 @@
 return {
+	keys = { "<leader>" },
 	"xiyaowong/nvim-transparent",
 	opts = {
 		groups = { -- table: default groups
