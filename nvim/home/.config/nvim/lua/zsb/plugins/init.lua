@@ -1,10 +1,17 @@
 return {
-	{ "github/copilot.vim" },
-	{ "windwp/nvim-ts-autotag", dependencies = { "nvim-treesitter/nvim-treesitter" } },
+	{
+		event = "InsertEnter",
+		"github/copilot.vim",
+	},
+	{
+		event = "InsertEnter",
+		"windwp/nvim-ts-autotag",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+	},
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
 		build = "make",
-		keys = "<C-p>",
+		keys = { "<leader>", "<C-p>" },
 	},
 	{ "moll/vim-bbye" },
 	-- if it doesn't work, follow https://github.com/ekickx/clipboard-image.nvim/issues/50
