@@ -5,7 +5,7 @@ return {
 		bufferline.setup()
 
 		kset("n", "Q", ":Bdelete<Cr>")
-		kset("n", "<C-l>", ":BufferLineCycleNext<Cr>")
-		kset("n", "<C-h>", ":BufferLineCyclePrev<Cr>")
+		kset("n", "<C-n>", ":BufferLineCycleNext<Cr>")
+		kset("n", "<C-b>", ":BufferLineCyclePrev<Cr>")
 	end),
 }
