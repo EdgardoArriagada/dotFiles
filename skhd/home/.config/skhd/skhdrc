@@ -3,10 +3,6 @@ fn - l : zsb_charm_handyLinks
 fn - r : zsb_charm_remainingPomodoro
 fn - y : zsb_charm_youtubeSearch
 
-cmd - h [
-  "alacritty" : tmux select-pane -L
-]
-
 tab [
   "choose": skhd -k down
 ]
