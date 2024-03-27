@@ -70,7 +70,7 @@ return {
 				set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 				set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 				set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-				set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+				set_keymap("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 				set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 				set_keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 			end
