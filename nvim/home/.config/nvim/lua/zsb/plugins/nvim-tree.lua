@@ -6,9 +6,10 @@ local function mappings(api, opts)
 
 	editNodeWith({ "l", "<CR>", "o" })
 
-	kset("n", "s", api.node.open.vertical, opts("Open file"))
-	kset("n", "i", api.node.open.horizontal, opts("Open file horizontally"))
+	kset("n", "v", api.node.open.vertical, opts("Open file vertically"))
+	kset("n", "s", api.node.open.horizontal, opts("Open file horizontally"))
 	kset("n", "y", api.fs.copy.node, opts("Copy"))
+	kset("n", "Y", api.fs.copy.filename, opts("Copy filename"))
 	kset("n", "x", api.fs.cut, opts("Cut"))
 	kset("n", "p", api.fs.paste, opts("Paste"))
 end
