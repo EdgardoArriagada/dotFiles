@@ -1,15 +1,9 @@
 return {
 	"EdgardoArriagada/search-replace.nvim",
 	--[[ dir = "~/projects/per/search-replace.nvim", ]]
-	keys = { "#", { "#", mode = "v" } },
+	keys = { "<C-r>", { "<C-r>", mode = "v" } },
 	config = Config("search-replace", function(sr)
-		kset("v", "#", function()
-			sr.searchAndReplace()
-		end)
-
-		kset("n", "#", function()
-			Execute("normal!<Esc>viw")
-
+		kset("v", "<C-r>", function()
 			sr.searchAndReplace()
 		end)
 	end),
