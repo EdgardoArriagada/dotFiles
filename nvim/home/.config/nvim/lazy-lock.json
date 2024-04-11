@@ -37,7 +37,7 @@
   "pretty-fold.nvim": { "branch": "master", "commit": "a7d8b424abe0eedf50116c460fbe6dfd5783b1d5" },
   "react-extract.nvim": { "branch": "main", "commit": "d8b182407ef03481f1d3e33e7de735415ef8bfa7" },
   "refactoring.nvim": { "branch": "master", "commit": "c067e44b8171494fc1b5206ab4c267cd74c043b1" },
-  "search-replace.nvim": { "branch": "main", "commit": "ad33299172cc7fe13e14eef692854e76248bb46f" },
+  "search-replace.nvim": { "branch": "main", "commit": "e447e20f08c0f467556a94c2aee3d039fd8fe251" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "6c921ca12321edaa773e324ef64ea301a1d0da62" },
   "telescope.nvim": { "branch": "master", "commit": "da8b3d485975a8727bea127518b65c980521ae22" },
   "vaquero-shoot.nvim": { "branch": "main", "commit": "dedb931d9e06c02929a809087616c089c5063d23" },
