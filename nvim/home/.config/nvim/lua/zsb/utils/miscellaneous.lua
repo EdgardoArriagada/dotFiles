@@ -1,3 +1,13 @@
+function HasBufCorrectSize(buf)
+	local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+
+	if not ok or not stats then
+		return false
+	end
+
+	return stats.size < 100 * 1024 -- 100 KB
+end
+
 function GetDirectionalProps(direction)
 	if direction == "j" then
 		return 1, line("$")

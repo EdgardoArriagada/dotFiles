@@ -13,7 +13,7 @@ autocmd("LspAttach", {
 autocmd("FileType", {
 	pattern = "json",
 	callback = function(m)
-		if StartsWith("/Users/", m.file) then
+		if StartsWith("/Users/", m.file) or not HasBufCorrectSize(m.buf) then
 			return
 		end
 
