@@ -12,11 +12,17 @@ autocmd("LspAttach", {
 
 autocmd("FileType", {
 	pattern = "json",
-	callback = function()
-		vim.opt.foldmethod = "syntax"
-		--[[ vim.schedule(function() ]]
-		--[[ 	Hpcall(Execute, "normal!zA", { onErr = 'failed to execute ":normal!zA"' }) ]]
-		--[[ end) ]]
+	callback = function(m)
+		if StartsWith("/Users/", m.file) then
+			return
+		end
+
+		vim.o.foldmethod = "expr"
+		vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+
+		vim.schedule(function()
+			Hpcall(Execute, "normal!zA", { onErr = 'failed to execute ":normal!zA"' })
+		end)
 	end,
 	group = group,
 })
