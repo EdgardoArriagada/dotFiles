@@ -1,7 +1,3 @@
-if not table.unpack then
-	table.unpack = unpack
-end
-
 function Warn(msg)
 	vim.api.nvim_echo({ { msg, "WarningMsg" } }, true, {})
 end
