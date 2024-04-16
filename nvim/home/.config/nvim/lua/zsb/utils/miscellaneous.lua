@@ -17,7 +17,7 @@ function GetDirectionalProps(direction)
 end
 
 function StartsWith(beginning, input)
-	return input.sub(input, 1, string.len(beginning)) == beginning
+	return string.match(input, "^" .. beginning) ~= nil
 end
 
 function IsEmptyString(input)
