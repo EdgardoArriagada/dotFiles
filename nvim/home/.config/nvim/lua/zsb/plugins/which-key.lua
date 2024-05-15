@@ -207,7 +207,7 @@ return {
 				},
 				t = {
 					"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>",
-					"Harpoon add file",
+					"Harpoon toogle quick menu",
 				},
 				n = {
 					"<cmd>lua require('harpoon.ui').nav_next()<cr>",
