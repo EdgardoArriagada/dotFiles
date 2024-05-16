@@ -36,9 +36,10 @@ local function getProductionCodeFileJS()
 	local extension = vim.fn.expand("%:e")
 	local testFileDir = vim.fn.expand("%:h")
 
+	local productionCodeFileDir = testFileDir:gsub("__tests__", "")
+
 	for _, ex in ipairs(FILE_EXTENSIONS) do
 		local productionCodeFileName = fileName:gsub("%.spec%." .. extension .. "$", "%." .. ex)
-		local productionCodeFileDir = testFileDir:gsub("__tests__", "")
 		local result = productionCodeFileDir .. productionCodeFileName
 		local isReadable = vim.fn.filereadable(result) ~= 0
 
@@ -48,8 +49,6 @@ local function getProductionCodeFileJS()
 	end
 
 	local productionCodeFileName = fileName:gsub("%.spec%." .. extension .. "$", "%." .. extension)
-	local productionCodeFileDir = testFileDir:gsub("__tests__", "")
-
 	return productionCodeFileDir .. productionCodeFileName
 end
 
