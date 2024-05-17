@@ -34,15 +34,15 @@ local function getTestFileJs()
 end
 
 local function getProductionCodeFileJS()
-	local fileName = vim.fn.expand("%:t")
+	local testFileName = vim.fn.expand("%:t")
 	local extension = vim.fn.expand("%:e")
 	local testFileDir = vim.fn.expand("%:h")
 
-	local productionCodeFileDir = testFileDir:gsub("__tests__", "")
+	local fileDir = testFileDir:gsub("__tests__", "")
 
 	for _, ex in ipairs(JS_EXTENSIONS) do
-		local productionCodeFileName = fileName:gsub("%.spec%." .. extension .. "$", "%." .. ex)
-		local result = productionCodeFileDir .. productionCodeFileName
+		local fileName = testFileName:gsub("%.spec%." .. extension .. "$", "%." .. ex)
+		local result = fileDir .. fileName
 		local isReadable = vim.fn.filereadable(result) ~= 0
 
 		if isReadable then
@@ -50,8 +50,8 @@ local function getProductionCodeFileJS()
 		end
 	end
 
-	local productionCodeFileName = fileName:gsub("%.spec%." .. extension .. "$", "%." .. extension)
-	return productionCodeFileDir .. productionCodeFileName
+	local fileName = testFileName:gsub("%.spec%." .. extension .. "$", "%." .. extension)
+	return fileDir .. fileName
 end
 
 function ToggleJsFile()
