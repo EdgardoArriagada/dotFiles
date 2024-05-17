@@ -1,8 +1,8 @@
 local JS_EXTENSIONS = {
-	"js",
-	"jsx",
 	"ts",
 	"tsx",
+	"js",
+	"jsx",
 }
 
 local function doesFileExists(file)
