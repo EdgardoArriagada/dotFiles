@@ -16,19 +16,19 @@ local function isTestFile()
 	return string.match(fileName, "%.spec%." .. ft .. "$")
 end
 
-local function findFile(newFileDir, oldFileName, oldExtension, newExtensionPrefix, ft)
+local function findFile(a)
 	local fallback
 
 	for _, ex in ipairs(JS_EXTENSIONS) do
-		local newExtension = newExtensionPrefix .. ex
-		local fileName = oldFileName:gsub(oldExtension .. "$", newExtension)
-		local result = newFileDir .. fileName
+		local newExtension = a.newExtensionPrefix .. ex
+		local fileName = a.oldFileName:gsub(a.oldExtension .. "$", newExtension)
+		local result = a.newFileDir .. fileName
 
 		if doesFileExists(result) then
 			return result
 		end
 
-		if ft == ex then
+		if a.ft == ex then
 			fallback = result
 		end
 	end
@@ -43,7 +43,13 @@ local function getTestFile()
 	local fileExtension = "%." .. ft
 	local newExtensionPrefix = "%.spec%."
 
-	return findFile(testDir, fileName, fileExtension, newExtensionPrefix, ft)
+	return findFile({
+		newFileDir = testDir,
+		oldFileName = fileName,
+		oldExtension = fileExtension,
+		newExtensionPrefix = newExtensionPrefix,
+		ft = ft,
+	})
 end
 
 local function getProductionCodeFile()
@@ -54,7 +60,13 @@ local function getProductionCodeFile()
 	local testExtension = "%.spec%." .. ft
 	local newExtensionPrefix = "%."
 
-	return findFile(fileDir, testFileName, testExtension, newExtensionPrefix, ft)
+	return findFile({
+		newFileDir = fileDir,
+		oldFileName = testFileName,
+		oldExtension = testExtension,
+		newExtensionPrefix = newExtensionPrefix,
+		ft = ft,
+	})
 end
 
 function ToggleJsFile()
