@@ -38,21 +38,17 @@ local function findFile(a)
 end
 
 local function getTestFile()
-	local ft = vim.fn.expand("%:e")
-
 	return findFile({
 		newFileDir = vim.fn.expand("%:h") .. "/__tests__/",
-		oldExtension = "%." .. ft,
+		oldExtension = "%." .. vim.fn.expand("%:e"),
 		newExtensionPrefix = "%.spec%.",
 	})
 end
 
 local function getProductionCodeFile()
-	local ft = vim.fn.expand("%:e")
-
 	return findFile({
 		newFileDir = vim.fn.expand("%:h"):gsub("__tests__", ""),
-		oldExtension = "%.spec%." .. ft,
+		oldExtension = "%.spec%." .. vim.fn.expand("%:e"),
 		newExtensionPrefix = "%.",
 	})
 end
