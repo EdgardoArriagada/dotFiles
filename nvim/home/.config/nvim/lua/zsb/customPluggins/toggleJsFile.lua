@@ -21,6 +21,7 @@ local function getTestFile()
 	local ft = vim.fn.expand("%:e")
 	local testDir = vim.fn.expand("%:h") .. "/__tests__/"
 	local endFile = "%." .. ft .. "$"
+	local fallback
 
 	for _, ex in ipairs(JS_EXTENSIONS) do
 		local extension = "%.spec%." .. ex
@@ -30,13 +31,13 @@ local function getTestFile()
 		if doesFileExists(result) then
 			return result
 		end
+
+		if ft == ex then
+			fallback = result
+		end
 	end
 
-	local extension = "%.spec%." .. ft
-	local testFileName = fileName:gsub(endFile, extension)
-	local result = testDir .. testFileName
-
-	return result
+	return fallback
 end
 
 local function getProductionCodeFile()
@@ -45,6 +46,7 @@ local function getProductionCodeFile()
 	local testFileDir = vim.fn.expand("%:h")
 	local fileDir = testFileDir:gsub("__tests__", "")
 	local endFile = "%.spec%." .. ft .. "$"
+	local fallback
 
 	for _, ex in ipairs(JS_EXTENSIONS) do
 		local extension = "%." .. ex
@@ -54,13 +56,13 @@ local function getProductionCodeFile()
 		if doesFileExists(result) then
 			return result
 		end
+
+		if ft == ex then
+			fallback = result
+		end
 	end
 
-	local extension = "%." .. ft
-	local fileName = testFileName:gsub(endFile, extension)
-	local result = fileDir .. fileName
-
-	return result
+	return fallback
 end
 
 function ToggleJsFile()
