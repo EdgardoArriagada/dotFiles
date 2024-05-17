@@ -5,7 +5,7 @@ local JS_EXTENSIONS = {
 	"tsx",
 }
 
-local function isReadable(file)
+local function doesFileExists(file)
 	return vim.fn.filereadable(file) ~= 0
 end
 
@@ -27,15 +27,16 @@ local function getTestFile()
 		local testFileName = fileName:gsub(endFile, extension)
 		local result = testDir .. testFileName
 
-		if isReadable(result) then
+		if doesFileExists(result) then
 			return result
 		end
 	end
 
 	local extension = "%.spec%." .. ft
 	local testFileName = fileName:gsub(endFile, extension)
+	local result = testDir .. testFileName
 
-	return testDir .. testFileName
+	return result
 end
 
 local function getProductionCodeFile()
@@ -50,15 +51,16 @@ local function getProductionCodeFile()
 		local fileName = testFileName:gsub(endFile, extension)
 		local result = fileDir .. fileName
 
-		if isReadable(result) then
+		if doesFileExists(result) then
 			return result
 		end
 	end
 
 	local extension = "%." .. ft
 	local fileName = testFileName:gsub(endFile, extension)
+	local result = fileDir .. fileName
 
-	return fileDir .. fileName
+	return result
 end
 
 function ToggleJsFile()
