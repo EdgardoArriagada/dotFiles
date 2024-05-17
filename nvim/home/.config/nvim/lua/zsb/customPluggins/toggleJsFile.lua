@@ -1,8 +1,8 @@
-local JS_EXTENSIONS = {
-	"ts",
-	"tsx",
-	"js",
-	"jsx",
+local JS_FILE_RELATIONS = {
+	["ts"] = { "ts", "tsx" },
+	["tsx"] = { "tsx", "ts" },
+	["js"] = { "js", "jsx" },
+	["jsx"] = { "jsx", "js" },
 }
 
 local function doesFileExists(file)
@@ -20,7 +20,7 @@ local function findFile(a)
 	local fallback
 	local ft = vim.fn.expand("%:e")
 
-	for _, ex in ipairs(JS_EXTENSIONS) do
+	for _, ex in ipairs(JS_FILE_RELATIONS[ft]) do
 		local newExtension = a.newExtensionPrefix .. ex
 		local fileName = vim.fn.expand("%:t"):gsub(a.oldExtension .. "$", newExtension)
 		local result = a.newFileDir .. fileName
