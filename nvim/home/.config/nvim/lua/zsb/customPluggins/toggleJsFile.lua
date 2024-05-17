@@ -22,7 +22,7 @@ local function findFile(a)
 
 	for _, ex in ipairs(JS_EXTENSIONS) do
 		local newExtension = a.newExtensionPrefix .. ex
-		local fileName = a.oldFileName:gsub(a.oldExtension .. "$", newExtension)
+		local fileName = vim.fn.expand("%:t"):gsub(a.oldExtension .. "$", newExtension)
 		local result = a.newFileDir .. fileName
 
 		if doesFileExists(result) then
@@ -42,7 +42,6 @@ local function getTestFile()
 
 	return findFile({
 		newFileDir = vim.fn.expand("%:h") .. "/__tests__/",
-		oldFileName = vim.fn.expand("%:t"),
 		oldExtension = "%." .. ft,
 		newExtensionPrefix = "%.spec%.",
 	})
@@ -53,7 +52,6 @@ local function getProductionCodeFile()
 
 	return findFile({
 		newFileDir = vim.fn.expand("%:h"):gsub("__tests__", ""),
-		oldFileName = vim.fn.expand("%:t"),
 		oldExtension = "%.spec%." .. ft,
 		newExtensionPrefix = "%.",
 	})
