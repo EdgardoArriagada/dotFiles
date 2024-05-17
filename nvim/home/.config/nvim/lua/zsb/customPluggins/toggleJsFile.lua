@@ -5,14 +5,14 @@ local JS_EXTENSIONS = {
 	"tsx",
 }
 
-local function isTestFileJs()
+local function isTestFile()
 	local fileName = vim.fn.expand("%:t")
 	local ft = vim.fn.expand("%:e")
 
 	return string.match(fileName, "%.spec%." .. ft .. "$")
 end
 
-local function getTestFileJs()
+local function getTestFile()
 	local fileName = vim.fn.expand("%:t")
 	local ft = vim.fn.expand("%:e")
 	local testDir = vim.fn.expand("%:h") .. "/__tests__/"
@@ -36,7 +36,7 @@ local function getTestFileJs()
 	return testDir .. testFileName
 end
 
-local function getProductionCodeFileJS()
+local function getProductionCodeFile()
 	local testFileName = vim.fn.expand("%:t")
 	local ft = vim.fn.expand("%:e")
 	local testFileDir = vim.fn.expand("%:h")
@@ -62,9 +62,9 @@ local function getProductionCodeFileJS()
 end
 
 function ToggleJsFile()
-	if isTestFileJs() then
-		vim.cmd("e " .. getProductionCodeFileJS())
+	if isTestFile() then
+		vim.cmd("e " .. getProductionCodeFile())
 	else
-		vim.cmd("e " .. getTestFileJs())
+		vim.cmd("e " .. getTestFile())
 	end
 end
