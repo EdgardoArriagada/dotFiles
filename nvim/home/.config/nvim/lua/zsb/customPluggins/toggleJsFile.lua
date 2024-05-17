@@ -5,6 +5,10 @@ local JS_EXTENSIONS = {
 	"tsx",
 }
 
+local function isReadable(file)
+	return vim.fn.filereadable(file) ~= 0
+end
+
 local function isTestFile()
 	local fileName = vim.fn.expand("%:t")
 	local ft = vim.fn.expand("%:e")
@@ -23,9 +27,7 @@ local function getTestFile()
 		local testFileName = fileName:gsub(endFile, extension)
 		local result = testDir .. testFileName
 
-		local isReadable = vim.fn.filereadable(result) ~= 0
-
-		if isReadable then
+		if isReadable(result) then
 			return result
 		end
 	end
@@ -48,9 +50,7 @@ local function getProductionCodeFile()
 		local fileName = testFileName:gsub(endFile, extension)
 		local result = fileDir .. fileName
 
-		local isReadable = vim.fn.filereadable(result) ~= 0
-
-		if isReadable then
+		if isReadable(result) then
 			return result
 		end
 	end
