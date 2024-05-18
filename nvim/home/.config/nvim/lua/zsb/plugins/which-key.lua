@@ -140,6 +140,16 @@ return {
 					"Workspace Diagnostics",
 				},
 				f = { "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", "Format" },
+				h = {
+					function()
+						if vim.lsp.inlay_hint.is_enabled() then
+							vim.lsp.inlay_hint.enable(false)
+						else
+							vim.lsp.inlay_hint.enable()
+						end
+					end,
+					"Toggle inlay hints",
+				},
 				i = { "<cmd>LspInfo<cr>", "Info" },
 				I = { "<cmd>Mason<cr>", "Info" },
 				n = {
