@@ -63,13 +63,11 @@ return {
 			local on_attach = function(_, buffer)
 				local opts = { noremap = true, silent = true, buffer = buffer }
 
-				kset("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-				kset("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-				kset("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-				kset("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-				kset("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-				kset("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-				kset("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+				kset("n", "gD", vim.lsp.buf.declaration, opts)
+				kset("n", "gd", vim.lsp.buf.definition, opts)
+				kset("n", "gi", vim.lsp.buf.implementation, opts)
+				kset("n", "gk", vim.lsp.buf.signature_help, opts)
+				kset("n", "gr", vim.lsp.buf.references, opts)
 			end
 
 			local defaultSetUp = {
