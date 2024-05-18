@@ -83,7 +83,6 @@ return {
 		}
 
 		local mappings = {
-			["/"] = { '<cmd>lua require("Comment.api").toggle_current_linewise()<CR>', "Comment" },
 			["a"] = { "<cmd>Alpha<cr>", "Alpha" },
 			["x"] = { "<cmd>lua Logger()<cr>", "JS Log" },
 			["X"] = { "<cmd>lua LoggerSP()<cr>", "JS Log SP" },
@@ -153,16 +152,16 @@ return {
 				i = { "<cmd>LspInfo<cr>", "Info" },
 				I = { "<cmd>Mason<cr>", "Info" },
 				n = {
-					"<cmd>lua vim.diagnostic.goto_next()<CR>",
+					vim.diagnostic.goto_next,
 					"Next Diagnostic",
 				},
 				p = {
-					"<cmd>lua vim.diagnostic.goto_prev()<cr>",
+					vim.diagnostic.goto_prev,
 					"Prev Diagnostic",
 				},
-				l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-				q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
-				r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+				l = { vim.lsp.codelens.run, "CodeLens Action" },
+				q = { vim.diagnostic.setloclist, "Quickfix" },
+				r = { vim.lsp.buf.rename, "Rename" },
 				s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
 				S = {
 					"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
@@ -171,7 +170,7 @@ return {
 			},
 			v = {
 				name = "Vim",
-				t = { "<cmd>lua ToggleJsFile()<cr>", "Toggle js file" },
+				t = { ToggleJsFile, "Toggle js file" },
 			},
 			s = {
 				name = "Search",
@@ -196,11 +195,11 @@ return {
 			b = {
 				name = "Buffer",
 				y = {
-					"<cmd>lua Cppath()<cr>",
+					Cppath,
 					"Copy File Path",
 				},
 				a = {
-					"<cmd>lua require('harpoon.mark').add_file()<cr>",
+					require("harpoon.mark").add_file,
 					"Harpoon add file",
 				},
 				o = {
@@ -208,23 +207,25 @@ return {
 					"Buffer Only",
 				},
 				["!"] = {
-					"<cmd>lua OpenBufferInNewTmuxWindow()<cr>",
+					OpenBufferInNewTmuxWindow,
 					"Move buffer to new tmux window",
 				},
 				c = {
-					"<cmd>lua OpenBufferInNewTmuxWindow('NoClose')<cr>",
+					function()
+						OpenBufferInNewTmuxWindow("NoClose")
+					end,
 					"Copy buffer to new tmux window",
 				},
 				t = {
-					"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>",
+					require("harpoon.ui").toggle_quick_menu,
 					"Harpoon toogle quick menu",
 				},
 				n = {
-					"<cmd>lua require('harpoon.ui').nav_next()<cr>",
+					require("harpoon.ui").nav_next,
 					"Harpoon Next",
 				},
 				p = {
-					"<cmd>lua require('harpoon.ui').nav_prev()<cr>",
+					require("harpoon.ui").nav_prev,
 					"Harpoon Prev",
 				},
 				z = {
@@ -270,7 +271,6 @@ return {
 		}
 
 		local vmappings = {
-			["/"] = { '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', "Comment" },
 			r = {
 				name = "Refactor",
 				e = {
@@ -292,11 +292,11 @@ return {
 				r = {
 					name = "React",
 					e = {
-						"<Cmd>lua require('react-extract').extract_to_current_file()<CR>",
+						require("react-extract").extract_to_current_file,
 						"Extract Component",
 					},
 					f = {
-						"<Cmd>lua require('react-extract').extract_to_new_file()<CR>",
+						require("react-extract").extract_to_new_file,
 						"Extract Component to New File",
 					},
 				},
