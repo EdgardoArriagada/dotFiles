@@ -35,6 +35,7 @@
   "oil.nvim": { "branch": "master", "commit": "c4cc8240f1c71defcb67c45da96e44b968d29e5f" },
   "plenary.nvim": { "branch": "master", "commit": "55d9fe89e33efd26f532ef20223e5f9430c8b0c0" },
   "pretty-fold.nvim": { "branch": "master", "commit": "a7d8b424abe0eedf50116c460fbe6dfd5783b1d5" },
+  "rainbow-delimiters.nvim": { "branch": "master", "commit": "dd1156723eb8483e4403eb8765bbdff456b6981d" },
   "react-extract.nvim": { "branch": "main", "commit": "d8b182407ef03481f1d3e33e7de735415ef8bfa7" },
   "refactoring.nvim": { "branch": "master", "commit": "c067e44b8171494fc1b5206ab4c267cd74c043b1" },
   "search-replace.nvim": { "branch": "main", "commit": "e447e20f08c0f467556a94c2aee3d039fd8fe251" },
