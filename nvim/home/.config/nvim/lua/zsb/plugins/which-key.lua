@@ -1,5 +1,5 @@
 return {
-	"max397574/which-key.nvim",
+	"folke/which-key.nvim",
 	keys = { "<leader>", { "<leader>", mode = "v" } },
 	config = function()
 		local status_ok, which_key = pcall(require, "which-key")
