@@ -19,12 +19,13 @@ end
 
 local function findFile(a)
 	local fallback
+	local filename = vim.fn.expand("%:t")
 	local ft = vim.fn.expand("%:e")
 
 	for i, ex in ipairs(JS_FILE_RELATIONS[ft]) do
 		local newExtension = a.newExtensionPrefix .. ex
-		local fileName = vim.fn.expand("%:t"):gsub(a.oldExtension .. "$", newExtension)
-		local result = a.newFileDir .. fileName
+		local newFilename = filename:gsub(a.oldExtension .. "$", newExtension)
+		local result = a.newFileDir .. newFilename
 
 		if doesFileExists(result) then
 			return result
