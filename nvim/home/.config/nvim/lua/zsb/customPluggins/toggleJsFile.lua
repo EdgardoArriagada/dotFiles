@@ -1,3 +1,4 @@
+-- firt element has to be itself
 local JS_FILE_RELATIONS = {
 	["ts"] = { "ts", "tsx" },
 	["tsx"] = { "tsx", "ts" },
@@ -20,7 +21,7 @@ local function findFile(a)
 	local fallback
 	local ft = vim.fn.expand("%:e")
 
-	for _, ex in ipairs(JS_FILE_RELATIONS[ft]) do
+	for i, ex in ipairs(JS_FILE_RELATIONS[ft]) do
 		local newExtension = a.newExtensionPrefix .. ex
 		local fileName = vim.fn.expand("%:t"):gsub(a.oldExtension .. "$", newExtension)
 		local result = a.newFileDir .. fileName
@@ -29,7 +30,7 @@ local function findFile(a)
 			return result
 		end
 
-		if ft == ex then
+		if i == 1 then
 			fallback = result
 		end
 	end
