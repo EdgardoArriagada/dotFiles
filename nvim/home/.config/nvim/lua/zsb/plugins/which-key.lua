@@ -1,12 +1,7 @@
 return {
 	"folke/which-key.nvim",
 	keys = { "<leader>", { "<leader>", mode = "v" } },
-	config = function()
-		local status_ok, which_key = pcall(require, "which-key")
-		if not status_ok then
-			return
-		end
-
+	config = Config("which-key", function(which_key)
 		local setup = {
 			plugins = {
 				marks = true, -- shows a list of your marks on ' and `
@@ -306,5 +301,5 @@ return {
 		which_key.setup(setup)
 		which_key.register(mappings, opts)
 		which_key.register(vmappings, vopts)
-	end,
+	end),
 }
