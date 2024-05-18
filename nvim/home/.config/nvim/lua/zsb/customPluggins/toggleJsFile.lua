@@ -21,10 +21,11 @@ local function findFile(a)
 	local fallback
 	local filename = vim.fn.expand("%:t")
 	local ft = vim.fn.expand("%:e")
+	local endFile = a.oldExtensionPrefix .. ft .. "$"
 
 	for i, ex in ipairs(JS_FILE_RELATIONS[ft]) do
 		local newExtension = a.newExtensionPrefix .. ex
-		local newFilename = filename:gsub(a.oldExtension .. "$", newExtension)
+		local newFilename = filename:gsub(endFile, newExtension)
 		local result = a.newFileDir .. newFilename
 
 		if doesFileExists(result) then
@@ -42,7 +43,7 @@ end
 local function getTestFile()
 	return findFile({
 		newFileDir = vim.fn.expand("%:h") .. "/__tests__/",
-		oldExtension = "%." .. vim.fn.expand("%:e"),
+		oldExtensionPrefix = "%.",
 		newExtensionPrefix = "%.spec%.",
 	})
 end
@@ -50,7 +51,7 @@ end
 local function getProductionCodeFile()
 	return findFile({
 		newFileDir = vim.fn.expand("%:h"):gsub("__tests__", ""),
-		oldExtension = "%.spec%." .. vim.fn.expand("%:e"),
+		oldExtensionPrefix = "%.spec%.",
 		newExtensionPrefix = "%.",
 	})
 end
