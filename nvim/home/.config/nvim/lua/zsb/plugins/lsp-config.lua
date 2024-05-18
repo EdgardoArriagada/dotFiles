@@ -60,20 +60,16 @@ return {
 			local capabilities =
 				require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-			local on_attach = function(_, bufnr)
-				local opts = { noremap = true, silent = true }
-				local function set_keymap(...)
-					vim.api.nvim_buf_set_keymap(bufnr, ...)
-				end
+			local on_attach = function(_, buffer)
+				local opts = { noremap = true, silent = true, buffer = buffer }
 
-				set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-				set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-				set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-				set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-				set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-				set_keymap("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-				set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-				set_keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+				kset("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+				kset("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+				kset("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+				kset("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+				kset("n", "gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+				kset("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+				kset("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 			end
 
 			local defaultSetUp = {
