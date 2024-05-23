@@ -88,7 +88,11 @@ return {
 			["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
 			["t"] = { "<cmd>TransparentToggle<cr>", "Transparency" },
 			["f"] = {
-				"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+				function()
+					require("telescope.builtin").find_files(
+						require("telescope.themes").get_dropdown({ previewer = false })
+					)
+				end,
 				"Find files",
 			},
 			["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
