@@ -110,7 +110,7 @@ return {
 				v = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
 				r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
 				s = { "<cmd>Gvdiffsplit!<cr>", "Fugitive Split" },
-				S = { "<cmd>lua FullGitSplit()<cr>", "Fugitive custom split" },
+				S = { FullGitSplit, "Fugitive custom split" },
 				h = { "<cmd>diffget //2<cr>", "Pick left" },
 				l = { "<cmd>diffget //3<cr>", "Pick right" },
 				R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },

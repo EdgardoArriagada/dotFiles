@@ -1,4 +1,4 @@
 return {
-	keys = { "<leader>" },
+	cmd = "Gvdiffsplit",
 	"tpope/vim-fugitive",
 }
