@@ -198,7 +198,9 @@ return {
 					"Copy File Path",
 				},
 				a = {
-					require("harpoon.mark").add_file,
+					function()
+						require("harpoon.mark").add_file()
+					end,
 					"Harpoon add file",
 				},
 				o = {
@@ -216,15 +218,21 @@ return {
 					"Copy buffer to new tmux window",
 				},
 				t = {
-					require("harpoon.ui").toggle_quick_menu,
+					function()
+						require("harpoon.ui").toggle_quick_menu()
+					end,
 					"Harpoon toogle quick menu",
 				},
 				n = {
-					require("harpoon.ui").nav_next,
+					function()
+						require("harpoon.ui").nav_next()
+					end,
 					"Harpoon Next",
 				},
 				p = {
-					require("harpoon.ui").nav_prev,
+					function()
+						require("harpoon.ui").nav_prev()
+					end,
 					"Harpoon Prev",
 				},
 				z = {
@@ -291,11 +299,15 @@ return {
 				r = {
 					name = "React",
 					e = {
-						require("react-extract").extract_to_current_file,
+						function()
+							require("react-extract").extract_to_current_file()
+						end,
 						"Extract Component",
 					},
 					f = {
-						require("react-extract").extract_to_new_file,
+						function()
+							require("react-extract").extract_to_new_file()
+						end,
 						"Extract Component to New File",
 					},
 				},
