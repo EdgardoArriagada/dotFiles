@@ -1,5 +1,5 @@
 return {
-	keys = { "<leader>", "(", ")" },
+	keys = { "(", ")" },
 	"ThePrimeagen/harpoon",
 	dependencies = { "nvim-lua/plenary.nvim" },
 	config = Config("harpoon.ui", function(harpoon_ui)
