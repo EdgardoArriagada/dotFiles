@@ -1,5 +1,5 @@
 return {
-	keys = { "<leader>" },
+	cmd = "TransparentToggle",
 	"xiyaowong/nvim-transparent",
 	opts = {
 		groups = { -- table: default groups
