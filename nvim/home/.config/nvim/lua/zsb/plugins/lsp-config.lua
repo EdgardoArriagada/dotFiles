@@ -1,6 +1,6 @@
 local configServers = {
 	pyright = {},
-	gleam = {},
+	--[[ gleam = {}, ]]
 	cssls = {},
 	emmet_language_server = {},
 	tailwindcss = {},
