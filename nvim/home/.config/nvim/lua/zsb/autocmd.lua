@@ -27,6 +27,13 @@ autocmd("FileType", {
 	group = group,
 })
 
+-- run :make and :copen
+--[[ autocmd("FileType", { ]]
+--[[ 	pattern = "typescript,typescriptreact", ]]
+--[[ 	group = group, ]]
+--[[ 	command = "compiler tsc | setlocal makeprg=npx\\ tsc", ]]
+--[[ }) ]]
+
 -- Triger `autoread` when files changes on disk
 autocmd(
 	{ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" },
