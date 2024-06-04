@@ -1,38 +1,38 @@
-local function mappings(api, opts)
-	local closeNodeWith = MakeMultimap("n", api.node.navigate.parent_close, opts("Close Directory"))
-	local editNodeWith = MakeMultimap("n", api.node.open.edit, opts("Open Directory"))
-
-	closeNodeWith({ "<BS>", "h" })
-
-	editNodeWith({ "l", "<CR>", "o" })
-
-	kset("n", "v", api.node.open.vertical, opts("Open file vertically"))
-	kset("n", "s", api.node.open.horizontal, opts("Open file horizontally"))
-	kset("n", "y", api.fs.copy.node, opts("Copy"))
-	kset("n", "Y", api.fs.copy.filename, opts("Copy filename"))
-	kset("n", "x", api.fs.cut, opts("Cut"))
-	kset("n", "p", api.fs.paste, opts("Paste"))
-end
-
-local function on_attach(bufnr)
-	local ok, api = pcall(require, "nvim-tree.api")
-	if not ok then
-		return
-	end
-
-	local function opts(desc)
-		return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
-	end
-
-	mappings(api, opts)
-end
-
 return {
 	"kyazdani42/nvim-tree.lua",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	tag = "nightly", -- optional, updated every week. (see issue #1193)
 	cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeClose", "NvimTreeRefresh", "NvimTreeFindFile" },
 	config = Config("nvim-tree", function(nvim_tree)
+		local function mappings(api, opts)
+			local closeNodeWith = MakeMultimap("n", api.node.navigate.parent_close, opts("Close Directory"))
+			local editNodeWith = MakeMultimap("n", api.node.open.edit, opts("Open Directory"))
+
+			closeNodeWith({ "<BS>", "h" })
+
+			editNodeWith({ "l", "<CR>", "o" })
+
+			kset("n", "v", api.node.open.vertical, opts("Open file vertically"))
+			kset("n", "s", api.node.open.horizontal, opts("Open file horizontally"))
+			kset("n", "y", api.fs.copy.node, opts("Copy"))
+			kset("n", "Y", api.fs.copy.filename, opts("Copy filename"))
+			kset("n", "x", api.fs.cut, opts("Cut"))
+			kset("n", "p", api.fs.paste, opts("Paste"))
+		end
+
+		local function on_attach(bufnr)
+			local ok, api = pcall(require, "nvim-tree.api")
+			if not ok then
+				return
+			end
+
+			local function opts(desc)
+				return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+			end
+
+			mappings(api, opts)
+		end
+
 		-- https://www.nerdfonts.com/cheat-sheet
 		nvim_tree.setup({
 			on_attach = on_attach,
