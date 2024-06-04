@@ -1,5 +1,5 @@
 return {
 	"napmn/react-extract.nvim",
+	lazy = true,
 	config = true,
-	ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 }
