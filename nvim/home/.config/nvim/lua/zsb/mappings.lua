@@ -12,7 +12,7 @@ kset("v", "w", "iw")
 kset("v", "R", "loh")
 --
 
-kset("n", "S", "v$<left><left>")
+kset("n", "F", "v$<left><left>")
 kset("n", "+", "A <esc>p")
 -- delete some text 'A', then select some text 'B' and press +
 -- 'A' has to be before 'B' when swapping inline
