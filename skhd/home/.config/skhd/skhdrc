@@ -14,3 +14,7 @@ shift - tab  [
 ctrl - w [
   "choose": skhd -k "alt - backspace"
 ]
+
+ctrl - u [
+  "choose": skhd -k "alt - backspace"
+]
