@@ -16,5 +16,5 @@ ctrl - w [
 ]
 
 ctrl - u [
-  "choose": skhd -k "alt - backspace"
+  "choose": skhd -k "cmd - backspace"
 ]

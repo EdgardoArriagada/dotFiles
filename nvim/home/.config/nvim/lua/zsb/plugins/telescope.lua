@@ -8,6 +8,11 @@ return {
 			telescope.setup({
 				defaults = {
 					path_display = { "truncate" },
+					mappings = {
+						i = {
+							["<C-u>"] = { "<c-s-u>", type = "command" },
+						},
+					},
 				},
 				extensions = {
 					fzf = {
