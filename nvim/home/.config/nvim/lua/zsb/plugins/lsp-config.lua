@@ -80,6 +80,9 @@ return {
 			for serverName, config in pairs(configServers) do
 				lspconfig[serverName].setup(Extend(defaultSetUp, config))
 			end
+
+			-- special config for gleam
+			lspconfig.gleam.setup(defaultSetUp)
 		end,
 	},
 }
