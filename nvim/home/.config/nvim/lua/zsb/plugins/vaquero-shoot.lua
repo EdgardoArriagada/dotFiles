@@ -23,10 +23,8 @@ return {
 		kset("o", "W", vqs.enclosingSelectionBackwards)
 
 		-- quotes
-		kset("v", "'", vqs.cycleQuotesSelection)
-		kset("o", "'", vqs.quotesSelection)
+		kset({ "v", "o" }, "'", vqs.quotesSelection)
 
-		kset("v", '"', vqs.cycleQuotesSelectionBackwards)
-		kset("o", '"', vqs.quotesSelectionBackwards)
+		kset({ "v", "o" }, '"', vqs.quotesSelectionBackwards)
 	end),
 }
