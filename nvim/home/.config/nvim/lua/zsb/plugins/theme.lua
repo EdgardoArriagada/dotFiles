@@ -14,6 +14,10 @@ return {
 					bg = palette.gray2,
 					bold = false,
 				},
+				CursorLine = {
+					bg = palette.gray1,
+					bold = true, -- Or false.
+				},
 				Delimiter = {
 					fg = palette.white0_normal,
 					bold = false,
