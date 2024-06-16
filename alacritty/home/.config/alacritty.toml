@@ -24,34 +24,34 @@ background = "#434c5e"
 foreground = "#d8dee9"
 
 [colors.normal]
-black = "#3b4252"
+black = "#191d24"
 red = "#bf616a"
 green = "#a3be8c"
 yellow = "#ebcb8b"
-blue = "#81a1c1"
-magenta = "#b48ead"
-cyan = "#88c0d0"
-white = "#e5e9f0"
-
-[colors.bright]
-black = "#4c566a"
-red = "#bf616a"
-green = "#a3be8c"
-yellow = "#ebcb8b"
-blue = "#81a1c1"
+blue = "#5e81ac"
 magenta = "#b48ead"
 cyan = "#8fbcbb"
-white = "#eceff4"
+white = "#d8dee9"
+
+[colors.bright]
+black = "#1e222a"
+red = "#c5727a"
+green = "#b1c89d"
+yellow = "#efd49f"
+blue = "#81a1c1"
+magenta = "#be9db8"
+cyan = "#9fc6c5"
+white = "#e5e9f0"
 
 [colors.dim]
-black = "#373e4d"
-red = "#94545d"
-green = "#809575"
-yellow = "#b29e75"
-blue = "#68809a"
-magenta = "#8c738c"
-cyan = "#6d96a5"
-white = "#aeb3bb"
+black = "#1e222a"
+red = "#b74e58"
+green = "#97b67c"
+yellow = "#e7c173"
+blue = "#88c0d0"
+magenta = "#a97ea1"
+cyan = "#80b3b2"
+white = "#e5e9f0"
 
 [font]
 size = 22
