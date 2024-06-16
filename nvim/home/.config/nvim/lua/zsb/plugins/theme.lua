@@ -11,7 +11,7 @@ return {
 			-- https://neovim.io/doc/user/syntax.html#group-name
 			override = {
 				Visual = {
-					bg = palette.gray3,
+					bg = palette.gray2,
 					bold = false,
 				},
 				Delimiter = {
