@@ -49,6 +49,7 @@ return {
 	},
 	{
 		"rcarriga/nvim-notify",
+		lazy = true,
 		opts = {
 			stages = "static", -- prefent cursor from flickering
 			timeout = 3000,
