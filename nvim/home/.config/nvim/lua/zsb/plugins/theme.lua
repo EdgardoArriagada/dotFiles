@@ -18,6 +18,10 @@ return {
 					bg = palette.gray1,
 					bold = true, -- Or false.
 				},
+				ColorColumn = {
+					bg = palette.gray1,
+					bold = true, -- Or false.
+				},
 				Delimiter = {
 					fg = palette.white0_normal,
 					bold = false,
