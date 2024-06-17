@@ -43,7 +43,7 @@ white = "#E5E9F0"
 yellow = "#F0D399"
 
 [font]
-size = 22
+size = 21
 
 [font.bold]
 family = "Hack Nerd Font"
