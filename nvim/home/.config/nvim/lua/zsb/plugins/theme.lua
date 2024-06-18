@@ -8,7 +8,7 @@ return {
 		local palette = require("nordic.colors")
 
 		nordic.setup({
-			-- https://neovim.io/doc/user/syntax.html#group-name
+			-- https://neovim.io/doc/user/syntax.html
 			override = {
 				Visual = {
 					bg = palette.gray2,
@@ -26,6 +26,7 @@ return {
 					fg = palette.white0_normal,
 					bold = false,
 				},
+				PmenuSel = { bg = palette.gray3 },
 			},
 		})
 
