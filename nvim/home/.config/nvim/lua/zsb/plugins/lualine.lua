@@ -1,3 +1,19 @@
+local FILENAME = {
+	{ "filetype", icon_only = true },
+	{
+		"filename",
+		path = 1,
+		file_status = false,
+		shorting_target = 0,
+		symbols = {
+			modified = "",
+			readonly = "",
+			unnamed = "",
+			newfile = "",
+		},
+	},
+}
+
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -27,20 +43,13 @@ return {
 			lualine_y = { "progress" },
 			lualine_z = { "location" },
 		},
-		inactive_sections = {
-			lualine_a = {},
-			lualine_b = {},
-			lualine_c = { "filename" },
-			lualine_x = { "location" },
-			lualine_y = {},
-			lualine_z = {},
-		},
-		tabline = {},
+		inactive_sections = {}, -- not seen with globalstatus = true
+		tabline = {}, -- clashes with nvim-bufferline
 		winbar = {
-			lualine_c = { { "filename", path = 1 } },
+			lualine_c = FILENAME,
 		},
 		inactive_winbar = {
-			lualine_c = { { "filename", path = 1 } },
+			lualine_c = FILENAME,
 		},
 		extensions = {},
 	},
