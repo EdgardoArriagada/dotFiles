@@ -22,8 +22,8 @@ return {
 		sections = {
 			lualine_a = { "mode" },
 			lualine_b = { "branch", "diff", "diagnostics" },
-			lualine_c = { "filename" },
-			lualine_x = { "encoding", "fileformat", "filetype" },
+			lualine_c = {},
+			lualine_x = { "searchcount", "encoding", "fileformat", "filetype" },
 			lualine_y = { "progress" },
 			lualine_z = { "location" },
 		},
@@ -36,8 +36,12 @@ return {
 			lualine_z = {},
 		},
 		tabline = {},
-		winbar = {},
-		inactive_winbar = {},
+		winbar = {
+			lualine_c = { { "filename", path = 1 } },
+		},
+		inactive_winbar = {
+			lualine_c = { { "filename", path = 1 } },
+		},
 		extensions = {},
 	},
 }
