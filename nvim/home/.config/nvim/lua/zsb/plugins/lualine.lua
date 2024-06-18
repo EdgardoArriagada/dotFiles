@@ -1,5 +1,11 @@
 local FILENAME = {
-	{ "filetype", icon_only = true },
+	{
+		"filetype",
+		icon_only = true,
+		cond = function()
+			return vim.fn.expand("%:t") ~= ""
+		end,
+	},
 	{
 		"filename",
 		path = 1,
