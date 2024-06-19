@@ -1,13 +1,18 @@
+local function Cond()
+	local ft = vim.bo.filetype
+
+	return ft ~= "alpha" and ft ~= "NvimTree"
+end
+
 local FILENAME = {
 	{
 		"filetype",
+		cond = Cond,
 		icon_only = true,
-		cond = function()
-			return vim.fn.expand("%:t") ~= ""
-		end,
 	},
 	{
 		"filename",
+		cond = Cond,
 		path = 1,
 		file_status = false,
 		shorting_target = 0,
