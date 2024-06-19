@@ -8,7 +8,12 @@ return {
 			require("bufdelete").bufdelete(0, true)
 		end)
 
-		kset("n", "<C-n>", ":BufferLineCycleNext<Cr>")
-		kset("n", "<C-b>", ":BufferLineCyclePrev<Cr>")
+		kset("n", "<C-n>", function()
+			bufferline.cycle(1)
+		end)
+
+		kset("n", "<C-b>", function()
+			bufferline.cycle(-1)
+		end)
 	end),
 }
