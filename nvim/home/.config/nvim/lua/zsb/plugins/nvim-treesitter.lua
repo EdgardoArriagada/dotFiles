@@ -1,4 +1,4 @@
-return {
+return { -- do not lazy load
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	config = Config("nvim-treesitter.configs", function(configs)

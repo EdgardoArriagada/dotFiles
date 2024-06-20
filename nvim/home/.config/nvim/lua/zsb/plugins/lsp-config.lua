@@ -39,13 +39,13 @@ for server, _ in pairs(configServers) do
 end
 
 return {
-	{
+	{ -- Do not lazy load
 		"williamboman/mason.nvim",
 		config = function()
 			require("mason").setup()
 		end,
 	},
-	{
+	{ -- Do not lazy load
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
