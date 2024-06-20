@@ -1,5 +1,6 @@
 return {
 	"lukas-reineke/indent-blankline.nvim",
+	event = "VeryLazy",
 	main = "ibl",
 	config = Config("ibl", function(ibl)
 		local hooks = require("ibl.hooks")
