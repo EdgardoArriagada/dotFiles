@@ -1,6 +1,6 @@
 return {
-	cmd = "TransparentToggle",
 	"xiyaowong/nvim-transparent",
+	lazy = true,
 	opts = {
 		groups = { -- table: default groups
 			"Normal",

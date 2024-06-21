@@ -86,7 +86,12 @@ return {
 			["q"] = { "<cmd>q!<CR>", "Quit" },
 			["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
 			["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-			["t"] = { "<cmd>TransparentToggle<cr>", "Transparency" },
+			["t"] = {
+				function()
+					require("transparent").toggle()
+				end,
+				"Transparency",
+			},
 			["f"] = {
 				function()
 					require("telescope.builtin").find_files(
