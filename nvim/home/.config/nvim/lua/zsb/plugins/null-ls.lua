@@ -1,6 +1,7 @@
 return {
 	"nvimtools/none-ls.nvim",
 	config = Config("null-ls", function(null_ls)
+		-- https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 		local f = null_ls.builtins.formatting
 		local d = null_ls.builtins.diagnostics
@@ -18,6 +19,9 @@ return {
 				d.flake8,
 				-- lua
 				f.stylua,
+				-- elixir
+				f.mix,
+				d.credo,
 			},
 			on_attach = function(client, bufnr)
 				-- https://github.com/nvimtools/none-ls.nvim/wiki/Formatting-on-save
