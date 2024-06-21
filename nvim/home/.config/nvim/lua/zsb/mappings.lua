@@ -85,9 +85,9 @@ kset("v", "<C-s>", "<esc>:update<CR>", { silent = true })
 kset("i", "<C-s>", "<esc>:update<CR>", { silent = true })
 
 -- Move highlighted text down 'Shift j'
-kset("v", "J", ":m '>+1<CR>gv=gv")
+kset("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
 -- Move highlighted text up 'Shift k'
-kset("v", "K", ":m '<-2<CR>gv=gv")
+kset("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 
 -- Add moves of more than 5 to the jump list
 kset("n", "k", [[(v:count > 5 ? "m'" . v:count : "") . 'k']], { expr = true, desc = "if k > 5 then add to jumplist" })
