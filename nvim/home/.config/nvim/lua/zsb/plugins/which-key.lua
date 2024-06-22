@@ -209,7 +209,9 @@ return {
 					"Harpoon add file",
 				},
 				o = {
-					"<cmd>BufferLineCloseLeft<cr>|<cmd>BufferLineCloseRight<cr>",
+					function()
+						require("bufferline").close_others()
+					end,
 					"Buffer Only",
 				},
 				["!"] = {
