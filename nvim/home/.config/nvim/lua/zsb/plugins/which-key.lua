@@ -253,15 +253,21 @@ return {
 			r = {
 				name = "Refactor",
 				b = {
-					"<Cmd>lua require('refactoring').refactor('Extract Block')<CR>",
+					function()
+						require("refactoring").refactor("Extract Block")
+					end,
 					"Extract Block",
 				},
 				bf = {
-					"<Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>",
+					function()
+						require("refactoring").refactor("Extract Block To File")
+					end,
 					"Extract Block To File",
 				},
 				i = {
-					"<Cmd>lua require('refactoring').refactor('Inline Variable')<CR>",
+					function()
+						require("refactoring").refactor("Inline Variable")
+					end,
 					"Inline Variable",
 				},
 			},
@@ -279,20 +285,28 @@ return {
 		local vmappings = {
 			r = {
 				name = "Refactor",
-				e = {
-					"<Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>",
+				f = {
+					function()
+						require("refactoring").refactor("Extract Function")
+					end,
 					"Extract Function",
 				},
-				f = {
-					"<Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>",
+				e = {
+					function()
+						require("refactoring").refactor("Extract Function To File")
+					end,
 					"Extract Function To File",
 				},
 				v = {
-					"<Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>",
+					function()
+						require("refactoring").refactor("Extract Variable")
+					end,
 					"Extract Variable",
 				},
 				i = {
-					"<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>",
+					function()
+						require("refactoring").refactor("Inline Variable")
+					end,
 					"Inline Variable",
 				},
 				r = {
