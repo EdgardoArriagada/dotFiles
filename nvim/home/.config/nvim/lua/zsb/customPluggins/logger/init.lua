@@ -20,12 +20,12 @@ local extensionToFunctionSP = {
 	["rs"] = d.rustLoggerSp,
 }
 
---- @param mode "v" | nil "v" or nil
+--- @param mode? "v"
 function Logger(mode)
-	u.executeLogger(extensionToFunction, mode, "No logger function")
+	u.executeLogger(extensionToFunction, "No logger function", mode)
 end
 
---- @param mode "v" | nil "v" or nil
+--- @param mode? "v"
 function LoggerSP(mode)
-	u.executeLogger(extensionToFunctionSP, mode, "No SP logger function")
+	u.executeLogger(extensionToFunctionSP, "No SP logger function", mode)
 end
