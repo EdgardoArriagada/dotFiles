@@ -1,26 +1,13 @@
-local function getSlot(mode)
-	if mode == "v" then
-		return GetVisualSelection()
-	else
-		return '<Esc>"xpa'
-	end
-end
-
-local function doLog(logStatement, _opts)
-	local opts = _opts or {}
-
-	local after = opts.after or ""
-	Execute('normal<Esc>"xyiwo' .. logStatement .. "<Esc><left><left>" .. after)
-end
+local u = require("zsb.customPluggins.logger.utils")
 
 local function jsLogger(mode)
-	local slot = getSlot(mode)
-	doLog("console.log('le " .. slot .. "', " .. slot .. ");")
+	local slot = u.getSlot(mode)
+	u.doLog("console.log('le " .. slot .. "', " .. slot .. ");")
 end
 
 local function jsLoggerSP(mode)
-	local slot = getSlot(mode)
-	doLog(
+	local slot = u.getSlot(mode)
+	u.doLog(
 		"console.log('le "
 			.. slot
 			.. "', JSON.stringify("
@@ -30,8 +17,8 @@ local function jsLoggerSP(mode)
 end
 
 local function tsLoggerSP(mode)
-	local slot = getSlot(mode)
-	doLog(
+	local slot = u.getSlot(mode)
+	u.doLog(
 		"console.log('le "
 			.. slot
 			.. "', JSON.stringify("
@@ -41,28 +28,28 @@ local function tsLoggerSP(mode)
 end
 
 local function luaLogger(mode)
-	local slot = getSlot(mode)
-	doLog("print('le " .. slot .. "', " .. slot .. ");")
+	local slot = u.getSlot(mode)
+	u.doLog("print('le " .. slot .. "', " .. slot .. ");")
 end
 
 local function luaLoggerSP(mode)
-	local slot = getSlot(mode)
-	doLog("print('le " .. slot .. ":', vim.inspect(" .. slot .. "));")
+	local slot = u.getSlot(mode)
+	u.doLog("print('le " .. slot .. ":', vim.inspect(" .. slot .. "));")
 end
 
 local function rustLogger(mode)
-	local slot = getSlot(mode)
-	doLog('println!("le ' .. slot .. ': {}", ' .. slot .. ");")
+	local slot = u.getSlot(mode)
+	u.doLog('println!("le ' .. slot .. ': {}", ' .. slot .. ");")
 end
 
 local function rustLoggerSp(mode)
-	local slot = getSlot(mode)
-	doLog('println!("le ' .. slot .. ': {:?}", ' .. slot .. ");")
+	local slot = u.getSlot(mode)
+	u.doLog('println!("le ' .. slot .. ': {:?}", ' .. slot .. ");")
 end
 
 local function bashLogger(mode)
-	local slot = getSlot(mode)
-	doLog('echo "le ' .. slot .. ": ${" .. slot .. '}";', { after = "b" })
+	local slot = u.getSlot(mode)
+	u.doLog('echo "le ' .. slot .. ": ${" .. slot .. '}";', { after = "b" })
 end
 
 local noExtensionLogger = bashLogger
@@ -88,22 +75,10 @@ local extensionToFunctionSP = {
 	[""] = noExtensionLogger,
 }
 
-local function executeLogger(dictionary, mode, onErrMsg)
-	local extension = vim.fn.expand("%:e")
-	local fun = dictionary[extension]
-
-	if fun == nil then
-		vim.notify(onErrMsg .. " for '" .. extension .. "' extension")
-		return
-	end
-
-	fun(mode)
-end
-
 function Logger(mode)
-	executeLogger(extensionToFunction, mode, "No logger function")
+	u.executeLogger(extensionToFunction, mode, "No logger function")
 end
 
 function LoggerSP(mode)
-	executeLogger(extensionToFunctionSP, mode, "No SP logger function")
+	u.executeLogger(extensionToFunctionSP, mode, "No SP logger function")
 end
