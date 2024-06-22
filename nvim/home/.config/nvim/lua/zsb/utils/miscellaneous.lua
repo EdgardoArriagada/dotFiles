@@ -110,3 +110,11 @@ end
 function P(input)
 	print(vim.inspect(input))
 end
+
+function GetVisualSelection()
+	local currPos = vim.fn.col(".")
+	local currLine = vim.fn.line(".")
+	local startVisualPos = vim.fn.getpos("v")[3]
+
+	return string.sub(vim.api.nvim_get_current_line(), startVisualPos, currPos)
+end

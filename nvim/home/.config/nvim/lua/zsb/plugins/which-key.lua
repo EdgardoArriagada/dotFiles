@@ -292,6 +292,18 @@ return {
 		}
 
 		local vmappings = {
+			["x"] = {
+				function()
+					Logger("v")
+				end,
+				"JS Log",
+			},
+			["X"] = {
+				function()
+					LoggerSP("v")
+				end,
+				"JS Log SP",
+			},
 			r = {
 				name = "Refactor",
 				f = {
