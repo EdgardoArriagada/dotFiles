@@ -1,14 +1,9 @@
-local globalOptions = {
+local options = {
 	clipboard = "unnamedplus", -- allows neovim to access the system clipboard
 	fileencoding = "utf-8", -- the encoding written to a file
 	ignorecase = true, -- ignore case in search patterns
 	mouse = "",
 	timeoutlen = 200, -- time to wait for a mapped sequence to complete (in milliseconds)
-	--[[ number = false, -- no numbers ]]
-	--[[ laststatus = 0, -- no statusline ]]
-}
-
-local neovimOptions = {
 	autoread = true, -- automatically reload a file if it changes from the outside
 	backup = false, -- creates a backup file
 	colorcolumn = "80,120", -- highlight given columns
@@ -44,14 +39,9 @@ local neovimOptions = {
 
 vim.opt.shortmess:append("c")
 
-for k, v in pairs(globalOptions) do
+for k, v in pairs(options) do
 	vim.opt[k] = v
 end
 
---[[ if not vim.g.vscode then ]]
-for k, v in pairs(neovimOptions) do
-	vim.opt[k] = v
-end
---[[ end ]]
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
