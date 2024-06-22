@@ -1,10 +1,8 @@
-local X = '<Esc>"xpa' -- X is the variable to log
-
 local function getSlot(mode)
 	if mode == "v" then
 		return GetVisualSelection()
 	else
-		return X
+		return '<Esc>"xpa'
 	end
 end
 
@@ -95,7 +93,7 @@ local function executeLogger(dictionary, mode, onErrMsg)
 	local fun = dictionary[extension]
 
 	if fun == nil then
-		print(onErrMsg .. " for '" .. extension .. "' extension")
+		vim.notify(onErrMsg .. " for '" .. extension .. "' extension")
 		return
 	end
 
