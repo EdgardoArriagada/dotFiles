@@ -82,10 +82,6 @@ return {
 			["x"] = { Logger, "JS Log" },
 			["X"] = { LoggerSP, "JS Log SP" },
 			["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-			["w"] = { "<cmd>w!<CR>", "Save" },
-			["q"] = { "<cmd>q!<CR>", "Quit" },
-			["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-			["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
 			["t"] = {
 				function()
 					require("transparent").toggle()
@@ -241,10 +237,6 @@ return {
 						require("harpoon.ui").nav_prev()
 					end,
 					"Harpoon Prev",
-				},
-				z = {
-					"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-					"Buffers",
 				},
 			},
 			m = {
