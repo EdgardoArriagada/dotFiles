@@ -79,8 +79,8 @@ return {
 
 		local mappings = {
 			["a"] = { "<cmd>Alpha<cr>", "Alpha" },
-			["x"] = { "<cmd>lua Logger()<cr>", "JS Log" },
-			["X"] = { "<cmd>lua LoggerSP()<cr>", "JS Log SP" },
+			["x"] = { Logger, "JS Log" },
+			["X"] = { LoggerSP, "JS Log SP" },
 			["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 			["w"] = { "<cmd>w!<CR>", "Save" },
 			["q"] = { "<cmd>q!<CR>", "Quit" },
