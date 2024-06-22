@@ -103,6 +103,15 @@ return {
 				t = { "<cmd>NvimTreeToggle<cr>", "Toggle" },
 				r = { "<cmd>NvimTreeRefresh<cr>", "Refresh" },
 			},
+			d = {
+				name = "Debug",
+				f = {
+					function()
+						require("refactoring").debug.printf({ below = true })
+					end,
+					"Function",
+				},
+			},
 			g = {
 				name = "Git",
 				n = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
