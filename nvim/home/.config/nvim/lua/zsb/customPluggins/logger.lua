@@ -1,8 +1,8 @@
 local X = '<Esc>"xpa' -- X is the variable to log
 
-local function doLog(msg, _after)
-	local after = _after or ""
-	Execute('normal<Esc>"xyiwo' .. msg .. "<Esc><left><left>" .. after)
+local function doLog(logStatement, opts)
+	local after = opts.after or ""
+	Execute('normal<Esc>"xyiwo' .. logStatement .. "<Esc><left><left>" .. after)
 end
 
 local function jsLogger()
@@ -46,7 +46,7 @@ local function rustLoggerSp()
 end
 
 local function bashLogger()
-	doLog('echo "le ' .. X .. ": ${" .. X .. '}";', "b")
+	doLog('echo "le ' .. X .. ": ${" .. X .. '}";', { after = "b" })
 end
 
 local noExtensionLogger = bashLogger
