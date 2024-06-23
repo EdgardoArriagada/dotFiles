@@ -6,17 +6,7 @@ local function getSlot()
 	if mode == "v" then
 		return GetVisualSelection()
 	else
-		return '<Esc>"xpa'
-	end
-end
-
-local function getOpener()
-	local mode = vim.api.nvim_get_mode()["mode"]
-
-	if mode == "v" then
-		return "o"
-	else
-		return '"xyiwo'
+		return vim.fn.expand("<cword>")
 	end
 end
 
@@ -31,9 +21,11 @@ end
 --- @param options.after string keys to execute after log statement
 M.doLog = function(logStatement, options)
 	local after = parseOptions(options)
-	local opener = getOpener()
 
-	Execute("normal<Esc>" .. opener .. logStatement .. "<Esc><left><left>" .. after)
+	local row = unpack(vim.api.nvim_win_get_cursor(0))
+	vim.api.nvim_buf_set_lines(0, row, row, false, { logStatement })
+
+	Execute("normal<Esc>j$<Esc><left><left>" .. after)
 end
 
 --- @param dictionary table
