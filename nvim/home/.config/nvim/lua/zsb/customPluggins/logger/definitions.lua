@@ -2,13 +2,11 @@ local u = require("zsb.customPluggins.logger.utils")
 
 local M = {}
 
-M.jsLogger = function(mode)
-	local slot = u.getSlot(mode)
+M.jsLogger = function(slot)
 	u.doLog("console.log('le " .. slot .. "', " .. slot .. ");")
 end
 
-M.jsLoggerSP = function(mode)
-	local slot = u.getSlot(mode)
+M.jsLoggerSP = function(slot)
 	u.doLog(
 		"console.log('le "
 			.. slot
@@ -18,8 +16,7 @@ M.jsLoggerSP = function(mode)
 	)
 end
 
-M.tsLoggerSP = function(mode)
-	local slot = u.getSlot(mode)
+M.tsLoggerSP = function(slot)
 	u.doLog(
 		"console.log('le "
 			.. slot
@@ -29,28 +26,23 @@ M.tsLoggerSP = function(mode)
 	)
 end
 
-M.luaLogger = function(mode)
-	local slot = u.getSlot(mode)
+M.luaLogger = function(slot)
 	u.doLog("print('le " .. slot .. "', " .. slot .. ");")
 end
 
-M.luaLoggerSP = function(mode)
-	local slot = u.getSlot(mode)
+M.luaLoggerSP = function(slot)
 	u.doLog("print('le " .. slot .. ":', vim.inspect(" .. slot .. "));")
 end
 
-M.rustLogger = function(mode)
-	local slot = u.getSlot(mode)
+M.rustLogger = function(slot)
 	u.doLog('println!("le ' .. slot .. ': {}", ' .. slot .. ");")
 end
 
-M.rustLoggerSp = function(mode)
-	local slot = u.getSlot(mode)
+M.rustLoggerSp = function(slot)
 	u.doLog('println!("le ' .. slot .. ': {:?}", ' .. slot .. ");")
 end
 
-M.bashLogger = function(mode)
-	local slot = u.getSlot(mode)
+M.bashLogger = function(slot)
 	u.doLog('echo "le ' .. slot .. ": ${" .. slot .. '}";', { after = "b" })
 end
 

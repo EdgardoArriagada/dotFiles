@@ -1,7 +1,7 @@
 local M = {}
 
 --- @param mode? "v"
-M.getSlot = function(mode)
+local function getSlot(mode)
 	if mode == "v" then
 		return GetVisualSelection()
 	else
@@ -31,7 +31,7 @@ M.executeLogger = function(dictionary, onErrMsg, mode)
 		return
 	end
 
-	fun(mode)
+	fun(getSlot(mode))
 end
 
 return M
