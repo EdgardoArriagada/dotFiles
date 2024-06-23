@@ -1,7 +1,7 @@
 local M = {}
 
 local function appendInNextLine(logStatement)
-	local row = vim.api.nvim_win_get_cursor(0)[1]
+	local row = unpack(vim.api.nvim_win_get_cursor(0))
 	vim.api.nvim_buf_set_lines(0, row, row, false, { logStatement })
 end
 
@@ -29,7 +29,7 @@ M.doLog = function(logStatement, options)
 
 	appendInNextLine(logStatement)
 
-	Execute("normal<Esc>j$<Esc><left><left>" .. after)
+	Execute("normal<Esc>j$<left><left>" .. after)
 end
 
 --- @param dictionary table
