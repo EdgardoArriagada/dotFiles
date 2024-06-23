@@ -1,8 +1,13 @@
 local M = {}
 
+local function indentString(input, row)
+	return string.rep(" ", vim.fn.indent(row)) .. input
+end
+
 local function appendInNextLine(logStatement)
 	local row = unpack(vim.api.nvim_win_get_cursor(0))
-	vim.api.nvim_buf_set_lines(0, row, row, false, { logStatement })
+
+	vim.api.nvim_buf_set_lines(0, row, row, false, { indentString(logStatement, row) })
 end
 
 local function parseOptions(options)
