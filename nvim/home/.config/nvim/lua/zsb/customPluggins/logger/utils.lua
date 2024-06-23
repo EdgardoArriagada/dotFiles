@@ -1,5 +1,16 @@
 local M = {}
 
+local function appendInNextLine(logStatement)
+	local row = vim.api.nvim_win_get_cursor(0)[1]
+	vim.api.nvim_buf_set_lines(0, row, row, false, { logStatement })
+end
+
+local function parseOptions(options)
+	local opts = options or {}
+	local after = opts.after or ""
+	return after
+end
+
 local function getSlot()
 	local mode = vim.api.nvim_get_mode()["mode"]
 
@@ -10,20 +21,13 @@ local function getSlot()
 	end
 end
 
-local function parseOptions(options)
-	local opts = options or {}
-	local after = opts.after or ""
-	return after
-end
-
 --- @param logStatement string The statement to log
 --- @param options? { after: string }
 --- @param options.after string keys to execute after log statement
 M.doLog = function(logStatement, options)
 	local after = parseOptions(options)
 
-	local row = unpack(vim.api.nvim_win_get_cursor(0))
-	vim.api.nvim_buf_set_lines(0, row, row, false, { logStatement })
+	appendInNextLine(logStatement)
 
 	Execute("normal<Esc>j$<Esc><left><left>" .. after)
 end
