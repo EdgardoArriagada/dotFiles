@@ -9,14 +9,25 @@ local function getSlot(mode)
 	end
 end
 
+local function getOpener(mode)
+	if mode == "v" then
+		return "o"
+	else
+		return '"xyiwo'
+	end
+end
+
 --- @param logStatement string The statement to log
 --- @param opts? { after: string }
 --- @param opts.after string keys to execute after log statement
 M.doLog = function(logStatement, opts)
+	local mode = vim.api.nvim_get_mode()["mode"]
 	local o = opts or {}
 
+	local opener = getOpener(mode)
+
 	local after = o.after or ""
-	Execute('normal<Esc>"xyiwo' .. logStatement .. "<Esc><left><left>" .. after)
+	Execute("normal<Esc>" .. opener .. logStatement .. "<Esc><left><left>" .. after)
 end
 
 --- @param dictionary table
