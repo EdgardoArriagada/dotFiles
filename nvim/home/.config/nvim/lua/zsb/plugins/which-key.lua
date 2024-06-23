@@ -293,15 +293,11 @@ return {
 
 		local vmappings = {
 			["x"] = {
-				function()
-					Logger("v")
-				end,
+				Logger,
 				"JS Log",
 			},
 			["X"] = {
-				function()
-					LoggerSP("v")
-				end,
+				LoggerSP,
 				"JS Log SP",
 			},
 			r = {

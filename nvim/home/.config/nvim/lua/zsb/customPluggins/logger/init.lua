@@ -20,12 +20,10 @@ local extensionToFunctionSP = {
 	["rs"] = d.rustLoggerSp,
 }
 
---- @param mode? "v"
-function Logger(mode)
-	u.executeLogger(extensionToFunction, "No logger function", mode)
+function Logger()
+	u.executeLogger(extensionToFunction, "No logger function")
 end
 
---- @param mode? "v"
-function LoggerSP(mode)
-	u.executeLogger(extensionToFunctionSP, "No SP logger function", mode)
+function LoggerSP()
+	u.executeLogger(extensionToFunctionSP, "No SP logger function")
 end
