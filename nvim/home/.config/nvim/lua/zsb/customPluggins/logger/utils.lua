@@ -20,15 +20,19 @@ local function getOpener()
 	end
 end
 
---- @param logStatement string The statement to log
---- @param opts? { after: string }
---- @param opts.after string keys to execute after log statement
-M.doLog = function(logStatement, opts)
-	local o = opts or {}
+local function parseOptions(options)
+	local opts = options or {}
+	local after = opts.after or ""
+	return after
+end
 
+--- @param logStatement string The statement to log
+--- @param options? { after: string }
+--- @param options.after string keys to execute after log statement
+M.doLog = function(logStatement, options)
+	local after = parseOptions(options)
 	local opener = getOpener()
 
-	local after = o.after or ""
 	Execute("normal<Esc>" .. opener .. logStatement .. "<Esc><left><left>" .. after)
 end
 
