@@ -10,10 +10,18 @@ local function appendInNextLine(logStatement)
 	vim.api.nvim_buf_set_lines(0, row, row, false, { indentString(logStatement, row) })
 end
 
+local DEFAULT_OPTIONS = {
+	after = "",
+}
+
 local function parseOptions(options)
-	local opts = options or {}
-	local after = opts.after or ""
-	return after
+	if options == nil then
+		return DEFAULT_OPTIONS
+	end
+
+	return {
+		after = options.after or DEFAULT_OPTIONS.after,
+	}
 end
 
 local function getSlot()
@@ -32,11 +40,11 @@ end
 --- @param options? { after: string }
 --- @param options.after string keys to execute after log statement
 M.doLog = function(logStatement, options)
-	local after = parseOptions(options)
+	local opts = parseOptions(options)
 
 	appendInNextLine(logStatement)
 
-	Execute("normal<Esc>j$<left><left>" .. after)
+	Execute("normal<Esc>j$<left><left>" .. opts.after)
 end
 
 --- @param dictionary table
