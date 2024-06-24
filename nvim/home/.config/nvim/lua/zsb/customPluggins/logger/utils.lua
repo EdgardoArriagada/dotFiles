@@ -44,7 +44,7 @@ M.doLog = function(logStatement, options)
 
 	appendInNextLine(logStatement)
 
-	Execute("normal<Esc>j$<left><left>" .. opts.after)
+	Execute("normal<Esc>j$hh" .. opts.after)
 end
 
 --- @param dictionary table
