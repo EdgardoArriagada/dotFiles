@@ -21,6 +21,8 @@ local function getSlot()
 
 	if mode == "v" then
 		return GetVisualSelection()
+	elseif mode == "V" then
+		return vim.api.nvim_get_current_line()
 	else
 		return vim.fn.expand("<cword>")
 	end
