@@ -79,8 +79,8 @@ return {
 
 		local mappings = {
 			["a"] = { "<cmd>Alpha<cr>", "Alpha" },
-			["x"] = { Logger, "JS Log" },
-			["X"] = { LoggerSP, "JS Log SP" },
+			["x"] = { Logger, "Logger" },
+			["X"] = { LoggerSP, "LoggerSp" },
 			["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 			["t"] = {
 				function()
@@ -294,11 +294,11 @@ return {
 		local vmappings = {
 			["x"] = {
 				Logger,
-				"JS Log",
+				"Logger",
 			},
 			["X"] = {
 				LoggerSP,
-				"JS Log SP",
+				"LoggerSP",
 			},
 			r = {
 				name = "Refactor",
