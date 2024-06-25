@@ -1,4 +1,4 @@
-local function condition()
+local function dirnameComponentCondition()
 	local ft = vim.bo.filetype
 
 	return ft ~= "alpha" and ft ~= "NvimTree"
@@ -19,7 +19,7 @@ local function getDirnameComponent(opts)
 		"filename",
 		fmt = getDirname,
 		icon = " ",
-		cond = condition,
+		cond = dirnameComponentCondition,
 		path = 1,
 		file_status = false,
 		shorting_target = 0,
