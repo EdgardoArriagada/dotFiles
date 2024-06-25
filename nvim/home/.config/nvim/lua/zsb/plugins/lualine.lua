@@ -14,7 +14,7 @@ local function getDirname(path)
 	return dirname
 end
 
-local function getDirnameComponent(opts)
+local function getCurrentFileComponent(opts)
 	return {
 		{ -- Dirname
 			"filename",
@@ -83,13 +83,13 @@ return {
 			inactive_sections = {}, -- not seen with globalstatus = true
 			tabline = {}, -- clashes with nvim-bufferline
 			winbar = {
-				lualine_c = getDirnameComponent({
+				lualine_c = getCurrentFileComponent({
 					color = { bg = palette.black1, gui = "bold" },
 					iconColored = true,
 				}),
 			},
 			inactive_winbar = {
-				lualine_c = getDirnameComponent({
+				lualine_c = getCurrentFileComponent({
 					color = { fg = palette.gray3, gui = "italic" },
 					iconColored = false,
 				}),
