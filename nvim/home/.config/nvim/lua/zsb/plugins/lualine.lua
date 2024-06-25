@@ -1,7 +1,7 @@
 local function isNonSpecialFt()
 	local ft = vim.bo.filetype
 
-	return ft ~= "alpha" and ft ~= "NvimTree" and ft ~= "TelescopePrompt"
+	return ft ~= "alpha" and ft ~= "NvimTree"
 end
 
 local function getDirname(path)
@@ -29,16 +29,11 @@ local function getDirnameComponent(opts)
 			unnamed = "",
 			newfile = "",
 		},
+		color = opts.color,
 	}
 
-	local icon = { "filetype", icon_only = true, cond = isNonSpecialFt }
-	local filename = { "filename", file_status = false, cond = isNonSpecialFt }
-
-	if opts ~= nil and opts.color then
-		dirname.color = opts.color
-		icon.color = opts.color
-		filename.color = opts.color
-	end
+	local icon = { "filetype", icon_only = true, cond = isNonSpecialFt, color = opts.color }
+	local filename = { "filename", file_status = false, cond = isNonSpecialFt, color = opts.color }
 
 	return { dirname, icon, filename }
 end
