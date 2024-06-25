@@ -14,6 +14,17 @@ return {
 					bg = palette.gray2,
 					bold = false,
 				},
+				Search = {
+					bg = palette.gray2,
+					fg = palette.white0_normal,
+					bold = false,
+					underline = false,
+				},
+				IncSearch = {
+					bg = palette.gray2,
+					fg = palette.yellow.base,
+					bold = true,
+				},
 				CursorLine = {
 					bg = palette.gray1,
 					bold = true, -- Or false.
