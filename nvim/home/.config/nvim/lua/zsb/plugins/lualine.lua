@@ -15,27 +15,37 @@ local function getDirname(path)
 end
 
 local function getDirnameComponent(opts)
-	local dirname = {
-		"filename",
-		fmt = getDirname,
-		icon = " ",
-		cond = isNonSpecialFt,
-		path = 1,
-		file_status = false,
-		shorting_target = 0,
-		symbols = {
-			modified = "",
-			readonly = "",
-			unnamed = "",
-			newfile = "",
+	return {
+		{ -- Dirname
+			"filename",
+			fmt = getDirname,
+			icon = " ",
+			cond = isNonSpecialFt,
+			path = 1,
+			file_status = false,
+			shorting_target = 0,
+			symbols = {
+				modified = "",
+				readonly = "",
+				unnamed = "",
+				newfile = "",
+			},
+			color = opts.color,
 		},
-		color = opts.color,
+		{ -- Icon
+			"filetype",
+			icon_only = true,
+			cond = isNonSpecialFt,
+			color = opts.color,
+			colored = opts.iconColored,
+		},
+		{ -- Filename
+			"filename",
+			file_status = false,
+			cond = isNonSpecialFt,
+			color = opts.color,
+		},
 	}
-
-	local icon = { "filetype", icon_only = true, cond = isNonSpecialFt, color = opts.color, colored = opts.iconColored }
-	local filename = { "filename", file_status = false, cond = isNonSpecialFt, color = opts.color }
-
-	return { dirname, icon, filename }
 end
 
 return {
