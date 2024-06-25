@@ -37,7 +37,7 @@ local function getCurrentFileComponent(props)
 			icon_only = true,
 			cond = isNonSpecialFt,
 			color = props.textColor,
-			colored = props.ftIconColored,
+			colored = props.ftIconColored or false,
 		},
 		{ -- Filename
 			"filename",
@@ -92,7 +92,6 @@ return {
 			inactive_winbar = {
 				lualine_c = getCurrentFileComponent({
 					textColor = { fg = palette.gray3, gui = "italic" },
-					ftIconColored = false,
 				}),
 			},
 			extensions = {},
