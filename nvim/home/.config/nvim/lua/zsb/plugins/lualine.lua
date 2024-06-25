@@ -92,6 +92,7 @@ return {
 			inactive_winbar = {
 				lualine_c = getCurrentFileComponent({
 					textColor = { fg = palette.gray3, gui = "italic" },
+					ftIconColored = false,
 				}),
 			},
 			extensions = {},
