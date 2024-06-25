@@ -14,12 +14,12 @@ local function getDirname(path)
 	return dirname
 end
 
-local function getCurrentFileComponent(opts)
+local function getCurrentFileComponent(props)
 	return {
 		{ -- Dirname
 			"filename",
 			fmt = getDirname,
-			icon = " ",
+			icon = { " ", color = props.folderColor },
 			cond = isNonSpecialFt,
 			path = 1,
 			file_status = false,
@@ -30,20 +30,20 @@ local function getCurrentFileComponent(opts)
 				unnamed = "",
 				newfile = "",
 			},
-			color = opts.color,
+			color = props.textColor,
 		},
 		{ -- Icon
 			"filetype",
 			icon_only = true,
 			cond = isNonSpecialFt,
-			color = opts.color,
-			colored = opts.iconColored,
+			color = props.textColor,
+			colored = props.ftIconColored,
 		},
 		{ -- Filename
 			"filename",
 			file_status = false,
 			cond = isNonSpecialFt,
-			color = opts.color,
+			color = props.textColor,
 		},
 	}
 end
@@ -84,14 +84,15 @@ return {
 			tabline = {}, -- clashes with nvim-bufferline
 			winbar = {
 				lualine_c = getCurrentFileComponent({
-					color = { bg = palette.black1, gui = "bold" },
-					iconColored = true,
+					textColor = { bg = palette.black1, gui = "bold" },
+					folderColor = { fg = palette.yellow.base },
+					ftIconColored = true,
 				}),
 			},
 			inactive_winbar = {
 				lualine_c = getCurrentFileComponent({
-					color = { fg = palette.gray3, gui = "italic" },
-					iconColored = false,
+					textColor = { fg = palette.gray3, gui = "italic" },
+					ftIconColored = false,
 				}),
 			},
 			extensions = {},
