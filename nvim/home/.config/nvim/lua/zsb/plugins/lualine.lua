@@ -1,18 +1,25 @@
-local function Cond()
+local function condition()
 	local ft = vim.bo.filetype
 
 	return ft ~= "alpha" and ft ~= "NvimTree"
 end
 
+local function getDirname(path)
+	local dirname = path:match("^(.*)/[^/]+$")
+
+	if dirname == nil then
+		return "./"
+	end
+
+	return dirname
+end
+
 local FILENAME = {
 	{
-		"filetype",
-		cond = Cond,
-		icon_only = true,
-	},
-	{
 		"filename",
-		cond = Cond,
+		fmt = getDirname,
+		icon = " ",
+		cond = condition,
 		path = 1,
 		file_status = false,
 		shorting_target = 0,
