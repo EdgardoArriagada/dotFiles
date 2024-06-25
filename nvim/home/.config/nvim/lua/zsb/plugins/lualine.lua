@@ -32,7 +32,7 @@ local function getDirnameComponent(opts)
 		color = opts.color,
 	}
 
-	local icon = { "filetype", icon_only = true, cond = isNonSpecialFt, color = opts.color }
+	local icon = { "filetype", icon_only = true, cond = isNonSpecialFt, color = opts.color, colored = opts.iconColored }
 	local filename = { "filename", file_status = false, cond = isNonSpecialFt, color = opts.color }
 
 	return { dirname, icon, filename }
@@ -75,11 +75,13 @@ return {
 			winbar = {
 				lualine_c = getDirnameComponent({
 					color = { bg = palette.black1, gui = "bold" },
+					iconColored = true,
 				}),
 			},
 			inactive_winbar = {
 				lualine_c = getDirnameComponent({
 					color = { fg = palette.gray3, gui = "italic" },
+					iconColored = false,
 				}),
 			},
 			extensions = {},
