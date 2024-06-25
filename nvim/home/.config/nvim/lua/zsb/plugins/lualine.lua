@@ -14,8 +14,8 @@ local function getDirname(path)
 	return dirname
 end
 
-local FILENAME = {
-	{
+local function getDirnameComponent(opts)
+	local component = {
 		"filename",
 		fmt = getDirname,
 		icon = " ",
@@ -29,13 +29,21 @@ local FILENAME = {
 			unnamed = "",
 			newfile = "",
 		},
-	},
-}
+	}
+
+	if opts ~= nil and opts.color then
+		component.color = opts.color
+	end
+
+	return component
+end
 
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
+		local palette = require("nordic.colors")
+
 		require("lualine").setup({
 			options = {
 				icons_enabled = true,
@@ -65,10 +73,14 @@ return {
 			inactive_sections = {}, -- not seen with globalstatus = true
 			tabline = {}, -- clashes with nvim-bufferline
 			winbar = {
-				lualine_c = FILENAME,
+				lualine_c = { getDirnameComponent({
+					color = { bg = palette.black1 },
+				}) },
 			},
 			inactive_winbar = {
-				lualine_c = FILENAME,
+				lualine_c = { getDirnameComponent({
+					color = { fg = palette.gray3 },
+				}) },
 			},
 			extensions = {},
 		})
