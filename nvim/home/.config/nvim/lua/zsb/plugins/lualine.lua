@@ -1,7 +1,7 @@
-local function dirnameComponentCondition()
+local function isNonSpecialFt()
 	local ft = vim.bo.filetype
 
-	return ft ~= "alpha" and ft ~= "NvimTree"
+	return ft ~= "alpha" and ft ~= "NvimTree" and ft ~= "TelescopePrompt"
 end
 
 local function getDirname(path)
@@ -19,7 +19,7 @@ local function getDirnameComponent(opts)
 		"filename",
 		fmt = getDirname,
 		icon = " ",
-		cond = dirnameComponentCondition,
+		cond = isNonSpecialFt,
 		path = 1,
 		file_status = false,
 		shorting_target = 0,
@@ -65,8 +65,11 @@ return {
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { "branch", "diff", "diagnostics" },
-				lualine_c = {},
-				lualine_x = { "searchcount", "encoding", "fileformat", "filetype" },
+				lualine_c = {
+					{ "filetype", icon_only = true, cond = isNonSpecialFt },
+					{ "filename", file_status = false, cond = isNonSpecialFt },
+				},
+				lualine_x = { "searchcount", "encoding", "fileformat" },
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
 			},
