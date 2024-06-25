@@ -8,7 +8,7 @@ local function getDirname(path)
 	local dirname = path:match("^(.*)/[^/]+$")
 
 	if dirname == nil then
-		return "./"
+		return "."
 	end
 
 	return dirname
