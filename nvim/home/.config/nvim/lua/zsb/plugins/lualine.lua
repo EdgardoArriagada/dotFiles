@@ -74,12 +74,12 @@ return {
 			tabline = {}, -- clashes with nvim-bufferline
 			winbar = {
 				lualine_c = { getDirnameComponent({
-					color = { bg = palette.black1 },
+					color = { bg = palette.black1, gui = "bold" },
 				}) },
 			},
 			inactive_winbar = {
 				lualine_c = { getDirnameComponent({
-					color = { fg = palette.gray3 },
+					color = { fg = palette.gray3, gui = "italic" },
 				}) },
 			},
 			extensions = {},
