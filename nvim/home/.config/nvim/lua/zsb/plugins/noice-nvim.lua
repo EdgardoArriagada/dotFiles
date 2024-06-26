@@ -75,6 +75,7 @@ return {
 		opts = {
 			stages = "static", -- prefent cursor from flickering
 			timeout = 3000,
+			top_down = false,
 		},
 	},
 }
