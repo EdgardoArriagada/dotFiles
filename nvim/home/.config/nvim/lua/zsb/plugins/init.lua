@@ -1,10 +1,6 @@
 return {
 	{
 		event = "InsertEnter",
-		"github/copilot.vim",
-	},
-	{
-		event = "InsertEnter",
 		"windwp/nvim-ts-autotag",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 	},
