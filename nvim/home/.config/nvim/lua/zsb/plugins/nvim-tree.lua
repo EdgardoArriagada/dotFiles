@@ -18,6 +18,7 @@ return {
 			kset("n", "Y", api.fs.copy.filename, opts("Copy filename"))
 			kset("n", "x", api.fs.cut, opts("Cut"))
 			kset("n", "p", api.fs.paste, opts("Paste"))
+			kset("n", "K", api.node.show_info_popup, opts("Info"))
 		end
 
 		local function on_attach(bufnr)
