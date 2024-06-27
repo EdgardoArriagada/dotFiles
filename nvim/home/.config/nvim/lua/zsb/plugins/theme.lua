@@ -21,8 +21,8 @@ return {
 					underline = false,
 				},
 				IncSearch = {
-					bg = palette.gray2,
-					fg = palette.yellow.base,
+					bg = palette.gray3,
+					fg = palette.white1,
 					bold = true,
 				},
 				CursorLine = {
