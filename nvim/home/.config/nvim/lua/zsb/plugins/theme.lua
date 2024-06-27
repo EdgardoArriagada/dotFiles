@@ -15,7 +15,7 @@ return {
 					bold = false,
 				},
 				Search = {
-					bg = palette.gray2,
+					bg = palette.gray1,
 					fg = palette.white0_normal,
 					bold = false,
 					underline = false,
@@ -24,6 +24,7 @@ return {
 					bg = palette.gray3,
 					fg = palette.white1,
 					bold = true,
+					underline = true,
 				},
 				CursorLine = {
 					bg = palette.gray1,
