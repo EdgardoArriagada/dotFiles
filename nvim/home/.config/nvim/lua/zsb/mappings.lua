@@ -93,7 +93,9 @@ kset("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 kset("n", "k", [[(v:count > 5 ? "m'" . v:count : "") . 'k']], { expr = true, desc = "if k > 5 then add to jumplist" })
 kset("n", "j", [[(v:count > 5 ? "m'" . v:count : "") . 'j']], { expr = true, desc = "if j > 5 then add to jumplist" })
 
-createCmd("V", ":set nornu", {})
+createCmd("V", function()
+	vim.wo.relativenumber = not vim.wo.relativenumber
+end, {})
 
 createCmd("W", function()
 	vim.cmd("w!")
