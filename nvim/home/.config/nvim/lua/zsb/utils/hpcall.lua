@@ -24,7 +24,7 @@ function Config(plugin, fn)
 		local ok, content = pcall(require, plugin)
 
 		if not ok then
-			return	vim.notify("Error: could not load '" .. plugin .. "'")
+			return vim.notify("Error: could not load '" .. plugin .. "'")
 		end
 
 		fn(content)
