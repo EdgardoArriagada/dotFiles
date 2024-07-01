@@ -2,9 +2,7 @@ return {
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
-		config = function()
-			local noice = require("noice")
-
+		config = Config("noice", function(noice)
 			noice.setup({
 				lsp = {
 					-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -59,7 +57,7 @@ return {
 			kset("n", "!", function()
 				noice.cmd("dismiss")
 			end, { noremap = true, silent = true })
-		end,
+		end),
 		dependencies = {
 			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 			"MunifTanjim/nui.nvim",
