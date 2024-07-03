@@ -1,5 +1,10 @@
 local M = {}
 
+M.TYPE = {
+	NORMAL = 1,
+	SP = 2,
+}
+
 local function indentString(input, row)
 	return string.rep(" ", vim.fn.indent(row)) .. input
 end
@@ -52,10 +57,11 @@ M.doLog = function(logStatement, options)
 end
 
 --- @param dictionary table
+--- @param type number Normal or SP
 --- @param onErrMsg string The message to show when the extension is not found
-M.executeLogger = function(dictionary, onErrMsg)
+M.executeLogger = function(dictionary, type, onErrMsg)
 	local extension = vim.fn.expand("%:e")
-	local fun = dictionary[extension]
+	local fun = dictionary[extension][type]
 
 	if fun == nil then
 		vim.notify(onErrMsg .. " for '" .. extension .. "' extension")

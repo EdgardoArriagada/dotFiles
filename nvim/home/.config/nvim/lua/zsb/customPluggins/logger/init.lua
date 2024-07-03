@@ -2,31 +2,20 @@ local u = require("zsb.customPluggins.logger.utils")
 local d = require("zsb.customPluggins.logger.definitions")
 
 local extensionToFunction = {
-	["js"] = d.js,
-	["ts"] = d.js,
-	["jsx"] = d.js,
-	["tsx"] = d.js,
-	["lua"] = d.lua,
-	["rs"] = d.rust,
-	["zsh"] = d.bash,
-	["go"] = d.go,
-}
-
-local extensionToFunctionSP = {
-	["js"] = d.jsSP,
-	["ts"] = d.tsSP,
-	["jsx"] = d.jsSP,
-	["tsx"] = d.tsSP,
-	["lua"] = d.luaSP,
-	["rs"] = d.rustSp,
-	["zsh"] = d.bash,
-	["go"] = d.go,
+	["js"] = { d.js, d.jsSP },
+	["ts"] = { d.js, d.tsSP },
+	["jsx"] = { d.js, d.jsSP },
+	["tsx"] = { d.js, d.tsSP },
+	["lua"] = { d.lua, d.luaSP },
+	["rs"] = { d.rust, d.rustSp },
+	["zsh"] = { d.bash, d.bash },
+	["go"] = { d.go, d.go },
 }
 
 function Logger()
-	u.executeLogger(extensionToFunction, "No logger function")
+	u.executeLogger(extensionToFunction, u.TYPE.NORMAL, "No logger function")
 end
 
 function LoggerSP()
-	u.executeLogger(extensionToFunctionSP, "No SP logger function")
+	u.executeLogger(extensionToFunction, u.TYPE.SP, "No SP logger function")
 end
