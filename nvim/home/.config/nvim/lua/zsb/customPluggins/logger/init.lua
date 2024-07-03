@@ -9,6 +9,7 @@ local extensionToFunction = {
 	["lua"] = d.luaLogger,
 	["rs"] = d.rustLogger,
 	["zsh"] = d.bashLogger,
+	["go"] = d.goLogger,
 }
 
 local extensionToFunctionSP = {
@@ -18,6 +19,8 @@ local extensionToFunctionSP = {
 	["tsx"] = d.tsLoggerSP,
 	["lua"] = d.luaLoggerSP,
 	["rs"] = d.rustLoggerSp,
+	["zsh"] = d.bashLogger,
+	["go"] = d.goLogger,
 }
 
 function Logger()

@@ -47,4 +47,8 @@ M.bashLogger = function(slot)
 	l('echo "le ' .. slot .. ": ${" .. slot .. '}";', { after = "b" })
 end
 
+M.goLogger = function(slot)
+	l('fmt.Println("le ' .. slot .. '", ' .. slot .. ")")
+end
+
 return M
