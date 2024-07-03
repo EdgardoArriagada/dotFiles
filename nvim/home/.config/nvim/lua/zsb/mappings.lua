@@ -6,11 +6,10 @@ vim.g.maplocalleader = " "
 -- Shorcuts
 kset("o", "w", "iw")
 kset("o", "W", "iW")
---
+
 -- kset("v", "W", "iw") -- disabled because it is used in a plugin
 kset("v", "w", "iw")
 kset("v", "R", "loh")
---
 
 kset("n", "F", "v$<left><left>")
 kset("n", "+", "A <esc>p")
