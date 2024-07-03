@@ -3,11 +3,11 @@ local l = u.doLog
 
 local M = {}
 
-M.jsLogger = function(slot)
+M.js = function(slot)
 	l("console.log('le " .. slot .. "', " .. slot .. ");")
 end
 
-M.jsLoggerSP = function(slot)
+M.jsSP = function(slot)
 	l(
 		"console.log('le "
 			.. slot
@@ -17,7 +17,7 @@ M.jsLoggerSP = function(slot)
 	)
 end
 
-M.tsLoggerSP = function(slot)
+M.tsSP = function(slot)
 	l(
 		"console.log('le "
 			.. slot
@@ -27,27 +27,27 @@ M.tsLoggerSP = function(slot)
 	)
 end
 
-M.luaLogger = function(slot)
+M.lua = function(slot)
 	l("print('le " .. slot .. "', " .. slot .. ");")
 end
 
-M.luaLoggerSP = function(slot)
+M.luaSP = function(slot)
 	l("print('le " .. slot .. ":', vim.inspect(" .. slot .. "));")
 end
 
-M.rustLogger = function(slot)
+M.rust = function(slot)
 	l('println!("le ' .. slot .. ': {}", ' .. slot .. ");")
 end
 
-M.rustLoggerSp = function(slot)
+M.rustSp = function(slot)
 	l('println!("le ' .. slot .. ': {:?}", ' .. slot .. ");")
 end
 
-M.bashLogger = function(slot)
+M.bash = function(slot)
 	l('echo "le ' .. slot .. ": ${" .. slot .. '}";', { after = "b" })
 end
 
-M.goLogger = function(slot)
+M.go = function(slot)
 	l('fmt.Println("le ' .. slot .. '", ' .. slot .. ")")
 end
 
