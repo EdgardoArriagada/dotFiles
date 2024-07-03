@@ -1,6 +1,7 @@
 local u = require("zsb.customPluggins.logger.utils")
 local d = require("zsb.customPluggins.logger.definitions")
 
+-- [extension] = { normal, SP }
 local extensionToFunction = {
 	["js"] = { d.js, d.jsSP },
 	["ts"] = { d.js, d.tsSP },
