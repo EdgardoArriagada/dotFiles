@@ -10,6 +10,10 @@ local function appendInNextLine(logStatement)
 	vim.api.nvim_buf_set_lines(0, row, row, false, { indentString(logStatement, row) })
 end
 
+local function removeWhiteSpaces(input)
+	return string.gsub(input, "%s+", "")
+end
+
 local DEFAULT_OPTIONS = {
 	after = "",
 }
@@ -30,7 +34,7 @@ local function getSlot()
 	if mode == "v" then
 		return GetVisualSelection()
 	elseif mode == "V" then
-		return vim.api.nvim_get_current_line()
+		return removeWhiteSpaces(vim.api.nvim_get_current_line())
 	else
 		return vim.fn.expand("<cword>")
 	end
