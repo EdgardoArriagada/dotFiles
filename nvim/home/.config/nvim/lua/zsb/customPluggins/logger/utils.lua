@@ -45,6 +45,14 @@ local function getSlot()
 	end
 end
 
+M.withSingleQuotesOnly = function(input)
+	return input:gsub('"', "'"):gsub("`", "'")
+end
+
+M.withDoubleQuotesOnly = function(input)
+	return input:gsub("`", '"'):gsub("'", '"')
+end
+
 --- @param logStatement string The statement to log
 --- @param options? { after: string }
 --- @param options.after string keys to execute after log statement
