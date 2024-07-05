@@ -17,7 +17,7 @@ snippet logd Console Log Debug
 
 snippet logmw Log Middleware
 	const logger = (msg: string) => (req: any, res: any, next: any) => {
-		console.log('le', msg, ${1});
+		console.log(msg${1});
 
 		return next();
 	};
