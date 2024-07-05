@@ -85,7 +85,7 @@ return {
 			winbar = {
 				lualine_c = getCurrentFileComponent({
 					textColor = { bg = palette.black1, gui = "bold" },
-					folderColor = { fg = palette.yellow.base },
+					folderColor = { fg = palette.yellow.dim },
 					ftIconColored = true,
 				}),
 			},
