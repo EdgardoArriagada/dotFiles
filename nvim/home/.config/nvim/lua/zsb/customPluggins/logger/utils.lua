@@ -1,10 +1,5 @@
 local M = {}
 
-M.TYPE = {
-	NORMAL = 1,
-	SP = 2,
-}
-
 local function indentString(input, row)
 	return string.rep(" ", vim.fn.indent(row)) .. input
 end

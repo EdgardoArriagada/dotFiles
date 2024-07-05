@@ -1,6 +1,9 @@
 local u = require("zsb.customPluggins.logger.utils")
 local d = require("zsb.customPluggins.logger.definitions")
 
+local NORMAL = 1
+local SP = 2
+
 -- [extension] = { normal, SP }
 local extensionToFunction = {
 	["js"] = { d.js, d.jsSP },
@@ -14,9 +17,9 @@ local extensionToFunction = {
 }
 
 function Logger()
-	u.executeLogger(extensionToFunction, u.TYPE.NORMAL, "No logger function")
+	u.executeLogger(extensionToFunction, NORMAL, "No logger function")
 end
 
 function LoggerSP()
-	u.executeLogger(extensionToFunction, u.TYPE.SP, "No SP logger function")
+	u.executeLogger(extensionToFunction, SP, "No SP logger function")
 end
