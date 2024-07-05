@@ -1,7 +1,3 @@
-kset("v", "ii", function()
-	VisualInIndent()
-end, { noremap = true, silent = true })
-
 function VisualInIndent()
 	-- Go to beggin of line and add to jump list
 	Execute("normal<Esc>^m'")
@@ -15,3 +11,5 @@ function VisualInIndent()
 
 	Execute("normal" .. lastSameIndentDown .. "G^")
 end
+
+kset("v", "ii", VisualInIndent, { noremap = true, silent = true })
