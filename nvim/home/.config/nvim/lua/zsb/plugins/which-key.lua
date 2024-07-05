@@ -111,6 +111,12 @@ return {
 					end,
 					"Function",
 				},
+				c = {
+					function()
+						require("refactoring").debug.cleanup({})
+					end,
+					"Cleanup",
+				},
 			},
 			g = {
 				name = "Git",
