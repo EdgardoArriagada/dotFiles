@@ -63,11 +63,12 @@ end
 --- @param type number Normal or SP
 --- @param onErrMsg string The message to show when the extension is not found
 M.executeLogger = function(dictionary, type, onErrMsg)
-	local extension = vim.fn.expand("%:e")
-	local fun = dictionary[extension][type]
+	local ft = vim.bo.filetype
+
+	local fun = dictionary[ft][type]
 
 	if fun == nil then
-		vim.notify(onErrMsg .. " for '" .. extension .. "' extension")
+		vim.notify(onErrMsg .. " for '" .. ft .. "' filetype")
 		return
 	end
 
