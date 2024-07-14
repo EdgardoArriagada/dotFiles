@@ -65,7 +65,8 @@ end
 M.executeLogger = function(dictionary, type, onErrMsg)
 	local ft = vim.bo.filetype
 
-	local fun = dictionary[ft][type]
+	local funs = dictionary[ft]
+	local fun = funs and funs[type]
 
 	if fun == nil then
 		vim.notify(onErrMsg .. " for '" .. ft .. "' filetype")
