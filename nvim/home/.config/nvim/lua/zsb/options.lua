@@ -37,11 +37,20 @@ local options = {
 	laststatus = 3, -- global statusline only
 }
 
-vim.opt.shortmess:append("c")
+local appendOptions = {
+	shortmess = "c", -- don't pass messages to |ins-completion-menu|.
+	whichwrap = "<>[]hl", -- move to next line with theses keys
+	iskeyword = "-", -- treat dash separated words as a word text object"
+}
+
+-------------------------------------------------------------------------------
+
+local opt = vim.opt
 
 for k, v in pairs(options) do
-	vim.opt[k] = v
+	opt[k] = v
 end
 
-vim.cmd("set whichwrap+=<,>,[,],h,l")
-vim.cmd([[set iskeyword+=-]])
+for k, v in pairs(appendOptions) do
+	opt[k]:append(v)
+end
