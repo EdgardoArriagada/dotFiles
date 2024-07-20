@@ -14,3 +14,16 @@ kset("n", "gx", function()
 
 	vim.ui.open(url)
 end)
+
+kset("v", "gx", function()
+	local url = find_first_url_in_line(GetVisualSelection())
+
+	Execute("norm!o<Esc>")
+
+	if url == nil then
+		vim.notify("No URLs found in selection.")
+		return
+	end
+
+	vim.ui.open(url)
+end)
