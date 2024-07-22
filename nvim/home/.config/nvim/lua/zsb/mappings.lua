@@ -76,7 +76,7 @@ kset("c", "<C-v>", "<C-r>+")
 
 -- Quit
 kset("n", "<C-q>", ":q!")
-kset("c", "<C-q>", "<C-u>qa!<cr>")
+kset("c", "<C-q>", "<C-u>qa!<cr>", { silent = true })
 
 -- Save
 kset("n", "<C-s>", ":update<CR>", { silent = true })
