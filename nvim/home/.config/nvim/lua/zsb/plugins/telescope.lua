@@ -13,6 +13,18 @@ return {
 							["<C-u>"] = { "<c-s-u>", type = "command" },
 						},
 					},
+					vimgrep_arguments = {
+						-- default (search for vimgrep_arguments in https://github.com/nvim-telescope/telescope.nvim)
+						"rg",
+						"--color=never",
+						"--no-heading",
+						"--with-filename",
+						"--line-number",
+						"--column",
+						"--smart-case",
+						-- config
+						"-g=!package-lock.json",
+					},
 				},
 				extensions = {
 					fzf = {

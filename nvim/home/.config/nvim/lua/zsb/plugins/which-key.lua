@@ -190,6 +190,31 @@ return {
 			s = {
 				name = "Search",
 				t = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
+				n = {
+					function()
+						require("telescope.builtin").live_grep({
+							vimgrep_arguments = {
+								-- default (search for vimgrep_arguments in https://github.com/nvim-telescope/telescope.nvim)
+								"rg",
+								"--color=never",
+								"--no-heading",
+								"--with-filename",
+								"--line-number",
+								"--column",
+								"--smart-case",
+								-- config
+								"-g=!package-lock.json",
+								-- this
+								"-g=!*__tests__*",
+								"-g=!*__test__*",
+								"-g=!*Test.java",
+								"-g=!*mocks*",
+								"-g=!*fixtures*",
+							},
+						})
+					end,
+					"snt",
+				},
 				r = { "<cmd>Telescope lsp_references<cr>", "References" },
 				b = { "<cmd>Telescope file_browser<cr>", "Checkout branch" },
 				c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
