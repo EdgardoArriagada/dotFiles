@@ -1,16 +1,9 @@
 function ViewPrOfLine()
-	local current_line = vim.fn.line(".")
-	local current_file = vim.fn.expand("%")
+	local line_num = vim.api.nvim_win_get_cursor(0)[1]
+	local file_name = vim.fn.expand("%")
 
-	local git_cmd = "git blame -sl -L "
-		.. current_line
-		.. ","
-		.. current_line
-		.. " "
-		.. current_file
-		.. " | cut -d ' ' -f1"
-
-	local commit_hash = FromShell(git_cmd)
+	local commit_hash =
+		FromShell("git blame -sl -L " .. line_num .. "," .. line_num .. " " .. file_name .. " | cut -d ' ' -f1")
 
 	if not commit_hash or commit_hash:sub(1, 1) == "^" then
 		vim.notify("No commit found for this line")
