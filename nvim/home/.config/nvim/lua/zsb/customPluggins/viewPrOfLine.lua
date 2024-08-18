@@ -13,11 +13,11 @@ function ViewPrOfLine()
 	local commit_hash = FromShell(git_cmd)
 
 	if not commit_hash or commit_hash:sub(1, 1) == "^" then
-		print("No commit found for this line")
+		vim.notify("No commit found for this line")
 		return
 	end
 
 	local repoUrl = FromShell("get_repo_url")
 
-	FromShell("zsb_open " .. repoUrl .. "/pulls?q=is%3Apr+" .. commit_hash)
+	vim.ui.open(repoUrl .. "/pulls?q=is%3Apr+" .. commit_hash)
 end
