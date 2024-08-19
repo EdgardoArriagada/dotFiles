@@ -4,13 +4,18 @@ local function getCurrentLineCommitHash()
 
 	local commit_hash =
 		FromShell("git blame -sl -L " .. line_num .. "," .. line_num .. " " .. file_name .. " | cut -d ' ' -f1")
-	return commit_hash
+
+	if not commit_hash or commit_hash:sub(1, 1) == "^" then
+		return false, nil
+	end
+
+	return true, commit_hash
 end
 
 function ViewPrOfLine()
-	local commit_hash = getCurrentLineCommitHash()
+	local ok, commit_hash = getCurrentLineCommitHash()
 
-	if not commit_hash or commit_hash:sub(1, 1) == "^" then
+	if not ok then
 		vim.notify("No commit found for this line")
 		return
 	end
