@@ -117,3 +117,15 @@ function GetVisualSelection()
 
 	return string.sub(vim.api.nvim_get_current_line(), startVisualPos, currPos)
 end
+
+function OpenFileInPosition(file_name, line, col)
+	local buf = vim.fn.bufnr(file_name)
+
+	if buf == -1 then
+		buf = vim.api.nvim_create_buf(true, false)
+	end
+
+	vim.api.nvim_set_current_buf(buf)
+
+	vim.api.nvim_win_set_cursor(0, { line, col - 1 })
+end
