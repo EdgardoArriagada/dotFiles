@@ -63,8 +63,29 @@ return {
 			local on_attach = function(_, buffer)
 				local opts = { noremap = true, silent = true, buffer = buffer }
 
+				local function open_file_and_set_cursor(file_name, line, col)
+					local buf = vim.fn.bufnr(file_name)
+
+					if buf == -1 then
+						buf = vim.api.nvim_create_buf(true, false)
+					end
+
+					vim.api.nvim_set_current_buf(buf)
+
+					vim.api.nvim_win_set_cursor(0, { line, col - 1 })
+				end
+
 				kset("n", "gD", vim.lsp.buf.declaration, opts)
-				kset("n", "gd", vim.lsp.buf.definition, opts)
+				kset("n", "gd", function()
+					vim.lsp.buf.definition({
+						on_list = function(listOpts)
+							local first_item = listOpts.items[1]
+
+							Execute("normal^m'")
+							open_file_and_set_cursor(first_item.filename, first_item.lnum, first_item.col)
+						end,
+					})
+				end, opts)
 				kset("n", "gi", vim.lsp.buf.implementation, opts)
 				kset("n", "gk", vim.lsp.buf.signature_help, opts)
 				kset("n", "gr", vim.lsp.buf.references, opts)
