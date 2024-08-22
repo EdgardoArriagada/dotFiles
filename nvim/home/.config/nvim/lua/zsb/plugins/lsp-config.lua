@@ -76,12 +76,13 @@ return {
 				end
 
 				kset("n", "gD", vim.lsp.buf.declaration, opts)
+				kset("n", "go", vim.lsp.buf.definition, opts)
 				kset("n", "gd", function()
 					vim.lsp.buf.definition({
 						on_list = function(listOpts)
 							local first_item = listOpts.items[1]
 
-							Execute("normal^m'")
+							Execute("norm!m'")
 							open_file_and_set_cursor(first_item.filename, first_item.lnum, first_item.col)
 						end,
 					})
