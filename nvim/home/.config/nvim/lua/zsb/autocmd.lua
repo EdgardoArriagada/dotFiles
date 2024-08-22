@@ -27,7 +27,8 @@ autocmd("FileType", {
 	group = group,
 })
 
--- run :make and :copen
+-- - Open any ts file so TS language loads
+-- - run :make and then open qflist
 --[[ autocmd("FileType", { ]]
 --[[ 	pattern = "typescript,typescriptreact", ]]
 --[[ 	group = group, ]]
