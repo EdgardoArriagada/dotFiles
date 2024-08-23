@@ -118,14 +118,34 @@ function GetVisualSelection()
 	return string.sub(vim.api.nvim_get_current_line(), startVisualPos, currPos)
 end
 
-function OpenFileInPosition(file_name, line, col)
-	local buf = vim.fn.bufnr(file_name)
+local function is_file_opened(filename)
+	-- Normalize the path for the given filename
+	local normalized_filename = vim.fn.fnamemodify(filename, ":p")
 
-	if buf == -1 then
-		buf = vim.api.nvim_create_buf(true, false)
+	-- Iterate over all buffers
+	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+		if vim.api.nvim_buf_is_loaded(buf) then
+			-- Get the full path of the file associated with the buffer
+			local buf_name = vim.api.nvim_buf_get_name(buf)
+			local normalized_buf_name = vim.fn.fnamemodify(buf_name, ":p")
+
+			-- Compare the normalized paths
+			if normalized_buf_name == normalized_filename then
+				return true
+			end
+		end
 	end
+	return false
+end
 
-	vim.api.nvim_set_current_buf(buf)
+function OpenFileInPosition(file_name, line, col)
+	if is_file_opened(file_name) then
+		-- Open the file in the current buffer
+		vim.api.nvim_set_current_buf(vim.fn.bufnr(file_name))
+	else
+		-- Open the file in a new tab
+		vim.api.nvim_command("tabedit " .. file_name)
+	end
 
 	vim.api.nvim_win_set_cursor(0, { line, col - 1 })
 end

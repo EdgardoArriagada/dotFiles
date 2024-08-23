@@ -70,7 +70,6 @@ return {
 						on_list = function(listOpts)
 							local first_item = listOpts.items[1]
 
-							Execute("norm!m'")
 							OpenFileInPosition(first_item.filename, first_item.lnum, first_item.col)
 						end,
 					})
