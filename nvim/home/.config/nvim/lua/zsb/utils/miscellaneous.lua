@@ -140,6 +140,8 @@ end
 
 function OpenFileInPosition(file_name, line, col)
 	if is_file_opened(file_name) then
+		-- Add to jumplist
+		Execute("norm! m'")
 		-- Open the file in the current buffer
 		vim.api.nvim_set_current_buf(vim.fn.bufnr(file_name))
 	else
