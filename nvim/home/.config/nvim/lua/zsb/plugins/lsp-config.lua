@@ -67,10 +67,8 @@ return {
 				kset("n", "go", vim.lsp.buf.definition, opts)
 				kset("n", "gd", function()
 					vim.lsp.buf.definition({
-						on_list = function(listOpts)
-							local first_item = listOpts.items[1]
-
-							OpenFileInPosition(first_item.filename, first_item.lnum, first_item.col)
+						on_list = function(list)
+							OpenFileInPosition(list.items[1])
 						end,
 					})
 				end, opts)

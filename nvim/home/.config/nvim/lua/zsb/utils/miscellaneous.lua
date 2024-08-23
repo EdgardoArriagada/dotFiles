@@ -118,7 +118,15 @@ function GetVisualSelection()
 	return string.sub(vim.api.nvim_get_current_line(), startVisualPos, currPos)
 end
 
-function OpenFileInPosition(filename, line, col)
+--- @class OpenFileInPositionArgs
+--- @field filename string: The filename
+--- @field lnum number: The line number
+--- @field col number: The column number
+
+--- @return nil
+--- @param args OpenFileInPositionArgs
+function OpenFileInPosition(args)
+	local filename = args.filename
 	local current_filename = vim.fn.expand("%:p")
 	local normalized_filename = vim.fn.fnamemodify(filename, ":p")
 
@@ -130,5 +138,5 @@ function OpenFileInPosition(filename, line, col)
 		vim.api.nvim_exec("e " .. filename, false)
 	end
 
-	vim.api.nvim_win_set_cursor(0, { line, col - 1 })
+	vim.api.nvim_win_set_cursor(0, { args.lnum, args.col - 1 })
 end
