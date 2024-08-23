@@ -138,15 +138,15 @@ local function is_file_opened(filename)
 	return false
 end
 
-function OpenFileInPosition(file_name, line, col)
-	if is_file_opened(file_name) then
+function OpenFileInPosition(filename, line, col)
+	if is_file_opened(filename) then
 		-- Add to jumplist
 		Execute("norm! m'")
 		-- Open the file in the current buffer
-		vim.api.nvim_set_current_buf(vim.fn.bufnr(file_name))
+		vim.api.nvim_set_current_buf(vim.fn.bufnr(filename))
 	else
 		-- Open the file in a new tab
-		vim.api.nvim_command("tabedit " .. file_name)
+		vim.api.nvim_command("tabedit " .. filename)
 	end
 
 	vim.api.nvim_win_set_cursor(0, { line, col - 1 })
