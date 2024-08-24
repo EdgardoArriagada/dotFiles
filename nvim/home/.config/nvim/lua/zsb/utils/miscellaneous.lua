@@ -135,7 +135,7 @@ function OpenFileInPosition(args)
 		Exec("norm! m'")
 	else
 		-- Edit that file
-		vim.api.nvim_exec("e " .. filename, false)
+		Exec("e " .. filename)
 	end
 
 	vim.api.nvim_win_set_cursor(0, { args.lnum, args.col - 1 })
