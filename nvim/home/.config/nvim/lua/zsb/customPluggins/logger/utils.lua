@@ -56,7 +56,7 @@ M.doLog = function(logStatement, options)
 
 	appendInNextLine(logStatement)
 
-	Execute("normal<Esc>j$hh" .. opts.after)
+	SafeExec("normal<Esc>j$hh" .. opts.after)
 end
 
 --- @param dictionary table

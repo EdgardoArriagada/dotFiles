@@ -23,7 +23,7 @@ kset("v", "gx", function()
 		return
 	end
 
-	Execute("norm!o<Esc>")
+	SafeExec("norm!o<Esc>")
 
 	vim.ui.open(url)
 end)

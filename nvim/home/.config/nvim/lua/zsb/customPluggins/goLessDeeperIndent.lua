@@ -5,7 +5,7 @@ end, { silent = true })
 kset({ "o", "n", "v" }, "<enter>", function()
   -- I use enter to unfold lines as well
   if IsCurrentLineFolded() then
-    Execute("normal! zO")
+    Exec("normal! zO")
   else
     GoLessDeeperIndent("j")
   end
@@ -13,7 +13,7 @@ end, { silent = true })
 
 function GoLessDeeperIndent(direction)
   -- Go to beggin of line and add to jump list
-  Execute("normal^m'")
+  Exec("normal^m'")
 
   local lineMarker = GetFirstNoEmptyLine(direction, line("."))
 
@@ -21,11 +21,11 @@ function GoLessDeeperIndent(direction)
 
   if originalInent == 0 then
     local lastLine = getSameIndentLine(direction, lineMarker)
-    Execute("normal" .. lastLine .. "G^")
+    Exec("normal" .. lastLine .. "G^")
     return
   end
 
   local lastMatchinLine = getLesserIndent(direction, lineMarker)
 
-  Execute("normal" .. lastMatchinLine .. "G^")
+  Exec("normal" .. lastMatchinLine .. "G^")
 end

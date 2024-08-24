@@ -1,5 +1,5 @@
 kset("v", "q", function()
-	Execute("normal<Esc>")
+	SafeExec("normal<Esc>")
 	VaqueroSelect()
 end, { noremap = true, silent = true })
 
@@ -9,6 +9,6 @@ end, { noremap = true, silent = true })
 
 function VaqueroSelect()
 	GoLessDeeperIndent("k")
-	Execute("normal!V")
+	Exec("normal!V")
 	LookForIndentation("j")
 end

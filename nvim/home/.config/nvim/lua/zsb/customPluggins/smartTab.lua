@@ -9,15 +9,15 @@ end, { noremap = true, silent = true })
 -- Direction is either 'j' or 'k'
 function SmartTab(direction)
   local beforeLine = line('.')
-  Execute('normal^')
+  Exec('normal^')
 
   -- Add to jump list
-  Execute('normal'..line('.')..'G')
+  Exec('normal'..line('.')..'G')
 
-  Execute('normal'..getStopLine(direction)..'G^')
+  Exec('normal'..getStopLine(direction)..'G^')
 
   if beforeLine == line('.') then
-    Execute('normal!'..direction..'^')
+    Exec('normal!'..direction..'^')
   end
 end
 

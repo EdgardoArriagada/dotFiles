@@ -42,11 +42,11 @@ end
 
 function LookForIndentation(direction)
 	-- Go to beggin of line and add to jump list
-	Execute("normal" .. line(".") .. "G^")
+	Exec("normal" .. line(".") .. "G^")
 
 	local lineMarker = GetFirstNoEmptyLine(direction, line("."))
 
-	Execute("normal" .. getSameIndentLine(direction, lineMarker) .. "G^")
+	Exec("normal" .. getSameIndentLine(direction, lineMarker) .. "G^")
 end
 
 function ArrayElement(t)
@@ -132,7 +132,7 @@ function OpenFileInPosition(args)
 
 	if current_filename == normalized_filename then
 		-- Add to jumplist
-		Execute("norm! m'")
+		Exec("norm! m'")
 	else
 		-- Edit that file
 		vim.api.nvim_exec("e " .. filename, false)
