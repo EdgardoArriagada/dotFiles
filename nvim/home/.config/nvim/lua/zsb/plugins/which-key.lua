@@ -166,13 +166,29 @@ return {
 				},
 				i = { "<cmd>LspInfo<cr>", "Info" },
 				I = { "<cmd>Mason<cr>", "Info" },
-				n = {
+				N = {
 					vim.diagnostic.goto_next,
 					"Next Diagnostic",
 				},
-				p = {
+				P = {
 					vim.diagnostic.goto_prev,
 					"Prev Diagnostic",
+				},
+				n = {
+					function()
+						vim.diagnostic.goto_next({
+							severity = vim.diagnostic.severity.ERROR,
+						})
+					end,
+					"Next Error",
+				},
+				p = {
+					function()
+						vim.diagnostic.goto_prev({
+							severity = vim.diagnostic.severity.ERROR,
+						})
+					end,
+					"Prev Error",
 				},
 				l = { vim.lsp.codelens.run, "CodeLens Action" },
 				q = { vim.diagnostic.setloclist, "Quickfix" },
