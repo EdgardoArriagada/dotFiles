@@ -7,30 +7,30 @@ local function cycleQflist(direction)
 	local nextIdx = vim.fn.line(".") + direction
 
 	if nextIdx < 1 then
-		return vim.cmd("clast")
+		return Exec("clast")
 	end
 
 	if nextIdx > qflen then
-		return vim.cmd("cfirst")
+		return Exec("cfirst")
 	end
 
-	vim.cmd("cc " .. nextIdx)
+	Exec("cc " .. nextIdx)
 end
 
 local function cycleAndFocusBack(direction)
 	return function()
 		cycleQflist(direction)
-		vim.cmd("copen")
+		Exec("copen")
 	end
 end
 
 local function qfClose()
-	vim.cmd("cclose")
+	Exec("cclose")
 end
 
 local function qfEnter()
-	vim.cmd("cc")
-	vim.cmd("cclose")
+	Exec("cc")
+	Exec("cclose")
 end
 
 local opts = { buffer = true }

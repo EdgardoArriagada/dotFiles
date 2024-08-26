@@ -57,8 +57,8 @@ end
 
 function ToggleJsFile()
 	if isTestFile() then
-		vim.cmd("e " .. getProductionCodeFile())
+		Exec("e " .. getProductionCodeFile())
 	else
-		vim.cmd("e " .. getTestFile())
+		Exec("e " .. getTestFile())
 	end
 end

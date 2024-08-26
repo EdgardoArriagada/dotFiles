@@ -97,8 +97,8 @@ createCmd("V", function()
 end, {})
 
 createCmd("W", function()
-	vim.cmd("w!")
-	vim.cmd("e!")
+	Exec("w!")
+	Exec("e!")
 end, {})
 
 createCmd("Json", function()
@@ -115,10 +115,10 @@ end, {})
 createCmd("T", function()
 	for _, win in pairs(vim.fn.getwininfo()) do
 		if win.quickfix == 1 then
-			return vim.cmd("cclose")
+			return Exec("cclose")
 		end
 	end
-	vim.cmd("copen")
+	Exec("copen")
 end, {})
 
 -- Reload local plugin
