@@ -126,16 +126,15 @@ end
 --- @return nil
 --- @param args OpenFileInPositionArgs
 function OpenFileInPosition(args)
-	local filename = args.filename
 	local current_filename = vim.fn.expand("%:p")
-	local normalized_filename = vim.fn.fnamemodify(filename, ":p")
+	local normalized_filename = vim.fn.fnamemodify(args.filename, ":p")
 
 	if current_filename == normalized_filename then
 		-- Add to jumplist
 		Exec("norm! m'")
 	else
 		-- Edit that file
-		Exec("e " .. filename)
+		Exec("e " .. args.filename)
 	end
 
 	vim.api.nvim_win_set_cursor(0, { args.lnum, args.col - 1 })
