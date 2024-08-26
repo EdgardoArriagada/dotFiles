@@ -1,6 +1,5 @@
 require("zsb.customPluggins.goLessDeeperIndent")
 require("zsb.customPluggins.vaqueroSelect")
-require("zsb.customPluggins.smartTab")
 require("zsb.customPluggins.toggleJsFile")
 require("zsb.customPluggins.visualInIndent")
 require("zsb.customPluggins.logger")
