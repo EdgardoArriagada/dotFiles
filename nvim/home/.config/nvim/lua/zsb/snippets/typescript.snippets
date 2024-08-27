@@ -1,4 +1,7 @@
 # js
+snippet imp Import
+  import ${2} from '${1}'
+
 snippet af Arrow Function
 	(${1}) => {
 		${3}
@@ -14,13 +17,6 @@ snippet log Console Log
 
 snippet logd Console Log Debug
 	console.log('le ${1}', {${2}})
-
-snippet logmw Log Middleware
-	const logger = (msg: string) => (req: any, res: any, next: any) => {
-		console.log(msg${1});
-
-		return next();
-	};
 
 # testing
 snippet it It Should...
@@ -58,3 +54,10 @@ snippet afterAll AfterAll...
 		${1}
 	})
 
+# express
+snippet logmw Log Middleware
+	const logger = (msg: string) => (req: any, res: any, next: any) => {
+		console.log(msg${1});
+
+		return next();
+	};
