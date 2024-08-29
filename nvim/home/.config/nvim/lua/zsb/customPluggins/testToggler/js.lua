@@ -1,3 +1,4 @@
+M = {}
 -- firt element has to be itself
 local JS_FILE_RELATIONS = {
 	["ts"] = { "ts", "tsx" },
@@ -55,10 +56,12 @@ local function getProductionCodeFile()
 	})
 end
 
-function ToggleJsFile()
+M.toggle = function()
 	if isTestFile() then
 		Exec("e " .. getProductionCodeFile())
 	else
 		Exec("e " .. getTestFile())
 	end
 end
+
+return M

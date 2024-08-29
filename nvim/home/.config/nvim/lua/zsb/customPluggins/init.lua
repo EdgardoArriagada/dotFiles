@@ -1,6 +1,6 @@
 require("zsb.customPluggins.goLessDeeperIndent")
 require("zsb.customPluggins.vaqueroSelect")
-require("zsb.customPluggins.toggleJsFile")
+require("zsb.customPluggins.testToggler")
 require("zsb.customPluggins.visualInIndent")
 require("zsb.customPluggins.logger")
 require("zsb.customPluggins.viewPrOfLine")

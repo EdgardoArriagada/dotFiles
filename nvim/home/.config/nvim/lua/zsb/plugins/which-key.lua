@@ -201,7 +201,7 @@ return {
 			},
 			v = {
 				name = "Vim",
-				t = { ToggleJsFile, "Toggle js file" },
+				t = { TestToggler, "Toggle to test file" },
 			},
 			s = {
 				name = "Search",
