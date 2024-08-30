@@ -20,9 +20,13 @@ autocmd("FileType", {
 		vim.o.foldmethod = "expr"
 		vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 
-		vim.schedule(function()
-			Hpcall(Exec, "normal!zA", { onErr = 'failed to execute ":normal!zA"' })
-		end)
+		vim.uv.new_timer():start(
+			300,
+			0,
+			vim.schedule_wrap(function()
+				Hpcall(Exec, "normal!zA", { onErr = 'failed to execute ":normal!zA"' })
+			end)
+		)
 	end,
 	group = group,
 })
