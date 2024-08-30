@@ -24,8 +24,10 @@ function IsEmptyString(input)
 	return input:find("^%s*$")
 end
 
+local getLine = vim.fn.getline
+
 function IsEmptyLine(line)
-	return IsEmptyString(vim.fn.getline(line))
+	return IsEmptyString(getLine(line))
 end
 
 function GetFirstNoEmptyLine(direction, lineMarker)
