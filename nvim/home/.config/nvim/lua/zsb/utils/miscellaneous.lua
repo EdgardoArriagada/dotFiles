@@ -17,11 +17,11 @@ function GetDirectionalProps(direction)
 end
 
 function StartsWith(beginning, input)
-	return string.match(input, "^" .. beginning) ~= nil
+	return string.find(input, "^" .. beginning)
 end
 
 function IsEmptyString(input)
-	return input:match("^%s*$") ~= nil
+	return input:find("^%s*$")
 end
 
 function IsEmptyLine(line)

@@ -3,7 +3,7 @@ M = {}
 local function isTestFile()
 	local currentFile = vim.fn.expand("%:t")
 
-	return string.match(currentFile, "_test.go$")
+	return string.find(currentFile, "_test.go$")
 end
 
 local function getTestFile()

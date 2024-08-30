@@ -15,7 +15,7 @@ local function isTestFile()
 	local fileName = vim.fn.expand("%:t")
 	local ft = vim.fn.expand("%:e")
 
-	return string.match(fileName, "%.spec%." .. ft .. "$")
+	return string.find(fileName, "%.spec%." .. ft .. "$")
 end
 
 local function findFile(a)
