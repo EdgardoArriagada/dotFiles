@@ -108,7 +108,7 @@ createCmd("Json", function()
 end, {})
 
 createCmd("Pjson", function()
-	Hpcall(Execute, "%!jq .", { onErr = 'failed to execute ":%!jq .", make sure you have "jq" is installed' })
+	Hpcall(Exec, "%!jq .", { onErr = 'failed to execute ":%!jq .", make sure you have "jq" is installed' })
 end, {})
 
 -- Toggle quickfix window
