@@ -46,7 +46,7 @@ function LookForIndentation(direction)
 
 	local lineMarker = GetFirstNoEmptyLine(direction, line("."))
 
-	Exec("normal" .. getSameIndentLine(direction, lineMarker) .. "G^")
+	Exec("normal" .. GetSameIndentLin(direction, lineMarker) .. "G^")
 end
 
 function ArrayElement(t)

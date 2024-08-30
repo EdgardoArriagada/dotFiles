@@ -1,4 +1,4 @@
-function getSameIndentLine(direction, lineMarker)
+function GetSameIndentLin(direction, lineMarker)
 	local inc, endOfFile = GetDirectionalProps(direction)
 	local existsSameIndent = false
 	local originalIndent = indent(".")
@@ -19,7 +19,7 @@ function getSameIndentLine(direction, lineMarker)
 	end
 end
 
-function getLesserIndent(direction, lineMarker)
+function GetLesserIndent(direction, lineMarker)
 	local inc, endOfFile = GetDirectionalProps(direction)
 
 	local originalIndent = indent(lineMarker)

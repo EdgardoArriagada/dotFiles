@@ -3,11 +3,11 @@ function VisualInIndent()
 	SafeExec("normal<Esc>^m'")
 
 	local lineMarker = GetFirstNoEmptyLine("k", line("."))
-	local lastSameIndentUp = getLesserIndent("k", lineMarker) + 1
+	local lastSameIndentUp = GetLesserIndent("k", lineMarker) + 1
 
 	Exec("normal" .. lastSameIndentUp .. "GV")
 
-	local lastSameIndentDown = getLesserIndent("j", lineMarker) - 1
+	local lastSameIndentDown = GetLesserIndent("j", lineMarker) - 1
 
 	Exec("normal" .. lastSameIndentDown .. "G^")
 end

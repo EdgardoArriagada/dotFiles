@@ -20,12 +20,12 @@ function GoLessDeeperIndent(direction)
   local originalInent = indent(lineMarker)
 
   if originalInent == 0 then
-    local lastLine = getSameIndentLine(direction, lineMarker)
+    local lastLine = GetSameIndentLin(direction, lineMarker)
     Exec("normal" .. lastLine .. "G^")
     return
   end
 
-  local lastMatchinLine = getLesserIndent(direction, lineMarker)
+  local lastMatchinLine = GetLesserIndent(direction, lineMarker)
 
   Exec("normal" .. lastMatchinLine .. "G^")
 end
