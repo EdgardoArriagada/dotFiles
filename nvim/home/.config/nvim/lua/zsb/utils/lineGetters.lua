@@ -38,30 +38,3 @@ function getLesserIndent(direction, lineMarker)
 
 	return lineMarker
 end
-
-function getStopLine(direction)
-	local inc, endOfFile = GetDirectionalProps(direction)
-
-	local lineMarker = line(".")
-	local isStartEmpty = IsEmptyLine(lineMarker)
-	local originalIndent = indent(".")
-
-	local function didSwitch(line)
-		if isStartEmpty then
-			return not IsEmptyLine(line)
-		else
-			return IsEmptyLine(line)
-		end
-	end
-
-	while not didSwitch(lineMarker) and lineMarker ~= endOfFile do
-		lineMarker = lineMarker + inc
-
-		if not IsEmptyLine(lineMarker) and indent(lineMarker) < originalIndent then
-			lineMarker = lineMarker - inc
-			break
-		end
-	end
-
-	return lineMarker
-end
