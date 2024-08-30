@@ -1,10 +1,12 @@
 local js = require("zsb.customPluggins.testToggler.js")
+local go = require("zsb.customPluggins.testToggler.go")
 
 local extensionToFunction = {
 	["javascript"] = js.toggle,
 	["typescript"] = js.toggle,
 	["javascriptreact"] = js.toggle,
 	["typescriptreact"] = js.toggle,
+	["go"] = go.toggle,
 }
 
 function TestToggler()
