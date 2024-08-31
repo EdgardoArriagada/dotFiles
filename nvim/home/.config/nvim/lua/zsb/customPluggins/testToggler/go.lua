@@ -7,7 +7,9 @@ local function isTestFile()
 end
 
 local function getTestFile()
-	vim.notify("getTestFile not implemented")
+	local basename = vim.fn.expand("%:t"):match("^[^.]+")
+
+	return vim.fn.expand("%:h") .. "/" .. basename .. "_test.go"
 end
 
 local function getProductionCodeFile()
@@ -19,8 +21,7 @@ M.toggle = function()
 		--[[ Exec("e " .. getProductionCodeFile()) ]]
 		getProductionCodeFile()
 	else
-		--[[ Exec("e " .. getTestFile()) ]]
-		getTestFile()
+		Exec("e " .. getTestFile())
 	end
 end
 
