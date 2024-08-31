@@ -25,6 +25,8 @@ local function getProductionCodeFile()
 			return file
 		end
 	end
+
+	return vim.fn.expand("%:h") .. "/" .. basename .. ".go"
 end
 
 M.toggle = function()
