@@ -200,8 +200,9 @@ return {
 				},
 			},
 			v = {
-				name = "Vim",
+				name = "view",
 				t = { TestToggler, "Toggle to test file" },
+				d = { "<cmd>tab DBUI<cr>", "View database client" },
 			},
 			s = {
 				name = "Search",

@@ -5,7 +5,12 @@ return {
 		"kristijanhusak/vim-dadbod-completion",
 		"tpope/vim-dotenv",
 	},
-	keys = { { "<leader><leader>db", ":tab DBUI<cr>", desc = "Open Database client" } },
+	cmd = {
+		"DBUI",
+		"DBUIToggle",
+		"DBUIAddConnection",
+		"DBUIFindBuffer",
+	},
 	init = function()
 		vim.g.db_ui_use_nerd_fonts = 1
 		vim.g.db_ui_show_database_icon = 1
