@@ -19,9 +19,9 @@ end
 local function getProductionCodeFile()
 	local basename = vim.fn.expand("%:t"):gsub("_test.go$", "")
 
-	for _, file in ipairs(listUsingGlob("*.go")) do
+	for _, file in ipairs(listUsingGlob("*" .. basename .. ".*go")) do
 		local filename = vim.fn.fnamemodify(file, ":t")
-		if string.find(filename, "^" .. basename) and not string.find(filename, "_test.go$") then
+		if string.find(filename, "^" .. basename .. "%.") then
 			return file
 		end
 	end
