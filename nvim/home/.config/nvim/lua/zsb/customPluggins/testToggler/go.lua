@@ -12,14 +12,14 @@ local function getTestFile()
 	return vim.fn.expand("%:h") .. "/" .. basename .. "_test.go"
 end
 
-local function listUsingGlob(glob)
+local function listCurrentDir(glob)
 	return vim.fn.globpath(vim.fn.expand("%:h"), glob, true, true)
 end
 
 local function getProductionCodeFile()
 	local basename = vim.fn.expand("%:t"):gsub("_test.go$", "")
 
-	for _, file in ipairs(listUsingGlob("*" .. basename .. ".*go")) do
+	for _, file in ipairs(listCurrentDir("*" .. basename .. ".*go")) do
 		return file
 	end
 
