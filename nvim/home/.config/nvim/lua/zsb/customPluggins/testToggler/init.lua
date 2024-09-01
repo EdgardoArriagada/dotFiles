@@ -18,16 +18,16 @@ local extensionToToggler = {
 function TestToggler()
 	local ft = vim.bo.filetype
 
-	local toggler = extensionToToggler[ft]
+	local t = extensionToToggler[ft]
 
-	if toggler == nil then
-		vim.notify("No toggler configured for '" .. ft .. "' filetype")
+	if not t then
+		vim.notify("No test toggler configured for '" .. ft .. "' filetype")
 		return
 	end
 
-	if toggler.isTestFile() then
-		Exec("e " .. toggler.getProductionCodeFile())
+	if t.isTestFile() then
+		Exec("e " .. t.getProductionCodeFile())
 	else
-		Exec("e " .. toggler.getTestFile())
+		Exec("e " .. t.getTestFile())
 	end
 end
