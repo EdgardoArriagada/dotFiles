@@ -1,4 +1,3 @@
-M = {}
 -- firt element has to be itself
 local JS_FILE_RELATIONS = {
 	["ts"] = { "ts", "tsx" },
@@ -33,27 +32,28 @@ local function findFile(a)
 	return fallback
 end
 
-M.isTestFile = function()
-	local fileName = vim.fn.expand("%:t")
-	local ft = vim.fn.expand("%:e")
+---@type Toggler
+return {
+	isTestFile = function()
+		local fileName = vim.fn.expand("%:t")
+		local ft = vim.fn.expand("%:e")
 
-	return string.find(fileName, "%.spec%." .. ft .. "$")
-end
+		return string.find(fileName, "%.spec%." .. ft .. "$")
+	end,
 
-M.getTestFile = function()
-	return findFile({
-		newFileDir = vim.fn.expand("%:h") .. "/__tests__/",
-		oldExtensionPrefix = "%.",
-		newExtensionPrefix = "%.spec%.",
-	})
-end
+	getTestFile = function()
+		return findFile({
+			newFileDir = vim.fn.expand("%:h") .. "/__tests__/",
+			oldExtensionPrefix = "%.",
+			newExtensionPrefix = "%.spec%.",
+		})
+	end,
 
-M.getProductionCodeFile = function()
-	return findFile({
-		newFileDir = vim.fn.expand("%:h"):gsub("__tests__", ""),
-		oldExtensionPrefix = "%.spec%.",
-		newExtensionPrefix = "%.",
-	})
-end
-
-return M
+	getProductionCodeFile = function()
+		return findFile({
+			newFileDir = vim.fn.expand("%:h"):gsub("__tests__", ""),
+			oldExtensionPrefix = "%.spec%.",
+			newExtensionPrefix = "%.",
+		})
+	end,
+}

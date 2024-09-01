@@ -1,3 +1,8 @@
+--- @class Toggler
+--- @field isTestFile function: Returns true if the current file is a test file, false otherwise
+--- @field getTestFile function: Returns the path to the test file
+--- @field getProductionCodeFile function: Returns the path to the production code file
+
 local js = require("zsb.customPluggins.testToggler.js")
 local go = require("zsb.customPluggins.testToggler.go")
 
