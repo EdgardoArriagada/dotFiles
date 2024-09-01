@@ -19,11 +19,13 @@ end
 local function getProductionCodeFile()
 	local basename = vim.fn.expand("%:t"):gsub("_test.go$", "")
 
-	for _, file in ipairs(listCurrentDir("*" .. basename .. ".*go")) do
-		return file
-	end
+	local prodFile = listCurrentDir("*" .. basename .. ".*go")[1]
 
-	return vim.fn.expand("%:h") .. "/" .. basename .. ".go"
+	if prodFile then
+		return prodFile
+	else
+		return vim.fn.expand("%:h") .. "/" .. basename .. ".go"
+	end
 end
 
 M.toggle = function()
