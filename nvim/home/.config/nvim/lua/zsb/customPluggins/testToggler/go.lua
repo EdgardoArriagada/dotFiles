@@ -20,10 +20,7 @@ local function getProductionCodeFile()
 	local basename = vim.fn.expand("%:t"):gsub("_test.go$", "")
 
 	for _, file in ipairs(listUsingGlob("*" .. basename .. ".*go")) do
-		local filename = vim.fn.fnamemodify(file, ":t")
-		if string.find(filename, "^" .. basename .. "%.") then
-			return file
-		end
+		return file
 	end
 
 	return vim.fn.expand("%:h") .. "/" .. basename .. ".go"
