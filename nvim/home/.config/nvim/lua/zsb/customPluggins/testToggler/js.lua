@@ -11,13 +11,6 @@ local function doesFileExists(file)
 	return vim.fn.filereadable(file) ~= 0
 end
 
-local function isTestFile()
-	local fileName = vim.fn.expand("%:t")
-	local ft = vim.fn.expand("%:e")
-
-	return string.find(fileName, "%.spec%." .. ft .. "$")
-end
-
 local function findFile(a)
 	local fallback
 	local filename = vim.fn.expand("%:t")
@@ -40,7 +33,14 @@ local function findFile(a)
 	return fallback
 end
 
-local function getTestFile()
+M.isTestFile = function()
+	local fileName = vim.fn.expand("%:t")
+	local ft = vim.fn.expand("%:e")
+
+	return string.find(fileName, "%.spec%." .. ft .. "$")
+end
+
+M.getTestFile = function()
 	return findFile({
 		newFileDir = vim.fn.expand("%:h") .. "/__tests__/",
 		oldExtensionPrefix = "%.",
@@ -48,20 +48,12 @@ local function getTestFile()
 	})
 end
 
-local function getProductionCodeFile()
+M.getProductionCodeFile = function()
 	return findFile({
 		newFileDir = vim.fn.expand("%:h"):gsub("__tests__", ""),
 		oldExtensionPrefix = "%.spec%.",
 		newExtensionPrefix = "%.",
 	})
-end
-
-M.toggle = function()
-	if isTestFile() then
-		Exec("e " .. getProductionCodeFile())
-	else
-		Exec("e " .. getTestFile())
-	end
 end
 
 return M

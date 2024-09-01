@@ -1,23 +1,27 @@
 local js = require("zsb.customPluggins.testToggler.js")
 local go = require("zsb.customPluggins.testToggler.go")
 
-local extensionToFunction = {
-	["javascript"] = js.toggle,
-	["typescript"] = js.toggle,
-	["javascriptreact"] = js.toggle,
-	["typescriptreact"] = js.toggle,
-	["go"] = go.toggle,
+local extensionToToggler = {
+	["javascript"] = js,
+	["typescript"] = js,
+	["javascriptreact"] = js,
+	["typescriptreact"] = js,
+	["go"] = go,
 }
 
 function TestToggler()
 	local ft = vim.bo.filetype
 
-	local fun = extensionToFunction[ft]
+	local toggler = extensionToToggler[ft]
 
-	if fun == nil then
+	if toggler == nil then
 		vim.notify("No toggler configured for '" .. ft .. "' filetype")
 		return
 	end
 
-	fun()
+	if toggler.isTestFile() then
+		Exec("e " .. toggler.getProductionCodeFile())
+	else
+		Exec("e " .. toggler.getTestFile())
+	end
 end
