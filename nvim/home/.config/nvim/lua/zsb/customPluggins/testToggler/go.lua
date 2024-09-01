@@ -12,14 +12,14 @@ local function getTestFile()
 	return vim.fn.expand("%:h") .. "/" .. basename .. "_test.go"
 end
 
-local function listGoFiles()
-	return vim.fn.globpath(vim.fn.expand("%:h"), "*.go", true, true)
+local function listUsingGlob(glob)
+	return vim.fn.globpath(vim.fn.expand("%:h"), glob, true, true)
 end
 
 local function getProductionCodeFile()
 	local basename = vim.fn.expand("%:t"):gsub("_test.go$", "")
 
-	for _, file in ipairs(listGoFiles()) do
+	for _, file in ipairs(listUsingGlob("*.go")) do
 		local filename = vim.fn.fnamemodify(file, ":t")
 		if string.find(filename, "^" .. basename) and not string.find(filename, "_test.go$") then
 			return file
