@@ -6,6 +6,7 @@
 local js = require("zsb.customPluggins.testToggler.js")
 local go = require("zsb.customPluggins.testToggler.go")
 
+--- @type table<string, Toggler>
 local extensionToToggler = {
 	["javascript"] = js,
 	["typescript"] = js,
