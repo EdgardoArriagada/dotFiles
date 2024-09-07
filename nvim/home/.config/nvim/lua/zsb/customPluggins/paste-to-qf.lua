@@ -11,15 +11,18 @@ function PasteToQf()
 	-- Prompt user for input
 	local file_list = {}
 
-	ShowMenu({}, function()
-		-- Get the clipboard contents
-		local input = vim.fn.getreg("+")
+	ShowMenu({
+		title = "Paste to Quickfix",
+		callback = function()
+			-- Get the clipboard contents
+			local input = vim.fn.getreg("+")
 
-		-- Split the input string by newlines and trim whitespace
-		for file in string.gmatch(input, "[^%s]+") do
-			table.insert(file_list, file)
-		end
-	end)
+			-- Split the input string by newlines and trim whitespace
+			for file in string.gmatch(input, "[^%s]+") do
+				table.insert(file_list, file)
+			end
+		end,
+	})
 
 	local qf_entries = {}
 
@@ -30,20 +33,19 @@ function PasteToQf()
 	vim.fn.setqflist(qf_entries)
 end
 
-function ShowMenu(opts, cb)
-	local height = 20
-	local width = 30
+function ShowMenu(conf, opts)
+	local height = conf.height or 20
+	local width = conf.width or 60
 	local borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
 
-	local Win_id = require("plenary.popup").create(opts, {
-		title = "MyProjects",
-		highlight = "MyProjectWindow",
+	local Win_id = require("plenary.popup").create(opts or {}, {
+		title = conf.title,
 		line = math.floor(((vim.o.lines - height) / 2) - 1),
 		col = math.floor((vim.o.columns - width) / 2),
 		minwidth = width,
 		minheight = height,
 		borderchars = borderchars,
-		callback = cb,
+		callback = conf.callback,
 	})
 
 	function CloseMenu()
