@@ -21,6 +21,14 @@ return {
 			filetypes = {
 				TelescopePrompt = false,
 				harpoon = false,
+				NvimTree = false,
+				dbui = false,
+				qf = false,
+				hgcommit = false,
+				gitrebase = false,
+				gitcommit = false,
+				help = false,
+				["."] = false,
 			},
 		})
 	end,
