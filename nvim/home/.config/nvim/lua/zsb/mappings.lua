@@ -111,16 +111,6 @@ createCmd("Pjson", function()
 	Hpcall(Exec, "%!jq .", { onErr = 'failed to execute ":%!jq .", make sure you have "jq" is installed' })
 end, {})
 
--- Toggle quickfix window
-createCmd("T", function()
-	for _, win in pairs(vim.fn.getwininfo()) do
-		if win.quickfix == 1 then
-			return Exec("cclose")
-		end
-	end
-	Exec("copen")
-end, {})
-
 -- Reload local plugin
 createCmd("Reload", function(opts)
 	local plugin = opts.args

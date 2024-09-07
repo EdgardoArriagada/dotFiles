@@ -1,3 +1,12 @@
+function ToggleQf()
+	for _, win in pairs(vim.fn.getwininfo()) do
+		if win.quickfix == 1 then
+			return Exec("cclose")
+		end
+	end
+	Exec("copen")
+end
+
 function PasteToQf()
 	ShowMenu({
 		title = "Paste to Quickfix",
