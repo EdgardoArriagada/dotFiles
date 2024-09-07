@@ -97,7 +97,7 @@ return {
 				"Find files",
 			},
 			["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
-			["P"] = { "<cmd>Telescope projects<cr>", "Projects" },
+			["P"] = { PasteToQf, "Paste to qf" },
 			n = {
 				name = "NvimTree",
 				t = { "<cmd>NvimTreeToggle<cr>", "Toggle" },
