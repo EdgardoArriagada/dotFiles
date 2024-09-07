@@ -8,29 +8,22 @@
 -- src/utils/zsb-utils/testing/testing.zsh
 --
 function PasteToQf()
-	-- Prompt user for input
-	local file_list = {}
-
 	ShowMenu({
 		title = "Paste to Quickfix",
 		callback = function()
-			-- Get the clipboard contents
-			local input = vim.fn.getreg("+")
+			local buf_id = vim.api.nvim_get_current_buf()
+			local file_list = vim.api.nvim_buf_get_lines(buf_id, 0, -1, false)
 
-			-- Split the input string by newlines and trim whitespace
-			for file in string.gmatch(input, "[^%s]+") do
-				table.insert(file_list, file)
+			print(vim.inspect(file_list)) -- You can replace this with any logic to handle the modified list
+
+			local qf_entries = {}
+			for _, file in ipairs(file_list) do
+				table.insert(qf_entries, { filename = file, lnum = 1, col = 1 })
 			end
+
+			vim.fn.setqflist(qf_entries)
 		end,
 	})
-
-	local qf_entries = {}
-
-	for _, file in ipairs(file_list) do
-		table.insert(qf_entries, { filename = file })
-	end
-
-	vim.fn.setqflist(qf_entries)
 end
 
 function ShowMenu(conf, opts)
