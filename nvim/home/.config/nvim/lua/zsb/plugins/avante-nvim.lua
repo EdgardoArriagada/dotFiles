@@ -1,7 +1,6 @@
 return {
 	"yetone/avante.nvim",
-	cmd = "AvanteAsk",
-	lazy = true,
+	cmd = { "AvanteAsk", "AvanteToggle" },
 	version = false, -- set this if you want to always pull the latest change
 	opts = {
 		-- add any opts here
@@ -19,7 +18,6 @@ return {
 		{
 			-- support for image pasting
 			"HakonHarnes/img-clip.nvim",
-			event = "VeryLazy",
 			opts = {
 				-- recommended settings
 				default = {

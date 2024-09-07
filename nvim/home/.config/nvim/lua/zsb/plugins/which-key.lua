@@ -203,6 +203,7 @@ return {
 				name = "view",
 				t = { TestToggler, "Toggle to test file" },
 				d = { "<cmd>tab DBUI<cr>", "View database client" },
+				a = { "<cmd>AvanteToggle<cr>", "toggle avante chat" },
 			},
 			s = {
 				name = "Search",
