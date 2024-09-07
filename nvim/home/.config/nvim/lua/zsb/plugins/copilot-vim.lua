@@ -28,6 +28,7 @@ return {
 				gitrebase = false,
 				gitcommit = false,
 				help = false,
+				alpha = false,
 				["."] = false,
 			},
 		})
