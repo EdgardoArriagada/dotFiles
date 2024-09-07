@@ -1,12 +1,3 @@
--- Function to add files from clipboard to the quickfix
---
--- example of pasted files
--- src/__tests__/
--- src/__tests__/utils/zsb-utils/doesMatch.test.zsh
--- src/spells/node/dailycode/template/code.test.js
--- src/utils/zsb-utils/testing/
--- src/utils/zsb-utils/testing/testing.zsh
---
 function PasteToQf()
 	ShowMenu({
 		title = "Paste to Quickfix",
@@ -14,14 +5,15 @@ function PasteToQf()
 			local buf_id = vim.api.nvim_get_current_buf()
 			local file_list = vim.api.nvim_buf_get_lines(buf_id, 0, -1, false)
 
-			print(vim.inspect(file_list)) -- You can replace this with any logic to handle the modified list
-
 			local qf_entries = {}
 			for _, file in ipairs(file_list) do
-				table.insert(qf_entries, { filename = file, lnum = 1, col = 1 })
+				if file ~= "" then
+					table.insert(qf_entries, { filename = file, lnum = 1, col = 1 })
+				end
 			end
 
 			vim.fn.setqflist(qf_entries)
+			vim.cmd("copen")
 		end,
 	})
 end
