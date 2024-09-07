@@ -25,7 +25,7 @@ function PasteToQf()
 			end
 
 			vim.fn.setqflist(qf_entries)
-			vim.cmd("copen")
+			Exec("copen")
 		end,
 	})
 end
