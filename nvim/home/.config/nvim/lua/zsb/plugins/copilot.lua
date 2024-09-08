@@ -32,5 +32,7 @@ return {
 				["."] = false,
 			},
 		})
+
+		kset("n", "<C-_>", require("copilot.suggestion").dismiss)
 	end,
 }
