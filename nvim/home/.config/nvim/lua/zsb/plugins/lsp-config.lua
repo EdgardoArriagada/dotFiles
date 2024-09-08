@@ -16,7 +16,7 @@ local configServers = {
 			},
 		},
 	},
-	tsserver = {
+	ts_ls = {
 		commands = {
 			OrganizeImports = {
 				function()
@@ -35,7 +35,9 @@ local configServers = {
 local serverNames = {}
 
 for server, _ in pairs(configServers) do
-	table.insert(serverNames, server)
+	if server ~= "ts_ls" then
+		table.insert(serverNames, server)
+	end
 end
 
 return {

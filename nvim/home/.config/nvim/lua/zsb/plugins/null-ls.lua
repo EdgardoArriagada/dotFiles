@@ -1,6 +1,9 @@
 return {
 	"nvimtools/none-ls.nvim",
 	event = "VeryLazy",
+	dependencies = {
+		"nvimtools/none-ls-extras.nvim",
+	},
 	config = Config("null-ls", function(null_ls)
 		-- https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -8,16 +11,16 @@ return {
 		local d = null_ls.builtins.diagnostics
 
 		null_ls.setup({
-			debug = false,
+			debug = true,
 			sources = {
 				-- javascript
 				f.prettierd,
-				d.eslint_d,
+				require("none-ls.diagnostics.eslint_d"),
 				-- rust
-				f.rustfmt,
+				--[[ f.rustfmt, ]]
 				-- python
 				f.black,
-				d.flake8,
+				require("none-ls.diagnostics.flake8"),
 				-- lua
 				f.stylua,
 				-- elixir
@@ -28,6 +31,7 @@ return {
 				d.golangci_lint,
 			},
 			on_attach = function(client, bufnr)
+				print("le on_attach")
 				-- https://github.com/nvimtools/none-ls.nvim/wiki/Formatting-on-save
 				if not client.supports_method("textDocument/formatting") then
 					return
@@ -44,8 +48,9 @@ return {
 					Extend(common, {
 						callback = function()
 							vim.lsp.buf.format({
-								bufnr = bufnr,
+								async = false,
 								filter = function(c)
+									print("le c:", vim.inspect(c))
 									return c.name == "null-ls"
 								end,
 							})
