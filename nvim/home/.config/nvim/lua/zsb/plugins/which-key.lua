@@ -257,7 +257,7 @@ return {
 				function()
 					require("react-extract").extract_to_current_file()
 				end,
-				desc = "Extract Component",
+				desc = "Extract React Component",
 				mode = "v",
 			},
 			{
@@ -265,7 +265,7 @@ return {
 				function()
 					require("react-extract").extract_to_new_file()
 				end,
-				desc = "Extract Component to New File",
+				desc = "Extract React Component to New File",
 				mode = "v",
 			},
 		})
