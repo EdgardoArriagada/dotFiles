@@ -11,7 +11,7 @@ return {
 		local d = null_ls.builtins.diagnostics
 
 		null_ls.setup({
-			debug = true,
+			debug = false,
 			sources = {
 				-- javascript
 				f.prettierd,
