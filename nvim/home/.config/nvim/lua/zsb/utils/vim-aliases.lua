@@ -1,7 +1,3 @@
-function Warn(msg)
-	vim.notify(msg, "warn")
-end
-
 indent = vim.fn.indent
 line = vim.fn.line
 

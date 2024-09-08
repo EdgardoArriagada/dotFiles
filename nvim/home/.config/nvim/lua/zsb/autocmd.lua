@@ -48,7 +48,7 @@ autocmd(
 -- Notification after file change
 autocmd("FileChangedShellPost", {
 	callback = function()
-		Warn("File changed on disk. Buffer reloaded.")
+		vim.notiy("File changed on disk. Buffer reloaded.", "warn")
 	end,
 	group = group,
 })
