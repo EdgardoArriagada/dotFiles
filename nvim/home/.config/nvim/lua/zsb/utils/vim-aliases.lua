@@ -1,5 +1,5 @@
 function Warn(msg)
-	vim.api.nvim_echo({ { msg, "WarningMsg" } }, true, {})
+	vim.notify(msg, "warn")
 end
 
 indent = vim.fn.indent
