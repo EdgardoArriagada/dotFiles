@@ -99,6 +99,13 @@ return {
 			{ "<leader>vd", "<cmd>tab DBUI<cr>", desc = "View database client" },
 			{ "<leader>va", "<cmd>AvanteToggle<cr>", desc = "Toggle avante chat" },
 			{ "<leader>vq", ToggleQf, desc = "Toggle qf list" },
+			{
+				"<leader>vm",
+				function()
+					require("render-markdown").toggle()
+				end,
+				desc = "Toggle markdown",
+			},
 			{ "<leader>rb", "<cmd>tab DBUI<cr>", desc = "View database client" },
 			{ "<leader>ra", "<cmd>AvanteToggle<cr>", desc = "Toggle avante chat" },
 			{ "<leader>rq", ToggleQf, desc = "Toggle qf list" },
