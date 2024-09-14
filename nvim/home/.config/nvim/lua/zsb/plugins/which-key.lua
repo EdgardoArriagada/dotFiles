@@ -5,7 +5,7 @@ return {
 		wk.setup({
 			preset = "modern",
 			triggers = {
-				{ "<auto>", mode = "" },
+				{ "<leader>", mode = { "n", "v" } },
 			},
 		})
 
