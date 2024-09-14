@@ -2,6 +2,13 @@ return {
 	"folke/which-key.nvim",
 	event = "VeryLazy",
 	config = Config("which-key", function(wk)
+		wk.setup({
+			preset = "modern",
+			triggers = {
+				{ "<auto>", mode = "" },
+			},
+		})
+
 		wk.add({
 			{ "<leader>a", "<cmd>Alpha<cr>", desc = "Alpha" },
 			{ "<leader>x", Logger, desc = "Logger", mode = { "n", "v" } },
