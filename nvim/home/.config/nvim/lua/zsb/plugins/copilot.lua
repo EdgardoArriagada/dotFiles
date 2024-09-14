@@ -29,6 +29,7 @@ return {
 				gitcommit = false,
 				help = false,
 				alpha = false,
+				oil = false,
 				["."] = false,
 			},
 		})
