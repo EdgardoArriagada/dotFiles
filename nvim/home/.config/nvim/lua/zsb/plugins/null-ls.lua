@@ -31,7 +31,6 @@ return {
 				d.golangci_lint,
 			},
 			on_attach = function(client, bufnr)
-				print("le on_attach")
 				-- https://github.com/nvimtools/none-ls.nvim/wiki/Formatting-on-save
 				if not client.supports_method("textDocument/formatting") then
 					return
@@ -50,7 +49,6 @@ return {
 							vim.lsp.buf.format({
 								async = false,
 								filter = function(c)
-									print("le c:", vim.inspect(c))
 									return c.name == "null-ls"
 								end,
 							})
