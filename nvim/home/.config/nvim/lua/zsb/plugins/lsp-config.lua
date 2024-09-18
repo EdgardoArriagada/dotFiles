@@ -87,7 +87,7 @@ return {
 			local lspconfig = require("lspconfig")
 
 			for serverName, config in pairs(configServers) do
-				lspconfig[serverName].setup(DeepExtend(defaultSetUp, config))
+				lspconfig[serverName].setup(Extend(defaultSetUp, config))
 			end
 
 			-- special config for gleam

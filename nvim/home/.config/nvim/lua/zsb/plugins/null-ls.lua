@@ -44,7 +44,7 @@ return {
 				vim.api.nvim_clear_autocmds(common)
 				vim.api.nvim_create_autocmd(
 					"BufWritePre",
-					DeepExtend(common, {
+					Extend(common, {
 						callback = function()
 							vim.lsp.buf.format({
 								async = false,
