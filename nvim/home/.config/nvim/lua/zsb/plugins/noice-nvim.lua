@@ -47,10 +47,6 @@ return {
 						},
 						opts = { skip = true },
 					},
-					{
-						view = "notify",
-						filter = { event = "msg_showmode" }, -- show recording macro
-					},
 				},
 			})
 
