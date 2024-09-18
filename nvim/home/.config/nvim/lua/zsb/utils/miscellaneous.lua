@@ -166,11 +166,5 @@ function ShowMenu(conf, opts)
 end
 
 function SetTimeout(callback, delay)
-	vim.uv.new_timer():start(
-		delay,
-		0,
-		vim.schedule_wrap(function()
-			callback()
-		end)
-	)
+	vim.uv.new_timer():start(delay, 0, vim.schedule_wrap(callback))
 end
