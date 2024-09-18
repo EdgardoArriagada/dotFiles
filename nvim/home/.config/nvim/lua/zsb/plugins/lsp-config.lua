@@ -11,7 +11,7 @@ local configServers = {
 		settings = {
 			Lua = {
 				diagnostics = {
-					globals = { "vim", "hs", "table", "kset", "createCmd" },
+					globals = { "vim", "hs", "table" },
 				},
 			},
 		},
