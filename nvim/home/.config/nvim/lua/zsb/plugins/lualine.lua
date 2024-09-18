@@ -14,7 +14,7 @@ local function getDirname(path)
 	return dirname
 end
 
-local function getMacroRecordingComponent()
+local function macroRecordingComponent()
 	return {
 		"macro-recording",
 		fmt = function()
@@ -28,7 +28,7 @@ local function getMacroRecordingComponent()
 	}
 end
 
-local function getCurrentFileComponent(props)
+local function currentFileComponent(props)
 	return {
 		{ -- Dirname
 			"filename",
@@ -92,7 +92,7 @@ return {
 					"branch",
 					"diff",
 					"diagnostics",
-					getMacroRecordingComponent(),
+					macroRecordingComponent(),
 				},
 				lualine_c = {},
 				lualine_x = { "searchcount", "encoding", "fileformat" },
@@ -102,14 +102,14 @@ return {
 			inactive_sections = {}, -- not seen with globalstatus = true
 			tabline = {}, -- clashes with nvim-bufferline
 			winbar = {
-				lualine_c = getCurrentFileComponent({
+				lualine_c = currentFileComponent({
 					textColor = { bg = palette.black1, gui = "bold" },
 					folderColor = { fg = palette.yellow.dim },
 					ftIconColored = true,
 				}),
 			},
 			inactive_winbar = {
-				lualine_c = getCurrentFileComponent({
+				lualine_c = currentFileComponent({
 					textColor = { fg = palette.gray3, gui = "italic" },
 				}),
 			},
