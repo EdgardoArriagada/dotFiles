@@ -22,7 +22,7 @@ autocmd("FileType", {
 
 		SetTimeout(function()
 			Hpcall(Exec, "normal!zA", { onErr = 'failed to execute ":normal!zA"' })
-		end, 300)
+		end, 50)
 	end,
 	group = group,
 })
