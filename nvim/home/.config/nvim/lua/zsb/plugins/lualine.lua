@@ -28,37 +28,41 @@ local function macroRecordingComponent()
 	}
 end
 
-local function currentFileComponent(props)
-	return {
-		{ -- Dirname
-			"filename",
-			fmt = getDirname,
-			icon = { " ", color = props.folderColor },
-			cond = isNonSpecialFt,
-			path = 1,
-			file_status = false,
-			shorting_target = 0,
-			symbols = {
-				modified = "",
-				readonly = "",
-				unnamed = "",
-				newfile = "",
-			},
-			color = props.textColor,
+local function basenameComponent(props)
+	return { -- Dirname
+		"filename",
+		fmt = getDirname,
+		icon = { " ", color = props.folderColor },
+		cond = isNonSpecialFt,
+		path = 1,
+		file_status = false,
+		shorting_target = 0,
+		symbols = {
+			modified = "",
+			readonly = "",
+			unnamed = "",
+			newfile = "",
 		},
-		{ -- Icon
-			"filetype",
-			icon_only = true,
-			cond = isNonSpecialFt,
-			color = props.textColor,
-			colored = props.ftIconColored or false,
-		},
-		{ -- Filename
-			"filename",
-			file_status = false,
-			cond = isNonSpecialFt,
-			color = props.textColor,
-		},
+		color = props.textColor,
+	}
+end
+
+local function fileIconComponent(props)
+	return { -- Icon
+		"filetype",
+		icon_only = true,
+		cond = isNonSpecialFt,
+		color = props.textColor,
+		colored = props.ftIconColored or false,
+	}
+end
+
+local function filenameComponent(props)
+	return { -- Filename
+		"filename",
+		file_status = false,
+		cond = isNonSpecialFt,
+		color = props.textColor,
 	}
 end
 
@@ -67,6 +71,9 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		local palette = require("nordic.colors")
+
+		local FOCUS_COLOR = { bg = palette.black1, gui = "bold" }
+		local BLUR_COLOR = { fg = palette.gray3, gui = "italic" }
 
 		require("lualine").setup({
 			options = {
@@ -102,16 +109,32 @@ return {
 			inactive_sections = {}, -- not seen with globalstatus = true
 			tabline = {}, -- clashes with nvim-bufferline
 			winbar = {
-				lualine_c = currentFileComponent({
-					textColor = { bg = palette.black1, gui = "bold" },
-					folderColor = { fg = palette.yellow.dim },
-					ftIconColored = true,
-				}),
+				lualine_c = {
+					basenameComponent({
+						textColor = FOCUS_COLOR,
+						folderColor = { fg = palette.yellow.dim },
+					}),
+					fileIconComponent({
+						textColor = FOCUS_COLOR,
+						ftIconColored = true,
+					}),
+					filenameComponent({
+						textColor = FOCUS_COLOR,
+					}),
+				},
 			},
 			inactive_winbar = {
-				lualine_c = currentFileComponent({
-					textColor = { fg = palette.gray3, gui = "italic" },
-				}),
+				lualine_c = {
+					basenameComponent({
+						textColor = BLUR_COLOR,
+					}),
+					fileIconComponent({
+						textColor = BLUR_COLOR,
+					}),
+					filenameComponent({
+						textColor = BLUR_COLOR,
+					}),
+				},
 			},
 			extensions = {},
 		})
