@@ -164,3 +164,13 @@ function ShowMenu(conf, opts)
 	local bufnr = vim.api.nvim_win_get_buf(winId)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "q", "<cmd>lua CloseMenu()<CR>", { silent = false })
 end
+
+function SetTimeout(callback, delay)
+	vim.uv.new_timer():start(
+		delay,
+		0,
+		vim.schedule_wrap(function()
+			callback()
+		end)
+	)
+end
