@@ -2,7 +2,7 @@ Indent = vim.fn.indent
 Line = vim.fn.line
 
 Kset = vim.keymap.set
-createCmd = vim.api.nvim_create_user_command
+CreateCmd = vim.api.nvim_create_user_command
 
 -- merge given tables without mutating them
 function DeepExtend(...)

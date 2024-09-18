@@ -92,27 +92,27 @@ Kset("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 Kset("n", "k", [[(v:count > 5 ? "m'" . v:count : "") . 'k']], { expr = true, desc = "if k > 5 then add to jumplist" })
 Kset("n", "j", [[(v:count > 5 ? "m'" . v:count : "") . 'j']], { expr = true, desc = "if j > 5 then add to jumplist" })
 
-createCmd("V", function()
+CreateCmd("V", function()
 	vim.wo.relativenumber = not vim.wo.relativenumber
 end, {})
 
-createCmd("W", function()
+CreateCmd("W", function()
 	Exec("w!")
 	Exec("e!")
 end, {})
 
-createCmd("Json", function()
+CreateCmd("Json", function()
 	vim.bo.filetype = "json"
 	vim.opt.foldmethod = "syntax"
 	vim.notify('Folds set to "syntax"')
 end, {})
 
-createCmd("Pjson", function()
+CreateCmd("Pjson", function()
 	Hpcall(Exec, "%!jq .", { onErr = 'failed to execute ":%!jq .", make sure you have "jq" is installed' })
 end, {})
 
 -- Reload local plugin
-createCmd("Reload", function(opts)
+CreateCmd("Reload", function(opts)
 	local plugin = opts.args
 
 	if not plugin then
