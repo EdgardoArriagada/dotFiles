@@ -21,7 +21,7 @@ function TestToggler()
 	local t = extensionToToggler[ft]
 
 	if not t then
-		vim.notify("No test toggler configured for '" .. ft .. "' filetype")
+		vim.notify("No test toggler configured for '" .. ft .. "' filetype", "error")
 		return
 	end
 

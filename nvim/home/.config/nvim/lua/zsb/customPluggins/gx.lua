@@ -8,7 +8,7 @@ kset("n", "gx", function()
 	local url = find_first_url_in_line(vim.api.nvim_get_current_line())
 
 	if url == nil then
-		vim.notify("No URLs found in the current line.")
+		vim.notify("No URLs found in the current line.", "error")
 		return
 	end
 
@@ -19,7 +19,7 @@ kset("v", "gx", function()
 	local url = find_first_url_in_line(GetVisualSelection())
 
 	if url == nil then
-		vim.notify("No URLs found in selection.")
+		vim.notify("No URLs found in selection.", "error")
 		return
 	end
 

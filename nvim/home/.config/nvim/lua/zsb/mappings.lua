@@ -116,7 +116,7 @@ createCmd("Reload", function(opts)
 	local plugin = opts.args
 
 	if not plugin then
-		vim.notify("No plugin specified")
+		vim.notify("No plugin specified", "error")
 		return
 	end
 
