@@ -1,9 +1,3 @@
-local function isNonSpecialFt()
-	local ft = vim.bo.filetype
-
-	return ft ~= "alpha" and ft ~= "NvimTree"
-end
-
 local function getDirname(path)
 	local dirname = path:match("^(.*)/[^/]+$")
 
@@ -33,7 +27,6 @@ local function dirnameComponent(props)
 		"filename",
 		fmt = getDirname,
 		icon = { " ", color = props.folderColor },
-		cond = isNonSpecialFt,
 		path = 1,
 		file_status = false,
 		shorting_target = 0,
@@ -51,7 +44,6 @@ local function fileIconComponent(props)
 	return {
 		"filetype",
 		icon_only = true,
-		cond = isNonSpecialFt,
 		color = props.textColor,
 		colored = props.ftIconColored or false,
 	}
@@ -61,7 +53,6 @@ local function filenameComponent(props)
 	return {
 		"filename",
 		file_status = false,
-		cond = isNonSpecialFt,
 		color = props.textColor,
 	}
 end
