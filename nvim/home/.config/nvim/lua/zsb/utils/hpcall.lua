@@ -13,7 +13,7 @@ function Hpcall(a, b, handlers)
 	if handlerType == "function" then
 		currHandler(thing)
 	elseif handlerType == "string" then
-		vim.notify(currHandler)
+		vim.notify(currHandler, ok and "info" or "error")
 	end
 end
 
@@ -24,7 +24,7 @@ function Config(plugin, fn)
 		local ok, content = pcall(require, plugin)
 
 		if not ok then
-			return vim.notify("Error: could not load '" .. plugin .. "'")
+			return vim.notify("Could not load '" .. plugin .. "'", "error")
 		end
 
 		fn(content)
