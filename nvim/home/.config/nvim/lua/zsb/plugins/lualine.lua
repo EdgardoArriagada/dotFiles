@@ -63,8 +63,8 @@ return {
 	config = function()
 		local palette = require("nordic.colors")
 
-		local FOCUS_COLOR_PROPS = { textColor = { bg = palette.black1, gui = "bold" } }
-		local BLUR_COLOR_PROPS = { textColor = { fg = palette.gray3, gui = "italic" } }
+		local FOCUS_PROPS = { textColor = { bg = palette.black1, gui = "bold" } }
+		local BLUR_PROPS = { textColor = { fg = palette.gray3, gui = "italic" } }
 
 		require("lualine").setup({
 			options = {
@@ -101,20 +101,20 @@ return {
 			tabline = {}, -- clashes with nvim-bufferline
 			winbar = {
 				lualine_c = {
-					dirnameComponent(Extend(FOCUS_COLOR_PROPS, {
+					dirnameComponent(Extend(FOCUS_PROPS, {
 						folderColor = { fg = palette.yellow.dim },
 					})),
-					fileIconComponent(Extend(FOCUS_COLOR_PROPS, {
+					fileIconComponent(Extend(FOCUS_PROPS, {
 						ftIconColored = true,
 					})),
-					filenameComponent(FOCUS_COLOR_PROPS),
+					filenameComponent(FOCUS_PROPS),
 				},
 			},
 			inactive_winbar = {
 				lualine_c = {
-					dirnameComponent(BLUR_COLOR_PROPS),
-					fileIconComponent(BLUR_COLOR_PROPS),
-					filenameComponent(BLUR_COLOR_PROPS),
+					dirnameComponent(BLUR_PROPS),
+					fileIconComponent(BLUR_PROPS),
+					filenameComponent(BLUR_PROPS),
 				},
 			},
 			extensions = {},
