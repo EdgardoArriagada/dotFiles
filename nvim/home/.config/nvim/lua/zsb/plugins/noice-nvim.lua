@@ -50,7 +50,7 @@ return {
 				},
 			})
 
-			kset("n", "!", function()
+			Kset("n", "!", function()
 				noice.cmd("dismiss")
 			end, { noremap = true, silent = true })
 		end),

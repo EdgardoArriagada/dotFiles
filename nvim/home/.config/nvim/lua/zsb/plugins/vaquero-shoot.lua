@@ -14,17 +14,17 @@ return {
 	keys = keys,
 	config = Config("vaquero-shoot", function(vqs)
 		-- enclosing
-		kset("n", "E", vqs.beginEnclosingSelection)
-		kset("v", "E", vqs.cycleEnclosingSelection)
-		kset("o", "E", vqs.enclosingSelection)
+		Kset("n", "E", vqs.beginEnclosingSelection)
+		Kset("v", "E", vqs.cycleEnclosingSelection)
+		Kset("o", "E", vqs.enclosingSelection)
 
-		kset("n", "W", vqs.beginEnclosingSelectionBackwards)
-		kset("v", "W", vqs.cycleEnclosingSelectionBackwards)
-		kset("o", "W", vqs.enclosingSelectionBackwards)
+		Kset("n", "W", vqs.beginEnclosingSelectionBackwards)
+		Kset("v", "W", vqs.cycleEnclosingSelectionBackwards)
+		Kset("o", "W", vqs.enclosingSelectionBackwards)
 
 		-- quotes
-		kset({ "v", "o" }, "'", vqs.quotesSelection)
+		Kset({ "v", "o" }, "'", vqs.quotesSelection)
 
-		kset({ "v", "o" }, '"', vqs.quotesSelectionBackwards)
+		Kset({ "v", "o" }, '"', vqs.quotesSelectionBackwards)
 	end),
 }

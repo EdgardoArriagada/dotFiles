@@ -4,7 +4,7 @@ local function find_first_url_in_line(line)
 	return string.match(line, url_pattern)
 end
 
-kset("n", "gx", function()
+Kset("n", "gx", function()
 	local url = find_first_url_in_line(vim.api.nvim_get_current_line())
 
 	if url == nil then
@@ -15,7 +15,7 @@ kset("n", "gx", function()
 	vim.ui.open(url)
 end)
 
-kset("v", "gx", function()
+Kset("v", "gx", function()
 	local url = find_first_url_in_line(GetVisualSelection())
 
 	if url == nil then

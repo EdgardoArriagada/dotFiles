@@ -1,9 +1,9 @@
-kset("v", "q", function()
+Kset("v", "q", function()
 	SafeExec("normal<Esc>")
 	VaqueroSelect()
 end, { noremap = true, silent = true })
 
-kset("o", "q", function()
+Kset("o", "q", function()
 	VaqueroSelect()
 end, { noremap = true, silent = true })
 

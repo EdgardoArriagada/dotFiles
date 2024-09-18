@@ -65,18 +65,18 @@ return {
 			local on_attach = function(_, buffer)
 				local opts = { noremap = true, silent = true, buffer = buffer }
 
-				kset("n", "gD", vim.lsp.buf.declaration, opts)
-				kset("n", "go", vim.lsp.buf.definition, opts)
-				kset("n", "gd", function()
+				Kset("n", "gD", vim.lsp.buf.declaration, opts)
+				Kset("n", "go", vim.lsp.buf.definition, opts)
+				Kset("n", "gd", function()
 					vim.lsp.buf.definition({
 						on_list = function(list)
 							OpenFileInPosition(list.items[1])
 						end,
 					})
 				end, opts)
-				kset("n", "gi", vim.lsp.buf.implementation, opts)
-				kset("n", "gk", vim.lsp.buf.signature_help, opts)
-				kset("n", "gr", vim.lsp.buf.references, opts)
+				Kset("n", "gi", vim.lsp.buf.implementation, opts)
+				Kset("n", "gk", vim.lsp.buf.signature_help, opts)
+				Kset("n", "gr", vim.lsp.buf.references, opts)
 			end
 
 			local defaultSetUp = {

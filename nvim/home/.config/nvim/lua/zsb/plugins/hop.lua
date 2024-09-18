@@ -5,7 +5,7 @@ return {
 	config = Config("hop", function(hop)
 		hop.setup({ keys = "etovxqpdygfblzhckisuran" })
 
-		kset("n", "s", function()
+		Kset("n", "s", function()
 			require("hop").hint_char2()
 		end, { noremap = false, silent = true })
 	end),

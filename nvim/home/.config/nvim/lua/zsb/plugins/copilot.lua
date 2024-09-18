@@ -34,6 +34,6 @@ return {
 			},
 		})
 
-		kset("n", "<C-_>", require("copilot.suggestion").dismiss)
+		Kset("n", "<C-_>", require("copilot.suggestion").dismiss)
 	end,
 }

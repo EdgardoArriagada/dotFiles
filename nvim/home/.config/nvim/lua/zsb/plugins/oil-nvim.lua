@@ -4,6 +4,6 @@ return {
 	keys = { "#" },
 	config = Config("oil", function(oil)
 		oil.setup()
-		kset("n", "#", oil.open, { noremap = true })
+		Kset("n", "#", oil.open, { noremap = true })
 	end),
 }

@@ -1,7 +1,7 @@
 Indent = vim.fn.indent
 Line = vim.fn.line
 
-kset = vim.keymap.set
+Kset = vim.keymap.set
 createCmd = vim.api.nvim_create_user_command
 
 -- merge given tables without mutating them

@@ -35,8 +35,8 @@ end
 
 local opts = { buffer = true }
 
-kset("n", "<tab>", cycleAndFocusBack(NEXT), opts)
-kset("n", "<s-tab>", cycleAndFocusBack(PREV), opts)
+Kset("n", "<tab>", cycleAndFocusBack(NEXT), opts)
+Kset("n", "<s-tab>", cycleAndFocusBack(PREV), opts)
 
-kset("n", "<Cr>", qfEnter, opts)
-kset("n", "<C-c>", qfClose, opts)
+Kset("n", "<Cr>", qfEnter, opts)
+Kset("n", "<C-c>", qfClose, opts)

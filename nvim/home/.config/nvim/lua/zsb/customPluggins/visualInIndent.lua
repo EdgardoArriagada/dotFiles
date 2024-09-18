@@ -12,4 +12,4 @@ function VisualInIndent()
 	Exec("normal" .. lastSameIndentDown .. "G^")
 end
 
-kset("v", "ii", VisualInIndent, { noremap = true, silent = true })
+Kset("v", "ii", VisualInIndent, { noremap = true, silent = true })

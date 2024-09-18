@@ -99,7 +99,7 @@ end
 function MakeMultimap(mode, action, opts)
 	return function(keys)
 		for _, key in ipairs(keys) do
-			kset(mode, key, action, opts)
+			Kset(mode, key, action, opts)
 		end
 	end
 end

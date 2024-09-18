@@ -36,7 +36,7 @@ return {
 				},
 			})
 
-			kset("n", "<C-p>", function()
+			Kset("n", "<C-p>", function()
 				require("telescope.builtin").git_files({
 					show_untracked = true,
 				})

@@ -3,6 +3,6 @@ return {
 	--[[ dir = "~/projects/per/search-replace.nvim", ]]
 	keys = { "<C-r>", { "<C-r>", mode = "v" } },
 	config = Config("search-replace", function(sr)
-		kset("v", "<C-r>", sr.searchAndReplace)
+		Kset("v", "<C-r>", sr.searchAndReplace)
 	end),
 }

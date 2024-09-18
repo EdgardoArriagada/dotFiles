@@ -12,13 +12,13 @@ return {
 
 			editNodeWith({ "l", "<CR>", "o" })
 
-			kset("n", "v", api.node.open.vertical, opts("Open file vertically"))
-			kset("n", "s", api.node.open.horizontal, opts("Open file horizontally"))
-			kset("n", "y", api.fs.copy.node, opts("Copy"))
-			kset("n", "Y", api.fs.copy.filename, opts("Copy filename"))
-			kset("n", "x", api.fs.cut, opts("Cut"))
-			kset("n", "p", api.fs.paste, opts("Paste"))
-			kset("n", "K", api.node.show_info_popup, opts("Info"))
+			Kset("n", "v", api.node.open.vertical, opts("Open file vertically"))
+			Kset("n", "s", api.node.open.horizontal, opts("Open file horizontally"))
+			Kset("n", "y", api.fs.copy.node, opts("Copy"))
+			Kset("n", "Y", api.fs.copy.filename, opts("Copy filename"))
+			Kset("n", "x", api.fs.cut, opts("Cut"))
+			Kset("n", "p", api.fs.paste, opts("Paste"))
+			Kset("n", "K", api.node.show_info_popup, opts("Info"))
 		end
 
 		local function on_attach(bufnr)

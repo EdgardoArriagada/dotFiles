@@ -1,8 +1,8 @@
-kset({ "o", "n", "v" }, "<bs>", function()
+Kset({ "o", "n", "v" }, "<bs>", function()
 	GoLessDeeperIndent("k")
 end, { silent = true })
 
-kset({ "o", "n", "v" }, "<enter>", function()
+Kset({ "o", "n", "v" }, "<enter>", function()
 	-- I use enter to unfold lines as well
 	if IsCurrentLineFolded() then
 		Exec("normal! zO")

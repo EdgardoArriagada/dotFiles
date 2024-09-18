@@ -3,7 +3,7 @@ return {
 	"ThePrimeagen/harpoon",
 	dependencies = { "nvim-lua/plenary.nvim" },
 	config = Config("harpoon.ui", function(harpoon_ui)
-		kset("n", "(", harpoon_ui.nav_prev)
-		kset("n", ")", harpoon_ui.nav_next)
+		Kset("n", "(", harpoon_ui.nav_prev)
+		Kset("n", ")", harpoon_ui.nav_next)
 	end),
 }

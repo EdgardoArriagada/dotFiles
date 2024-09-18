@@ -4,9 +4,9 @@ return {
 	config = function()
 		local opts = { silent = true }
 
-		kset("n", "C-h", ":TmuxNavigateLeft<CR>", opts)
-		kset("n", "C-j", ":TmuxNavigateDown<CR>", opts)
-		kset("n", "C-k", ":TmuxNavigateUp<CR>", opts)
-		kset("n", "C-l", ":TmuxNavigateRight<CR>", opts)
+		Kset("n", "C-h", ":TmuxNavigateLeft<CR>", opts)
+		Kset("n", "C-j", ":TmuxNavigateDown<CR>", opts)
+		Kset("n", "C-k", ":TmuxNavigateUp<CR>", opts)
+		Kset("n", "C-l", ":TmuxNavigateRight<CR>", opts)
 	end,
 }
