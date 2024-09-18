@@ -14,6 +14,15 @@ local function getDirname(path)
 	return dirname
 end
 
+local function show_macro_recording()
+	local recording_register = vim.fn.reg_recording()
+	if recording_register == "" then
+		return ""
+	else
+		return "Recording @" .. recording_register
+	end
+end
+
 local function getCurrentFileComponent(props)
 	return {
 		{ -- Dirname
@@ -74,7 +83,16 @@ return {
 			},
 			sections = {
 				lualine_a = { "mode" },
-				lualine_b = { "branch", "diff", "diagnostics" },
+				lualine_b = {
+					"branch",
+					"diff",
+					"diagnostics",
+
+					{
+						"macro-recording",
+						fmt = show_macro_recording,
+					},
+				},
 				lualine_c = {},
 				lualine_x = { "searchcount", "encoding", "fileformat" },
 				lualine_y = { "progress" },
