@@ -10,7 +10,7 @@ end
 
 function GetDirectionalProps(direction)
 	if direction == "j" then
-		return 1, line("$")
+		return 1, Line("$")
 	elseif direction == "k" then
 		return -1, 1
 	end
@@ -44,9 +44,9 @@ end
 
 function LookForIndentation(direction)
 	-- Go to beggin of line and add to jump list
-	Exec("normal" .. line(".") .. "G^")
+	Exec("normal" .. Line(".") .. "G^")
 
-	local lineMarker = GetFirstNoEmptyLine(direction, line("."))
+	local lineMarker = GetFirstNoEmptyLine(direction, Line("."))
 
 	Exec("normal" .. GetSameIndentLin(direction, lineMarker) .. "G^")
 end

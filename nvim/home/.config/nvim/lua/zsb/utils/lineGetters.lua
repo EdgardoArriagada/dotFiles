@@ -15,7 +15,7 @@ function GetSameIndentLin(direction, lineMarker)
 	if existsSameIndent then
 		return lineMarker
 	else
-		return line(".")
+		return Line(".")
 	end
 end
 

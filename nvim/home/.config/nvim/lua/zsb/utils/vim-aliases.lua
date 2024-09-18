@@ -1,5 +1,5 @@
 Indent = vim.fn.indent
-line = vim.fn.line
+Line = vim.fn.line
 
 kset = vim.keymap.set
 createCmd = vim.api.nvim_create_user_command
