@@ -104,7 +104,7 @@ end, {})
 createCmd("Json", function()
 	vim.bo.filetype = "json"
 	vim.opt.foldmethod = "syntax"
-	print('Folds set to "syntax"')
+	vim.notify('Folds set to "syntax"')
 end, {})
 
 createCmd("Pjson", function()
@@ -116,11 +116,11 @@ createCmd("Reload", function(opts)
 	local plugin = opts.args
 
 	if not plugin then
-		print("No plugin specified")
+		vim.notify("No plugin specified")
 		return
 	end
 
-	print("Reloading " .. plugin)
+	vim.notify("Reloading " .. plugin)
 
 	if package.loaded[plugin] then
 		package.loaded[plugin] = nil

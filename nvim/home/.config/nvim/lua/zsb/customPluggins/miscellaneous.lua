@@ -17,5 +17,5 @@ function Cppath()
 	local result = path:gsub("^.*" .. repoName .. "/", ""):gsub("^%./", "")
 
 	vim.fn.setreg("+", result)
-	print(result .. " Copied!")
+	vim.notify(result .. " Copied!")
 end
