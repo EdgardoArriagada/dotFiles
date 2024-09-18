@@ -28,8 +28,8 @@ local function macroRecordingComponent()
 	}
 end
 
-local function basenameComponent(props)
-	return { -- Dirname
+local function dirnameComponent(props)
+	return {
 		"filename",
 		fmt = getDirname,
 		icon = { " ", color = props.folderColor },
@@ -48,7 +48,7 @@ local function basenameComponent(props)
 end
 
 local function fileIconComponent(props)
-	return { -- Icon
+	return {
 		"filetype",
 		icon_only = true,
 		cond = isNonSpecialFt,
@@ -58,7 +58,7 @@ local function fileIconComponent(props)
 end
 
 local function filenameComponent(props)
-	return { -- Filename
+	return {
 		"filename",
 		file_status = false,
 		cond = isNonSpecialFt,
@@ -110,7 +110,7 @@ return {
 			tabline = {}, -- clashes with nvim-bufferline
 			winbar = {
 				lualine_c = {
-					basenameComponent({
+					dirnameComponent({
 						textColor = FOCUS_COLOR,
 						folderColor = { fg = palette.yellow.dim },
 					}),
@@ -125,7 +125,7 @@ return {
 			},
 			inactive_winbar = {
 				lualine_c = {
-					basenameComponent({
+					dirnameComponent({
 						textColor = BLUR_COLOR,
 					}),
 					fileIconComponent({
