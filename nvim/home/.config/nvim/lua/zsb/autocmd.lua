@@ -49,7 +49,7 @@ autocmd("FileChangedShellPost", {
 	group = group,
 })
 
---- Append macro recording to lualine
+--- Faster statusline refresh
 local function refreshStatusline()
 	require("lualine").refresh({
 		place = { "statusline" },
