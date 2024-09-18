@@ -1,4 +1,4 @@
-indent = vim.fn.indent
+Indent = vim.fn.indent
 line = vim.fn.line
 
 kset = vim.keymap.set

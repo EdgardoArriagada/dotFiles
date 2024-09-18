@@ -1,11 +1,11 @@
 function GetSameIndentLin(direction, lineMarker)
 	local inc, endOfFile = GetDirectionalProps(direction)
 	local existsSameIndent = false
-	local originalIndent = indent(".")
+	local originalIndent = Indent(".")
 
 	while not existsSameIndent and lineMarker ~= endOfFile do
 		lineMarker = lineMarker + inc
-		existsSameIndent = indent(lineMarker) == originalIndent
+		existsSameIndent = Indent(lineMarker) == originalIndent
 
 		if existsSameIndent and IsEmptyLine(lineMarker) then
 			existsSameIndent = false
@@ -22,14 +22,14 @@ end
 function GetLesserIndent(direction, lineMarker)
 	local inc, endOfFile = GetDirectionalProps(direction)
 
-	local originalIndent = indent(lineMarker)
+	local originalIndent = Indent(lineMarker)
 
 	local gotLesserIndent = false
 
 	while lineMarker ~= endOfFile do
 		lineMarker = lineMarker + inc
 
-		gotLesserIndent = indent(lineMarker) < originalIndent
+		gotLesserIndent = Indent(lineMarker) < originalIndent
 
 		if gotLesserIndent and not IsEmptyLine(lineMarker) then
 			break
