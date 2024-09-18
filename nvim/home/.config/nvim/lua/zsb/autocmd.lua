@@ -54,27 +54,20 @@ autocmd("FileChangedShellPost", {
 })
 
 --- Append macro recording to lualine
+local function refreshStatusline()
+	require("lualine").refresh({
+		place = { "statusline" },
+	})
+end
+
 autocmd("RecordingEnter", {
-	callback = function()
-		require("lualine").refresh({
-			place = { "statusline" },
-		})
-	end,
+	callback = refreshStatusline,
 	group = group,
 })
 
 autocmd("RecordingLeave", {
 	callback = function()
-		local timer = vim.loop.new_timer()
-		timer:start(
-			50,
-			0,
-			vim.schedule_wrap(function()
-				require("lualine").refresh({
-					place = { "statusline" },
-				})
-			end)
-		)
+		vim.uv.new_timer():start(50, 0, vim.schedule_wrap(refreshStatusline))
 	end,
 	group = group,
 })
