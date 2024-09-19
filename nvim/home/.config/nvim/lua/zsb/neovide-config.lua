@@ -12,6 +12,7 @@ autocmd("FileType", {
 	end,
 	group = group,
 })
+
 autocmd("BufLeave", {
 	pattern = "*",
 	callback = function()
@@ -21,6 +22,8 @@ autocmd("BufLeave", {
 })
 -- Allow clipboard copy paste in neovim
 global.neovide_input_use_logo = 1
+
+vim.opt.clipboard = "unnamedplus"
 
 set_keymap("", "<D-v>", "+p<CR>", opts)
 set_keymap("!", "<D-v>", "<C-R>+", opts)
