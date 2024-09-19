@@ -1,11 +1,10 @@
-local autocmd = vim.api.nvim_create_autocmd
 local group = vim.api.nvim_create_augroup("TelescopePreview", { clear = true })
 
 local ANIMATION_LENGTH = 0.6
 
 vim.g.neovide_scroll_animation_length = ANIMATION_LENGTH
 
-autocmd("FileType", {
+Cautocmd("FileType", {
 	pattern = "TelescopePreview",
 	callback = function()
 		vim.g.neovide_scroll_animation_length = 0
@@ -13,7 +12,7 @@ autocmd("FileType", {
 	group = group,
 })
 
-autocmd("BufLeave", {
+Cautocmd("BufLeave", {
 	pattern = "TelescopePreview",
 	callback = function()
 		vim.g.neovide_scroll_animation_length = ANIMATION_LENGTH

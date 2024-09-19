@@ -1,16 +1,15 @@
 --[[ if vim.g.vscode then return end ]]
-local autocmd = vim.api.nvim_create_autocmd
 local group = vim.api.nvim_create_augroup("Zsb", { clear = true })
 
 -- Use internal formatting for bindings like gq.
-autocmd("LspAttach", {
+Cautocmd("LspAttach", {
 	callback = function(args)
 		vim.bo[args.buf].formatexpr = nil
 	end,
 	group = group,
 })
 
-autocmd("FileType", {
+Cautocmd("FileType", {
 	pattern = "json",
 	callback = function(m)
 		if StartsWith("/Users/", m.file) or not HasBufCorrectSize(m.buf) then
@@ -29,20 +28,20 @@ autocmd("FileType", {
 
 -- - Open any ts file so TS language loads
 -- - run :make and then open qflist
---[[ autocmd("FileType", { ]]
+--[[ Cautocmd("FileType", { ]]
 --[[ 	pattern = "typescript,typescriptreact", ]]
 --[[ 	group = group, ]]
 --[[ 	command = "compiler tsc | setlocal makeprg=npx\\ tsc", ]]
 --[[ }) ]]
 
 -- Triger `autoread` when files changes on disk
-autocmd(
+Cautocmd(
 	{ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" },
 	{ command = [[if mode() != 'c' | checktime | endif]], group = group }
 )
 
 -- Notification after file change
-autocmd("FileChangedShellPost", {
+Cautocmd("FileChangedShellPost", {
 	callback = function()
 		vim.notify("File changed on disk. Buffer reloaded.", "warn")
 	end,
@@ -56,12 +55,12 @@ local function refreshStatusline()
 	})
 end
 
-autocmd("RecordingEnter", {
+Cautocmd("RecordingEnter", {
 	callback = refreshStatusline,
 	group = group,
 })
 
-autocmd("RecordingLeave", {
+Cautocmd("RecordingLeave", {
 	callback = function()
 		SetTimeout(refreshStatusline, 50)
 	end,
