@@ -93,7 +93,7 @@ return {
 				timer = SetInterval(function()
 					vim.g.recording_icon_blink = not vim.g.recording_icon_blink
 					refreshStatusline()
-				end, 650)
+				end, 600)
 			end,
 			group = group,
 		})
