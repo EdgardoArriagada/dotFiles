@@ -67,8 +67,6 @@ local function filenameComponent(props)
 	}
 end
 
-local RECORD_REFRESH_RATE = 650
-
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -91,11 +89,11 @@ return {
 
 		Cautocmd("RecordingEnter", {
 			callback = function()
+				refreshStatusline()
 				timer = SetInterval(function()
 					vim.g.recording_icon_blink = not vim.g.recording_icon_blink
-				end, RECORD_REFRESH_RATE)
-
-				refreshStatusline()
+					refreshStatusline()
+				end, 650)
 			end,
 			group = group,
 		})
@@ -123,7 +121,7 @@ return {
 				always_divide_middle = true,
 				globalstatus = true,
 				refresh = {
-					statusline = RECORD_REFRESH_RATE,
+					statusline = 9999,
 					tabline = 9999,
 					winbar = 9999,
 				},
