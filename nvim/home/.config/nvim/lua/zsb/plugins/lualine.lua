@@ -1,3 +1,5 @@
+local blink = false
+
 local function getDirname(path)
 	local dirname = path:match("^(.*)/[^/]+$")
 
@@ -18,8 +20,6 @@ local function macroRecordingComponent(props)
 			if recording_register == "" then
 				return ""
 			else
-				local blink = vim.g.recording_icon_blink or false
-
 				if blink then
 					ctx.options.icon = { " " }
 				else
@@ -91,7 +91,7 @@ return {
 			callback = function()
 				refreshStatusline()
 				timer = SetInterval(function()
-					vim.g.recording_icon_blink = not vim.g.recording_icon_blink
+					blink = not blink
 					refreshStatusline()
 				end, 600)
 			end,
@@ -101,7 +101,7 @@ return {
 		Cautocmd("RecordingLeave", {
 			callback = function()
 				ClearInterval(timer)
-				vim.g.recording_icon_blink = false -- ensure icon always starts visible
+				blink = false -- ensure icon always starts visible
 				SetTimeout(refreshStatusline, 50)
 			end,
 			group = group,
