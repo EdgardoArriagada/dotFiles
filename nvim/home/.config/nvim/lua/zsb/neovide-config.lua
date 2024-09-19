@@ -1,4 +1,4 @@
-local group = vim.api.nvim_create_augroup("TelescopePreview", { clear = true })
+local group = CreateAugroup("Zsb_TelescopePreview")
 
 local ANIMATION_LENGTH = 0.6
 

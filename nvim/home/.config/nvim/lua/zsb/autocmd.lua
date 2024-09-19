@@ -1,5 +1,5 @@
 --[[ if vim.g.vscode then return end ]]
-local group = vim.api.nvim_create_augroup("Zsb", { clear = true })
+local group = CreateAugroup("Zsb")
 
 -- Use internal formatting for bindings like gq.
 Cautocmd("LspAttach", {
