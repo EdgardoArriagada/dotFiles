@@ -61,13 +61,14 @@ return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
-		local group = CreateAugroup("Zsb_lualine")
 		local palette = require("nordic.colors")
 		local lualine = require("lualine")
 
 		local FOCUS_PROPS = { textColor = { bg = palette.black1, gui = "bold" } }
 		local BLUR_PROPS = { textColor = { fg = palette.gray3, gui = "italic" } }
 
+		-- Make refresh statusline more resoponsive
+		local group = CreateAugroup("Zsb_lualine")
 		local function refreshStatusline()
 			lualine.refresh({
 				place = { "statusline" },
@@ -85,6 +86,7 @@ return {
 			end,
 			group = group,
 		})
+		-- end
 
 		lualine.setup({
 			options = {
