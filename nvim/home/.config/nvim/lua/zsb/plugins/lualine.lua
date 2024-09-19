@@ -121,9 +121,9 @@ return {
 				always_divide_middle = true,
 				globalstatus = true,
 				refresh = {
-					statusline = 9999,
-					tabline = 9999,
-					winbar = 9999,
+					statusline = 99999,
+					tabline = 99999,
+					winbar = 99999,
 				},
 			},
 			sections = {
