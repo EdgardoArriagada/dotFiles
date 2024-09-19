@@ -1,5 +1,3 @@
-local group = CreateAugroup("Zsb_lualine")
-
 local function getDirname(path)
 	local dirname = path:match("^(.*)/[^/]+$")
 
@@ -23,24 +21,6 @@ local function macroRecordingComponent()
 		end,
 	}
 end
-
-local function refreshStatusline()
-	require("lualine").refresh({
-		place = { "statusline" },
-	})
-end
-
-Cautocmd("RecordingEnter", {
-	callback = refreshStatusline,
-	group = group,
-})
-
-Cautocmd("RecordingLeave", {
-	callback = function()
-		SetTimeout(refreshStatusline, 50)
-	end,
-	group = group,
-})
 
 local function dirnameComponent(props)
 	return {
@@ -81,12 +61,32 @@ return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
+		local group = CreateAugroup("Zsb_lualine")
 		local palette = require("nordic.colors")
+		local lualine = require("lualine")
 
 		local FOCUS_PROPS = { textColor = { bg = palette.black1, gui = "bold" } }
 		local BLUR_PROPS = { textColor = { fg = palette.gray3, gui = "italic" } }
 
-		require("lualine").setup({
+		local function refreshStatusline()
+			lualine.refresh({
+				place = { "statusline" },
+			})
+		end
+
+		Cautocmd("RecordingEnter", {
+			callback = refreshStatusline,
+			group = group,
+		})
+
+		Cautocmd("RecordingLeave", {
+			callback = function()
+				SetTimeout(refreshStatusline, 50)
+			end,
+			group = group,
+		})
+
+		lualine.setup({
 			options = {
 				icons_enabled = true,
 				theme = "nordic",
