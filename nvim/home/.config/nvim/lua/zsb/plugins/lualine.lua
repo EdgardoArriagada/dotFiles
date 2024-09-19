@@ -103,6 +103,7 @@ return {
 		Cautocmd("RecordingLeave", {
 			callback = function()
 				ClearInterval(timer)
+				vim.g.recording_icon_blink = false -- ensure icon always starts visible
 				SetTimeout(refreshStatusline, 50)
 			end,
 			group = group,
