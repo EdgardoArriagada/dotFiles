@@ -170,7 +170,7 @@ function SetTimeout(callback, timeout)
 	timer:start(timeout, 0, function()
 		timer:stop()
 		timer:close()
-		vim.schedule_wrap(callback)
+		vim.schedule_wrap(callback)()
 	end)
 	return timer
 end
