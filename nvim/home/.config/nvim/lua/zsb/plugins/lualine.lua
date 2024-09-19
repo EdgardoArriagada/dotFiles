@@ -1,3 +1,5 @@
+local group = CreateAugroup("Zsb_lualine")
+
 local function getDirname(path)
 	local dirname = path:match("^(.*)/[^/]+$")
 
@@ -21,6 +23,24 @@ local function macroRecordingComponent()
 		end,
 	}
 end
+
+local function refreshStatusline()
+	require("lualine").refresh({
+		place = { "statusline" },
+	})
+end
+
+Cautocmd("RecordingEnter", {
+	callback = refreshStatusline,
+	group = group,
+})
+
+Cautocmd("RecordingLeave", {
+	callback = function()
+		SetTimeout(refreshStatusline, 50)
+	end,
+	group = group,
+})
 
 local function dirnameComponent(props)
 	return {
