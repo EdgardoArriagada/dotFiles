@@ -12,11 +12,20 @@ local function macroRecordingComponent(props)
 	return {
 		"macro-recording",
 		icon = { "", color = props.iconColor },
-		fmt = function()
+		fmt = function(_, ctx)
 			local recording_register = vim.fn.reg_recording()
+
 			if recording_register == "" then
 				return ""
 			else
+				local blink = vim.g.recording_icon_blink or false
+
+				if blink then
+					ctx.options.icon = { " " }
+				else
+					ctx.options.icon = { "" }
+				end
+
 				return " @" .. recording_register
 			end
 		end,
@@ -76,13 +85,22 @@ return {
 			})
 		end
 
+		local timer
+
 		Cautocmd("RecordingEnter", {
-			callback = refreshStatusline,
+			callback = function()
+				timer = SetInterval(function()
+					vim.g.recording_icon_blink = not vim.g.recording_icon_blink
+				end, 1000)
+
+				refreshStatusline()
+			end,
 			group = group,
 		})
 
 		Cautocmd("RecordingLeave", {
 			callback = function()
+				ClearInterval(timer)
 				SetTimeout(refreshStatusline, 50)
 			end,
 			group = group,
