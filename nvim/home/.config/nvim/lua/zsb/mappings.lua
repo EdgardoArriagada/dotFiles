@@ -88,6 +88,16 @@ Kset("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
 -- Move highlighted text up 'Shift k'
 Kset("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 
+local function rejisterAndJump(direction)
+	return function()
+		if vim.v.count > 5 then
+			return "m'" .. vim.v.count .. direction
+		else
+			return direction
+		end
+	end
+end
+
 -- Add moves of more than 5 to the jump list
-Kset("n", "k", [[(v:count > 5 ? "m'" . v:count : "") . 'k']], { expr = true, desc = "if k > 5 then add to jumplist" })
-Kset("n", "j", [[(v:count > 5 ? "m'" . v:count : "") . 'j']], { expr = true, desc = "if j > 5 then add to jumplist" })
+Kset("n", "k", rejisterAndJump("k"), { expr = true, desc = "if k > 5 then add to jumplist" })
+Kset("n", "j", rejisterAndJump("j"), { expr = true, desc = "if j > 5 then add to jumplist" })
