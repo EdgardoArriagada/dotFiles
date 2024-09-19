@@ -1,6 +1,3 @@
-local set_keymap = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
-
 local autocmd = vim.api.nvim_create_autocmd
 local group = vim.api.nvim_create_augroup("TelescopePreview", { clear = true })
 
@@ -28,7 +25,7 @@ vim.g.neovide_input_use_logo = 1
 
 vim.opt.clipboard = "unnamedplus"
 
-set_keymap("", "<D-v>", "+p<CR>", opts)
-set_keymap("!", "<D-v>", "<C-R>+", opts)
-set_keymap("t", "<D-v>", "<C-R>+", opts)
-set_keymap("v", "<D-v>", "<C-R>+", opts)
+Kset("", "<D-v>", "+p<CR>")
+Kset("!", "<D-v>", "<C-R>+")
+Kset("t", "<D-v>", "<C-R>+")
+Kset("v", "<D-v>", "<C-R>+")
