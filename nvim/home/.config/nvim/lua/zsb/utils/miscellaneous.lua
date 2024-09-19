@@ -165,6 +165,23 @@ function ShowMenu(conf, opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "q", "<cmd>lua CloseMenu()<CR>", { silent = false })
 end
 
-function SetTimeout(callback, delay)
-	vim.uv.new_timer():start(delay, 0, vim.schedule_wrap(callback))
+function SetTimeout(callback, timeout)
+	local timer = vim.uv.new_timer()
+	timer:start(timeout, 0, function()
+		timer:stop()
+		timer:close()
+		vim.schedule_wrap(callback)
+	end)
+	return timer
+end
+
+function SetInterval(callback, timeout)
+	local timer = vim.uv.new_timer()
+	timer:start(timeout, timeout, vim.schedule_wrap(callback))
+	return timer
+end
+
+function ClearInterval(timer)
+	timer:stop()
+	timer:close()
 end
