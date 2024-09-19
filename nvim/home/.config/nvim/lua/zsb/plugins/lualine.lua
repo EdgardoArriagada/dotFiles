@@ -8,15 +8,16 @@ local function getDirname(path)
 	return dirname
 end
 
-local function macroRecordingComponent()
+local function macroRecordingComponent(props)
 	return {
 		"macro-recording",
+		icon = { "", color = props.iconColor },
 		fmt = function()
 			local recording_register = vim.fn.reg_recording()
 			if recording_register == "" then
 				return ""
 			else
-				return "  @" .. recording_register
+				return " @" .. recording_register
 			end
 		end,
 	}
@@ -112,7 +113,9 @@ return {
 					"branch",
 					"diff",
 					"diagnostics",
-					macroRecordingComponent(),
+					macroRecordingComponent({
+						iconColor = { fg = palette.red.dim },
+					}),
 				},
 				lualine_c = {},
 				lualine_x = { "searchcount", "encoding", "fileformat" },
