@@ -67,6 +67,8 @@ local function filenameComponent(props)
 	}
 end
 
+local RECORD_REFRESH_RATE = 650
+
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -91,7 +93,7 @@ return {
 			callback = function()
 				timer = SetInterval(function()
 					vim.g.recording_icon_blink = not vim.g.recording_icon_blink
-				end, 1000)
+				end, RECORD_REFRESH_RATE)
 
 				refreshStatusline()
 			end,
@@ -120,9 +122,9 @@ return {
 				always_divide_middle = true,
 				globalstatus = true,
 				refresh = {
-					statusline = 1000,
-					tabline = 1000,
-					winbar = 1000,
+					statusline = RECORD_REFRESH_RATE,
+					tabline = 9999,
+					winbar = 9999,
 				},
 			},
 			sections = {
