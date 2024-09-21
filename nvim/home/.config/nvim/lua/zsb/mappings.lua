@@ -90,8 +90,10 @@ Kset("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 
 local function rejisterAndJump(direction)
 	return function()
-		if vim.v.count > 5 then
-			return "m'" .. vim.v.count .. direction
+		local count = vim.v.count
+
+		if count > 5 then
+			return "m'" .. count .. direction
 		else
 			return direction
 		end
