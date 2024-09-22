@@ -13,7 +13,7 @@ end
 local function macroRecordingComponent(props)
 	return {
 		"macro-recording",
-		icon = { "", color = props.iconColor },
+		icon = { color = props.iconColor },
 		fmt = function(_, ctx)
 			local recording_register = vim.fn.reg_recording()
 
