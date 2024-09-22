@@ -1,4 +1,4 @@
-function VisualInIndent()
+local function visualInIndent()
 	-- Go to beggin of line and add to jump list
 	SafeExec("normal<Esc>^m'")
 
@@ -12,4 +12,4 @@ function VisualInIndent()
 	Exec("normal" .. lastSameIndentDown .. "G^")
 end
 
-Kset("v", "ii", VisualInIndent, { noremap = true, silent = true })
+Kset("v", "ii", visualInIndent, { noremap = true, silent = true })
