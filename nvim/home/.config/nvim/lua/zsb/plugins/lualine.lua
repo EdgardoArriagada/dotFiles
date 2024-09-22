@@ -116,7 +116,7 @@ return {
 				section_separators = { left = " ", right = " " },
 				disabled_filetypes = {
 					statusline = {},
-					winbar = { "alpha", "NvimTree", "Avante", "AvanteInput", "qf", "dbui", "oil" },
+					winbar = { "alpha", "NvimTree", "Avante", "AvanteInput", "qf", "dbui", "oil", "noice" },
 				},
 				always_divide_middle = true,
 				globalstatus = true,
