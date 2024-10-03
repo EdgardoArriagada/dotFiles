@@ -28,7 +28,7 @@ return {
 				d.credo,
 				-- golang
 				f.gofmt,
-				d.golangci_lint,
+				--[[ d.golangci_lint, ]]
 			},
 			on_attach = function(client, bufnr)
 				-- https://github.com/nvimtools/none-ls.nvim/wiki/Formatting-on-save
