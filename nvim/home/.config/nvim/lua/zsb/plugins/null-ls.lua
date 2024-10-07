@@ -42,7 +42,7 @@ return {
 				}
 
 				vim.api.nvim_clear_autocmds(common)
-				vim.api.nvim_create_autocmd(
+				Cautocmd(
 					"BufWritePre",
 					Extend(common, {
 						callback = function()
