@@ -106,6 +106,7 @@ return {
 			{ "<leader>vd", "<cmd>tab DBUI<cr>", desc = "View database client" },
 			{ "<leader>va", "<cmd>AvanteToggle<cr>", desc = "Toggle avante chat" },
 			{ "<leader>vq", ToggleQf, desc = "Toggle qf list" },
+			{ "<leader>vw", ToggleSetWrap, desc = "Toggle text wrap" },
 			{
 				"<leader>vm",
 				function()

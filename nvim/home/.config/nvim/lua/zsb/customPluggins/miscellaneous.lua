@@ -19,3 +19,7 @@ function Cppath()
 	vim.fn.setreg("+", result)
 	vim.notify(result .. " Copied!")
 end
+
+function ToggleSetWrap()
+	vim.wo.wrap = not vim.wo.wrap
+end
