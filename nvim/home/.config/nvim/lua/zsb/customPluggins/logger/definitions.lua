@@ -53,4 +53,8 @@ M.go = function(slot)
 	l('fmt.Println("le ' .. sqo(slot) .. '", ' .. slot .. ")")
 end
 
+M.py = function(slot)
+	l("print('le " .. dqo(slot) .. "', " .. slot .. ")")
+end
+
 return M

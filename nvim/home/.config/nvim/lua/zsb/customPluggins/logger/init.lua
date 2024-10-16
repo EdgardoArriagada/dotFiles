@@ -14,6 +14,7 @@ local extensionToFunction = {
 	["rust"] = { d.rust, d.rustSp },
 	["zsh"] = { d.bash, d.bash },
 	["go"] = { d.go, d.go },
+	["python"] = { d.py, d.py },
 }
 
 function Logger()
