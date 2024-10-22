@@ -23,3 +23,7 @@ end
 function ToggleSetWrap()
 	vim.wo.wrap = not vim.wo.wrap
 end
+
+function ToggleRelativeNumber()
+	vim.wo.relativenumber = not vim.wo.relativenumber
+end

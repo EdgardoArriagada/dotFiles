@@ -1,9 +1,5 @@
 local createCmd = vim.api.nvim_create_user_command
 
-createCmd("V", function()
-	vim.wo.relativenumber = not vim.wo.relativenumber
-end, {})
-
 createCmd("W", function()
 	Exec("w!")
 	Exec("e!")

@@ -30,7 +30,7 @@ return {
 			},
 			{ "<leader>F", "<cmd>Telescope live_grep theme=ivy<cr>", desc = "Find Text" },
 			{ "<leader>P", PasteToQf, desc = "Paste to qf" },
-			{ "<leader>nr", "<cmd>NvimTreeRefresh<cr>", desc = "Toggle" },
+			{ "<leader>nr", "<cmd>NvimTreeRefresh<cr>", desc = "Refresh Tree" },
 			{
 				"<leader>df",
 				function()
@@ -107,6 +107,7 @@ return {
 			{ "<leader>va", "<cmd>AvanteToggle<cr>", desc = "Toggle avante chat" },
 			{ "<leader>vq", ToggleQf, desc = "Toggle qf list" },
 			{ "<leader>vw", ToggleSetWrap, desc = "Toggle text wrap" },
+			{ "<leader>vl", ToggleRelativeNumber, desc = "Toggle relative number" },
 			{
 				"<leader>vm",
 				function()
