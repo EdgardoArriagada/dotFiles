@@ -15,13 +15,6 @@ return {
 			{ "<leader>X", LoggerSP, desc = "LoggerSp", mode = { "n", "v" } },
 			{ "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Explorer" },
 			{
-				"<leader>t",
-				function()
-					require("transparent").toggle()
-				end,
-				desc = "Transparency",
-			},
-			{
 				"<leader>f",
 				function()
 					require("telescope.builtin").find_files()
@@ -102,12 +95,19 @@ return {
 			{ "<leader>lr", vim.lsp.buf.rename, desc = "Rename" },
 			{ "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document Symbols" },
 			{ "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Workspace Symbols" },
-			{ "<leader>vt", TestToggler, desc = "Toggle to test file" },
+			{
+				"<leader>tt",
+				function()
+					require("transparent").toggle()
+				end,
+				desc = "Toggle Transparency",
+			},
+			{ "<leader>tw", ToggleSetWrap, desc = "Toggle text wrap" },
+			{ "<leader>tl", ToggleRelativeNumber, desc = "Toggle relative number" },
+			{ "<leader>vt", TestToggler, desc = "View test file" },
 			{ "<leader>vd", "<cmd>tab DBUI<cr>", desc = "View database client" },
-			{ "<leader>va", "<cmd>AvanteToggle<cr>", desc = "Toggle avante chat" },
-			{ "<leader>vq", ToggleQf, desc = "Toggle qf list" },
-			{ "<leader>vw", ToggleSetWrap, desc = "Toggle text wrap" },
-			{ "<leader>vl", ToggleRelativeNumber, desc = "Toggle relative number" },
+			{ "<leader>va", "<cmd>AvanteToggle<cr>", desc = "View avante chat" },
+			{ "<leader>vq", ToggleQf, desc = "View qf list" },
 			{
 				"<leader>vm",
 				function()
