@@ -102,19 +102,19 @@ return {
 				end,
 				desc = "Toggle Transparency",
 			},
+			{
+				"<leader>tm",
+				function()
+					require("render-markdown").toggle()
+				end,
+				desc = "Toggle markdown",
+			},
 			{ "<leader>tw", ToggleSetWrap, desc = "Toggle text wrap" },
 			{ "<leader>tl", ToggleRelativeNumber, desc = "Toggle relative number" },
 			{ "<leader>vt", TestToggler, desc = "View test file" },
 			{ "<leader>vd", "<cmd>tab DBUI<cr>", desc = "View database client" },
 			{ "<leader>va", "<cmd>AvanteToggle<cr>", desc = "View avante chat" },
 			{ "<leader>vq", ToggleQf, desc = "View qf list" },
-			{
-				"<leader>vm",
-				function()
-					require("render-markdown").toggle()
-				end,
-				desc = "Toggle markdown",
-			},
 			{ "<leader>rb", "<cmd>tab DBUI<cr>", desc = "View database client" },
 			{ "<leader>ra", "<cmd>AvanteToggle<cr>", desc = "Toggle avante chat" },
 			{ "<leader>rq", ToggleQf, desc = "Toggle qf list" },
