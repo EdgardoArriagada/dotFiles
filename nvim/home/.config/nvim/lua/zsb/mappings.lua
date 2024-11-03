@@ -88,10 +88,12 @@ Kset("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
 -- Move highlighted text up 'Shift k'
 Kset("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 
+local v = vim.v
+
 local function rejisterAndJump(direction)
 	return function()
-		if vim.v.count > 5 then
-			return "m'" .. vim.v.count .. direction
+		if v.count > 5 then
+			return "m'" .. v.count .. direction
 		else
 			return direction
 		end
