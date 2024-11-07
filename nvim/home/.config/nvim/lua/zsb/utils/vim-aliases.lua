@@ -9,6 +9,8 @@ function CreateAugroup(name)
 	return vim.api.nvim_create_augroup(name, { clear = true })
 end
 
+Group = CreateAugroup("Zsb")
+
 -- merge given tables without mutating them
 function DeepExtend(...)
 	return vim.tbl_deep_extend("force", ...)

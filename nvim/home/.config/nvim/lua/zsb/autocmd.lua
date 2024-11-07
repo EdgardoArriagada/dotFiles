@@ -1,12 +1,11 @@
 --[[ if vim.g.vscode then return end ]]
-local group = CreateAugroup("Zsb")
 
 -- Use internal formatting for bindings like gq.
 Cautocmd("LspAttach", {
 	callback = function(args)
 		vim.bo[args.buf].formatexpr = nil
 	end,
-	group = group,
+	group = Group,
 })
 
 Cautocmd("FileType", {
@@ -23,21 +22,21 @@ Cautocmd("FileType", {
 			Hpcall(Exec, "normal!zA", { onErr = 'failed to execute ":normal!zA"' })
 		end, 50)
 	end,
-	group = group,
+	group = Group,
 })
 
 -- - Open any ts file so TS language loads
 -- - run :make and then open qflist
 --[[ Cautocmd("FileType", { ]]
 --[[ 	pattern = "typescript,typescriptreact", ]]
---[[ 	group = group, ]]
+--[[ 	group = Group, ]]
 --[[ 	command = "compiler tsc | setlocal makeprg=npx\\ tsc", ]]
 --[[ }) ]]
 
 -- Triger `autoread` when files changes on disk
 Cautocmd(
 	{ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" },
-	{ command = [[if mode() != 'c' | checktime | endif]], group = group }
+	{ command = [[if mode() != 'c' | checktime | endif]], group = Group }
 )
 
 -- Notification after file change
@@ -45,7 +44,7 @@ Cautocmd("FileChangedShellPost", {
 	callback = function()
 		vim.notify("File changed on disk. Buffer reloaded.", "warn")
 	end,
-	group = group,
+	group = Group,
 })
 
 Cautocmd("VimEnter", {
