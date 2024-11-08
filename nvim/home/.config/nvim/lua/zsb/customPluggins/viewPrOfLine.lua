@@ -3,7 +3,7 @@ local function getCurrentLineCommitHash()
 	local file_name = vim.fn.expand("%")
 
 	local commit_hash =
-		FromShell("git blame -sl -L " .. line_num .. "," .. line_num .. " " .. file_name .. " | cut -d ' ' -f1")
+		vim.fn.system("git blame -sl -L " .. line_num .. "," .. line_num .. " " .. file_name .. " | cut -d ' ' -f1")
 
 	if not commit_hash or commit_hash:sub(1, 1) == "^" then
 		return false, nil
@@ -20,7 +20,7 @@ function ViewPrOfLine()
 		return
 	end
 
-	local repoUrl = FromShell("get_repo_url")
+	local repoUrl = vim.fn.system("get_repo_url")
 
 	vim.ui.open(repoUrl .. "/pulls?q=is%3Apr+" .. commit_hash)
 end

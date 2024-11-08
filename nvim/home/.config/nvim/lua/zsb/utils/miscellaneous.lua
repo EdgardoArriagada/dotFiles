@@ -80,18 +80,6 @@ function ToupleArrayElement(t)
 	end
 end
 
-function FromShell(command)
-	local handle = io.popen(command)
-
-	if handle then
-		local result = handle:read("*a")
-		handle:close()
-		return result
-	end
-
-	return nil
-end
-
 function EscapePattern(text)
 	return text:gsub("([^%w])", "%%%1")
 end
