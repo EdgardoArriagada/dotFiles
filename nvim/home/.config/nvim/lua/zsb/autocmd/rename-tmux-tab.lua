@@ -7,7 +7,8 @@ Cautocmd("VimEnter", {
 		local win_id = vim.fn.system("tmux display-message -p '#{window_id}'"):gsub("%s+", "")
 
 		SetTimeout(function()
-			vim.fn.system("tmux rename-window -t " .. win_id .. ' " $(get_repo_name)"')
+			local currentFile = vim.fn.expand("%:p")
+			vim.fn.system("zsb_charm_tmux_renametab " .. win_id .. " " .. currentFile)
 		end, 600)
 	end,
 	group = Group,
