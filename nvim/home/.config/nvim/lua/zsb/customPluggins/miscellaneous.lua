@@ -11,10 +11,10 @@ function FullGitSplit()
 end
 
 function Cppath()
-	local repoName = EscapePattern(FromShell("get_repo_name"))
+	local repoRoot = EscapePattern(vim.fn.system("git rev-parse --show-toplevel"):gsub("\n", ""))
 	local path = vim.fn.expand("%:p")
 
-	local result = path:gsub("^.*" .. repoName .. "/", ""):gsub("^%./", "")
+	local result = path:gsub(repoRoot .. "/", "")
 
 	vim.fn.setreg("+", result)
 	vim.notify(result .. " Copied!")
