@@ -57,17 +57,6 @@ return {
 			{ "<leader>ld", "<cmd>Telescope lsp_document_diagnostics<cr>", desc = "Document Diagnostics" },
 			{ "<leader>lw", "<cmd>Telescope lsp_workspace_diagnostics<cr>", desc = "Workspace Diagnostics" },
 			{ "<leader>lf", "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", desc = "Format" },
-			{
-				"<leader>lh",
-				function()
-					if vim.lsp.inlay_hint.is_enabled() then
-						vim.lsp.inlay_hint.enable(false)
-					else
-						vim.lsp.inlay_hint.enable()
-					end
-				end,
-				desc = "Toggle inlay hints",
-			},
 			{ "<leader>li", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
 			{ "<leader>lI", "<cmd>Mason<cr>", desc = "Mason" },
 			{ "<leader>lN", vim.diagnostic.goto_next, desc = "Next Diagnostic" },
@@ -114,6 +103,17 @@ return {
 			{ "<leader>vt", TestToggler, desc = "View test file" },
 			{ "<leader>vd", "<cmd>tab DBUI<cr>", desc = "View database client" },
 			{ "<leader>va", "<cmd>AvanteToggle<cr>", desc = "View avante chat" },
+			{
+				"<leader>ti",
+				function()
+					if vim.lsp.inlay_hint.is_enabled() then
+						vim.lsp.inlay_hint.enable(false)
+					else
+						vim.lsp.inlay_hint.enable()
+					end
+				end,
+				desc = "Toggle inlay hints",
+			},
 			{ "<leader>vq", ToggleQf, desc = "View qf list" },
 			{ "<leader>rb", "<cmd>tab DBUI<cr>", desc = "View database client" },
 			{ "<leader>ra", "<cmd>AvanteToggle<cr>", desc = "Toggle avante chat" },
