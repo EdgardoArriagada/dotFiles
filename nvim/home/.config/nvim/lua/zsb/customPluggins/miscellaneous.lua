@@ -1,5 +1,5 @@
 function OpenBufferInNewTmuxWindow(opts)
-	vim.fn.system("tmux new-window nvim " .. vim.fn.expand("%:p"))
+	vim.system({ "tmux", "new-window", "nvim", vim.fn.expand("%:p") })
 	if opts ~= "NoClose" then
 		Exec("q!")
 	end
@@ -11,7 +11,7 @@ function FullGitSplit()
 end
 
 function Cppath()
-	local repoRoot = EscapePattern(vim.fn.system("git rev-parse --show-toplevel"):gsub("\n", ""))
+	local repoRoot = EscapePattern(vim.system({ "git", "rev-parse", "--show-toplevel" }):wait().stdout:gsub("\n", ""))
 	local path = vim.fn.expand("%:p")
 
 	local result = path:gsub(repoRoot .. "/", "")
