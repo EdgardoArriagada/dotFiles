@@ -4,12 +4,14 @@ Cautocmd("VimEnter", {
 			return
 		end
 
-		local win_id = vim.system({ "tmux", "display-message", "-p", "#{window_id}" }):wait().stdout:gsub("%s+", "")
+		local currentFile = vim.api.nvim_buf_get_name(0)
 
-		SetTimeout(function()
-			local currentFile = vim.fn.expand("%:p")
-			vim.system({ "zsb_charm_tmux_renametab", win_id, currentFile })
-		end, 600)
+		vim.system({ "tmux", "display-message", "-p", "#{window_id}" }, {
+			stdout = function(_, data)
+				local win_id = data:gsub("\n", "")
+				vim.system({ "zsb_charm_tmux_renametab", win_id, currentFile })
+			end,
+		})
 	end,
 	group = Group,
 })
