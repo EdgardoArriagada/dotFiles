@@ -13,7 +13,6 @@ Cautocmd("VimEnter", {
 			end,
 		})
 	end,
-	group = Group,
 })
 
 Cautocmd("VimLeave", {
