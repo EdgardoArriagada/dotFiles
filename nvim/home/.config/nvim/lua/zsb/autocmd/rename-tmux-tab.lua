@@ -6,6 +6,10 @@ Cautocmd("VimEnter", {
 
 		vim.system({ "tmux", "display-message", "-p", "#{window_id}" }, {
 			stdout = function(_, winId)
+				if not winId then
+					return
+				end
+
 				vim.schedule(function()
 					local currentFile = vim.api.nvim_buf_get_name(0)
 					vim.system({ "zsb_charm_tmux_renametab", winId:gsub("\n", ""), currentFile })
