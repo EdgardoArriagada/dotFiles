@@ -5,12 +5,24 @@ return {
 		keys = { "<C-p>" },
 		cmd = "Telescope",
 		config = Config("telescope", function(telescope)
+			local function sendToQflist(bufnr)
+				require("telescope.actions").send_to_qflist(bufnr)
+				Exec("copen")
+			end
+
 			telescope.setup({
 				defaults = {
 					path_display = { "truncate" },
 					mappings = {
 						i = {
 							["<C-u>"] = { "<c-s-u>", type = "command" },
+							["<C-q>"] = require("telescope.actions").close,
+							["<C-t>"] = sendToQflist,
+						},
+						n = {
+							["q"] = require("telescope.actions").close,
+							["<C-q>"] = require("telescope.actions").close,
+							["<C-t>"] = sendToQflist,
 						},
 					},
 					vimgrep_arguments = {
