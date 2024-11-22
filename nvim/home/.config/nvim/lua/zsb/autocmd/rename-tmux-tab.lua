@@ -4,7 +4,7 @@ Cautocmd("VimEnter", {
 			return
 		end
 
-		vim.system({ "tmux", "display-message", "-p", "#{window_id}" }, {
+		vim.system({ "tmux", "display", "-p", "#{window_id}" }, {
 			stdout = function(_, winId)
 				if not winId then
 					return
