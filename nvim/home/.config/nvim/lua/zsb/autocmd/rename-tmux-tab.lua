@@ -12,7 +12,7 @@ Cautocmd("VimEnter", {
 
 				vim.schedule(function()
 					local currentFile = vim.api.nvim_buf_get_name(0)
-					vim.system({ "zsb_charm_tmux_renametab", winId:gsub("\n", ""), currentFile })
+					vim.system({ "zsb_charm_tmux_renametab", winId:gsub("\n$", ""), currentFile })
 				end)
 			end,
 		})
