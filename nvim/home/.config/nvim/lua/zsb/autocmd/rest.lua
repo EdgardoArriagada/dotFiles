@@ -1,13 +1,5 @@
 --[[ if vim.g.vscode then return end ]]
 
--- Use internal formatting for bindings like gq.
-Cautocmd("LspAttach", {
-	callback = function(args)
-		vim.bo[args.buf].formatexpr = nil
-	end,
-	group = Group,
-})
-
 Cautocmd("FileType", {
 	pattern = "json",
 	callback = function(m)

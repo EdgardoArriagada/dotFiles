@@ -56,7 +56,6 @@ return {
 			{ "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
 			{ "<leader>ld", "<cmd>Telescope lsp_document_diagnostics<cr>", desc = "Document Diagnostics" },
 			{ "<leader>lw", "<cmd>Telescope lsp_workspace_diagnostics<cr>", desc = "Workspace Diagnostics" },
-			{ "<leader>lf", "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", desc = "Format" },
 			{ "<leader>li", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
 			{ "<leader>lI", "<cmd>Mason<cr>", desc = "Mason" },
 			{ "<leader>lN", vim.diagnostic.goto_next, desc = "Next Diagnostic" },
