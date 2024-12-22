@@ -24,8 +24,19 @@ local configServers = {
 	},
 }
 
-local serverNames = {}
+local formattersByFt = {
+	lua = { "stylua" },
+	-- Conform will run multiple formatters sequentially
+	python = { "isort", "black" },
+	-- You can customize some of the format options for the filetype (:help conform.format)
+	rust = { "rustfmt", lsp_format = "fallback" },
+	-- Conform will run the first available formatter
+	javascript = { "prettierd", "prettier", stop_after_first = true },
+	typescript = { "prettierd", "prettier", stop_after_first = true },
+	elixir = { "mix" },
+}
 
+local serverNames = {}
 for server, _ in pairs(configServers) do
 	if server ~= "ts_ls" then
 		table.insert(serverNames, server)
@@ -48,13 +59,19 @@ return {
 		end,
 	},
 	{
+		"stevearc/conform.nvim",
+		opts = {
+			formatters_by_ft = formattersByFt,
+		},
+	},
+	{
 		"neovim/nvim-lspconfig",
 		event = "InsertEnter",
 		config = function()
 			local capabilities =
 				require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-			local on_attach = function(_, buffer)
+			local on_attach = function(client, buffer)
 				local opts = { noremap = true, silent = true, buffer = buffer }
 
 				Kset("n", "gD", vim.lsp.buf.declaration, opts)
@@ -69,6 +86,25 @@ return {
 				Kset("n", "gi", vim.lsp.buf.implementation, opts)
 				Kset("n", "gk", vim.lsp.buf.signature_help, opts)
 				Kset("n", "gr", vim.lsp.buf.references, opts)
+
+				local callback
+				if formattersByFt[vim.bo.filetype] then
+					callback = function()
+						require("conform").format({ bufnr = buffer })
+					end
+				elseif client.supports_method("textDocument/formatting") then
+					callback = function()
+						vim.lsp.buf.format({ bufnr = buffer, id = client.id })
+					end
+				end
+
+				if callback then
+					Cautocmd("BufWritePre", {
+						buffer = buffer,
+						callback = callback,
+						group = Group,
+					})
+				end
 			end
 
 			local defaultSetUp = {
