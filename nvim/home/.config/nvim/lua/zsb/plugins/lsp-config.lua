@@ -7,15 +7,7 @@ local configServers = {
 	bashls = {},
 	gopls = {},
 	rust_analyzer = {},
-	lua_ls = {
-		settings = {
-			Lua = {
-				diagnostics = {
-					globals = { "vim", "hs", "table" },
-				},
-			},
-		},
-	},
+	lua_ls = {},
 	ts_ls = {
 		commands = {
 			OrganizeImports = {
