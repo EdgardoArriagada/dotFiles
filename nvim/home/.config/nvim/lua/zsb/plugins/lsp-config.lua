@@ -48,6 +48,7 @@ local formattersByFt = {
 	typescriptreact = jsFormatter,
 	json = { "prettierd" },
 	elixir = { "mix" },
+	markdown = { "prettierd" },
 }
 
 local serverNames = {}
