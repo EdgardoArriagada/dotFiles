@@ -75,22 +75,6 @@ for ft, _ in pairs(lintersByFt) do
 end
 
 return {
-	{
-		"mfussenegger/nvim-lint",
-		ft = linterFileTypes,
-		config = Config("lint", function(plugin)
-			plugin.linters_by_ft = lintersByFt
-
-			Cautocmd({ "BufWritePost", "TextChanged" }, {
-				callback = function()
-					SetTimeout(function()
-						require("lint").try_lint()
-					end, 1000)
-				end,
-				group = Group,
-			})
-		end),
-	},
 	{ -- Do not lazy load
 		"williamboman/mason.nvim",
 		config = function()
@@ -111,6 +95,22 @@ return {
 		opts = {
 			formatters_by_ft = formattersByFt,
 		},
+	},
+	{
+		"mfussenegger/nvim-lint",
+		ft = linterFileTypes,
+		config = Config("lint", function(plugin)
+			plugin.linters_by_ft = lintersByFt
+
+			Cautocmd({ "BufWritePost", "TextChanged" }, {
+				callback = function()
+					SetTimeout(function()
+						require("lint").try_lint()
+					end, 1000)
+				end,
+				group = Group,
+			})
+		end),
 	},
 	{
 		"neovim/nvim-lspconfig",
