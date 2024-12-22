@@ -64,6 +64,7 @@ local lintersByFt = {
 	typescriptreact = jsLinter,
 	json = { "jsonlint" },
 	rust = { "rustc" },
+	--  mix escript.install hex credo
 	elixir = { "credo" },
 }
 
