@@ -1,13 +1,22 @@
 local configServers = {
 	pyright = {},
 	--[[ gleam = {}, ]]
+	jsonls = {},
 	cssls = {},
 	emmet_language_server = {},
 	tailwindcss = {},
 	bashls = {},
 	gopls = {},
 	rust_analyzer = {},
-	lua_ls = {},
+	lua_ls = {
+		settings = {
+			Lua = {
+				diagnostics = {
+					globals = { "vim", "hs", "table" },
+				},
+			},
+		},
+	},
 	ts_ls = {
 		commands = {
 			OrganizeImports = {
@@ -37,7 +46,7 @@ local formattersByFt = {
 	typescript = jsFormatter,
 	javascriptreact = jsFormatter,
 	typescriptreact = jsFormatter,
-	json = jsFormatter,
+	json = { "prettierd" },
 	elixir = { "mix" },
 }
 
@@ -62,13 +71,14 @@ return {
 				javascriptreact = jsLinter,
 				typescriptreact = jsLinter,
 				json = { "jsonlint" },
-				lua = { "luacheck" },
 				rust = { "rustc" },
 				elixir = { "mix" },
 			}
 			Cautocmd({ "BufWritePost", "TextChanged" }, {
 				callback = function()
-					require("lint").try_lint()
+					SetTimeout(function()
+						require("lint").try_lint()
+					end, 1000)
 				end,
 				group = Group,
 			})
@@ -85,6 +95,7 @@ return {
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = serverNames,
+				automatic_installation = true,
 			})
 		end,
 	},
