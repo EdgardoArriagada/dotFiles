@@ -41,11 +41,8 @@ local configServers = {
 local jsFormatter = { "prettierd", "eslint_d" }
 local formattersByFt = {
 	lua = { "stylua" },
-	-- Conform will run multiple formatters sequentially
-	python = { "isort", "black" },
-	-- You can customize some of the format options for the filetype (:help conform.format)
-	rust = { "rustfmt", lsp_format = "fallback" },
-	-- Conform will run the first available formatter
+	python = { "black" },
+	rust = { "rustfmt" },
 	javascript = jsFormatter,
 	typescript = jsFormatter,
 	javascriptreact = jsFormatter,
