@@ -34,7 +34,6 @@ local configServers = {
 }
 
 local jsFormatter = { "prettierd", "eslint_d" }
-
 local formattersByFt = {
 	lua = { "stylua" },
 	-- Conform will run multiple formatters sequentially
@@ -51,6 +50,18 @@ local formattersByFt = {
 	markdown = { "prettierd" },
 }
 
+local jsLinter = { "eslint_d" }
+local lintersByFt = {
+	python = { "flake8" },
+	javascript = jsLinter,
+	typescript = jsLinter,
+	javascriptreact = jsLinter,
+	typescriptreact = jsLinter,
+	json = { "jsonlint" },
+	rust = { "rustc" },
+	elixir = { "mix" },
+}
+
 local serverNames = {}
 for server, _ in pairs(configServers) do
 	if server ~= "ts_ls" then
@@ -58,23 +69,18 @@ for server, _ in pairs(configServers) do
 	end
 end
 
+local linterFileTypes = {}
+for ft, _ in pairs(lintersByFt) do
+	table.insert(linterFileTypes, ft)
+end
+
 return {
 	{
 		"mfussenegger/nvim-lint",
-		event = { "BufWritePost", "TextChanged" },
+		ft = linterFileTypes,
 		config = Config("lint", function(plugin)
-			local jsLinter = { "eslint_d" }
+			plugin.linters_by_ft = lintersByFt
 
-			plugin.linters_by_ft = {
-				python = { "flake8" },
-				javascript = jsLinter,
-				typescript = jsLinter,
-				javascriptreact = jsLinter,
-				typescriptreact = jsLinter,
-				json = { "jsonlint" },
-				rust = { "rustc" },
-				elixir = { "mix" },
-			}
 			Cautocmd({ "BufWritePost", "TextChanged" }, {
 				callback = function()
 					SetTimeout(function()
