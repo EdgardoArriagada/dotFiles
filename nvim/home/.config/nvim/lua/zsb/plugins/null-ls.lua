@@ -4,13 +4,13 @@ return {
 	dependencies = {
 		"nvimtools/none-ls-extras.nvim",
 	},
-	config = Config("null-ls", function(null_ls)
+	config = Config("null-ls", function(plugin)
 		-- https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-		local f = null_ls.builtins.formatting
-		local d = null_ls.builtins.diagnostics
+		local f = plugin.builtins.formatting
+		local d = plugin.builtins.diagnostics
 
-		null_ls.setup({
+		plugin.setup({
 			debug = false,
 			sources = {
 				-- javascript
