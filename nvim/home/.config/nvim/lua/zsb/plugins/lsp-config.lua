@@ -1,6 +1,11 @@
 local configServers = {
 	pyright = {},
 	--[[ gleam = {}, ]]
+	elixirls = {
+		-- download from https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#elixirls
+		-- and put in $HOME/elixir-ls
+		cmd = { vim.fn.expand("$HOME/elixir-ls/language_server.sh") },
+	},
 	jsonls = {},
 	cssls = {},
 	emmet_language_server = {},
@@ -59,7 +64,7 @@ local lintersByFt = {
 	typescriptreact = jsLinter,
 	json = { "jsonlint" },
 	rust = { "rustc" },
-	elixir = { "mix" },
+	elixir = { "credo" },
 }
 
 local serverNames = {}
