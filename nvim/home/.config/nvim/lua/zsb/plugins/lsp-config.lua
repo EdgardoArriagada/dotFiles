@@ -24,6 +24,8 @@ local configServers = {
 	},
 }
 
+local jsFormatter = { "prettierd", "eslint_d" }
+
 local formattersByFt = {
 	lua = { "stylua" },
 	-- Conform will run multiple formatters sequentially
@@ -31,8 +33,11 @@ local formattersByFt = {
 	-- You can customize some of the format options for the filetype (:help conform.format)
 	rust = { "rustfmt", lsp_format = "fallback" },
 	-- Conform will run the first available formatter
-	javascript = { "prettierd", "prettier", stop_after_first = true },
-	typescript = { "prettierd", "prettier", stop_after_first = true },
+	javascript = jsFormatter,
+	typescript = jsFormatter,
+	javascriptreact = jsFormatter,
+	typescriptreact = jsFormatter,
+	json = jsFormatter,
 	elixir = { "mix" },
 }
 
@@ -44,6 +49,31 @@ for server, _ in pairs(configServers) do
 end
 
 return {
+	{
+		"mfussenegger/nvim-lint",
+		event = { "BufWritePost", "TextChanged" },
+		config = Config("lint", function(plugin)
+			local jsLinter = { "eslint_d" }
+
+			plugin.linters_by_ft = {
+				python = { "flake8" },
+				javascript = jsLinter,
+				typescript = jsLinter,
+				javascriptreact = jsLinter,
+				typescriptreact = jsLinter,
+				json = { "jsonlint" },
+				lua = { "luacheck" },
+				rust = { "rustc" },
+				elixir = { "mix" },
+			}
+			Cautocmd({ "BufWritePost", "TextChanged" }, {
+				callback = function()
+					require("lint").try_lint()
+				end,
+				group = Group,
+			})
+		end),
+	},
 	{ -- Do not lazy load
 		"williamboman/mason.nvim",
 		config = function()
