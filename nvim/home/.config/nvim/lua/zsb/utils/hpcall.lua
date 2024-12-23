@@ -13,7 +13,7 @@ function Hpcall(a, b, handlers)
 	if handlerType == "function" then
 		currHandler(thing)
 	elseif handlerType == "string" then
-		vim.notify(currHandler, ok and "info" or "error")
+		vim.notify(currHandler, ok and INFO or ERROR)
 	end
 end
 

@@ -32,7 +32,7 @@ local function findFile(a)
 	return fallback
 end
 
----@type Toggler
+---@type ZsbTestToggler
 return {
 	isTestFile = function()
 		local fileName = vim.fn.expand("%:t")

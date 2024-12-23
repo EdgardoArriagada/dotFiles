@@ -2,7 +2,7 @@ local function listCurrentDir(glob)
 	return vim.fn.globpath(vim.fn.expand("%:h"), glob, true, true)
 end
 
----@type Toggler
+---@type ZsbTestToggler
 return {
 	isTestFile = function()
 		local currentFile = vim.fn.expand("%:t")
