@@ -16,7 +16,7 @@ function ViewPrOfLine()
 	local ok, commit_hash = getCurrentLineCommitHash()
 
 	if not ok then
-		vim.notify("No commit found for this line", "error")
+		vim.notify("No commit found for this line", ERROR)
 		return
 	end
 

@@ -34,7 +34,7 @@ Cautocmd(
 -- Notification after file change
 Cautocmd("FileChangedShellPost", {
 	callback = function()
-		vim.notify("File changed on disk. Buffer reloaded.", "warn")
+		vim.notify("File changed on disk. Buffer reloaded.", WARN)
 	end,
 	group = Group,
 })

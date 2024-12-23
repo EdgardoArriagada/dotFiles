@@ -1,3 +1,8 @@
+-- vim.notify modifiers
+INFO = 2 -- default
+WARN = 3
+ERROR = 4
+
 Indent = vim.fn.indent
 Line = vim.fn.line
 
