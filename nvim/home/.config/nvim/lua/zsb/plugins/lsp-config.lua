@@ -65,10 +65,10 @@ local lintersByFt = {
 	elixir = { "credo" },
 }
 
-local serverNames = {}
+local ensureInstalledServers = {}
 for server, _ in pairs(configServers) do
 	if server ~= "ts_ls" then
-		table.insert(serverNames, server)
+		table.insert(ensureInstalledServers, server)
 	end
 end
 
@@ -88,7 +88,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = serverNames,
+				ensure_installed = ensureInstalledServers,
 				automatic_installation = true,
 			})
 		end,
