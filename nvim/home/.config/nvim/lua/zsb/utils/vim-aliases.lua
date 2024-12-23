@@ -1,7 +1,7 @@
 -- vim.notify modifiers
-INFO = 2 -- default
-WARN = 3
-ERROR = 4
+INFO = vim.log.levels.INFO -- default
+WARN = vim.log.levels.WARN
+ERROR = vim.log.levels.ERROR
 
 Indent = vim.fn.indent
 Line = vim.fn.line
