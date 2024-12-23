@@ -155,6 +155,9 @@ end
 
 function SetTimeout(callback, timeout)
 	local timer = vim.uv.new_timer()
+	if not timer then
+		return
+	end
 	timer:start(timeout, 0, function()
 		timer:stop()
 		timer:close()
@@ -165,6 +168,9 @@ end
 
 function SetInterval(callback, timeout)
 	local timer = vim.uv.new_timer()
+	if not timer then
+		return
+	end
 	timer:start(timeout, timeout, vim.schedule_wrap(callback))
 	return timer
 end
