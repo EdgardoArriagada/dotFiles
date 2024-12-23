@@ -15,7 +15,7 @@ local extensionToZsbTestToggler = {
 	["go"] = go,
 }
 
-function TestZsbTestToggler()
+function TestToggler()
 	local ft = vim.bo.filetype
 
 	local t = extensionToZsbTestToggler[ft]
