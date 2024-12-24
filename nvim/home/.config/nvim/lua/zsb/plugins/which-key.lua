@@ -86,7 +86,8 @@ return {
 			{
 				"<leader>tt",
 				function()
-					require("transparent").toggle()
+					local enable = not vim.g.transparent_enabled
+					require("transparent").toggle(enable)
 				end,
 				desc = "Toggle Transparency",
 			},
