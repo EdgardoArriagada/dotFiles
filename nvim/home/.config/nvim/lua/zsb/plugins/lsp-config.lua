@@ -66,6 +66,7 @@ local formattersByFt = {
 	yaml = { "prettierd" },
 	json = { "prettierd" },
 	elixir = { "mix" },
+	heex = { "mix" },
 	markdown = { "prettierd" },
 }
 
@@ -80,6 +81,7 @@ local lintersByFt = {
 	rust = { "rustc" },
 	--  mix escript.install hex credo
 	elixir = { "credo" },
+	heex = { "credo" },
 }
 
 local ensureInstalledServers = {}
