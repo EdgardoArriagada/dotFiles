@@ -25,7 +25,27 @@ local configServers = {
 			"heex",
 		},
 	},
-	tailwindcss = {},
+	tailwindcss = {
+		filetypes = {
+			"gohtml",
+			"html",
+			"heex",
+			"markdown",
+			"css",
+			"scss",
+			"javascript",
+			"javascriptreact",
+			"typescript",
+			"typescriptreact",
+			"elixir",
+		},
+		init_options = {
+			userLanguages = {
+				elixir = "phoenix-heex",
+				heex = "phoenix-heex",
+			},
+		},
+	},
 	bashls = {},
 	gopls = {},
 	rust_analyzer = {},
