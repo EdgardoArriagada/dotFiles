@@ -47,6 +47,7 @@ local formattersByFt = {
 	typescript = jsFormatter,
 	javascriptreact = jsFormatter,
 	typescriptreact = jsFormatter,
+	yaml = { "prettierd" },
 	json = { "prettierd" },
 	elixir = { "mix" },
 	markdown = { "prettierd" },
