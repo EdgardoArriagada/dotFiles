@@ -1,6 +1,23 @@
 local configServers = {
+	ts_ls = {
+		commands = {
+			OrganizeImports = {
+				function()
+					vim.lsp.buf.execute_command({
+						command = "_typescript.organizeImports",
+						arguments = { vim.api.nvim_buf_get_name(0) },
+						title = "",
+					})
+				end,
+				description = "Organize Imports",
+			},
+		},
+	},
+	gleam = {},
+}
+
+local ensureInstallConfigServers = {
 	pyright = {},
-	--[[ gleam = {}, ]]
 	elixirls = {
 		-- download from https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#elixirls
 		-- and put in $HOME/elixir-ls
@@ -49,20 +66,6 @@ local configServers = {
 			},
 		},
 	},
-	ts_ls = {
-		commands = {
-			OrganizeImports = {
-				function()
-					vim.lsp.buf.execute_command({
-						command = "_typescript.organizeImports",
-						arguments = { vim.api.nvim_buf_get_name(0) },
-						title = "",
-					})
-				end,
-				description = "Organize Imports",
-			},
-		},
-	},
 }
 
 local jsFormatter = { "prettierd", "eslint_d" }
@@ -96,10 +99,8 @@ local lintersByFt = {
 }
 
 local ensureInstalledServers = {}
-for server, _ in pairs(configServers) do
-	if server ~= "ts_ls" then
-		table.insert(ensureInstalledServers, server)
-	end
+for server, _ in pairs(ensureInstallConfigServers) do
+	table.insert(ensureInstalledServers, server)
 end
 
 local linterFileTypes = {}
@@ -195,12 +196,11 @@ return {
 
 			local lspconfig = require("lspconfig")
 
-			for serverName, config in pairs(configServers) do
+			local servers = Extend(ensureInstallConfigServers, configServers)
+
+			for serverName, config in pairs(servers) do
 				lspconfig[serverName].setup(Extend(defaultSetUp, config))
 			end
-
-			-- special config for gleam
-			lspconfig.gleam.setup(defaultSetUp)
 		end,
 	},
 }
