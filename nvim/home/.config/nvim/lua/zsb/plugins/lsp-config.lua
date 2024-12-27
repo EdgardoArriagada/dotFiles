@@ -68,7 +68,11 @@ local ensureInstallConfigServers = {
 	},
 }
 
-local jsFormatter = { "prettierd", "eslint_d" }
+local jsFormatter = {
+	"prettierd",
+	-- "eslint_d", -- too heavy
+}
+
 local formattersByFt = {
 	lua = { "stylua" },
 	python = { "black" },
@@ -176,7 +180,7 @@ return {
 					end
 				elseif client.supports_method("textDocument/formatting") then
 					callback = function()
-						vim.lsp.buf.format({ bufnr = buffer, id = client.id })
+						vim.lsp.buf.format({ bufnr = buffer, id = client.id, async = true })
 					end
 				end
 
