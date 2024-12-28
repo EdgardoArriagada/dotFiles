@@ -1,4 +1,5 @@
 font-size = 19
+font-feature = -liga
 
 keybind = super+a=text:\x1Ba
 keybind = super+b=text:\x1Bb
@@ -38,8 +39,9 @@ keybind = super+8=text:\x1B8
 keybind = super+9=text:\x1B9
 keybind = super+0=text:\x1B0
 
-keybind = super+.=text:\x1B.
-keybind = super+,=text:\x1B,
+keybind = alt+.=text:\x1B.
+keybind = alt+,=text:\x1B,
+keybind = super+;=text:\x1B;
  
 keybind = super+shift+a=text:\x1BA
 keybind = super+shift+b=text:\x1BB
