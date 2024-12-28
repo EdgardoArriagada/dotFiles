@@ -30,7 +30,7 @@ keybind = super+r=text:\x1Br
 keybind = super+s=text:\x1Bs
 keybind = super+t=text:\x1Bt
 keybind = super+u=text:\x1Bu
-keybind = super+v=text:\x1Bv
+keybind = super+v=paste_from_clipboard
 keybind = super+w=text:\x1Bw
 keybind = super+x=text:\x1Bx
 keybind = super+y=text:\x1By
