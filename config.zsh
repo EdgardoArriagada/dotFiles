@@ -9,6 +9,7 @@ declare commonPrograms=(
   zsh
   vscode
   btop
+  ghostty
 )
 
 declare macOsPrograms=(
