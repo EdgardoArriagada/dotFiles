@@ -1,5 +1,7 @@
 font-size = 19
 font-feature = -liga
+macos-titlebar-style = hidden
+macos-non-native-fullscreen = true
 
 keybind = super+a=text:\x1Ba
 keybind = super+b=text:\x1Bb
