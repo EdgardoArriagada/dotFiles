@@ -1,7 +1,7 @@
 # https://ghostty.org/docs
 
 font-size = 22
-font-feature = -liga
+font-feature = -calt -liga -dlig
 macos-titlebar-style = hidden
 background-opacity = 0.8
 window-height = 9999
