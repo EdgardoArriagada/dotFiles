@@ -1,11 +1,13 @@
 # https://ghostty.org/docs
 
-font-size = 19
+font-size = 22
 font-feature = -liga
 macos-titlebar-style = hidden
 background-opacity = 0.8
 window-height = 9999
 window-width = 9999
+
+font-family = Hack Nerd Font Mono
 
 keybind = super+a=text:\x1Ba
 keybind = super+b=text:\x1Bb
