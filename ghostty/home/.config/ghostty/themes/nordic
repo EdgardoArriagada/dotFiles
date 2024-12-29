@@ -1,3 +1,4 @@
+# https://ghostty.org/docs/features/theme#example
 # https://github.com/AlexvZyl/nordic.nvim?tab=readme-ov-file#-palette
 palette = 0=#2E3440
 palette = 1=#BF616A
@@ -17,6 +18,6 @@ palette = 14=#80B3B2
 palette = 15=#C0C8D8
 background = 191D24
 foreground = BBC3D4
-cursor-color = BBC3D4
+cursor-color = C0C8D8
 selection-background = 2E3440
 selection-foreground = D8DEE9
