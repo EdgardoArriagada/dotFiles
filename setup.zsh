@@ -23,6 +23,8 @@ for program in "${allPrograms[@]}"; do
   if [[ -d $program/home ]]; then
     print "Linking ${program}..."
     stow -d $program -t .. home
+  else
+    print "Program without home directory: $program"
   fi
 
   if [[ -n "$skipSetup" ]]; then

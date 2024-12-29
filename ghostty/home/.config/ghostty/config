@@ -1,0 +1,83 @@
+# https://ghostty.org/docs
+
+font-size = 22
+font-feature = -calt -liga -dlig
+macos-titlebar-style = hidden
+background-opacity = 0.8
+window-height = 9999
+window-width = 9999
+
+theme = nordic
+
+font-family = Hack Nerd Font Mono
+
+keybind = super+a=text:\x1Ba
+keybind = super+b=text:\x1Bb
+keybind = super+c=text:\x1Bc
+keybind = super+d=text:\x1Bd
+keybind = super+e=text:\x1Be
+keybind = super+f=text:\x1Bf
+keybind = super+g=text:\x1Bg
+keybind = super+h=text:\x1Bh
+keybind = super+i=text:\x1Bi
+keybind = super+j=text:\x1Bj
+keybind = super+k=text:\x1Bk
+keybind = super+l=text:\x1Bl
+keybind = super+m=text:\x1Bm
+keybind = super+n=text:\x1Bn
+keybind = super+o=text:\x1Bo
+keybind = super+p=text:\x1Bp
+keybind = super+q=text:\x1Bq
+keybind = super+r=text:\x1Br
+keybind = super+s=text:\x1Bs
+keybind = super+t=text:\x1Bt
+keybind = super+u=text:\x1Bu
+keybind = super+v=paste_from_clipboard
+keybind = super+w=text:\x1Bw
+keybind = super+x=text:\x1Bx
+keybind = super+y=text:\x1By
+keybind = super+z=text:\x1Bz
+
+# words instead of numbers is for a workaround:
+# https://github.com/ghostty-org/ghostty/discussions/3447
+keybind = super+one=text:\x1B1
+keybind = super+two=text:\x1B2
+keybind = super+three=text:\x1B3
+keybind = super+four=text:\x1B4
+keybind = super+five=text:\x1B5
+keybind = super+six=text:\x1B6
+keybind = super+seven=text:\x1B7
+keybind = super+eight=text:\x1B8
+keybind = super+nine=text:\x1B9
+keybind = super+zero=text:\x1B0
+
+keybind = alt+.=text:\x1B.
+keybind = alt+,=text:\x1B,
+keybind = super+;=text:\x1B;
+ 
+keybind = super+shift+a=text:\x1BA
+keybind = super+shift+b=text:\x1BB
+keybind = super+shift+c=text:\x1BC
+keybind = super+shift+d=text:\x1BD
+keybind = super+shift+e=text:\x1BE
+keybind = super+shift+f=text:\x1BF
+keybind = super+shift+g=text:\x1BG
+keybind = super+shift+h=text:\x1BH
+keybind = super+shift+i=text:\x1BI
+keybind = super+shift+j=text:\x1BJ
+keybind = super+shift+k=text:\x1BK
+keybind = super+shift+l=text:\x1BL
+keybind = super+shift+m=text:\x1BM
+keybind = super+shift+n=text:\x1BN
+keybind = super+shift+o=text:\x1BO
+keybind = super+shift+p=text:\x1BP
+keybind = super+shift+q=text:\x1BQ
+keybind = super+shift+r=text:\x1BR
+keybind = super+shift+s=text:\x1BS
+keybind = super+shift+t=text:\x1BT
+keybind = super+shift+u=text:\x1BU
+keybind = super+shift+v=text:\x1BV
+keybind = super+shift+w=text:\x1BW
+keybind = super+shift+x=text:\x1BX
+keybind = super+shift+y=text:\x1BY
+keybind = super+shift+z=text:\x1BZ

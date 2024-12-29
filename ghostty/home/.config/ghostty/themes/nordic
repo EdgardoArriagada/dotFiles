@@ -1,0 +1,23 @@
+# https://ghostty.org/docs/features/theme#example
+# https://github.com/AlexvZyl/nordic.nvim?tab=readme-ov-file#-palette
+palette = 0=#2E3440
+palette = 1=#BF616A
+palette = 2=#A3BE8C
+palette = 3=#EBCB8B
+palette = 4=#81A1C1
+palette = 5=#B48EAD
+palette = 6=#8FBCBB
+palette = 7=#BBC3D4
+palette = 8=#60728A
+palette = 9=#B74E58
+palette = 10=#97B67C
+palette = 11=#E7C172
+palette = 12=#88C0D0
+palette = 13=#BE9DB8
+palette = 14=#80B3B2
+palette = 15=#C0C8D8
+background = 191D24
+foreground = BBC3D4
+cursor-color = C0C8D8
+selection-background = 2E3440
+selection-foreground = D8DEE9

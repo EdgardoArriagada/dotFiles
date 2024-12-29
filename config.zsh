@@ -3,12 +3,12 @@ declare commonPrograms=(
   git
   nvim
   tmux
-  alacritty
   ideaVim
   tig
   zsh
   vscode
   btop
+  ghostty
 )
 
 declare macOsPrograms=(

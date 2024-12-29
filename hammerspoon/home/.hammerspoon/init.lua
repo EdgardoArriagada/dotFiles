@@ -4,8 +4,8 @@ local cmd2 = { "command", "ctrl" }
 
 -- for more apps, run
 -- $ ls /Applications
-hs.hotkey.bind({}, "forwarddelete", u.toggleApp("Alacritty"))
-hs.hotkey.bind({}, "§", u.toggleApp("Alacritty"))
+hs.hotkey.bind({}, "forwarddelete", u.toggleApp("Ghostty"))
+hs.hotkey.bind({}, "§", u.toggleApp("Ghostty"))
 hs.hotkey.bind(cmd2, "1", u.weakFocus("Slack"))
 hs.hotkey.bind(cmd2, "2", u.focusApp("Google Chrome"))
 hs.hotkey.bind(cmd2, "3", u.weakFocus("IntelliJ IDEA"))
