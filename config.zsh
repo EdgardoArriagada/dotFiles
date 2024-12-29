@@ -3,7 +3,6 @@ declare commonPrograms=(
   git
   nvim
   tmux
-  alacritty
   ideaVim
   tig
   zsh
