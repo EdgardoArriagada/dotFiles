@@ -16,7 +16,7 @@ return {
 			whitespace = {
 				remove_blankline_trail = false,
 			},
-			scope = { show_start = false, highlight = "CustomGroup" },
+			scope = { show_start = false, show_end = false, highlight = "CustomGroup" },
 		})
 	end),
 }
