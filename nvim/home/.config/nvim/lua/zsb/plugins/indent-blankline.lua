@@ -8,7 +8,7 @@ return {
 		local palette = require("nordic.colors")
 
 		hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-			vim.api.nvim_set_hl(0, "RainbowViolet", { fg = palette.magenta.dim })
+			vim.api.nvim_set_hl(0, "CustomGroup", { fg = palette.magenta.dim })
 		end)
 
 		ibl.setup({
@@ -16,7 +16,7 @@ return {
 			whitespace = {
 				remove_blankline_trail = false,
 			},
-			scope = { enabled = true, highlight = "RainbowViolet" },
+			scope = { show_start = false, highlight = "CustomGroup" },
 		})
 	end),
 }
