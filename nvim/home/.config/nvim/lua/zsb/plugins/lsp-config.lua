@@ -176,7 +176,7 @@ return {
 				local callback
 				if formattersByFt[vim.bo.filetype] then
 					callback = function()
-						require("conform").format({ bufnr = buffer })
+						require("conform").format({ bufnr = buffer, id = client.id })
 					end
 				elseif client.supports_method("textDocument/formatting") then
 					callback = function()
