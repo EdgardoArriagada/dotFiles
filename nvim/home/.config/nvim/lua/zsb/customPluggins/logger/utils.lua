@@ -45,7 +45,7 @@ M.withSingleQuotesOnly = function(input)
 end
 
 M.withDoubleQuotesOnly = function(input)
-	return input:gsub("`", '"'):gsub("'", '"')
+	return input:gsub("'", '"'):gsub("`", '"')
 end
 
 --- @param logStatement string The statement to log
