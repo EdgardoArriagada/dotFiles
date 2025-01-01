@@ -57,4 +57,8 @@ M.py = function(slot)
 	l("print('le " .. dqo(slot) .. "', " .. slot .. ")")
 end
 
+M.ex = function(slot)
+	l('Logger.debug("le ' .. sqo(slot) .. ": #{inspect(" .. slot .. ')}")')
+end
+
 return M

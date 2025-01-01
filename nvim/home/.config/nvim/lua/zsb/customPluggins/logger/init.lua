@@ -15,6 +15,7 @@ local extensionToFunction = {
 	["zsh"] = { d.bash, d.bash },
 	["go"] = { d.go, d.go },
 	["python"] = { d.py, d.py },
+	["elixir"] = { d.ex, d.ex },
 }
 
 function Logger()
