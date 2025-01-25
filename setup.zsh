@@ -18,6 +18,8 @@ if (( isMacOs ))
   else allPrograms+=("${linuxPrograms[@]}")
 fi
 
+[[ ! -d ~/.config ]] && mkdir ~/.config
+
 # Run link programs and run setup functions
 for program in "${allPrograms[@]}"; do
   if [[ -d $program/home ]]; then
