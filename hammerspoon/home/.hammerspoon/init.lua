@@ -1,3 +1,7 @@
+-- for this script to work:
+-- remember to enable "Accessibility" permissions to Hammerspoon 
+-- in the "Security & Privacy" panel in OSX System Preferences.
+
 local u = require("utils")
 
 local cmd2 = { "command", "ctrl" }
