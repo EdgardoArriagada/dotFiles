@@ -1,5 +1,7 @@
 M = {}
 
+local alert = hs.alert.show
+
 local function onAppLaunch(appName, callback)
 	local appWatcher = nil
 
@@ -62,12 +64,12 @@ local function launchApp(appName)
 end
 
 local function launchAppAndAlertLaunch(appName)
-	hs.alert.show("Launching " .. appName .. "...")
+	alert("Launching " .. appName .. "...")
 	return launchApp(appName)
 end
 
 local function alertNotLaunchedApp(appName)
-	return hs.alert.show(appName .. " not launched")
+	return alert(appName .. " not launched")
 end
 
 local function handleApp(appName, handlers)
