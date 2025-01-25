@@ -53,7 +53,7 @@ local function toggleApp(app)
 	if app:isFrontmost() then
 		app:hide()
 	else
-		visualizeAppInScreenFrame(app)
+		app:setFrontmost()
 	end
 end
 
@@ -82,13 +82,17 @@ local function handleApp(appName, handlers)
 	end
 end
 
+local function setAppFrontmost(app)
+	return app:setFrontmost()
+end
+
 local weakFocusHandlers = {
-	onOk = visualizeAppInScreenFrame,
+	onOk = setAppFrontmost,
 	onNotLaunched = alertNotLaunchedApp,
 }
 
 local focusAppHandlers = {
-	onOk = visualizeAppInScreenFrame,
+	onOk = setAppFrontmost,
 	onNotLaunched = launchAppAndAlertLaunch,
 }
 
