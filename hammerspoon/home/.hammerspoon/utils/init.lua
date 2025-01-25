@@ -2,19 +2,6 @@ M = {}
 
 local alert = hs.alert.show
 
-local function onAppLaunch(appName, callback)
-	local appWatcher = nil
-
-	appWatcher = hs.application.watcher.new(function(name, event, app)
-		if name == appName and event == hs.application.watcher.launched then
-			callback(app)
-			appWatcher:stop()
-		end
-	end)
-
-	appWatcher:start()
-end
-
 local function removeFullScreen(win)
 	if win:isFullScreen() then
 		win:toggleFullScreen()
@@ -47,6 +34,20 @@ local function visualizeAppInScreenFrame(app)
 
 	resizeWindowToScreenFrame(win)
 	removeFullScreen(win)
+end
+
+local function onAppLaunch(appName, callback)
+	local appWatcher = nil
+
+	appWatcher = hs.application.watcher.new(function(name, event, app)
+		if name == appName and event == hs.application.watcher.launched then
+			visualizeAppInScreenFrame(app)
+			callback(app)
+			appWatcher:stop()
+		end
+	end)
+
+	appWatcher:start()
 end
 
 local function toggleApp(app)
