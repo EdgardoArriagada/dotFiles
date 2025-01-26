@@ -12,9 +12,8 @@ local function resizeWindowToScreenFrame(win)
 	win:setFrame(hs.screen.mainScreen():frame(), 0)
 end
 
-local function getAppMainWindow(app)
+local function ensureAppMainWindow(app)
 	local mw = app:mainWindow()
-
 	if mw == nil then
 		hs.application.open(app:name())
 		return app:mainWindow()
@@ -26,8 +25,7 @@ end
 local function visualizeAppInScreenFrame(app)
 	app:activate(true)
 
-	local win = getAppMainWindow(app)
-
+	local win = ensureAppMainWindow(app)
 	if win == nil then
 		return
 	end
@@ -50,8 +48,8 @@ local function onAppLaunch(appName, callback)
 	appWatcher:start()
 end
 
-local function setAppFrontmost(app)
-	getAppMainWindow(app)
+local function ensureAppFrontmost(app)
+	ensureAppMainWindow(app)
 	return app:setFrontmost()
 end
 
@@ -59,7 +57,7 @@ local function toggleApp(app)
 	if app:isFrontmost() then
 		app:hide()
 	else
-		setAppFrontmost(app)
+		ensureAppFrontmost(app)
 	end
 end
 
@@ -89,12 +87,12 @@ local function handleApp(appName, handlers)
 end
 
 local weakFocusHandlers = {
-	onOk = setAppFrontmost,
+	onOk = ensureAppFrontmost,
 	onNotLaunched = alertNotLaunchedApp,
 }
 
 local focusAppHandlers = {
-	onOk = setAppFrontmost,
+	onOk = ensureAppFrontmost,
 	onNotLaunched = launchAppAndAlertLaunch,
 }
 
