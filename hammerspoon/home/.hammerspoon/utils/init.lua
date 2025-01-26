@@ -50,11 +50,16 @@ local function onAppLaunch(appName, callback)
 	appWatcher:start()
 end
 
+local function setAppFrontmost(app)
+	getAppMainWindow(app)
+	return app:setFrontmost()
+end
+
 local function toggleApp(app)
 	if app:isFrontmost() then
 		app:hide()
 	else
-		app:setFrontmost()
+		setAppFrontmost(app)
 	end
 end
 
@@ -81,10 +86,6 @@ local function handleApp(appName, handlers)
 	else
 		handlers.onOk(app)
 	end
-end
-
-local function setAppFrontmost(app)
-	return app:setFrontmost()
 end
 
 local weakFocusHandlers = {
