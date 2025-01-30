@@ -9,9 +9,10 @@ return {
 		local alpha = require("alpha")
 		local current_theme = require("alpha.themes." .. theme)
 
-		current_theme.section.header.val = {
-			"",
-			"",
+		local screen_height = vim.api.nvim_win_get_height(0)
+		local padding = math.floor(screen_height / 10)
+
+		local banner = {
 			"                                                                     ",
 			"       ████ ██████           █████      ██                     ",
 			"      ███████████             █████                             ",
@@ -20,9 +21,17 @@ return {
 			"    █████████ ██████████ █████████ █████ █████ ████ █████   ",
 			"  ███████████ ███    ███ █████████ █████ █████ ████ █████  ",
 			" ██████  █████████████████████ ████ █████ █████ ████ ██████ ",
-			"",
-			"",
 		}
+
+		for _ = 1, padding do
+			table.insert(banner, 1, "")
+		end
+
+		for _ = 1, padding do
+			table.insert(banner, "")
+		end
+
+		current_theme.section.header.val = banner
 
 		alpha.setup(current_theme.opts)
 	end,
