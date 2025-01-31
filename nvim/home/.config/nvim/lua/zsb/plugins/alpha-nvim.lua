@@ -9,8 +9,7 @@ return {
 		local alpha = require("alpha")
 		local current_theme = require("alpha.themes." .. theme)
 
-		local screen_height = vim.api.nvim_win_get_height(0)
-		local padding = math.floor(screen_height / 10)
+		local padding = math.floor(vim.api.nvim_win_get_height(0) / 10)
 
 		local banner = {
 			"                                                                     ",
