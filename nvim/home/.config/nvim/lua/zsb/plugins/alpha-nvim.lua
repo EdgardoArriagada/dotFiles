@@ -9,8 +9,6 @@ return {
 		local alpha = require("alpha")
 		local current_theme = require("alpha.themes." .. theme)
 
-		local padding = math.floor(vim.api.nvim_win_get_height(0) / 10)
-
 		local banner = {
 			"                                                                   ",
 			"      ████ ██████           █████      ██                    ",
@@ -22,11 +20,10 @@ return {
 			"██████  █████████████████████ ████ █████ █████ ████ ██████",
 		}
 
-		for _ = 1, padding do
-			table.insert(banner, 1, "")
-		end
+		local padding = math.floor(vim.api.nvim_win_get_height(0) / 10)
 
 		for _ = 1, padding do
+			table.insert(banner, 1, "")
 			table.insert(banner, "")
 		end
 
