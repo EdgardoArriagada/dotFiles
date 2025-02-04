@@ -183,6 +183,15 @@ return {
 				end,
 				desc = "Buffer Only",
 			},
+			{
+				"<leader>b0",
+				function()
+					require("bufferline").close_others()
+					require("bufdelete").bufdelete(0, true)
+					vim.cmd("Alpha")
+				end,
+				desc = "Zero buffer",
+			},
 			{ "<leader>b!", OpenBufferInNewTmuxWindow, desc = "Move buffer to new tmux window" },
 			{
 				"<leader>bc",
