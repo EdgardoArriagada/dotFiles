@@ -86,6 +86,7 @@ local formattersByFt = {
 	elixir = { "mix" },
 	heex = { "mix" },
 	markdown = { "prettierd" },
+	go = { "gofmt" },
 }
 
 local jsLinter = { "eslint_d" }
