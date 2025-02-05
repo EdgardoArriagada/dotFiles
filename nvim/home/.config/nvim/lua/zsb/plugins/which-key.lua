@@ -10,7 +10,6 @@ return {
 		})
 
 		wk.add({
-			{ "<leader>a", "<cmd>Alpha<cr>", desc = "Alpha" },
 			{ "<leader>x", Logger, desc = "Logger", mode = { "n", "v" } },
 			{ "<leader>X", LoggerSP, desc = "LoggerSp", mode = { "n", "v" } },
 			{ "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Explorer" },
