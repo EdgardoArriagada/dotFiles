@@ -78,7 +78,7 @@ return {
 				desc = "Prev Error",
 			},
 			{ "<leader>ll", vim.lsp.codelens.run, desc = "CodeLens Action" },
-			{ "<leader>lq", vim.diagnostic.setloclist, desc = "Quickfix" },
+			{ "<leader>lq", vim.diagnostic.setqflist, desc = "Quickfix" },
 			{ "<leader>lr", vim.lsp.buf.rename, desc = "Rename" },
 			{ "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document Symbols" },
 			{ "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Workspace Symbols" },
