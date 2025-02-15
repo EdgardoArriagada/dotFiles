@@ -102,6 +102,7 @@ return {
 			{ "<leader>vt", TestToggler, desc = "View test file" },
 			{ "<leader>vd", "<cmd>tab DBUI<cr>", desc = "View database client" },
 			{ "<leader>va", "<cmd>AvanteToggle<cr>", desc = "View avante chat" },
+			{ "<leader>vA", "<cmd>AvanteToggle<cr><cmd>AvanteClear<cr>", desc = "View new avante chat" },
 			{
 				"<leader>ti",
 				function()
