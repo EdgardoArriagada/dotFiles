@@ -1,0 +1,23 @@
+[pull]
+	rebase = false
+[pager]
+	branch = false
+	diff = delta | less -+F -+X
+	log = delta | less -+F -+X
+	reflog = delta
+	show = delta | less -+F -+X
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	features = calochortus-lyallii
+[core]
+	symlinks = false
+[user]
+  email = edgardo.arriagada.ortiz@gmail.com
+  name = EdgardoArriagada
+[url "git@github.com:EdgardoArriagada/"]
+	insteadOf = https://github.com/EdgardoArriagada/
+[include]
+	path = ~/dotFiles/git/themes.gitconfig
+	path = ~/dotFiles/git/gitconfig_per
+	path = ~/temp/.gitconfig
