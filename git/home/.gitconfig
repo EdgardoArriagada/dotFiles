@@ -19,5 +19,4 @@
 	insteadOf = https://github.com/EdgardoArriagada/
 [include]
 	path = ~/dotFiles/git/themes.gitconfig
-	path = ~/dotFiles/git/gitconfig_per
 	path = ~/temp/.gitconfig
