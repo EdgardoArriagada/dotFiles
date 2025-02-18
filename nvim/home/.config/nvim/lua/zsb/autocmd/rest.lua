@@ -19,11 +19,11 @@ Cautocmd("FileType", {
 
 -- - Open any ts file so TS language loads
 -- - run :make and then open qflist
---[[ Cautocmd("FileType", { ]]
---[[ 	pattern = "typescript,typescriptreact", ]]
---[[ 	group = Group, ]]
---[[ 	command = "compiler tsc | setlocal makeprg=npx\\ tsc", ]]
---[[ }) ]]
+Cautocmd("FileType", {
+	pattern = "typescript,typescriptreact",
+	group = Group,
+	command = "compiler tsc | setlocal makeprg=npx\\ tsc",
+})
 
 -- Triger `autoread` when files changes on disk
 Cautocmd(
