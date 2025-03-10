@@ -181,7 +181,7 @@ return {
 							end
 
 							if #filtered_items == 1 then
-								OpenFileInPosition(list.items[1])
+								OpenFileInPosition(filtered_items[1])
 							elseif #filtered_items > 1 then
 								vim.fn.setqflist({}, " ", { title = "Implementations", items = filtered_items })
 								Exec("copen")
