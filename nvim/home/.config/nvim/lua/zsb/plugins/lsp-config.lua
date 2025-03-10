@@ -160,8 +160,8 @@ return {
 			local on_attach = function(client, buffer)
 				local opts = { noremap = true, silent = true, buffer = buffer }
 
-				Kset("n", "gD", vim.lsp.buf.declaration, opts)
-				Kset("n", "go", vim.lsp.buf.definition, opts)
+				Kset("n", "go", vim.lsp.buf.declaration, opts)
+				Kset("n", "gD", vim.lsp.buf.definition, opts)
 				Kset("n", "gd", function()
 					vim.lsp.buf.definition({
 						on_list = function(list)
@@ -169,7 +169,26 @@ return {
 						end,
 					})
 				end, opts)
-				Kset("n", "gi", vim.lsp.buf.implementation, opts)
+				Kset("n", "gI", vim.lsp.buf.implementation, opts)
+				Kset("n", "gi", function()
+					vim.lsp.buf.implementation({
+						on_list = function(list)
+							local filtered_items = {}
+							for _, item in ipairs(list.items) do
+								if not string.match(item.filename, "mock") then
+									table.insert(filtered_items, item)
+								end
+							end
+
+							if #filtered_items == 1 then
+								OpenFileInPosition(list.items[1])
+							elseif #filtered_items > 1 then
+								vim.fn.setqflist({}, " ", { title = "Implementations", items = filtered_items })
+								Exec("copen")
+							end
+						end,
+					})
+				end, opts)
 				Kset("n", "gk", vim.lsp.buf.signature_help, opts)
 				Kset("n", "gr", vim.lsp.buf.references, opts)
 
