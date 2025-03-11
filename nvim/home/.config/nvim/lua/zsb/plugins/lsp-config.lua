@@ -55,7 +55,20 @@ local ensureInstallConfigServers = {
 		},
 	},
 	bashls = {},
-	gopls = {},
+	gopls = {
+		commands = {
+			OrganizeImports = {
+				function()
+					local file = vim.api.nvim_buf_get_name(0)
+
+					vim.schedule(function()
+						vim.fn.system({ "gopls", "imports", "-w", file })
+					end)
+				end,
+				description = "Organize Imports",
+			},
+		},
+	},
 	rust_analyzer = {},
 	lua_ls = {
 		settings = {
