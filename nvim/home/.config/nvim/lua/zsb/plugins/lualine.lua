@@ -120,11 +120,6 @@ return {
 				},
 				always_divide_middle = true,
 				globalstatus = true,
-				refresh = {
-					statusline = 99999,
-					tabline = 99999,
-					winbar = 99999,
-				},
 			},
 			sections = {
 				lualine_a = { "mode" },
