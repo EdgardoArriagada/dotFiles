@@ -42,6 +42,6 @@ return {
 			},
 		})
 
-		nordic.load()
+		nordic.load({})
 	end,
 }
