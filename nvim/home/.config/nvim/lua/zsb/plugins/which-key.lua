@@ -1,3 +1,12 @@
+local FORWARD = 1
+local BACKWARD = -1
+
+local function jump(a)
+	return function()
+		vim.diagnostic.jump({ count = a.direction, float = true, severity = a.severity })
+	end
+end
+
 return {
 	"folke/which-key.nvim",
 	event = "VeryLazy",
@@ -57,24 +66,16 @@ return {
 			{ "<leader>lw", "<cmd>Telescope lsp_workspace_diagnostics<cr>", desc = "Workspace Diagnostics" },
 			{ "<leader>li", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
 			{ "<leader>lI", "<cmd>Mason<cr>", desc = "Mason" },
-			{ "<leader>lN", vim.diagnostic.goto_next, desc = "Next Diagnostic" },
-			{ "<leader>lP", vim.diagnostic.goto_prev, desc = "Prev Diagnostic" },
+			{ "<leader>lN", jump({ direction = FORWARD }), desc = "Next Diagnostic" },
+			{ "<leader>lP", jump({ direction = BACKWARD }), desc = "Prev Diagnostic" },
 			{
 				"<leader>ln",
-				function()
-					vim.diagnostic.goto_next({
-						severity = vim.diagnostic.severity.ERROR,
-					})
-				end,
+				jump({ direction = FORWARD, severity = vim.diagnostic.severity.ERROR }),
 				desc = "Next Error",
 			},
 			{
 				"<leader>lp",
-				function()
-					vim.diagnostic.goto_prev({
-						severity = vim.diagnostic.severity.ERROR,
-					})
-				end,
+				jump({ direction = BACKWARD, severity = vim.diagnostic.severity.ERROR }),
 				desc = "Prev Error",
 			},
 			{ "<leader>ll", vim.lsp.codelens.run, desc = "CodeLens Action" },
