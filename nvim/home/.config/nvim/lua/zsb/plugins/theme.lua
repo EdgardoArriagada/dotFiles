@@ -6,9 +6,9 @@ return {
 		local nordic = require("nordic")
 
 		nordic.setup({
-			-- https://neovim.io/doc/user/syntax.html
-			-- https://github.com/AlexvZyl/nordic.nvim/blob/main/lua/nordic/colors/nordic.lua
 			on_highlight = function(highlights, palette)
+				-- https://neovim.io/doc/user/syntax.html
+				-- https://github.com/AlexvZyl/nordic.nvim/blob/main/lua/nordic/colors/nordic.lua
 				highlights.Visual = {
 					bg = palette.gray2,
 					bold = false,
@@ -27,11 +27,11 @@ return {
 				}
 				highlights.CursorLine = {
 					bg = palette.gray1,
-					bold = true, -- Or false.
+					bold = true,
 				}
 				highlights.ColorColumn = {
 					bg = palette.gray1,
-					bold = true, -- Or false.
+					bold = true,
 				}
 				highlights.Delimiter = {
 					fg = palette.white0_normal,
