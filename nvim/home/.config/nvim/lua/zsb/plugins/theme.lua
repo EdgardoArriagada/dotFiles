@@ -4,42 +4,41 @@ return {
 	priority = 1000,
 	config = function()
 		local nordic = require("nordic")
-		-- https://github.com/AlexvZyl/nordic.nvim/blob/main/lua/nordic/colors/nordic.lua
-		local palette = require("nordic.colors")
 
 		nordic.setup({
 			-- https://neovim.io/doc/user/syntax.html
-			override = {
-				Visual = {
+			-- https://github.com/AlexvZyl/nordic.nvim/blob/main/lua/nordic/colors/nordic.lua
+			on_highlight = function(highlights, palette)
+				highlights.Visual = {
 					bg = palette.gray2,
 					bold = false,
-				},
-				Search = {
+				}
+				highlights.Search = {
 					bg = palette.gray1,
 					fg = palette.white0_normal,
 					bold = false,
 					underline = false,
-				},
-				IncSearch = {
+				}
+				highlights.IncSearch = {
 					bg = palette.gray3,
 					fg = palette.white1,
 					bold = true,
 					underline = true,
-				},
-				CursorLine = {
+				}
+				highlights.CursorLine = {
 					bg = palette.gray1,
 					bold = true, -- Or false.
-				},
-				ColorColumn = {
+				}
+				highlights.ColorColumn = {
 					bg = palette.gray1,
 					bold = true, -- Or false.
-				},
-				Delimiter = {
+				}
+				highlights.Delimiter = {
 					fg = palette.white0_normal,
 					bold = false,
-				},
-				PmenuSel = { bg = palette.gray3 },
-			},
+				}
+				highlights.PmenuSel = { bg = palette.gray3 }
+			end,
 		})
 
 		nordic.load({})
