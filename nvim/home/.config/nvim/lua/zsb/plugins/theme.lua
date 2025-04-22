@@ -3,9 +3,7 @@ return {
 	lazy = false,
 	priority = 1000,
 	config = function()
-		local nordic = require("nordic")
-
-		nordic.setup({
+		require("nordic").load({
 			on_highlight = function(highlights, palette)
 				-- https://neovim.io/doc/user/syntax.html
 				-- https://github.com/AlexvZyl/nordic.nvim/blob/main/lua/nordic/colors/nordic.lua
@@ -40,7 +38,5 @@ return {
 				highlights.PmenuSel = { bg = palette.gray3 }
 			end,
 		})
-
-		nordic.load({})
 	end,
 }
