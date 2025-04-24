@@ -189,7 +189,7 @@ return {
 				function()
 					require("bufferline").close_others()
 					require("bufdelete").bufdelete(0, true)
-					vim.cmd("Alpha")
+					Exec("Alpha")
 				end,
 				desc = "Zero buffer",
 			},
