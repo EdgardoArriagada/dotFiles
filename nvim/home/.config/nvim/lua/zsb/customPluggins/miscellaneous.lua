@@ -27,3 +27,9 @@ end
 function ToggleRelativeNumber()
 	vim.wo.relativenumber = not vim.wo.relativenumber
 end
+
+-- returns the content of the given line number
+--- @param lnum number: The line number
+function GetLineContent(lnum)
+	return vim.api.nvim_buf_get_lines(0, lnum - 1, lnum, true)[1]
+end
