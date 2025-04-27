@@ -39,5 +39,5 @@ function GetCurrentLNum()
 end
 
 function GetCurrentCol()
-	return vim.api.nvim_win_get_cursor(0)[2]
+	return vim.api.nvim_win_get_cursor(0)[2] + 1
 end
