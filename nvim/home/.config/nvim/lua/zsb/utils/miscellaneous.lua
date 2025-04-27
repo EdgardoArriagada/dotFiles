@@ -178,3 +178,7 @@ function ClearInterval(timer)
 	timer:stop()
 	timer:close()
 end
+
+function GetIndent(lnum)
+	return #GetLineContent(lnum):match("^%s*")
+end

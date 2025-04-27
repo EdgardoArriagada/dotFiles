@@ -3,8 +3,6 @@ INFO = vim.log.levels.INFO -- default
 WARN = vim.log.levels.WARN
 ERROR = vim.log.levels.ERROR
 
-Indent = vim.fn.indent
-
 Kset = vim.keymap.set
 -- autocommand
 Cautocmd = vim.api.nvim_create_autocmd

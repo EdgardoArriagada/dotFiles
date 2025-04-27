@@ -17,7 +17,7 @@ function GoLessDeeperIndent(direction)
 
 	local lineMarker = GetFirstNoEmptyLine(direction, GetCurrentLNum())
 
-	local originalInent = Indent(lineMarker)
+	local originalInent = GetIndent(lineMarker)
 
 	if originalInent == 0 then
 		local lastLine = GetSameIndentLin(direction, lineMarker)
