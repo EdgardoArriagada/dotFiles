@@ -33,3 +33,7 @@ end
 function GetLineContent(lnum)
 	return vim.api.nvim_buf_get_lines(0, lnum - 1, lnum, true)[1]
 end
+
+function GetCurrentLNum()
+	return vim.api.nvim_win_get_cursor(0)[1]
+end

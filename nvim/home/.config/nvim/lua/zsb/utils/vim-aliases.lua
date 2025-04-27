@@ -4,7 +4,6 @@ WARN = vim.log.levels.WARN
 ERROR = vim.log.levels.ERROR
 
 Indent = vim.fn.indent
-Line = vim.fn.line
 
 Kset = vim.keymap.set
 -- autocommand

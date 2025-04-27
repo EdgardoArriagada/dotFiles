@@ -10,7 +10,7 @@ end
 
 function GetDirectionalProps(direction)
 	if direction == "j" then
-		return 1, Line("$")
+		return 1, vim.fn.line("$")
 	elseif direction == "k" then
 		return -1, 1
 	end
@@ -41,10 +41,11 @@ function GetFirstNoEmptyLine(direction, lineMarker)
 end
 
 function LookForIndentation(direction)
+	local lnum = GetCurrentLNum()
 	-- Go to beggin of line and add to jump list
-	Exec("normal" .. Line(".") .. "G^")
+	Exec("normal" .. lnum .. "G^")
 
-	local lineMarker = GetFirstNoEmptyLine(direction, Line("."))
+	local lineMarker = GetFirstNoEmptyLine(direction, lnum)
 
 	Exec("normal" .. GetSameIndentLin(direction, lineMarker) .. "G^")
 end
