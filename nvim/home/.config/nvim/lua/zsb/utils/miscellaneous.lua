@@ -10,7 +10,7 @@ end
 
 function GetDirectionalProps(direction)
 	if direction == "j" then
-		return 1, vim.fn.line("$")
+		return 1, vim.api.nvim_buf_line_count(0)
 	elseif direction == "k" then
 		return -1, 1
 	end
