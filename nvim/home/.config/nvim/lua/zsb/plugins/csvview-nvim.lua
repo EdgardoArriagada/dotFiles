@@ -7,6 +7,15 @@ return {
 				display_mode = "border",
 			},
 		})
-		plugin.enable()
+
+		local group = CreateAugroup("zsb_csvview")
+
+		Cautocmd("FileType", {
+			pattern = "csv",
+			callback = function()
+				plugin.enable()
+			end,
+			group = group,
+		})
 	end),
 }
