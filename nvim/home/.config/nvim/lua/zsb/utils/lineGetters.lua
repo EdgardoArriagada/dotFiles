@@ -38,3 +38,15 @@ function GetLesserIndent(direction, lineMarker)
 
 	return lineMarker
 end
+
+function GetSafeLesserIndent(direction)
+	local lineMarker = GetFirstNoEmptyLine(direction, GetCurrentLNum())
+
+	local originalInent = GetIndent(lineMarker)
+
+	if originalInent == 0 then
+		return GetSameIndentLin(direction, lineMarker)
+	end
+
+	return GetLesserIndent(direction, lineMarker)
+end

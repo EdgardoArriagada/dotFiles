@@ -15,17 +15,7 @@ function GoLessDeeperIndent(direction)
 	-- Go to beggin of line and add to jump list
 	Exec("normal^m'")
 
-	local lineMarker = GetFirstNoEmptyLine(direction, GetCurrentLNum())
+	local lesserIndent = GetSafeLesserIndent(direction)
 
-	local originalInent = GetIndent(lineMarker)
-
-	if originalInent == 0 then
-		local lastLine = GetSameIndentLin(direction, lineMarker)
-		Exec("normal" .. lastLine .. "G^")
-		return
-	end
-
-	local lastMatchinLine = GetLesserIndent(direction, lineMarker)
-
-	Exec("normal" .. lastMatchinLine .. "G^")
+	Exec("normal" .. lesserIndent .. "G^")
 end

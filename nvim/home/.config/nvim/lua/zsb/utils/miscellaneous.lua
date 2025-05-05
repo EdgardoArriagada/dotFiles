@@ -40,16 +40,6 @@ function GetFirstNoEmptyLine(direction, lineMarker)
 	return lineMarker
 end
 
-function LookForIndentation(direction)
-	local lnum = GetCurrentLNum()
-	-- Go to beggin of line and add to jump list
-	Exec("normal" .. lnum .. "G^")
-
-	local lineMarker = GetFirstNoEmptyLine(direction, lnum)
-
-	Exec("normal" .. GetSameIndentLin(direction, lineMarker) .. "G^")
-end
-
 function ArrayElement(t)
 	local i = 0
 
