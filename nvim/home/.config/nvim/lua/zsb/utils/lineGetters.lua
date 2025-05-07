@@ -1,7 +1,6 @@
-function GetSameIndentLin(direction, lineMarker)
+function GetSameIndentLin(direction, lineMarker, originalIndent)
 	local inc, endOfFile = GetDirectionalProps(direction)
 	local existsSameIndent = false
-	local originalIndent = GetIndent(GetCurrentLNum())
 
 	while not existsSameIndent and lineMarker ~= endOfFile do
 		lineMarker = lineMarker + inc
@@ -45,7 +44,7 @@ function GetSafeLesserIndent(direction)
 	local originalInent = GetIndent(lineMarker)
 
 	if originalInent == 0 then
-		return GetSameIndentLin(direction, lineMarker)
+		return GetSameIndentLin(direction, lineMarker, GetIndent(GetCurrentLNum()))
 	end
 
 	return GetLesserIndent(direction, lineMarker)

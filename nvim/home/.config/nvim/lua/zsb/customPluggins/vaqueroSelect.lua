@@ -3,7 +3,10 @@ function VaqueroSelect()
 	Exec("normal^m'")
 
 	local lessIndentUp = GetSafeLesserIndent("k")
-	local lessIndentDown = GetSafeLesserIndent("j")
+	local lessIndent = GetIndent(lessIndentUp)
+	local startLnum = GetCurrentLNum()
+
+	local lessIndentDown = GetSameIndentLin("j", startLnum - 1, lessIndent)
 
 	Exec("normal" .. lessIndentUp .. "G^")
 	Exec("normal!V")
