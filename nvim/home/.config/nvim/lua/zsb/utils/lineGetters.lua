@@ -1,4 +1,5 @@
 function GetNextLineWithIndent(direction, currentLnum, indent)
+	local originalLnum = currentLnum
 	local inc, endOfFile = GetDirectionalProps(direction)
 	local existsSameIndent = false
 
@@ -14,7 +15,7 @@ function GetNextLineWithIndent(direction, currentLnum, indent)
 	if existsSameIndent then
 		return currentLnum
 	else
-		return GetCurrentLNum()
+		return originalLnum
 	end
 end
 
