@@ -6,7 +6,7 @@ function VaqueroSelect()
 	local lessIndent = GetIndent(lessIndentUp)
 	local startLnum = GetCurrentLNum()
 
-	local lessIndentDown = GetSameIndentLin("j", startLnum - 1, lessIndent)
+	local lessIndentDown = GetNextLineWithIndent("j", startLnum - 1, lessIndent)
 
 	Exec("normal" .. lessIndentUp .. "G^")
 	Exec("normal!V")

@@ -1,51 +1,51 @@
-function GetSameIndentLin(direction, lineMarker, originalIndent)
+function GetNextLineWithIndent(direction, currentLnum, indent)
 	local inc, endOfFile = GetDirectionalProps(direction)
 	local existsSameIndent = false
 
-	while not existsSameIndent and lineMarker ~= endOfFile do
-		lineMarker = lineMarker + inc
-		existsSameIndent = GetIndent(lineMarker) == originalIndent
+	while not existsSameIndent and currentLnum ~= endOfFile do
+		currentLnum = currentLnum + inc
+		existsSameIndent = GetIndent(currentLnum) == indent
 
-		if existsSameIndent and IsEmptyLine(lineMarker) then
+		if existsSameIndent and IsEmptyLine(currentLnum) then
 			existsSameIndent = false
 		end
 	end
 
 	if existsSameIndent then
-		return lineMarker
+		return currentLnum
 	else
 		return GetCurrentLNum()
 	end
 end
 
-function GetLesserIndent(direction, lineMarker)
+function GetLesserIndent(direction, currentLnum)
 	local inc, endOfFile = GetDirectionalProps(direction)
 
-	local originalIndent = GetIndent(lineMarker)
+	local originalIndent = GetIndent(currentLnum)
 
 	local gotLesserIndent = false
 
-	while lineMarker ~= endOfFile do
-		lineMarker = lineMarker + inc
+	while currentLnum ~= endOfFile do
+		currentLnum = currentLnum + inc
 
-		gotLesserIndent = GetIndent(lineMarker) < originalIndent
+		gotLesserIndent = GetIndent(currentLnum) < originalIndent
 
-		if gotLesserIndent and not IsEmptyLine(lineMarker) then
+		if gotLesserIndent and not IsEmptyLine(currentLnum) then
 			break
 		end
 	end
 
-	return lineMarker
+	return currentLnum
 end
 
 function GetSafeLesserIndent(direction)
-	local lineMarker = GetFirstNoEmptyLine(direction, GetCurrentLNum())
+	local currentLnum = GetFirstNoEmptyLine(direction, GetCurrentLNum())
 
-	local originalInent = GetIndent(lineMarker)
+	local originalInent = GetIndent(currentLnum)
 
 	if originalInent == 0 then
-		return GetSameIndentLin(direction, lineMarker, GetIndent(GetCurrentLNum()))
+		return GetNextLineWithIndent(direction, currentLnum, GetIndent(GetCurrentLNum()))
 	end
 
-	return GetLesserIndent(direction, lineMarker)
+	return GetLesserIndent(direction, currentLnum)
 end
