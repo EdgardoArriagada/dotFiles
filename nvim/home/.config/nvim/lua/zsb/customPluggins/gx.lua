@@ -1,4 +1,4 @@
-local url_pattern = "(https?://[%w-_%.%?%.:/%+=&#]+)"
+local url_pattern = "(https?://[%w-_%.%?%.:/%+=&#%%]+)"
 
 local function find_first_url_in_line(line)
 	return string.match(line, url_pattern)
