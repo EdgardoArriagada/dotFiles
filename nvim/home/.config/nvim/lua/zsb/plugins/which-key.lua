@@ -146,9 +146,11 @@ return {
 							"--smart-case",
 							-- config
 							"-g=!package-lock.json",
+							"-g=!poetry.lock",
 							-- this
 							"-g=!*__tests__*",
 							"-g=!*__test__*",
+							"-g=!*test*.py",
 							"-g=!*Test.java",
 							"-g=!*mocks*",
 							"-g=!*fixtures*",

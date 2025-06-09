@@ -36,6 +36,7 @@ return {
 						"--smart-case",
 						-- config
 						"-g=!package-lock.json",
+						"-g=!poetry.lock",
 					},
 				},
 				extensions = {
