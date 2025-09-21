@@ -41,16 +41,16 @@ keybind = super+z=text:\x1Bz
 
 # words instead of numbers is for a workaround:
 # https://github.com/ghostty-org/ghostty/discussions/3447
-keybind = super+one=text:\x1B1
-keybind = super+two=text:\x1B2
-keybind = super+three=text:\x1B3
-keybind = super+four=text:\x1B4
-keybind = super+five=text:\x1B5
-keybind = super+six=text:\x1B6
-keybind = super+seven=text:\x1B7
-keybind = super+eight=text:\x1B8
-keybind = super+nine=text:\x1B9
-keybind = super+zero=text:\x1B0
+keybind = super+digit1=text:\x1B1
+keybind = super+digit2=text:\x1B2
+keybind = super+digit3=text:\x1B3
+keybind = super+digit4=text:\x1B4
+keybind = super+digit5=text:\x1B5
+keybind = super+digit6=text:\x1B6
+keybind = super+digit7=text:\x1B7
+keybind = super+digit8=text:\x1B8
+keybind = super+digit9=text:\x1B9
+keybind = super+digit0=text:\x1B0
 
 keybind = alt+.=text:\x1B.
 keybind = alt+,=text:\x1B,
