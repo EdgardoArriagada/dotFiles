@@ -164,7 +164,6 @@ return {
 				desc = "Toggle inlay hints",
 			},
 			{ "<leader>vq", ToggleQf, desc = "View qf list" },
-			{ "<leader>rb", "<cmd>tab DBUI<cr>", desc = "View database client" },
 			{ "<leader>ra", "<cmd>AvanteToggle<cr>", desc = "Toggle avante chat" },
 			{ "<leader>st", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
 			{
@@ -204,7 +203,7 @@ return {
 			{ "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
 			{ "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
 			{ "<leader>l", group = "LSP" },
-			{ "<leader>ls", "<cmd>Lazy sync<cr>", desc = "Plugins sync" },
+			{ "<leader>lz", "<cmd>Lazy sync<cr>", desc = "Plugins sync" },
 			{ "<leader>lh", "<cmd>Lazy health<cr>", desc = "Plugins health" },
 			{ "<leader>by", Cppath, desc = "Copy File Path" },
 			{
