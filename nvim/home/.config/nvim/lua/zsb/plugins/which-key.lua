@@ -46,24 +46,67 @@ return {
 				end,
 				desc = "Cleanup",
 			},
-			{ "<leader>gn", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Next Hunk" },
+			{
+				"<leader>gn",
+				function()
+					require("gitsigns").nav_hunk("next")
+				end,
+				desc = "Next Hunk",
+			},
 			{
 				"<leader>gN",
-				"<cmd>lua require 'gitsigns'.nav_hunk('next', {target='all'})<cr>",
+				function()
+					require("gitsigns").nav_hunk("next", { target = "all" })
+				end,
 				desc = "Next Hunk (All)",
 			},
-			{ "<leader>gp", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "Prev Hunk" },
-			{ "<leader>gb", "<cmd>lua require 'gitsigns'.blame_line()<cr>", desc = "Blame" },
-			{ "<leader>gv", "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", desc = "Preview Hunk" },
-			{ "<leader>gr", "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", desc = "Reset Hunk" },
+			{
+				"<leader>gp",
+				function()
+					require("gitsigns").nav_hunk("prev")
+				end,
+				desc = "Prev Hunk",
+			},
+			{
+				"<leader>gb",
+				function()
+					require("gitsigns").blame_line()
+				end,
+				desc = "Blame",
+			},
+			{
+				"<leader>gv",
+				function()
+					require("gitsigns").preview_hunk()
+				end,
+				desc = "Preview Hunk",
+			},
+			{
+				"<leader>gr",
+				function()
+					require("gitsigns").reset_hunk()
+				end,
+				desc = "Reset Hunk",
+			},
 			{ "<leader>gs", "<cmd>Gvdiffsplit!<cr>", desc = "Fugitive Split" },
 			{ "<leader>gS", FullGitSplit, desc = "Fugitive custom split" },
 			{ "<leader>gh", "<cmd>diffget //2<cr>", desc = "Pick left" },
 			{ "<leader>gl", "<cmd>diffget //3<cr>", desc = "Pick right" },
-			{ "<leader>gR", "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", desc = "Reset Buffer" },
+			{
+				"<leader>gR",
+				function()
+					require("gitsigns").reset_buffer()
+				end,
+				desc = "Reset Buffer",
+			},
 			{ "<leader>gP", "<cmd>lua ViewPrOfLine()<cr>", desc = "View pr of line" },
-			{ "<leader>ga", "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", desc = "Add Hunk" },
-			{ "<leader>gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", desc = "Undo Stage Hunk" },
+			{
+				"<leader>ga",
+				function()
+					require("gitsigns").stage_hunk()
+				end,
+				desc = "toggle Add/Undo stage Hunk",
+			},
 			{ "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Diff" },
 			{ "<leader>gf", "<cmd>Telescope git_status<cr>", desc = "Git Status Files" },
 			{ "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
