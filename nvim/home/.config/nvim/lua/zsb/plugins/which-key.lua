@@ -47,6 +47,11 @@ return {
 				desc = "Cleanup",
 			},
 			{ "<leader>gn", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Next Hunk" },
+			{
+				"<leader>gN",
+				"<cmd>lua require 'gitsigns'.nav_hunk('next', {target='all'})<cr>",
+				desc = "Next Hunk (All)",
+			},
 			{ "<leader>gp", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "Prev Hunk" },
 			{ "<leader>gb", "<cmd>lua require 'gitsigns'.blame_line()<cr>", desc = "Blame" },
 			{ "<leader>gv", "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", desc = "Preview Hunk" },
