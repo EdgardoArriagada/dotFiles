@@ -6,6 +6,7 @@ require("zsb.plugins-bootstrap")
 require("zsb.customPluggins")
 require("zsb.options")
 require("zsb.autocmd")
+require("zsb.filetype-config")
 
 if vim.g.neovide then
 	require("zsb.neovide-config")
