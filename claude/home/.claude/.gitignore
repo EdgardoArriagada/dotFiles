@@ -1,0 +1,28 @@
+# Cache and temporary files
+cache/
+paste-cache/
+file-history/
+
+# Logs and debug output
+logs/
+debug/
+*.log
+
+# Session history and state
+history.jsonl
+plans/
+todos/
+
+# Analytics and telemetry
+statsig/
+
+# Project-specific data (may contain sensitive information)
+projects/
+
+# macOS
+.DS_Store
+
+# Editor files
+*.swp
+*.swo
+*~

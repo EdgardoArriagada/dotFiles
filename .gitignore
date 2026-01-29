@@ -8,3 +8,16 @@ hammerspoon/.hammerspoon/Spoons
 
 # btop
 btop/home/.config/btop/btop.log
+
+
+# claude
+claude/home/.claude/cache/
+claude/home/.claude/debug/
+claude/home/.claude/file-history/
+claude/home/.claude/history.jsonl
+claude/home/.claude/logs/
+claude/home/.claude/paste-cache/
+claude/home/.claude/plans/
+claude/home/.claude/projects/
+claude/home/.claude/statsig/
+claude/home/.claude/todos/
