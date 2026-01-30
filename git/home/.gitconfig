@@ -20,3 +20,5 @@
 [include]
 	path = ~/dotFiles/git/themes.gitconfig
 	path = ~/temp/.gitconfig
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
