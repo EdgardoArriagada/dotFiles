@@ -1,5 +1,9 @@
 {
   "permissions": {
     "deny": ["Bash(**/.env)", "Read(**/.env)", "Write(**/.env)"]
+  },
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true
   }
 }
