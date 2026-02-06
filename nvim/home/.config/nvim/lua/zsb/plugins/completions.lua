@@ -148,6 +148,7 @@ return {
 							luasnip = "[Snippet]",
 							buffer = "[Buffer]",
 							path = "[Path]",
+							at_files = "[File]",
 						})[entry.source.name]
 
 						if color_item.abbr_hl_group then
@@ -177,6 +178,19 @@ return {
 						border = { "╔", "═", "╗", "║", "╝", "═", "╚", "║" },
 					},
 				},
+			})
+
+			cmp.register_source("at_files", require("zsb.customPluggins.cmpAtFiles").new())
+
+			cmp.setup.filetype("markdown", {
+				sources = cmp.config.sources({
+					{ name = "at_files" },
+				}, {
+					{ name = "nvim_lsp" },
+					{ name = "luasnip" },
+					{ name = "buffer" },
+					{ name = "path" },
+				}),
 			})
 		end,
 	},
