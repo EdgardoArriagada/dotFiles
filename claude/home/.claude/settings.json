@@ -5,5 +5,18 @@
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "zsb_play ~/.zsh-spell-book/src/media/sounds/aoe_farm.wav"
+          }
+        ]
+      }
+    ]
   }
 }
