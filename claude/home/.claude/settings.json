@@ -2,10 +2,6 @@
   "permissions": {
     "deny": ["Bash(**/.env)", "Read(**/.env)", "Write(**/.env)"]
   },
-  "sandbox": {
-    "enabled": true,
-    "autoAllowBashIfSandboxed": true
-  },
   "hooks": {
     "Stop": [
       {
@@ -17,6 +13,32 @@
           }
         ]
       }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "zsb_play ~/.zsh-spell-book/src/media/sounds/aoe_gate.wav"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "ExitPlanMode",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "zsb_play ~/.zsh-spell-book/src/media/sounds/aoe_farm.wav"
+          }
+        ]
+      }
     ]
+  },
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true
   }
 }
