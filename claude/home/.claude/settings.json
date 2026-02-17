@@ -37,11 +37,12 @@
       }
     ]
   },
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true
+  },
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true
   },
-  "enabledPlugins": {
-    "gopls-lsp@claude-plugins-official": true
-  }
+  "skipDangerousModePermissionPrompt": true
 }
