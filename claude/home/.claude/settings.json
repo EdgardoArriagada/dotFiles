@@ -1,6 +1,10 @@
 {
   "permissions": {
-    "deny": ["Bash(**/.env)", "Read(**/.env)", "Write(**/.env)"]
+    "deny": [
+      "Bash(**/.env)",
+      "Read(**/.env)",
+      "Write(**/.env)"
+    ]
   },
   "hooks": {
     "Stop": [
@@ -23,6 +27,15 @@
             "command": "zsb_play ~/.zsh-spell-book/src/media/sounds/aoe_gate.wav"
           }
         ]
+      },
+      {
+        "matcher": "ExitPlanMode",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "zsb_play ~/.zsh-spell-book/src/media/sounds/aoe_gate.wav"
+          }
+        ]
       }
     ],
     "PostToolUse": [
@@ -38,7 +51,9 @@
     ]
   },
   "enabledPlugins": {
-    "gopls-lsp@claude-plugins-official": true
+    "gopls-lsp@claude-plugins-official": true,
+    "github@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true
   },
   "sandbox": {
     "enabled": true,
