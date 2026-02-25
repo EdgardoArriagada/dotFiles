@@ -27,4 +27,5 @@ claude/home/.claude/shell-snapshots/
 claude/home/.claude/tasks/
 claude/home/.claude/image-cache/
 claude/home/.claude/hooks/
-
+claude/home/.claude/backups/
+claude/home/.claude/commands/
