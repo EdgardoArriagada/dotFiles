@@ -11,6 +11,20 @@ btop/home/.config/btop/btop.log
 
 
 # claude
+# third-party managed files (symlinks + auto-generated)
+claude/home/.claude/agents/meli-*.md
+# third-party skills — ignore by known prefixes, personal skills are tracked
+claude/home/.claude/skills/meli*/
+claude/home/.claude/skills/fury-*/
+claude/home/.claude/skills/andes-*/
+claude/home/.claude/skills/nordic-*/
+claude/home/.claude/skills/release-process/
+claude/home/.claude/skills/traffic-tracking-expert/
+claude/home/.claude/skills/audio-capture/
+claude/home/.claude/skills/context-guardian/
+claude/home/.claude/.meli-*
+claude/home/.claude/settings.json.backup
+claude/home/.claude/sessions/
 claude/home/.claude/cache/
 claude/home/.claude/debug/
 claude/home/.claude/file-history/
