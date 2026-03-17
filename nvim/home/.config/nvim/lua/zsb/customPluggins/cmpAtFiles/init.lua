@@ -148,10 +148,6 @@ local function collect_files(dir, cwd, results, patterns)
 		if not name then
 			break
 		end
-		-- skip hidden files/dirs
-		if name:sub(1, 1) == "." then
-			goto continue
-		end
 		local full = dir .. "/" .. name
 		local rel = full:sub(#cwd + 2) -- strip cwd + trailing /
 		if typ == "directory" then
@@ -167,8 +163,17 @@ local function collect_files(dir, cwd, results, patterns)
 	end
 end
 
-function source:complete(params, callback)
+local function get_root()
 	local cwd = vim.fn.getcwd()
+	local git_root = vim.fn.systemlist("git -C " .. vim.fn.shellescape(cwd) .. " rev-parse --show-toplevel")[1]
+	if git_root and git_root ~= "" and not git_root:match("^fatal") then
+		return git_root
+	end
+	return cwd
+end
+
+function source:complete(params, callback)
+	local cwd = get_root()
 	local gitignore_patterns = parse_gitignore(cwd)
 	local files = {}
 	collect_files(cwd, cwd, files, gitignore_patterns)
