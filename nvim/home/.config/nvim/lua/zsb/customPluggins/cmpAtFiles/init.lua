@@ -172,11 +172,31 @@ local function get_root()
 	return cwd
 end
 
+local function make_relative(from_dir, abs_path)
+	local function split(p)
+		local parts = {}
+		for s in p:gmatch("[^/]+") do parts[#parts + 1] = s end
+		return parts
+	end
+	local f = split(from_dir)
+	local t = split(abs_path)
+	local i = 1
+	while i <= #f and i <= #t and f[i] == t[i] do i = i + 1 end
+	local rel = {}
+	for _ = i, #f do rel[#rel + 1] = ".." end
+	for j = i, #t do rel[#rel + 1] = t[j] end
+	return table.concat(rel, "/")
+end
+
 function source:complete(params, callback)
-	local cwd = get_root()
-	local gitignore_patterns = parse_gitignore(cwd)
+	local actual_cwd = vim.fn.getcwd()
+	local root = get_root()
+	local gitignore_patterns = parse_gitignore(root)
 	local files = {}
-	collect_files(cwd, cwd, files, gitignore_patterns)
+	collect_files(root, root, files, gitignore_patterns)
+	for i, rel in ipairs(files) do
+		files[i] = make_relative(actual_cwd, root .. "/" .. rel)
+	end
 
 	local cursor = params.context.cursor
 	local line = params.context.cursor_before_line
