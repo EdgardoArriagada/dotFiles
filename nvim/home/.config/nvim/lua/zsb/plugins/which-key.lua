@@ -147,6 +147,19 @@ return {
 				desc = "Toggle markdown",
 			},
 			{ "<leader>tw", ToggleSetWrap, desc = "Toggle text wrap" },
+			{
+				"<leader>tr",
+				function()
+					if require("render-markdown.state").enabled then
+						require("render-markdown").disable()
+						vim.wo.wrap = false
+					else
+						require("render-markdown").enable()
+						vim.wo.wrap = true
+					end
+				end,
+				desc = "Toggle read (markdown + wrap)",
+			},
 			{ "<leader>tl", ToggleRelativeNumber, desc = "Toggle relative number" },
 			{ "<leader>vt", TestToggler, desc = "View test file" },
 			{ "<leader>vd", "<cmd>tab DBUI<cr>", desc = "View database client" },
