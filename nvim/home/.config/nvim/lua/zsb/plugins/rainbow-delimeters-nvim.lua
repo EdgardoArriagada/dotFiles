@@ -4,6 +4,7 @@ return {
 		local rainbow_delimiters = require("rainbow-delimiters")
 
 		rainbow.setup({
+			blacklist = { "alpha" },
 			strategy = {
 				[""] = rainbow_delimiters.strategy["global"],
 				vim = rainbow_delimiters.strategy["local"],
