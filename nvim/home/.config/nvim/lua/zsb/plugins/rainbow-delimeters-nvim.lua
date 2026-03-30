@@ -1,5 +1,6 @@
 return {
 	"HiPhish/rainbow-delimiters.nvim",
+	enabled = false, -- disable plugin temporarly
 	config = Config("rainbow-delimiters.setup", function(rainbow)
 		local rainbow_delimiters = require("rainbow-delimiters")
 
