@@ -5,7 +5,7 @@ description: Use when the user wants to review recent repository changes, catch 
 
 # Changelog
 
-Summarize recent repository changes grouped by author and theme, with PR context.
+Generate a contextual briefing of recent repository changes. The audience is a technical person with **zero prior knowledge** of these changes — they should be able to answer questions about any change after reading the report.
 
 ## Usage
 
@@ -24,55 +24,69 @@ Summarize recent repository changes grouped by author and theme, with PR context
 | Single date | `--since="<date>"` |
 | Two dates | `--since="<start>" --until="<end>"` |
 
-### 2. Gather data
+### 2. Gather raw data
 
-Run these git commands (use relative paths, never absolute). Always use `--all` to include all branches:
+Run these git commands with `--all` to cover all branches:
 
 ```bash
-# All commits in range across all branches
+# Commits in range
 git log --all --since="<range>" --format="%H|%an|%ad|%s" --date=short
 
-# Diffstat summary
-git log --all --since="<range>" --shortstat --format=""
-
-# PRs: merge commits + squash-merged PRs (parse "#N" from subjects)
-git log --all --since="<range>" --merges --format="%s"
-git log --all --since="<range>" --format="%s" --grep="(#[0-9]*)"
-
-# New files added
-git log --all --since="<range>" --diff-filter=A --name-only --format=""
-
-# Deleted files
-git log --all --since="<range>" --diff-filter=D --name-only --format=""
+# PRs (merge commits + squash-merged)
+git log --all --since="<range>" --merges --format="%H|%s"
+git log --all --since="<range>" --format="%H|%s" --grep="(#[0-9]*)"
 ```
 
-**Note:** Many GitHub repos use squash-merge, so `--merges` alone misses PRs. The `--grep` command catches commit subjects containing `(#123)` patterns.
+### 3. Group into logical changes
 
-### 3. Present the summary
+Do NOT present a flat list of commits. Group commits into **logical changes** — typically one per PR or one per coherent feature/fix if there's no PR. Multiple commits touching the same concern are ONE logical change.
 
-Structure the output in this order:
+### 4. Build context for each logical change
 
-**a) Overview line**
-> X commits by Y authors over Z days (N files changed, +A/-D lines)
+For each logical change, read the actual code to understand it:
 
-**b) By Author** — for each contributor:
-- Name and commit count
-- Bullet list of their key changes (group related commits, don't list every commit individually)
+```bash
+# Read the diff to understand WHAT changed
+git show <commit_hash> --stat
+git show <commit_hash> -- <key_files>   # read relevant hunks
 
-**c) PRs Merged** — list merged PRs with title and author (extracted from merge commit messages)
+# For merge/squash commits with PR number, try fetching the PR body
+gh pr view <number> --json title,body,author,labels 2>/dev/null
+```
 
-**d) Notable Changes**
-- New files added (list paths)
-- Files deleted (list paths)
-- Files renamed (if any)
-- Large diffs (files with >100 lines changed)
+**You MUST read the actual diffs and/or changed files.** Commit messages alone are not enough — they're often vague or incomplete. Your job is to understand the change and explain it clearly.
 
-**e) Hotspots** — top 5 most-modified files with change count
+### 5. Write the report
 
-## Formatting Rules
+#### Structure
 
-- Use **relative paths** only (never absolute)
-- Group related commits — don't list 6 commits that all update the same file separately
-- Keep it scannable — use tables and bullets, not paragraphs
-- Include commit hashes (short form, 7 chars) for traceability
-- If the range has >50 commits, summarize themes at the top before the detailed breakdown
+**a) Executive summary (2-3 sentences)**
+What was the overall focus this period? Any themes or patterns?
+
+**b) For each logical change, a section with:**
+
+> **<Title — what it does in plain language>**
+> *<Author> · <Date> · <PR link if available>*
+>
+> **What changed:** 1-3 sentences explaining concretely what was added, modified, or removed. Mention specific components, endpoints, behaviors — not file names.
+>
+> **Why it matters:** 1-2 sentences on the motivation or impact. Why was this done? What problem does it solve? What does it enable? If you can't tell from the diff/PR, say "Motivation unclear from commit history" — don't fabricate.
+>
+> **Key details:** Bullet list of important specifics someone might be asked about (new dependencies, config changes, API changes, behavior changes, breaking changes). Omit this section if there are no notable details.
+
+**c) If applicable: heads-up section**
+Breaking changes, new dependencies, config changes, or anything that might affect other team members.
+
+#### Ordering
+
+Order changes by importance/impact, not chronologically. The most significant change goes first.
+
+## Tone and style
+
+- Write for a technical reader who has NO context about these changes
+- Be specific: "Added rate limiting to the /search endpoint (max 100 req/s per user)" not "Updated search functionality"
+- Explain WHY, not just WHAT — "to prevent abuse from automated scrapers" not just "added rate limiting"
+- Use domain language, not git language — say "Added a health check endpoint" not "Added new file ping.go"
+- Never list file paths as the primary description of a change. Mention files only in "Key details" when someone might need to find the code
+- Skip trivial changes (typo fixes, formatting) unless they're the only changes in the period
+- Keep the total report concise — aim for a report that takes 2-3 minutes to read
