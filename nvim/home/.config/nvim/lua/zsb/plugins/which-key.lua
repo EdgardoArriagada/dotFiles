@@ -7,6 +7,12 @@ local function jump(a)
 	end
 end
 
+local function paste_prompt(prompt)
+	return function()
+		vim.api.nvim_put(vim.split(prompt.get(), "\n"), "l", true, true)
+	end
+end
+
 return {
 	"folke/which-key.nvim",
 	event = "VeryLazy",
@@ -343,6 +349,12 @@ return {
 				desc = "Extract React Component to New File",
 				mode = "v",
 			},
+		})
+
+		local prompts = require("zsb.prompts")
+		wk.add({
+			{ "<leader>p", group = "Prompt" },
+			{ "<leader>pd", paste_prompt(prompts.debug), desc = prompts.debug.desc },
 		})
 	end),
 }
