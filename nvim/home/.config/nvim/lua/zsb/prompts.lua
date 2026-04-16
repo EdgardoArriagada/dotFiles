@@ -10,4 +10,12 @@ M.debug = {
 	end,
 }
 
+M.ask = {
+	desc = "Ask",
+	get = function()
+		return [[
+Before proceeding, ask me every question you need answered to complete this task. Keep asking until you have no more doubts, then execute.]]
+	end,
+}
+
 return M

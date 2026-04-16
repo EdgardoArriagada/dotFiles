@@ -355,6 +355,7 @@ return {
 		wk.add({
 			{ "<leader>p", group = "Prompt" },
 			{ "<leader>pd", paste_prompt(prompts.debug), desc = prompts.debug.desc },
+			{ "<leader>pa", paste_prompt(prompts.ask), desc = prompts.ask.desc },
 		})
 	end),
 }
