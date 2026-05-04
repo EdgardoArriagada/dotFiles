@@ -356,6 +356,7 @@ return {
 			{ "<leader>p", group = "Prompt" },
 			{ "<leader>pd", paste_prompt(prompts.debug), desc = prompts.debug.desc },
 			{ "<leader>pa", paste_prompt(prompts.ask), desc = prompts.ask.desc },
+			{ "<leader>pj", paste_prompt(prompts.jira), desc = prompts.jira.desc },
 		})
 	end),
 }

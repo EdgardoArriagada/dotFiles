@@ -18,4 +18,12 @@ M.ask = {
 	end,
 }
 
+M.jira = {
+	desc = "Jira",
+	get = function()
+		return [[
+- Create a jira ticket with the fields described in the image]]
+	end,
+}
+
 return M
