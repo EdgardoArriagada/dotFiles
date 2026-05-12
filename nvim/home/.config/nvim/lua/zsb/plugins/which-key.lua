@@ -225,6 +225,7 @@ return {
 			{ "<leader>lz", "<cmd>Lazy sync<cr>", desc = "Plugins sync" },
 			{ "<leader>lh", "<cmd>Lazy health<cr>", desc = "Plugins health" },
 			{ "<leader>by", Cppath, desc = "Copy File Path" },
+			{ "<leader>bY", CppathHome, desc = "Copy File Path (from home)" },
 			{
 				"<leader>ba",
 				function()

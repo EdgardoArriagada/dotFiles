@@ -20,6 +20,16 @@ function Cppath()
 	vim.notify(result .. " Copied!")
 end
 
+function CppathHome()
+	local home = EscapePattern(vim.env.HOME)
+	local path = vim.fn.expand("%:p")
+
+	local result = path:gsub("^" .. home, "~")
+
+	vim.fn.setreg("+", result)
+	vim.notify(result .. " Copied!")
+end
+
 function ToggleSetWrap()
 	vim.wo.wrap = not vim.wo.wrap
 end
