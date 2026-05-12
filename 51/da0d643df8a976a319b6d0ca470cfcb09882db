@@ -1,0 +1,21 @@
+nvim/home/.config/nvim/lua/zsb/plugins/which-key.lua
+  s_8b854a24eec810::t_250ebd26677d90 228
+nvim/home/.config/nvim/lua/zsb/customPluggins/miscellaneous.lua
+  s_8b854a24eec810::t_d0f5ac9082584b 23-32
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "51da0d643df8a976a319b6d0ca470cfcb09882db",
+  "prompts": {},
+  "sessions": {
+    "s_8b854a24eec810": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "453dd941-139a-4e1b-8fdb-be77ef194dd9",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "EdgardoArriagada <edgardo.arriagada.ortiz@gmail.com>"
+    }
+  }
+}
