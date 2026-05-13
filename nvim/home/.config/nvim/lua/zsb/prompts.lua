@@ -22,7 +22,8 @@ M.jira = {
 	desc = "Jira",
 	get = function()
 		return [[
-- Create a jira ticket with the fields described in the image]]
+- Create a jira ticket with the fields described in the image
+- Give me the link to the ticket at the end]]
 	end,
 }
 
