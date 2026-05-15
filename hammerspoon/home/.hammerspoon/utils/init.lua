@@ -82,7 +82,7 @@ local function handleApp(appName, handlers)
 
 	-- hs.application.get does fuzzy matching and may return helper processes
 	-- like macOS Dock Extra (Ghostty.app) when the real app is not running.
-	if app == nil or (app ~= nil and app:name() ~= appName) then
+	if app == nil or app:name() ~= appName then
 		handlers.onNotLaunched(appName)
 	else
 		handlers.onOk(app)
