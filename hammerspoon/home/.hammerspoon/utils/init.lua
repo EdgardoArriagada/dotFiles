@@ -12,6 +12,8 @@ local function resizeWindowToScreenFrame(win)
 	win:setFrame(win:screen():frame(), 0)
 end
 
+-- mainWindow() returns nil when the app is running but has no visible window
+-- (minimized or all windows closed). open() forces macOS to surface one.
 local function ensureAppMainWindow(app)
 	local mw = app:mainWindow()
 	if mw == nil then
