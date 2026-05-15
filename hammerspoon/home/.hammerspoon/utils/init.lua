@@ -1,4 +1,4 @@
-M = {}
+local M = {}
 
 local alert = hs.alert.show
 
@@ -9,7 +9,7 @@ local function removeFullScreen(win)
 end
 
 local function resizeWindowToScreenFrame(win)
-	win:setFrame(hs.screen.mainScreen():frame(), 0)
+	win:setFrame(win:screen():frame(), 0)
 end
 
 local function ensureAppMainWindow(app)
@@ -30,22 +30,27 @@ local function presentApp(app)
 		return
 	end
 
-	app:setFrontmost()
-
 	resizeWindowToScreenFrame(win)
 	removeFullScreen(win)
 end
 
 local function onAppLaunch(appName, callback)
 	local appWatcher = nil
+	local timer = nil
 
 	appWatcher = hs.application.watcher.new(function(name, event, app)
 		if name == appName and event == hs.application.watcher.launched then
+			if timer then
+				timer:stop()
+			end
 			callback(app)
 			appWatcher:stop()
 		end
 	end)
 
+	timer = hs.timer.doAfter(10, function()
+		appWatcher:stop()
+	end)
 	appWatcher:start()
 end
 
@@ -118,8 +123,8 @@ M.toggleApp = function(appName)
 		handleApp(appName, toggleAppHandlers)
 	end
 end
-
 -- Works a little buggy
+
 M.hideAllApps = function()
 	local apps = hs.application.runningApplications()
 
