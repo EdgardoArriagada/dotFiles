@@ -12,20 +12,10 @@ local function resizeWindowToScreenFrame(win)
 	win:setFrame(win:screen():frame(), 0)
 end
 
-local function ensureAppMainWindow(app)
-	local mw = app:mainWindow()
-	if mw == nil then
-		hs.application.open(app:name())
-		return app:mainWindow()
-	end
-
-	return mw
-end
-
 local function presentApp(app)
 	app:activate(true)
 
-	local win = ensureAppMainWindow(app)
+	local win = app:mainWindow()
 	if win == nil then
 		return
 	end
