@@ -1,0 +1,19 @@
+hammerspoon/home/.hammerspoon/init.lua
+  s_9cefebb722ba84::t_adf72faf1b73c6 19
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "feb98d63916b1d880c6c3ae13c544817bc364667",
+  "prompts": {},
+  "sessions": {
+    "s_9cefebb722ba84": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b32697a1-d071-431a-9415-7f78c1dfce83",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "EdgardoArriagada <edgardo.arriagada.ortiz@gmail.com>"
+    }
+  }
+}
