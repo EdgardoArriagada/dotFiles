@@ -27,4 +27,20 @@ M.jira = {
 	end,
 }
 
+M.pc = {
+	desc = "Commit staged files",
+	get = function()
+		return [[
+Create a Git commit from the currently staged files.]]
+	end,
+}
+
+M.tdd = {
+	desc = "Use TDD",
+	get = function()
+		return [[
+- Use TDD (Test Driven Development).]]
+	end,
+}
+
 return M
