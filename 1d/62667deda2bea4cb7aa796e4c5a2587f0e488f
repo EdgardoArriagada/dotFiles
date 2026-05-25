@@ -1,0 +1,23 @@
+nvim/home/.config/nvim/lua/zsb/prompts.lua
+  s_c82696445e42e4::t_72a60f86ac5b5d 30-37
+  s_c82696445e42e4::t_325ec5864dc886 38-45
+nvim/home/.config/nvim/lua/zsb/plugins/which-key.lua
+  s_c82696445e42e4::t_28e4ef5502292a 362
+  s_c82696445e42e4::t_7a90157c7ef733 361
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.11",
+  "base_commit_sha": "1d62667deda2bea4cb7aa796e4c5a2587f0e488f",
+  "prompts": {},
+  "sessions": {
+    "s_c82696445e42e4": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e5fbc-80e8-7dd3-abf2-e623cc7fec4e",
+        "model": "gpt-5.5"
+      },
+      "human_author": "EdgardoArriagada <edgardo.arriagada.ortiz@gmail.com>"
+    }
+  }
+}
