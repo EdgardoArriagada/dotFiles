@@ -359,6 +359,7 @@ return {
 			{ "<leader>pa", paste_prompt(prompts.ask), desc = prompts.ask.desc },
 			{ "<leader>pj", paste_prompt(prompts.jira), desc = prompts.jira.desc },
 			{ "<leader>pc", paste_prompt(prompts.pc), desc = prompts.pc.desc },
+			{ "<leader>pm", paste_prompt(prompts.merge_conflicts), desc = prompts.merge_conflicts.desc },
 			{ "<leader>pt", paste_prompt(prompts.tdd), desc = prompts.tdd.desc },
 		})
 	end),

@@ -43,4 +43,14 @@ M.tdd = {
 	end,
 }
 
+M.merge_conflicts = {
+	desc = "Resolve merge conflicts",
+	get = function()
+		return [[
+I ran `git pull origin develop`, and it resulted in merge conflicts.
+
+Carefully resolve the merge conflicts. Preserve the intended behavior from both sides when possible, avoid discarding unrelated changes, and run the relevant tests or checks after resolving them.]]
+	end,
+}
+
 return M
