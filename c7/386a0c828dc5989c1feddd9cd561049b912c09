@@ -1,0 +1,19 @@
+nvim/home/.config/nvim/lua/zsb/plugins/bufferline.lua
+  s_6520b5152d6514::t_af98a916be716f 7-24,26-31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "c7386a0c828dc5989c1feddd9cd561049b912c09",
+  "prompts": {},
+  "sessions": {
+    "s_6520b5152d6514": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e8928-35f2-7652-9735-9f40d2c5588a",
+        "model": "gpt-5.5"
+      },
+      "human_author": "EdgardoArriagada <edgardo.arriagada.ortiz@gmail.com>"
+    }
+  }
+}
