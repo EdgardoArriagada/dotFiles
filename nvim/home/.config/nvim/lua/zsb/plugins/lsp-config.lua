@@ -230,12 +230,11 @@ return {
 				capabilities = capabilities,
 			}
 
-			local lspconfig = require("lspconfig")
-
 			local servers = Extend(ensureInstallConfigServers, configServers)
 
 			for serverName, config in pairs(servers) do
-				lspconfig[serverName].setup(Extend(defaultSetUp, config))
+				vim.lsp.config(serverName, Extend(defaultSetUp, config))
+				vim.lsp.enable(serverName)
 			end
 		end,
 	},
