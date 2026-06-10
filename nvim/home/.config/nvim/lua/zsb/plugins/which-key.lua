@@ -169,8 +169,6 @@ return {
 			{ "<leader>tl", ToggleRelativeNumber, desc = "Toggle relative number" },
 			{ "<leader>vt", TestToggler, desc = "View test file" },
 			{ "<leader>vd", "<cmd>tab DBUI<cr>", desc = "View database client" },
-			{ "<leader>va", "<cmd>AvanteToggle<cr>", desc = "View avante chat" },
-			{ "<leader>vA", "<cmd>AvanteToggle<cr><cmd>AvanteClear<cr>", desc = "View new avante chat" },
 			{
 				"<leader>ti",
 				function()
@@ -183,7 +181,6 @@ return {
 				desc = "Toggle inlay hints",
 			},
 			{ "<leader>vq", ToggleQf, desc = "View qf list" },
-			{ "<leader>ra", "<cmd>AvanteToggle<cr>", desc = "Toggle avante chat" },
 			{ "<leader>st", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
 			{
 				"<leader>sn",
