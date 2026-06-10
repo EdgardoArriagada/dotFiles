@@ -1,0 +1,23 @@
+nvim/home/.config/nvim/lua/zsb/plugins/render-markdown.lua
+  s_467eeb45cf4f30::t_a42821811487fc 1-8
+nvim/home/.config/nvim/lua/zsb/plugins/copilot.lua
+  s_467eeb45cf4f30::t_a42821811487fc 2-18,21-33,35-38
+nvim/home/.config/nvim/lua/zsb/plugins/lualine.lua
+  s_467eeb45cf4f30::t_a42821811487fc 119
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "3d743b9c7cf3f13867d3d7807bb06c5b03eae1a6",
+  "prompts": {},
+  "sessions": {
+    "s_467eeb45cf4f30": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019eb228-bdd9-74b2-809e-718f200567de",
+        "model": "gpt-5.5"
+      },
+      "human_author": "EdgardoArriagada <edgardo.arriagada.ortiz@gmail.com>"
+    }
+  }
+}
