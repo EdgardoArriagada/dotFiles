@@ -1,0 +1,19 @@
+nvim/home/.config/nvim/lua/zsb/plugins/lsp-config.lua
+  s_36cea040501df6::t_3178888e0bf84b 236-237
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "4b113c1afd895735a5d1757ad5a67d8bcf3ab55c",
+  "prompts": {},
+  "sessions": {
+    "s_36cea040501df6": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019eb32a-25c1-71d0-9aca-64ac4a9ad8ca",
+        "model": "gpt-5.5"
+      },
+      "human_author": "EdgardoArriagada <edgardo.arriagada.ortiz@gmail.com>"
+    }
+  }
+}
