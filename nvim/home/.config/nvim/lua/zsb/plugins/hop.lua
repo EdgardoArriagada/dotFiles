@@ -1,6 +1,6 @@
 return {
-	"phaazon/hop.nvim",
-	branch = "v1", -- optional but strongly recommended
+	"smoka7/hop.nvim",
+	version = "*",
 	keys = "s",
 	config = Config("hop", function(hop)
 		hop.setup({ keys = "etovxqpdygfblzhckisuran" })
