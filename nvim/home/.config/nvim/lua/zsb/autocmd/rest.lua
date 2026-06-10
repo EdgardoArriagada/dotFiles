@@ -7,8 +7,8 @@ Cautocmd("FileType", {
 			return
 		end
 
-		vim.o.foldmethod = "expr"
-		vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+		vim.wo[0][0].foldmethod = "expr"
+		vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 		SetTimeout(function()
 			Hpcall(Exec, "normal!zA", { onErr = 'failed to execute ":normal!zA"' })
