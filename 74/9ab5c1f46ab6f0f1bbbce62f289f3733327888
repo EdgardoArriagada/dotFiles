@@ -1,0 +1,22 @@
+nvim/home/.config/nvim/lua/zsb/plugins/nvim-treesitter.lua
+  s_b471d7ee25ae07::t_f68a9604b595b7 22-28,33
+  s_b471d7ee25ae07::t_650262e229bfa2 1-21,29,31-32,34-42,44
+nvim/home/.config/nvim/lua/zsb/autocmd/rest.lua
+  s_b471d7ee25ae07::t_ad2969b66cfad9 10-11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "749ab5c1f46ab6f0f1bbbce62f289f3733327888",
+  "prompts": {},
+  "sessions": {
+    "s_b471d7ee25ae07": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019eb2ad-a11d-7671-8ada-7b4288ab7cbd",
+        "model": "gpt-5.5"
+      },
+      "human_author": "EdgardoArriagada <edgardo.arriagada.ortiz@gmail.com>"
+    }
+  }
+}
