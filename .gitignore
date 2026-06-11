@@ -44,3 +44,6 @@ claude/home/.claude/hooks/
 claude/home/.claude/backups/
 claude/home/.claude/commands/
 claude/home/.claude/telemetry/
+
+# github-copilot
+nvim/home/.config/github-copilot/
