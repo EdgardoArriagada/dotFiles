@@ -9,7 +9,6 @@ declare commonPrograms=(
   vscode
   btop
   ghostty
-  claude
 )
 
 declare macOsPrograms=(
