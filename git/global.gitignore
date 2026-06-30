@@ -1,4 +1,4 @@
 *~
 *.swp
 *.swo
-
+erl_crash.dump
