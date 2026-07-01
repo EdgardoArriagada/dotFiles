@@ -13,6 +13,10 @@ local function paste_prompt(prompt)
 	end
 end
 
+local function prompt_with_desc(key, prompt)
+	return { key, paste_prompt(prompt), desc = prompt.desc }
+end
+
 return {
 	"folke/which-key.nvim",
 	event = "VeryLazy",
@@ -352,12 +356,13 @@ return {
 		local prompts = require("zsb.prompts")
 		wk.add({
 			{ "<leader>p", group = "Prompt" },
-			{ "<leader>pd", paste_prompt(prompts.debug), desc = prompts.debug.desc },
-			{ "<leader>pa", paste_prompt(prompts.ask), desc = prompts.ask.desc },
-			{ "<leader>pj", paste_prompt(prompts.jira), desc = prompts.jira.desc },
-			{ "<leader>pc", paste_prompt(prompts.pc), desc = prompts.pc.desc },
-			{ "<leader>pm", paste_prompt(prompts.merge_conflicts), desc = prompts.merge_conflicts.desc },
-			{ "<leader>pt", paste_prompt(prompts.tdd), desc = prompts.tdd.desc },
+			prompt_with_desc("<leader>pd", prompts.debug),
+			prompt_with_desc("<leader>pa", prompts.ask),
+			prompt_with_desc("<leader>pj", prompts.jira),
+			prompt_with_desc("<leader>pc", prompts.pc),
+			prompt_with_desc("<leader>pm", prompts.merge_conflicts),
+			prompt_with_desc("<leader>pt", prompts.tdd),
+			prompt_with_desc("<leader>ps", prompts.sheaper_prompts),
 		})
 	end),
 }

@@ -53,4 +53,13 @@ Carefully resolve the merge conflicts. Preserve the intended behavior from both 
 	end,
 }
 
+M.sheaper_prompts = {
+	desc = "Sheaper prompts",
+	get = function()
+		return [[
+- during this session, use both ponytail and caveman skills.
+]]
+	end,
+}
+
 return M
