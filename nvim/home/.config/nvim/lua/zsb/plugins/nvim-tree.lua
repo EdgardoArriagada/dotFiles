@@ -31,6 +31,7 @@ return {
 				return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
 			end
 
+			api.map.on_attach.default(bufnr)
 			mappings(api, opts)
 		end
 
