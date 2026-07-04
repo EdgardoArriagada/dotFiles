@@ -12,3 +12,4 @@ export PATH=~/.zsh-spell-book/src-bun/bin:$PATH
 declare ZSB_GTD_FILE=~/notebook/quickNotes/gtd.md
 
 source ~/temp/.zshenv
+[[ -f ~/temp/current-ticket.zsh ]] && source ~/temp/current-ticket.zsh
