@@ -1,0 +1,29 @@
+tmux/home/.tmux.conf
+  s_2f418436118c91::t_2218919fc1e099 178
+zsh/home/.zshenv
+  s_e0e2774e8a3a6b::t_e0b6f7e59fe64b 15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "36d435e8e8080f443054e3bcfee0a192998f134c",
+  "prompts": {},
+  "sessions": {
+    "s_2f418436118c91": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ebf54095-ba61-4dac-8d38-e80076cae076",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "EdgardoArriagada <edgardo.arriagada.ortiz@gmail.com>"
+    },
+    "s_e0e2774e8a3a6b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1bece872-ce5b-485e-aabb-c70417df0fef",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "EdgardoArriagada <edgardo.arriagada.ortiz@gmail.com>"
+    }
+  }
+}
