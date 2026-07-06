@@ -1,0 +1,19 @@
+nvim/home/.config/nvim/lua/zsb/plugins/lsp-config.lua
+  s_0bd6f3a49107bb::t_1ccd60e3fe2ebe 25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "d2b1f6584548768843a51e0827be2299d36d94f1",
+  "prompts": {},
+  "sessions": {
+    "s_0bd6f3a49107bb": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "618dac37-c0e2-4812-ba17-d8d54067948c",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "EdgardoArriagada <edgardo.arriagada.ortiz@gmail.com>"
+    }
+  }
+}
