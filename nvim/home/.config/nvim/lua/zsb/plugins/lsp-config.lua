@@ -22,6 +22,7 @@ local ensureInstallConfigServers = {
 		-- download from https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#elixirls
 		-- and put in $HOME/elixir-ls
 		cmd = { vim.fn.expand("$HOME/elixir-ls/language_server.sh") },
+		cmd_env = { ERL_CRASH_DUMP = "/dev/null" },
 	},
 	jsonls = {},
 	cssls = {},
