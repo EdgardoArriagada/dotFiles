@@ -1,0 +1,20 @@
+tmux/home/.tmux.conf
+  s_77fe8846650e45::t_8adcf06fa96df3 171
+  s_77fe8846650e45::t_0ffb50e4e1a70d 172
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "957ce389893a6375cd57db2fd67dc29b6e81d443",
+  "prompts": {},
+  "sessions": {
+    "s_77fe8846650e45": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b79472c9-940e-45a2-a6c8-5eb1d1eb6b2e",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "EdgardoArriagada <edgardo.arriagada.ortiz@gmail.com>"
+    }
+  }
+}
