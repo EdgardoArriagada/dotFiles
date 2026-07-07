@@ -1,0 +1,21 @@
+nvim/home/.config/nvim/lua/zsb/plugins/which-key.lua
+  s_98de26f616ef62::t_f330e7c17f6023 285,287,289-290,293,295,297-298,301,303,305,310,313-314,319,322-323,328,331-332
+nvim/home/.config/nvim/lua/zsb/plugins/refactoring.lua
+  s_98de26f616ef62::t_1dbdd49cd5d0bd 7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "010e77d0bf6873d31113f12d3ee3426b4b88e686",
+  "prompts": {},
+  "sessions": {
+    "s_98de26f616ef62": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4e1396b7-2bfa-4c4d-88ff-1271e1039a7b",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "EdgardoArriagada <edgardo.arriagada.ortiz@gmail.com>"
+    }
+  }
+}
