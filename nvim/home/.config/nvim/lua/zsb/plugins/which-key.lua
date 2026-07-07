@@ -282,58 +282,54 @@ return {
 			{ "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", desc = "Preview Toggle" },
 			{ "<leader>mi", "<cmd>PasteImg<cr>", desc = "Paste Image" },
 			{
-				"<leader>rb",
-				function()
-					require("refactoring").refactor("Extract Block")
-				end,
-				desc = "Extract Block",
-			},
-			{
-				"<leader>rbf",
-				function()
-					require("refactoring").refactor("Extract Block To File")
-				end,
-				desc = "Extract Block To File",
-			},
-			{
 				"<leader>ri",
 				function()
-					require("refactoring").refactor("Inline Variable")
+					return require("refactoring").inline_var()
 				end,
 				desc = "Inline Variable",
+				expr = true,
 			},
-			-- complete translating vmappings
+			{
+				"<leader>rI",
+				function()
+					return require("refactoring").inline_func()
+				end,
+				desc = "Inline Function",
+				expr = true,
+			},
+			{
+				"<leader>rs",
+				function()
+					require("refactoring").select_refactor()
+				end,
+				desc = "Select Refactor",
+			},
 			{
 				"<leader>rf",
 				function()
-					require("refactoring").refactor("Extract Function")
+					return require("refactoring").extract_func()
 				end,
 				desc = "Extract Function",
-				mode = "v",
+				mode = { "n", "v" },
+				expr = true,
 			},
 			{
 				"<leader>re",
 				function()
-					require("refactoring").refactor("Extract Function To File")
+					return require("refactoring").extract_func_to_file()
 				end,
 				desc = "Extract Function To File",
-				mode = "v",
+				mode = { "n", "v" },
+				expr = true,
 			},
 			{
 				"<leader>rv",
 				function()
-					require("refactoring").refactor("Extract Variable")
+					return require("refactoring").extract_var()
 				end,
 				desc = "Extract Variable",
-				mode = "v",
-			},
-			{
-				"<leader>ri",
-				function()
-					require("refactoring").refactor("Inline Variable")
-				end,
-				desc = "Inline Variable",
-				mode = "v",
+				mode = { "n", "v" },
+				expr = true,
 			},
 			{
 				"<leader>rre",
