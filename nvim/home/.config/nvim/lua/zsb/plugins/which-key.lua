@@ -29,8 +29,6 @@ return {
 		})
 
 		wk.add({
-			{ "<leader>ch", "<cmd>cd ..<cr>", desc = "cd ..", mode = { "n", "v" } },
-			{ "<leader>cl", "<cmd>cd %:p:h<cr>", desc = "cd .", mode = { "n", "v" } },
 			{ "<leader>x", Logger, desc = "Logger", mode = { "n", "v" } },
 			{ "<leader>X", LoggerSP, desc = "LoggerSp", mode = { "n", "v" } },
 			{ "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Explorer" },
