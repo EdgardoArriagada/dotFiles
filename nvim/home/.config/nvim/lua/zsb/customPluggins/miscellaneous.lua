@@ -38,6 +38,19 @@ function ToggleRelativeNumber()
 	vim.wo.relativenumber = not vim.wo.relativenumber
 end
 
+function ToggleBool()
+	local word = vim.fn.expand("<cword>")
+	local map = {
+		["true"] = "false", ["false"] = "true",
+		["True"] = "False", ["False"] = "True",
+		["TRUE"] = "FALSE", ["FALSE"] = "TRUE",
+	}
+	local replacement = map[word]
+	if not replacement then return end
+	local esc = vim.api.nvim_replace_termcodes("<Esc>", true, true, true)
+	vim.api.nvim_feedkeys("ciw" .. replacement .. esc, "n", true)
+end
+
 -- returns the content of the given line number
 --- @param lnum number: The line number
 function GetLineContent(lnum)
