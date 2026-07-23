@@ -47,8 +47,21 @@ function ToggleBool()
 	}
 	local replacement = map[word]
 	if not replacement then return end
-	local esc = vim.api.nvim_replace_termcodes("<Esc>", true, true, true)
-	vim.api.nvim_feedkeys("ciw" .. replacement .. esc, "n", true)
+
+	local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+	local line = vim.api.nvim_get_current_line()
+	local cursor_lua = col + 1
+	local search_from = 1
+
+	while true do
+		local s, e = line:find(word, search_from, true)
+		if not s then return end
+		if s <= cursor_lua and cursor_lua <= e then
+			vim.api.nvim_buf_set_text(0, row - 1, s - 1, row - 1, e, { replacement })
+			return
+		end
+		search_from = e + 1
+	end
 end
 
 -- returns the content of the given line number
