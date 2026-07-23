@@ -49,63 +49,50 @@ function ToggleBool()
 	local line = vim.api.nvim_get_current_line()
 	local cursor_lua = col + 1
 
-	local function is_word(ln, s, e)
-		return (s == 1 or not ln:sub(s - 1, s - 1):match("%w"))
-			and (e == #ln or not ln:sub(e + 1, e + 1):match("%w"))
+	local function is_word_boundary(s, e)
+		return (s == 1 or not line:sub(s - 1, s - 1):match("%w"))
+			and (e == #line or not line:sub(e + 1, e + 1):match("%w"))
 	end
 
-	local function apply(r, s, w)
-		vim.api.nvim_buf_set_text(0, r - 1, s - 1, r - 1, s - 1 + #w, { map[w] })
-	end
-
-	-- cursor on a boolean: toggle in place
+	-- build position map for all booleans on current line
+	local positions = {}
 	for w in pairs(map) do
 		local s = 1
 		while true do
 			s = line:find(w, s, true)
 			if not s then break end
 			local e = s + #w - 1
-			if is_word(line, s, e) and s <= cursor_lua and cursor_lua <= e then
-				apply(row, s, w)
-				return
+			if is_word_boundary(s, e) then
+				table.insert(positions, { s, e, w })
 			end
 			s = e + 1
 		end
 	end
 
-	-- scan forward line by line
-	for r = row, vim.api.nvim_buf_line_count(0) do
-		local ln = vim.api.nvim_buf_get_lines(0, r - 1, r, false)[1]
-		local from = r == row and cursor_lua + 1 or 1
-		local best_s, best_w = nil, nil
-		for w in pairs(map) do
-			local s = ln:find(w, from, true)
-			if s and is_word(ln, s, s + #w - 1) and (not best_s or s < best_s) then
-				best_s, best_w = s, w
-			end
-		end
-		if best_s then apply(r, best_s, best_w) return end
+	if #positions == 0 then return end
+
+	local function apply(entry)
+		vim.api.nvim_buf_set_text(0, row - 1, entry[1] - 1, row - 1, entry[2], { map[entry[3]] })
 	end
 
-	-- nothing forward: scan backward line by line
-	for r = row, 1, -1 do
-		local ln = vim.api.nvim_buf_get_lines(0, r - 1, r, false)[1]
-		local upto = r == row and cursor_lua - 1 or #ln
-		local best_s, best_w = nil, nil
-		for w in pairs(map) do
-			local s = 1
-			while true do
-				s = ln:find(w, s, true)
-				if not s then break end
-				local e = s + #w - 1
-				if e <= upto and is_word(ln, s, e) and (not best_s or s > best_s) then
-					best_s, best_w = s, w
-				end
-				s = e + 1
-			end
+	-- cursor on a boolean: toggle in place
+	for _, entry in ipairs(positions) do
+		if cursor_lua >= entry[1] and cursor_lua <= entry[2] then
+			apply(entry)
+			return
 		end
-		if best_s then apply(r, best_s, best_w) return end
 	end
+
+	local best_right, best_left = nil, nil
+	for _, entry in ipairs(positions) do
+		if entry[1] > cursor_lua and (not best_right or entry[1] < best_right[1]) then
+			best_right = entry
+		elseif entry[2] < cursor_lua and (not best_left or entry[1] > best_left[1]) then
+			best_left = entry
+		end
+	end
+	if best_right then apply(best_right) return end
+	if best_left then apply(best_left) end
 end
 
 -- returns the content of the given line number
