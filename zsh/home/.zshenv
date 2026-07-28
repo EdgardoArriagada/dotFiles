@@ -1,7 +1,7 @@
 source "$HOME/.cargo/env"
 export GOROOT=$HOME/go
 export GOPATH=$HOME/gopath
-export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 declare -r commonRofiProps="-show -dmenu -no-custom -sort -sorting-method fzf"
 declare -r commonChooseGuiProps="-c 3deff2 -w 40"
 export PATH=~/.zsh-spell-book/src/charms:$PATH
