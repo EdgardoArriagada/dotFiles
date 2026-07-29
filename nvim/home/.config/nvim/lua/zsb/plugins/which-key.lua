@@ -117,6 +117,22 @@ return {
 				end,
 				desc = "toggle Add/Undo stage Hunk",
 			},
+			{
+				"<leader>gA",
+				function()
+					vim.system({ "git", "add", "--", vim.api.nvim_buf_get_name(0) }, {}, function(result)
+						vim.schedule(function()
+							if result.code == 0 then
+								require("gitsigns").refresh()
+								vim.notify(vim.fs.basename(vim.api.nvim_buf_get_name(0)) .. " added")
+							else
+								vim.notify("git add failed: " .. (result.stderr or ""), vim.log.levels.ERROR)
+							end
+						end)
+					end)
+				end,
+				desc = "Add untracked file",
+			},
 			{ "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Diff" },
 			{ "<leader>gf", "<cmd>Telescope git_status<cr>", desc = "Git Status Files" },
 			{ "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
