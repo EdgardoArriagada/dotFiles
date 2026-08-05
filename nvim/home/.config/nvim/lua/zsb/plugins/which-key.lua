@@ -17,6 +17,15 @@ local function prompt_with_desc(key, prompt)
 	return { key, paste_prompt(prompt), desc = prompt.desc }
 end
 
+local function paste_link()
+	local link = vim.fn.getreg("+"):gsub("%s+$", "")
+	local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+
+	vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { "[](" .. link .. ")" })
+	vim.api.nvim_win_set_cursor(0, { row, col + 1 })
+	vim.cmd("startinsert")
+end
+
 return {
 	"folke/which-key.nvim",
 	event = "VeryLazy",
@@ -41,6 +50,7 @@ return {
 			},
 			{ "<leader>F", "<cmd>Telescope live_grep theme=ivy<cr>", desc = "Find Text" },
 			{ "<leader>P", PasteToQf, desc = "Paste to qf" },
+			{ "<leader>pl", paste_link, desc = "Paste link" },
 			{ "<leader>nr", "<cmd>NvimTreeRefresh<cr>", desc = "Refresh Tree" },
 			{
 				"<leader>df",
