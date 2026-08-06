@@ -379,6 +379,7 @@ return {
 		local prompts = require("zsb.prompts")
 		wk.add({
 			{ "<leader>p", group = "Prompt" },
+			prompt_with_desc("<leader>pr", prompts.ponytail_review),
 			prompt_with_desc("<leader>pd", prompts.debug),
 			prompt_with_desc("<leader>pa", prompts.ask),
 			prompt_with_desc("<leader>pj", prompts.jira),
