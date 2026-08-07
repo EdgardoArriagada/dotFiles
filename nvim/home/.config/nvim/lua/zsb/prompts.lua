@@ -57,7 +57,7 @@ M.sheaper_prompts = {
 	desc = "Sheaper prompts",
 	get = function()
 		return [[
-- During this session, use both ponytail and caveman skills.
+**During this session, use both ponytail and caveman skills.**
 ]]
 	end,
 }
