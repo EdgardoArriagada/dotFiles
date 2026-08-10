@@ -26,6 +26,41 @@ local function paste_link()
 	vim.cmd("startinsert")
 end
 
+local function toggle_strikethrough()
+	local STRIKE = "\xcc\xb6" -- U+0336 combining long stroke overlay
+
+	local saved_a = { vim.fn.getreg("a"), vim.fn.getregtype("a") }
+
+	-- Yank selection into reg a; gv handles both visual-active and marks-only state
+	local in_visual = vim.fn.mode():find("[vV\22]") ~= nil
+	vim.cmd(in_visual and 'normal! "ay' or 'normal! gv"ay')
+	local text = vim.fn.getreg("a")
+
+	local b = text:byte(1)
+	local first_len = b and (b < 0x80 and 1 or b < 0xE0 and 2 or b < 0xF0 and 3 or 4) or 0
+	local is_struck = first_len > 0 and text:sub(first_len + 1, first_len + 2) == STRIKE
+
+	local new_text
+	if is_struck then
+		new_text = text:gsub(STRIKE, "")
+	else
+		local result, i = {}, 1
+		while i <= #text do
+			local byte = text:byte(i)
+			local len = byte < 0x80 and 1 or byte < 0xE0 and 2 or byte < 0xF0 and 3 or 4
+			local c = text:sub(i, i + len - 1)
+			result[#result + 1] = c ~= "\n" and c .. STRIKE or c
+			i = i + len
+		end
+		new_text = table.concat(result)
+	end
+
+	vim.fn.setreg("a", new_text, "v")
+	vim.cmd('normal! gv"ap')
+
+	vim.fn.setreg("a", saved_a[1], saved_a[2])
+end
+
 return {
 	"folke/which-key.nvim",
 	event = "VeryLazy",
@@ -212,6 +247,7 @@ return {
 				desc = "Toggle inlay hints",
 			},
 			{ "<leader>vq", ToggleQf, desc = "View qf list" },
+			{ "<leader>ss", toggle_strikethrough, desc = "Toggle strikethrough", mode = "v" },
 			{ "<leader>st", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
 			{
 				"<leader>sn",
