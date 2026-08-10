@@ -387,6 +387,7 @@ return {
 			prompt_with_desc("<leader>pm", prompts.merge_conflicts),
 			prompt_with_desc("<leader>pt", prompts.tdd),
 			prompt_with_desc("<leader>ps", prompts.sheaper_prompts),
+			prompt_with_desc("<leader>po", prompts.post_pr_comments_online),
 		})
 	end),
 }

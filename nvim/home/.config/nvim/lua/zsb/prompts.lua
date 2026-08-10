@@ -70,4 +70,12 @@ M.ponytail_review = {
 	end,
 }
 
+M.post_pr_comments_online = {
+	desc = "Post pr comments online",
+	get = function()
+		return [[
+Post your findings as comments on this GitHub pull request.]]
+	end,
+}
+
 return M
