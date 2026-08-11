@@ -74,7 +74,7 @@ M.post_pr_comments_online = {
 	desc = "Post pr comments online",
 	get = function()
 		return [[
-Post your findings as comments on this GitHub pull request.]]
+Post each finding as an inline comment on this GitHub pull request. (One inline comment for each finding)]]
 	end,
 }
 
