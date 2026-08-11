@@ -1,3 +1,5 @@
+ulimit -n 10240
+
 source "$HOME/.cargo/env"
 export GOROOT=$HOME/go
 export GOPATH=$HOME/gopath
