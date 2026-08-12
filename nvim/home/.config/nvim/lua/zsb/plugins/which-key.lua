@@ -35,6 +35,7 @@ local function toggle_strikethrough()
 	local in_visual = vim.fn.mode():find("[vV\22]") ~= nil
 	vim.cmd(in_visual and 'normal! "ay' or 'normal! gv"ay')
 	local text = vim.fn.getreg("a")
+	local reg_type = vim.fn.getregtype("a")
 
 	local b = text:byte(1)
 	local first_len = b and (b < 0x80 and 1 or b < 0xE0 and 2 or b < 0xF0 and 3 or 4) or 0
@@ -55,7 +56,7 @@ local function toggle_strikethrough()
 		new_text = table.concat(result)
 	end
 
-	vim.fn.setreg("a", new_text, "v")
+	vim.fn.setreg("a", new_text, reg_type)
 	vim.cmd('normal! gv"ap')
 
 	vim.fn.setreg("a", saved_a[1], saved_a[2])
