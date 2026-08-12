@@ -1,6 +1,5 @@
 vim.filetype.add({
 	pattern = {
-		[vim.env.HOME .. "/temp/tickets"] = "conf",
 		-- Detect bun files as typescript based on shebang
 		[".*"] = {
 			priority = -math.huge,
