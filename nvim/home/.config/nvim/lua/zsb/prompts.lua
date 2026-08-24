@@ -66,7 +66,7 @@ M.ponytail_review = {
 	desc = "Ponytail review",
 	get = function()
 		return [[
-/ponytail:ponytail-review review the git staged files]]
+$ponytail:ponytail-review review the git staged files]]
 	end,
 }
 
