@@ -1,6 +1,9 @@
 return {
 	"xiyaowong/nvim-transparent",
-	lazy = true,
+	lazy = false,
+	init = function()
+		vim.g.transparent_enabled = true
+	end,
 	opts = {
 		groups = { -- table: default groups
 			"Normal",
