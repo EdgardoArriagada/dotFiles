@@ -166,11 +166,12 @@ return {
 			{
 				"<leader>gA",
 				function()
-					vim.system({ "git", "add", "--", vim.api.nvim_buf_get_name(0) }, {}, function(result)
+					local file = vim.api.nvim_buf_get_name(0)
+					vim.system({ "git", "add", "--", file }, { cwd = vim.fs.dirname(file) }, function(result)
 						vim.schedule(function()
 							if result.code == 0 then
 								require("gitsigns").refresh()
-								vim.notify(vim.fs.basename(vim.api.nvim_buf_get_name(0)) .. " added")
+								vim.notify(vim.fs.basename(file) .. " added")
 							else
 								vim.notify("git add failed: " .. (result.stderr or ""), vim.log.levels.ERROR)
 							end
