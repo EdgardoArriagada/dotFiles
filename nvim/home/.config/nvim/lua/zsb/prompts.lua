@@ -49,7 +49,9 @@ M.merge_conflicts = {
 		return [[
 I ran `git pull origin develop`, and it resulted in merge conflicts.
 
-Carefully resolve the merge conflicts. Preserve the intended behavior from both sides when possible, avoid discarding unrelated changes, and run the relevant tests or checks after resolving them.]]
+Carefully resolve the merge conflicts. Preserve the intended behavior from both sides when possible, avoid discarding unrelated changes, and run the relevant tests or checks after resolving them.
+
+After resolving the conflicts, add the files with git add . and create a Git commit from the currently staged files.]]
 	end,
 }
 
