@@ -18,12 +18,6 @@ local configServers = {
 
 local ensureInstallConfigServers = {
 	pyright = {},
-	elixirls = {
-		-- download from https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#elixirls
-		-- and put in $HOME/elixir-ls
-		cmd = { vim.fn.expand("$HOME/elixir-ls/language_server.sh") },
-		cmd_env = { ERL_CRASH_DUMP = "/dev/null" },
-	},
 	jsonls = {},
 	cssls = {},
 	emmet_language_server = {
@@ -139,6 +133,7 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = ensureInstalledServers,
 				automatic_installation = true,
+				automatic_enable = false,
 			})
 		end,
 	},
