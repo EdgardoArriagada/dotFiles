@@ -235,6 +235,14 @@ return {
 			},
 			{ "<leader>tb", ToggleBool, desc = "Toggle boolean" },
 			{ "<leader>tl", ToggleRelativeNumber, desc = "Toggle relative number" },
+			{
+				"<leader>ts",
+				function()
+					vim.opt_local.spell = not vim.opt_local.spell:get()
+					vim.opt_local.spelllang = { "es", "en" }
+				end,
+				desc = "Toggle spelling (ES/EN)",
+			},
 			{ "<leader>vt", TestToggler, desc = "View test file" },
 			{ "<leader>vd", "<cmd>tab DBUI<cr>", desc = "View database client" },
 			{
