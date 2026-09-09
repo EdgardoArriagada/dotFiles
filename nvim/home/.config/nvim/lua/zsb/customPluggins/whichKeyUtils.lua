@@ -61,30 +61,13 @@ function M.toggle_strikethrough()
 
 	local saved_a = { vim.fn.getreg("a"), vim.fn.getregtype("a") }
 
-	-- Yank selection into reg a; gv handles both visual-active and marks-only state
-	local in_visual = vim.fn.mode():find("[vV\22]") ~= nil
-	vim.cmd(in_visual and 'normal! "ay' or 'normal! gv"ay')
+	vim.cmd('normal! "ay')
 	local text = vim.fn.getreg("a")
 	local reg_type = vim.fn.getregtype("a")
 
-	local b = text:byte(1)
-	local first_len = b and (b < 0x80 and 1 or b < 0xE0 and 2 or b < 0xF0 and 3 or 4) or 0
-	local is_struck = first_len > 0 and text:sub(first_len + 1, first_len + 2) == STRIKE
-
-	local new_text
-	if is_struck then
-		new_text = text:gsub(STRIKE, "")
-	else
-		local result, i = {}, 1
-		while i <= #text do
-			local byte = text:byte(i)
-			local len = byte < 0x80 and 1 or byte < 0xE0 and 2 or byte < 0xF0 and 3 or 4
-			local c = text:sub(i, i + len - 1)
-			result[#result + 1] = c ~= "\n" and c .. STRIKE or c
-			i = i + len
-		end
-		new_text = table.concat(result)
-	end
+	local first = vim.fn.strcharpart(text, 0, 1)
+	local is_struck = first ~= "" and text:sub(#first + 1, #first + 2) == STRIKE
+	local new_text = is_struck and text:gsub(STRIKE, "") or vim.fn.substitute(text, "[^\\n]", "\\0" .. STRIKE, "g")
 
 	vim.fn.setreg("a", new_text, reg_type)
 	vim.cmd('normal! gv"ap')
