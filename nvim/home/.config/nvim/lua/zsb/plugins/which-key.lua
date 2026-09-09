@@ -1,66 +1,6 @@
 local FORWARD = 1
 local BACKWARD = -1
-
-local function jump(a)
-	return function()
-		vim.diagnostic.jump({ count = a.direction, float = true, severity = a.severity })
-	end
-end
-
-local function paste_prompt(prompt)
-	return function()
-		vim.api.nvim_put(vim.split(prompt.get(), "\n"), "l", true, true)
-	end
-end
-
-local function prompt_with_desc(key, prompt)
-	return { key, paste_prompt(prompt), desc = prompt.desc }
-end
-
-local function paste_link()
-	local link = vim.fn.getreg("+"):gsub("%s+$", "")
-	local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-
-	vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { "[](" .. link .. ")" })
-	vim.api.nvim_win_set_cursor(0, { row, col + 1 })
-	vim.cmd("startinsert")
-end
-
-local function toggle_strikethrough()
-	local STRIKE = "\xcc\xb6" -- U+0336 combining long stroke overlay
-
-	local saved_a = { vim.fn.getreg("a"), vim.fn.getregtype("a") }
-
-	-- Yank selection into reg a; gv handles both visual-active and marks-only state
-	local in_visual = vim.fn.mode():find("[vV\22]") ~= nil
-	vim.cmd(in_visual and 'normal! "ay' or 'normal! gv"ay')
-	local text = vim.fn.getreg("a")
-	local reg_type = vim.fn.getregtype("a")
-
-	local b = text:byte(1)
-	local first_len = b and (b < 0x80 and 1 or b < 0xE0 and 2 or b < 0xF0 and 3 or 4) or 0
-	local is_struck = first_len > 0 and text:sub(first_len + 1, first_len + 2) == STRIKE
-
-	local new_text
-	if is_struck then
-		new_text = text:gsub(STRIKE, "")
-	else
-		local result, i = {}, 1
-		while i <= #text do
-			local byte = text:byte(i)
-			local len = byte < 0x80 and 1 or byte < 0xE0 and 2 or byte < 0xF0 and 3 or 4
-			local c = text:sub(i, i + len - 1)
-			result[#result + 1] = c ~= "\n" and c .. STRIKE or c
-			i = i + len
-		end
-		new_text = table.concat(result)
-	end
-
-	vim.fn.setreg("a", new_text, reg_type)
-	vim.cmd('normal! gv"ap')
-
-	vim.fn.setreg("a", saved_a[1], saved_a[2])
-end
+local utils = require("zsb.customPluggins.whichKeyUtils")
 
 return {
 	"folke/which-key.nvim",
@@ -86,7 +26,8 @@ return {
 			},
 			{ "<leader>F", "<cmd>Telescope live_grep theme=ivy<cr>", desc = "Find Text" },
 			{ "<leader>P", PasteToQf, desc = "Paste to qf" },
-			{ "<leader>pl", paste_link, desc = "Paste link" },
+			{ "<leader>pl", utils.paste_link, desc = "Paste link" },
+			{ "<leader>pl", utils.paste_link_visual, desc = "Paste link", mode = "v" },
 			{ "<leader>nr", "<cmd>NvimTreeRefresh<cr>", desc = "Refresh Tree" },
 			{
 				"<leader>df",
@@ -187,16 +128,16 @@ return {
 			{ "<leader>lw", "<cmd>Telescope lsp_workspace_diagnostics<cr>", desc = "Workspace Diagnostics" },
 			{ "<leader>li", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
 			{ "<leader>lI", "<cmd>Mason<cr>", desc = "Mason" },
-			{ "<leader>lN", jump({ direction = FORWARD }), desc = "Next Diagnostic" },
-			{ "<leader>lP", jump({ direction = BACKWARD }), desc = "Prev Diagnostic" },
+			{ "<leader>lN", utils.jump({ direction = FORWARD }), desc = "Next Diagnostic" },
+			{ "<leader>lP", utils.jump({ direction = BACKWARD }), desc = "Prev Diagnostic" },
 			{
 				"<leader>ln",
-				jump({ direction = FORWARD, severity = vim.diagnostic.severity.ERROR }),
+				utils.jump({ direction = FORWARD, severity = vim.diagnostic.severity.ERROR }),
 				desc = "Next Error",
 			},
 			{
 				"<leader>lp",
-				jump({ direction = BACKWARD, severity = vim.diagnostic.severity.ERROR }),
+				utils.jump({ direction = BACKWARD, severity = vim.diagnostic.severity.ERROR }),
 				desc = "Prev Error",
 			},
 			{ "<leader>ll", vim.lsp.codelens.run, desc = "CodeLens Action" },
@@ -257,7 +198,7 @@ return {
 				desc = "Toggle inlay hints",
 			},
 			{ "<leader>vq", ToggleQf, desc = "View qf list" },
-			{ "<leader>ss", toggle_strikethrough, desc = "Toggle strikethrough", mode = "v" },
+			{ "<leader>ss", utils.toggle_strikethrough, desc = "Toggle strikethrough", mode = "v" },
 			{ "<leader>st", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
 			{
 				"<leader>sn",
@@ -425,15 +366,15 @@ return {
 		local prompts = require("zsb.prompts")
 		wk.add({
 			{ "<leader>p", group = "Prompt" },
-			prompt_with_desc("<leader>pr", prompts.ponytail_review),
-			prompt_with_desc("<leader>pd", prompts.debug),
-			prompt_with_desc("<leader>pa", prompts.ask),
-			prompt_with_desc("<leader>pj", prompts.jira),
-			prompt_with_desc("<leader>pc", prompts.pc),
-			prompt_with_desc("<leader>pm", prompts.merge_conflicts),
-			prompt_with_desc("<leader>pt", prompts.tdd),
-			prompt_with_desc("<leader>ps", prompts.sheaper_prompts),
-			prompt_with_desc("<leader>po", prompts.post_pr_comments_online),
+			utils.prompt_with_desc("<leader>pr", prompts.ponytail_review),
+			utils.prompt_with_desc("<leader>pd", prompts.debug),
+			utils.prompt_with_desc("<leader>pa", prompts.ask),
+			utils.prompt_with_desc("<leader>pj", prompts.jira),
+			utils.prompt_with_desc("<leader>pc", prompts.pc),
+			utils.prompt_with_desc("<leader>pm", prompts.merge_conflicts),
+			utils.prompt_with_desc("<leader>pt", prompts.tdd),
+			utils.prompt_with_desc("<leader>ps", prompts.sheaper_prompts),
+			utils.prompt_with_desc("<leader>po", prompts.post_pr_comments_online),
 		})
 	end),
 }
