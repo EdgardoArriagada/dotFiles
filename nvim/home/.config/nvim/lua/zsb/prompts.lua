@@ -14,7 +14,18 @@ M.ask = {
 	desc = "Ask",
 	get = function()
 		return [[
-- Before proceeding, ask me every question you need answered to complete this task. Keep asking until you have no more doubts, then execute.]]
+
+--- 
+
+Before proceeding, ask me any clarifying questions you need to complete this task perfectly. 
+
+Please follow these rules for your questions:
+1. Present them in a numbered list.
+2. Whenever possible, provide multiple-choice options lettered as a), b), c), etc.
+3. Suggest a recommended answer for each question when you can.
+
+Wait for my response before executing the task. If my answers resolve your doubts, proceed with the final output. If not, ask follow-up questions.
+]]
 	end,
 }
 
