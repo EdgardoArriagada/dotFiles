@@ -90,9 +90,6 @@ local function add_project_roots(roots, directory)
 			break
 		end
 		local parent = vim.fs.dirname(current)
-		if parent == current then
-			break
-		end
 		current = parent
 	end
 end
@@ -269,7 +266,6 @@ function source:complete(params, callback)
 	callback(items)
 end
 
-source._client_for_path = client_for_path
 source._read_skill = read_skill
 
 return source
