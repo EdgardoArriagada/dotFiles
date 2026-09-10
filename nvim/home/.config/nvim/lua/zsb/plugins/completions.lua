@@ -149,6 +149,7 @@ return {
 							buffer = "[Buffer]",
 							path = "[Path]",
 							at_files = "[File]",
+							agent_skills = "[Skill]",
 						})[entry.source.name]
 
 						if color_item.abbr_hl_group then
@@ -181,10 +182,12 @@ return {
 			})
 
 			cmp.register_source("at_files", require("zsb.customPluggins.cmpAtFiles").new())
+			cmp.register_source("agent_skills", require("zsb.customPluggins.cmpAgentSkills").new())
 
 			cmp.setup.filetype("markdown", {
 				sources = cmp.config.sources({
 					{ name = "at_files" },
+					{ name = "agent_skills" },
 				}, {
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
