@@ -16,7 +16,7 @@ function M.prompt_with_desc(key, prompt)
 	return { key, paste_prompt(prompt), desc = prompt.desc }
 end
 
-function M.paste_link()
+function M.insert_link()
 	local link = vim.fn.getreg("+"):gsub("%s+$", "")
 	local row, col = unpack(vim.api.nvim_win_get_cursor(0))
 
@@ -25,7 +25,7 @@ function M.paste_link()
 	vim.cmd("startinsert")
 end
 
-function M.paste_link_visual()
+function M.insert_link_visual()
 	local link = vim.fn.getreg("+"):gsub("%s+$", "")
 	local mode = vim.fn.mode()
 	local start_pos, end_pos = vim.fn.getpos("v"), vim.fn.getpos(".")

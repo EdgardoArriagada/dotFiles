@@ -26,8 +26,8 @@ return {
 			},
 			{ "<leader>F", "<cmd>Telescope live_grep theme=ivy<cr>", desc = "Find Text" },
 			{ "<leader>P", PasteToQf, desc = "Paste to qf" },
-			{ "<leader>pl", utils.paste_link, desc = "Paste link" },
-			{ "<leader>pl", utils.paste_link_visual, desc = "Paste link", mode = "v" },
+			{ "<leader>il", utils.insert_link, desc = "Insert link" },
+			{ "<leader>il", utils.insert_link_visual, desc = "Insert link", mode = "v" },
 			{ "<leader>nr", "<cmd>NvimTreeRefresh<cr>", desc = "Refresh Tree" },
 			{
 				"<leader>df",
