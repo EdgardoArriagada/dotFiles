@@ -6,14 +6,12 @@ function M.jump(a)
 	end
 end
 
-local function paste_prompt(prompt)
-	return function()
-		vim.api.nvim_put(vim.split(prompt.get(), "\n"), "l", true, true)
-	end
-end
-
 function M.prompt_with_desc(key, prompt)
-	return { key, paste_prompt(prompt), desc = prompt.desc }
+	return {
+		key,
+		function() vim.api.nvim_put(vim.split(prompt.get(), "\n"), "l", true, true) end,
+		desc = prompt.desc,
+	}
 end
 
 function M.insert_link()
@@ -74,6 +72,7 @@ function M.insert_code_fence_visual()
 	local ranges = vim.fn.getregionpos(start_pos, end_pos, options)
 
 	vim.cmd("normal! " .. vim.keycode("<Esc>"))
+	local start = ranges[1][1]
 	if mode == "\22" then
 		for i = #ranges, 1, -1 do
 			local start, last = ranges[i][1], ranges[i][2]
@@ -84,7 +83,6 @@ function M.insert_code_fence_visual()
 			})
 		end
 	else
-		local start = ranges[1][1]
 		local last = ranges[#ranges][1]
 		local end_col = last[3] - 1 + #text[#text]
 		table.insert(text, 1, "```")
@@ -92,7 +90,6 @@ function M.insert_code_fence_visual()
 		vim.api.nvim_buf_set_text(0, start[2] - 1, start[3] - 1, last[2] - 1, end_col, text)
 	end
 
-	local start = ranges[1][1]
 	vim.api.nvim_win_set_cursor(0, { start[2], start[3] + 1 })
 	vim.cmd("startinsert!")
 end
