@@ -25,4 +25,27 @@ assert(vim.deep_equal(vim.api.nvim_buf_get_lines(buffer, 0, -1, false), {
 	"</my-tag>",
 }))
 
+vim.api.nvim_buf_set_lines(buffer, 0, -1, false, { "" })
+vim.api.nvim_win_set_cursor(0, { 1, 0 })
+vim.fn.setreg('"', "hello", "v")
+utils.insert_code_fence()
+assert(vim.deep_equal(vim.api.nvim_buf_get_lines(buffer, 0, -1, false), {
+	"```",
+	"hello",
+	"```",
+}))
+assert(vim.deep_equal(vim.api.nvim_win_get_cursor(0), { 1, 3 }))
+
+vim.cmd("stopinsert")
+vim.api.nvim_buf_set_lines(buffer, 0, -1, false, { "hello" })
+vim.api.nvim_win_set_cursor(0, { 1, 0 })
+vim.cmd("normal! v$")
+utils.insert_code_fence_visual()
+assert(vim.deep_equal(vim.api.nvim_buf_get_lines(buffer, 0, -1, false), {
+	"```",
+	"hello",
+	"```",
+}))
+assert(vim.deep_equal(vim.api.nvim_win_get_cursor(0), { 1, 3 }))
+
 print("insert tag: ok")

@@ -56,6 +56,47 @@ function M.insert_link_visual()
 	vim.api.nvim_buf_set_text(0, start[2] - 1, start[3] - 1, last[2] - 1, end_col, text)
 end
 
+function M.insert_code_fence()
+	local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+	local text = vim.fn.getreg('"', 1, true)
+	table.insert(text, 1, "```")
+	table.insert(text, "```")
+	vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, text)
+	vim.api.nvim_win_set_cursor(0, { row, col + 2 })
+	vim.cmd("startinsert!")
+end
+
+function M.insert_code_fence_visual()
+	local mode = vim.fn.mode()
+	local start_pos, end_pos = vim.fn.getpos("v"), vim.fn.getpos(".")
+	local options = { type = mode, exclusive = vim.o.selection == "exclusive", eol = true }
+	local text = vim.fn.getregion(start_pos, end_pos, options)
+	local ranges = vim.fn.getregionpos(start_pos, end_pos, options)
+
+	vim.cmd("normal! " .. vim.keycode("<Esc>"))
+	if mode == "\22" then
+		for i = #ranges, 1, -1 do
+			local start, last = ranges[i][1], ranges[i][2]
+			vim.api.nvim_buf_set_text(0, start[2] - 1, start[3] - 1, last[2] - 1, last[3], {
+				"```",
+				text[i],
+				"```",
+			})
+		end
+	else
+		local start = ranges[1][1]
+		local last = ranges[#ranges][1]
+		local end_col = last[3] - 1 + #text[#text]
+		table.insert(text, 1, "```")
+		table.insert(text, "```")
+		vim.api.nvim_buf_set_text(0, start[2] - 1, start[3] - 1, last[2] - 1, end_col, text)
+	end
+
+	local start = ranges[1][1]
+	vim.api.nvim_win_set_cursor(0, { start[2], start[3] + 1 })
+	vim.cmd("startinsert!")
+end
+
 local function prompt_tag(callback)
 	vim.ui.input({ prompt = "Tag name: " }, function(tag)
 		if not tag then

@@ -28,6 +28,8 @@ return {
 			{ "<leader>P", PasteToQf, desc = "Paste to qf" },
 			{ "<leader>il", utils.insert_link, desc = "Insert link" },
 			{ "<leader>il", utils.insert_link_visual, desc = "Insert link", mode = "v" },
+			{ "<leader>ic", utils.insert_code_fence, desc = "Insert code fence" },
+			{ "<leader>ic", utils.insert_code_fence_visual, desc = "Insert code fence", mode = "v" },
 			{ "<leader>it", utils.insert_tag, desc = "Insert tags" },
 			{ "<leader>it", utils.insert_tag_visual, desc = "Insert tags", mode = "v" },
 			{ "<leader>nr", "<cmd>NvimTreeRefresh<cr>", desc = "Refresh Tree" },
