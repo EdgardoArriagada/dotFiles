@@ -56,6 +56,62 @@ function M.insert_link_visual()
 	vim.api.nvim_buf_set_text(0, start[2] - 1, start[3] - 1, last[2] - 1, end_col, text)
 end
 
+local function prompt_tag(callback)
+	vim.ui.input({ prompt = "Tag name: " }, function(tag)
+		if not tag then
+			return
+		end
+
+		tag = tag:gsub("[^%w-]", "-"):gsub("-+", "-"):gsub("^%-", ""):gsub("%-$", "")
+		if tag == "" then
+			vim.notify("Tag name cannot be empty", vim.log.levels.WARN)
+			return
+		end
+
+		callback("<" .. tag .. ">", "</" .. tag .. ">")
+	end)
+end
+
+function M.insert_tag()
+	prompt_tag(function(opening, closing)
+		local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+		local text = vim.fn.getreg('"', 1, true)
+		table.insert(text, 1, opening)
+		table.insert(text, closing)
+		vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, text)
+	end)
+end
+
+function M.insert_tag_visual()
+	local mode = vim.fn.mode()
+	local start_pos, end_pos = vim.fn.getpos("v"), vim.fn.getpos(".")
+	local options = { type = mode, exclusive = vim.o.selection == "exclusive", eol = true }
+	local text = vim.fn.getregion(start_pos, end_pos, options)
+	local ranges = vim.fn.getregionpos(start_pos, end_pos, options)
+
+	vim.cmd("normal! " .. vim.keycode("<Esc>"))
+	prompt_tag(function(opening, closing)
+		if mode == "\22" then
+			for i = #ranges, 1, -1 do
+				local start, last = ranges[i][1], ranges[i][2]
+				vim.api.nvim_buf_set_text(0, start[2] - 1, start[3] - 1, last[2] - 1, last[3], {
+					opening,
+					text[i],
+					closing,
+				})
+			end
+			return
+		end
+
+		local start = ranges[1][1]
+		local last = ranges[#ranges][1]
+		local end_col = last[3] - 1 + #text[#text]
+		table.insert(text, 1, opening)
+		table.insert(text, closing)
+		vim.api.nvim_buf_set_text(0, start[2] - 1, start[3] - 1, last[2] - 1, end_col, text)
+	end)
+end
+
 function M.toggle_strikethrough()
 	local STRIKE = "\xcc\xb6" -- U+0336 combining long stroke overlay
 
