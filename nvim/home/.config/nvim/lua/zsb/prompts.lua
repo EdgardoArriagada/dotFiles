@@ -29,15 +29,6 @@ Wait for my response before executing the task. If my answers resolve your doubt
 	end,
 }
 
-M.jira = {
-	desc = "Jira",
-	get = function()
-		return [[
-- Create a jira ticket with the fields described in the image
-- Give me the link to the ticket at the end]]
-	end,
-}
-
 M.pc = {
 	desc = "Commit staged files",
 	get = function()
@@ -66,28 +57,11 @@ After resolving the conflicts, add the files with git add . and create a Git com
 	end,
 }
 
-M.sheaper_prompts = {
-	desc = "Sheaper prompts",
-	get = function()
-		return [[
-**During this session, use both ponytail and caveman skills.**
-]]
-	end,
-}
-
 M.ponytail_review = {
 	desc = "Ponytail review",
 	get = function()
 		return [[
 $ponytail:ponytail-review review the git staged files]]
-	end,
-}
-
-M.post_pr_comments_online = {
-	desc = "Post pr comments online",
-	get = function()
-		return [[
-Post each finding as an inline comment on this GitHub pull request. (One inline comment for each finding)]]
 	end,
 }
 
