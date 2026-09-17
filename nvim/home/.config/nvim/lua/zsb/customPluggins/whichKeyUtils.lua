@@ -113,7 +113,7 @@ end
 function M.insert_tag()
 	prompt_tag(function(opening, closing)
 		local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-		local text = vim.fn.getreg('"', 1, true)
+		local text = vim.fn.getreg('+', 1, true)
 		table.insert(text, 1, opening)
 		table.insert(text, closing)
 		vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, text)

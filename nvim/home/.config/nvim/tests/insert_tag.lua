@@ -7,7 +7,7 @@ end
 local buffer = vim.api.nvim_create_buf(false, true)
 vim.api.nvim_set_current_buf(buffer)
 vim.api.nvim_buf_set_lines(buffer, 0, -1, false, { "" })
-vim.fn.setreg('"', "hello", "v")
+vim.fn.setreg("+", "hello", "v")
 utils.insert_tag()
 assert(vim.deep_equal(vim.api.nvim_buf_get_lines(buffer, 0, -1, false), {
 	"<my-tag>",
