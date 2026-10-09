@@ -170,13 +170,15 @@ return {
 				function()
 					if require("render-markdown.state").enabled then
 						require("render-markdown").disable()
+						require("transparent").toggle(true)
 						vim.wo.wrap = false
 					else
 						require("render-markdown").enable()
+						require("transparent").toggle(false)
 						vim.wo.wrap = true
 					end
 				end,
-				desc = "Toggle read (markdown + wrap)",
+				desc = "Toggle read (markdown + wrap + transparency)",
 			},
 			{ "<leader>tb", ToggleBool, desc = "Toggle boolean" },
 			{ "<leader>tl", ToggleRelativeNumber, desc = "Toggle relative number" },
