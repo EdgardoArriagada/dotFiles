@@ -372,13 +372,13 @@ return {
 		local prompts = require("zsb.prompts")
 		wk.add({
 			{ "<leader>p", group = "Prompt" },
-			utils.prompt_with_desc("<leader>pr", prompts.ponytail_review),
-			utils.prompt_with_desc("<leader>pd", prompts.debug),
 			utils.prompt_with_desc("<leader>pa", prompts.ask),
 			utils.prompt_with_desc("<leader>pc", prompts.pc),
+			utils.prompt_with_desc("<leader>pd", prompts.debug),
 			utils.prompt_with_desc("<leader>pm", prompts.merge_conflicts),
-			utils.prompt_with_desc("<leader>pt", prompts.tdd),
+			utils.prompt_with_desc("<leader>pr", prompts.ponytail_review),
 			utils.prompt_with_desc("<leader>ps", prompts.skill_creation),
+			utils.prompt_with_desc("<leader>pt", prompts.tdd),
 		})
 	end),
 }
