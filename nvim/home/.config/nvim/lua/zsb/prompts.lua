@@ -65,4 +65,13 @@ $ponytail:ponytail-review review the git staged files]]
 	end,
 }
 
+M.skill_creation = {
+	desc = "Skill creation instruction",
+	get = function()
+		return [[
+the skill should only has the steps described above, dont explain obvious things and make the skill generic
+]]
+	end,
+}
+
 return M

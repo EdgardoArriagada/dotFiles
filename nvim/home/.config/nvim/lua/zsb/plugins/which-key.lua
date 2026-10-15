@@ -378,6 +378,7 @@ return {
 			utils.prompt_with_desc("<leader>pc", prompts.pc),
 			utils.prompt_with_desc("<leader>pm", prompts.merge_conflicts),
 			utils.prompt_with_desc("<leader>pt", prompts.tdd),
+			utils.prompt_with_desc("<leader>ps", prompts.skill_creation),
 		})
 	end),
 }
